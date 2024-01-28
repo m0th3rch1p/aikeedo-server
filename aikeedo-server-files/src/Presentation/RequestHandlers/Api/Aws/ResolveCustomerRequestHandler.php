@@ -47,7 +47,6 @@ class ResolveCustomerRequestHandler extends AwsApi implements
 
         try {
             $customer = $this->meteringService->resolve($payload->{'x-amzn-marketplace-token'});
-            dump($customer);
             if (!$customer || !isset($customer['CustomerIdentifier'])) {
                 //Handle Error Redirection
             }
@@ -57,7 +56,7 @@ class ResolveCustomerRequestHandler extends AwsApi implements
 
             $entitlementResults = $this->entitlementService->getEntitlementByCustomerId($customer['CustomerIdentifier'], $customer['ProductCode']);
 
-            dump($entitlementResults);
+            dump("Entitlement Results", $entitlementResults);
             $entitlements = $entitlementResults['Entitlements'];
 
             if (!count($entitlements)) {
