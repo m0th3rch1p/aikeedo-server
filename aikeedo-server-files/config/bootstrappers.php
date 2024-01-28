@@ -3,8 +3,7 @@
 declare(strict_types=1);
 
 use Ai\Infrastruture\AiModuleBootstrapper;
-use Aws\Infrastructure\Repositories\DoctrineOrm\AwsRepository;
-use Aws\Infrastructure\Repositories\DoctrineOrm\AwsUsageRepository;
+use Aws\Infrastructure\AwsModuleBootstrapper;
 use Category\Infrastructure\CategoryModuleBootstrapper;
 use Document\Infrastructure\DocumentModuleBootstrapper;
 use Billing\Infrastructure\BillingModuleBootstrapper;
@@ -26,8 +25,7 @@ return [
     BillingModuleBootstrapper::class,
     DocumentModuleBootstrapper::class,
     AiModuleBootstrapper::class,
-    AwsRepository::class,
-    AwsUsageRepository::class,
+    AwsModuleBootstrapper::class,
 
     ConsoleBootstrapper::class,
     RoutingBootstrapper::class,
