@@ -23,10 +23,10 @@ coverage
 !.env.example
 
 # Public assets (build files)
-/public/**/*
-!/public/uploads/
-!/public/index.php
-!/public/.htaccess
+#/public/**/*
+#!/public/uploads/
+#!/public/index.php
+#!/public/.htaccess
 
 # Keep empty directories
 !**/.gitkeep

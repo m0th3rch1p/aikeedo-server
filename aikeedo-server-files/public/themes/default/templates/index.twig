@@ -1,0 +1,14 @@
+{% extends "@theme/layouts/theme.twig" %}
+
+{% block template %}
+<div class="flex flex-col gap-6 my-10 md:my-20 md:gap-12 lg:gap-24">
+  {% include "@theme/sections/hero.twig" %}
+  {% include "@theme/sections/preview.twig" %}
+  {% include "@theme/sections/generators.twig" %}
+
+  {% include "@theme/sections/how-it-works.twig" %}
+  {% include "@theme/sections/features.twig" %}
+  {% include "@theme/sections/pricing.twig" %}
+  {% include "@theme/sections/cta.twig" %}
+</div>
+{% endblock %}
