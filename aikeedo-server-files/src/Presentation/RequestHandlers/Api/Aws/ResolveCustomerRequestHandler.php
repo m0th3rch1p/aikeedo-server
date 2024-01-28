@@ -8,6 +8,7 @@ use Aws\Infrastructure\Services\EntitlementService;
 use Aws\Infrastructure\Services\MeteringService;
 use Aws\MarketplaceMetering\Exception\MarketplaceMeteringException;
 use Easy\Http\Message\RequestMethod;
+use Easy\Http\Message\StatusCode;
 use Easy\Router\Attributes\Route;
 use Presentation\Response\JsonResponse;
 use Presentation\Response\RedirectResponse;
@@ -66,7 +67,7 @@ class ResolveCustomerRequestHandler extends AwsApi implements
         } catch (MarketplaceMeteringException $e) {
             return new JsonResponse(json_encode([
                 'message' => $e->getMessage()
-            ]), $e->getStatusCode());
+            ]), StatusCode::BAD_REQUEST);
         }
     }
 
