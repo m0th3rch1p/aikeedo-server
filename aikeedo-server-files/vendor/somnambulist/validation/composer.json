@@ -1,0 +1,40 @@
+{
+    "name": "somnambulist/validation",
+    "type": "library",
+    "description": "A re-write of rakit/validation providing Laravel like validation as a standalone library",
+    "keywords": [
+        "php",
+        "validation",
+        "symfony"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dave Redfern",
+            "email": "info@somnambulist.tech"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "doctrine/dbal": "^3.1.0",
+        "ramsey/uuid": "^4.3",
+        "symfony/var-dumper": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Somnambulist\\Components\\Validation\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Somnambulist\\Components\\Validation\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}

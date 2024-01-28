@@ -8,7 +8,7 @@
 **/.DS_Store
 
 # Vendors
-/vendor/
+#/vendor/
 /node_modules/
 
 # Var
