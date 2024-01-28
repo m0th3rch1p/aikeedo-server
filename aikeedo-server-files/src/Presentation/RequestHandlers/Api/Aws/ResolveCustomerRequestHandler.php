@@ -39,7 +39,8 @@ class ResolveCustomerRequestHandler extends AwsApi implements
 
         $payload = $request->getParsedBody();
 
-        $customer = $this->meteringService->resolve($payload['x-amzn-marketplacetoken']);
+        $customer = $this->meteringService->resolve($payload['x-amzn-marketplace-token']);
+        dump($customer);
         if (!$customer || !isset($customer['CustomerIdentifier'])) {
             //Handle Error Redirection
         }
