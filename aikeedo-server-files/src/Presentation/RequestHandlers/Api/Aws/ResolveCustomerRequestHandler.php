@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Presentation\RequestHandlers\Api\Aws;
 
+use Aws\Application\Commands\CreateAwsCommand;
 use Aws\Domain\Entities\AwsEntity;
 use Aws\Infrastructure\Services\EntitlementService;
 use Aws\Infrastructure\Services\MeteringService;
@@ -50,12 +51,12 @@ class ResolveCustomerRequestHandler extends AwsApi implements
                 //Handle Error Redirection
             }
 
-
-            $awsCommand = new AwsEntity($customer['CustomerIdentifier'], $customer['ProductCode']);
+            $awsCommand = new CreateAwsCommand($customer['CustomerIdentifier'], $customer['ProductCode']);
             $this->dispatcher->dispatch($awsCommand);
 
             $entitlementResults = $this->entitlementService->getEntitlementByCustomerId($customer['CustomerIdentifier'], $customer['ProductCode']);
 
+            dump($entitlementResults);
             $entitlements = $entitlementResults['Entitlements'];
 
             if (!count($entitlements)) {
