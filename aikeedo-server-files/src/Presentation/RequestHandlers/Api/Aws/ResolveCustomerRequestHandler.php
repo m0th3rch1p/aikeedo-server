@@ -51,8 +51,8 @@ class ResolveCustomerRequestHandler extends AwsApi implements
                 //Handle Error Redirection
             }
 
-            $awsCommand = new CreateAwsCommand($customer['CustomerIdentifier'], $customer['ProductCode']);
-            $this->dispatcher->dispatch($awsCommand);
+//            $awsCommand = new CreateAwsCommand($customer['CustomerIdentifier'], $customer['ProductCode']);
+//            $this->dispatcher->dispatch($awsCommand);
 
             $entitlementResults = $this->entitlementService->getEntitlementByCustomerId($customer['CustomerIdentifier'], $customer['ProductCode']);
 
