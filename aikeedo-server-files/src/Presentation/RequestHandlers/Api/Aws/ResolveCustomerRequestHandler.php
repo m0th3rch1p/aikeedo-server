@@ -6,8 +6,10 @@ namespace Presentation\RequestHandlers\Api\Aws;
 use Aws\Domain\Entities\AwsEntity;
 use Aws\Infrastructure\Services\EntitlementService;
 use Aws\Infrastructure\Services\MeteringService;
+use Aws\MarketplaceMetering\Exception\MarketplaceMeteringException;
 use Easy\Http\Message\RequestMethod;
 use Easy\Router\Attributes\Route;
+use Presentation\Response\JsonResponse;
 use Presentation\Response\RedirectResponse;
 use Presentation\Validation\ValidationException;
 use Presentation\Validation\Validator;
@@ -16,6 +18,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Shared\Infrastructure\CommandBus\Dispatcher;
 use Shared\Infrastructure\CommandBus\Exception\NoHandlerFoundException;
+use User\Domain\Exceptions\InvalidTokenException;
 
 #[Route(path: '/resolve', method: RequestMethod::POST)]
 class ResolveCustomerRequestHandler extends AwsApi implements
@@ -38,26 +41,33 @@ class ResolveCustomerRequestHandler extends AwsApi implements
         $this->validateRequest($request);
 
         $payload = $request->getParsedBody();
-        $customer = $this->meteringService->resolve($payload->{'x-amzn-marketplace-token'});
-        dump($customer);
-        if (!$customer || !isset($customer['CustomerIdentifier'])) {
-            //Handle Error Redirection
+
+        try {
+            $customer = $this->meteringService->resolve($payload->{'x-amzn-marketplace-token'});
+            dump($customer);
+            if (!$customer || !isset($customer['CustomerIdentifier'])) {
+                //Handle Error Redirection
+            }
+
+
+            $awsCommand = new AwsEntity($customer['CustomerIdentifier'], $customer['ProductCode']);
+            $this->dispatcher->dispatch($awsCommand);
+
+            $entitlementResults = $this->entitlementService->getEntitlementByCustomerId($customer['CustomerIdentifier'], $customer['ProductCode']);
+
+            $entitlements = $entitlementResults['Entitlements'];
+
+            if (!count($entitlements)) {
+                //Handle not active subscription
+            }
+
+            // Finish up registration
+            return new RedirectResponse(uri: '/aws/register?c_id='.$customer['CustomerIdentifier']);
+        } catch (MarketplaceMeteringException $e) {
+            return new JsonResponse(json_encode([
+                'message' => $e->getMessage()
+            ]), $e->getStatusCode());
         }
-
-
-        $awsCommand = new AwsEntity($customer['CustomerIdentifier'], $customer['ProductCode']);
-        $this->dispatcher->dispatch($awsCommand);
-
-        $entitlementResults = $this->entitlementService->getEntitlementByCustomerId($customer['CustomerIdentifier'], $customer['ProductCode']);
-
-        $entitlements = $entitlementResults['Entitlements'];
-
-        if (!count($entitlements)) {
-            //Handle not active subscription
-        }
-
-        // Finish up registration
-        return new RedirectResponse(uri: '/aws/register?c_id='.$customer['CustomerIdentifier']);
     }
 
     /**
