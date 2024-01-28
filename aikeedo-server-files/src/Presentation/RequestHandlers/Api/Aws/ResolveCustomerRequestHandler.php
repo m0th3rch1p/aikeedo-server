@@ -65,7 +65,7 @@ class ResolveCustomerRequestHandler extends AwsApi implements
      */
     private function validateRequest (ServerRequestInterface $request): void
     {
-        $this->validator->validate($request, [
+        $this->validator->validateRequest($request, [
             'x-amzn-marketplacetoken' => 'required|string'
         ]);
     }
