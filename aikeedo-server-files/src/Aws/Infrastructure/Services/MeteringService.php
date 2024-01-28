@@ -13,7 +13,7 @@ class MeteringService
     {
         $credentials = new Credentials(env('AWS_KEY'), env('AWS_SECRET'));
         $this->client = new MarketplaceMeteringClient([
-            'region' => 'us-west',
+            'region' => 'us-east',
             'version' => 'latest',
             'credentials' => $credentials
         ]);
