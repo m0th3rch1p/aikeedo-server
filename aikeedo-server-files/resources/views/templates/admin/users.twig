@@ -1,0 +1,257 @@
+{% extends "/layouts/main.twig" %}
+
+{% set active_menu = 'users' %}
+{% set sort = [
+  {
+    value: null,
+    label: p__('label', 'Default')
+  },
+
+  {
+    value: 'created_at',
+    label: p__('label', 'Date')
+  },
+
+  {
+    value: 'first_name',
+    label: p__('label', 'First name')
+  },
+
+  {
+    value: 'last_name',
+    label: p__('label', 'Last name')
+  }
+] %}
+
+{% set filters = [
+  {
+    label: p__('label', 'Role'),
+    model: 'role',
+    options: [
+      {
+        value: '0',
+        label: p__('role', 'User')
+      },
+      {
+        value: '1',
+        label: p__('role', 'Admin')
+      }
+    ]
+  },
+  {
+    label: p__('label', 'Status'),
+    model: 'status',
+    options: [
+      {
+        value: '0',
+        label: p__('status', 'Inactive')
+      },
+      {
+        value: '1',
+        label: p__('status', 'Active')
+      }
+    ]
+  }
+] %}
+
+{% set strings = {
+  delete_success: __("User has been deleted successfully.")
+} %}
+
+{% set xdata %}
+list("users", {{ sort|json_encode|raw }}, {{ filters|json_encode|raw }},
+{{ strings|json_encode() }})
+{% endset %}
+
+{% block title p__('title', 'Users')|title %}
+
+{% block template %}
+{# Header #}
+<div class="flex items-center justify-between">
+  <div>
+    <h1>{{ p__('heading', 'Users') }}</h1>
+
+    <template x-if="total !== null">
+      <div class="text-sm text-content-dimmed md:hidden">
+        {{ __('Total :count users')|replace({':count': '<span x-text="total"></span>'})|raw }}
+      </div>
+    </template>
+  </div>
+
+  <div class="flex items-center gap-2 md:hidden">
+    <button type="button" class="hidden w-8 h-8 avatar">
+      <i class="text-lg ti ti-adjustments-horizontal"></i>
+    </button>
+
+    <a href="admin/users/new" class="w-8 h-8 rounded-full button button-sm">
+      <i class="text-lg ti ti-plus"></i>
+    </a>
+  </div>
+
+  <a href="admin/users/new" class="hidden md:flex button button-sm">
+    {{ p__('button', 'Add user') }}
+  </a>
+</div>
+
+{# Filters #}
+{% include "/snippets/filters.twig" with { total: __('Total :count users') } %}
+
+{# List #}
+<div class="group/list" :data-state="state">
+  <div class="hidden group-data-[state=empty]/list:block">
+    {% include "sections/empty.twig" with { title: p__('heading', 'Empty result set'), message: __('There are no users yet.'), reset: __('There are no users matching your search.') } %}
+  </div>
+
+  <div
+    class="hidden md:grid grid-cols-12 gap-3 items-center px-3 py-2 text-content-dimmed text-xs group-data-[state=empty]/list:hidden">
+    <div class="col-span-5">{{ p__('label', 'User') }}</div>
+    <div class="col-span-2">{{ p__('label', 'Role') }}</div>
+    <div class="col-span-3">{{ p__('label', 'Created') }}</div>
+    <div class="col-span-1">{{ p__('label', 'Status') }}</div>
+    <div class="col-span-1"></div>
+  </div>
+
+  <ul class="text-sm flex flex-col gap-1 group-data-[state=empty]:hidden">
+    {% for i in range(1,5) %}
+    <li
+      class="hidden grid-cols-12 gap-3 items-center md:p-3 box hover:border-line animate-pulse group-data-[state=initial]/list:grid">
+      <div class="flex items-center col-span-5 gap-3">
+
+        <div class="avatar">
+        </div>
+
+        <div>
+          <div>
+            <span
+              class="inline-block w-32 h-6 rounded-lg bg-line-dimmed"></span>
+            <span
+              class="inline-block w-32 h-6 rounded-lg bg-line-dimmed"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-2">
+        <span class="inline-block w-20 h-6 rounded-lg bg-line-dimmed"></span>
+      </div>
+
+      <div class="col-span-3">
+        <span class="inline-block w-20 h-6 rounded-lg bg-line-dimmed"></span>
+      </div>
+
+      <div class="col-span-1"></div>
+
+      <div class="col-span-1 justify-self-end">
+        <div class="relative group">
+          <button>
+            <i class="ti ti-dots-vertical text-content-dimmed"></i>
+          </button>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+
+    <template x-for="user in resources" :key="user.id">
+      <li
+        class="relative grid items-center grid-cols-12 gap-3 p-3 box hover:border-line"
+        x-data>
+        <a :href="`admin/users/${user.id}`"
+          class="absolute top-0 left-0 w-full h-full cursor-pointer"></a>
+
+        <div class="flex items-center col-span-11 gap-3 md:col-span-5">
+          <div class="avatar bg-accent text-accent-content">
+            <span
+              x-text="`${user.first_name} ${user.last_name}`.match(/(\b\S)?/g).join('').slice(0, 2)"></span>
+
+            <template x-if="user.avatar">
+              <img :src="user.avatar"
+                :alt="`${user.first_name} ${user.last_name}`">
+            </template>
+          </div>
+
+          <div>
+            <div class="font-bold"
+              x-text="`${user.first_name} ${user.last_name}`">
+            </div>
+
+            <div class="text-content-dimmed md:hidden"
+              x-text="user.role==1 ? `{{ p__('role', 'Admin') }}` : `{{ p__('role', 'User') }}`">
+            </div>
+          </div>
+        </div>
+
+        <div class="hidden md:block md:col-span-2"
+          x-text="user.role==1 ? `{{ p__('role', 'Admin') }}` : `{{ p__('role', 'User') }}`">
+        </div>
+
+        <div class="hidden md:block md:col-span-3" x-text="user.created_at">
+        </div>
+
+        <div class="hidden md:block md:col-span-1">
+          <template x-if="user.id != '{{ auth_user.id }}'">
+            <label
+              class="relative z-10 inline-flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" name="status" class="hidden peer"
+                :checked="user.status == 1" @click="toggleStatus(user)">
+
+              <span
+                class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+
+              <span class="text-content-dimmed peer-checked:hidden">
+                {{ p__('status', 'Inactive') }}
+              </span>
+
+              <span class="hidden text-success peer-checked:inline">
+                {{ p__('status', 'Active') }}
+              </span>
+            </label>
+          </template>
+        </div>
+
+        <div class="col-span-1 justify-self-end">
+          <div class="relative"
+            @click.outside="$refs.context.removeAttribute('data-open')">
+
+            <button class="relative z-10"
+              @click="$refs.context.toggleAttribute('data-open')">
+              <i
+                class="ti ti-dots-vertical text-content-dimmed hover:text-intermediate-content"></i>
+            </button>
+
+            <div class="context-menu" x-ref="context">
+              <ul>
+                <li>
+                  <a :href="`admin/users/${user.id}`"
+                    class="flex items-center gap-2 px-4 py-2 hover:no-underline hover:bg-intermediate">
+                    <i class="ti ti-pencil"></i>
+
+                    {{ p__('button', 'Edit') }}
+                  </a>
+                </li>
+
+                <template x-if="user.id != '{{ auth_user.id }}'">
+                  <li>
+                    <button
+                      class="flex items-center w-full gap-2 px-4 py-2 hover:no-underline hover:bg-intermediate"
+                      @click.prevent="currentResource = user; overlay.open('modal')">
+                      <i class="ti ti-trash"></i>
+
+                      {{ p__('button', 'Delete') }}
+                    </button>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+    </template>
+  </ul>
+</div>
+{% endblock %}
+
+{% block modal %}
+{% include "sections/delete-modal.twig" with { 
+  message: __('Do you really want to delete :title from categories?'),
+  title: '`${currentResource.first_name} ${currentResource.last_name}`'
+} %}
+{% endblock %}

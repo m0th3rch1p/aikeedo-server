@@ -1,0 +1,218 @@
+{% extends "/layouts/main.twig" %}
+{% set active_menu = 'settings' %}
+
+{% set xdata = 'settings' %}
+{% block title p__('title', 'Paypal settings')|title %}
+
+{% block template %}
+<div>
+  {% include "snippets/back.twig" with {link: 'admin/settings/payments', label: 'Payments'} %}
+
+  <h1 class="mt-4">{{ p__('heading', 'Paypal settings') }}</h1>
+</div>
+
+<form @submit.prevent="submit" x-ref="form" autocomplete="off">
+  <div class="flex flex-col gap-8" x-data="{
+    mode: `{{ option.paypal.mode ?? 'sandbox' }}`,
+    sandbox_secret_key: `{{ option.paypal.sandbox.secret_key ?? '' }}`,
+    sandbox_client_id: `{{ option.paypal.sandbox.client_id ?? '' }}`,
+    sandbox_webhook_id: `{{ option.paypal.sandbox.webhook_id ?? '' }}`,
+    live_secret_key: `{{ option.paypal.live.secret_key ?? '' }}`,
+    live_client_id: `{{ option.paypal.live.client_id ?? '' }}`,
+    live_webhook_id: `{{ option.paypal.live.webhook_id ?? '' }}`,
+  }">
+    <input type="hidden" name="paypal[secret_key]"
+      :value="mode=='live' ? live_secret_key : sandbox_secret_key ">
+
+    <input type="hidden" name="paypal[client_id]"
+      :value="mode=='live' ? live_client_id : sandbox_client_id ">
+
+    <input type="hidden" name="paypal[webhook_id]"
+      :value="mode=='live' ? live_webhook_id : sandbox_webhook_id ">
+
+    <div class="flex flex-col gap-2">
+      <section class="grid grid-cols-1 gap-6 box" data-density="comfortable">
+        <h2>{{ p__('heading', 'Details') }}</h2>
+
+        <div
+          class="flex items-center justify-between p-3 rounded-lg bg-intermediate">
+          {{ p__('label', 'Status') }}
+
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="paypal[is_enabled]" class="hidden peer"
+              {{ option.paypal.is_enabled is defined and option.paypal.is_enabled ? 'checked' : '' }}>
+
+            <span
+              class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+
+            <span class="text-content-dimmed peer-checked:hidden">
+              {{ __('Disabled') }}
+            </span>
+
+            <span class="hidden text-success peer-checked:inline">
+              {{ __('Enabled') }}
+            </span>
+          </label>
+        </div>
+
+        <div>
+          <label>{{ p__('label', 'Mode') }}</label>
+
+          <div class="flex items-center gap-2 mt-2">
+            <label>
+              <input type="radio" name="paypal[mode]" value="sandbox"
+                class="radio-button" x-model="mode" />
+
+              <span>{{ p__('input-value', 'Sandbox') }}</span>
+            </label>
+
+            <label>
+              <input type="radio" name="paypal[mode]" value="live"
+                class="radio-button" x-model="mode" />
+
+              <span>{{ p__('input-value', 'Live') }}</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-1 gap-6 box" data-density="comfortable">
+        <div class="flex items-center gap-2">
+          <h2>{{ p__('heading', 'Keys') }}</h2>
+
+          <span x-show="mode == 'sandbox'" class="badge">
+            {{ __('Sandbox mode') }}
+          </span>
+        </div>
+
+        <div>
+          <label for="paypal.live.client_id">
+            {{ p__('label', 'Client ID') }}
+          </label>
+
+          <template x-if="mode=='live'">
+            <input type="text" id="paypal.live.client_id"
+              name="paypal[live][client_id]" class="mt-2 input"
+              autocomplete="off" x-model="live_client_id" />
+          </template>
+
+          <template x-if="mode=='sandbox'">
+            <input type="text" id="paypal.sandbox.client_id"
+              name="paypal[sandbox][client_id]" class="mt-2 input"
+              autocomplete="off" x-model="sandbox_client_id" />
+          </template>
+
+          <ul
+            class="m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+            <li>
+              {{ __('Can\'t find yout Client ID?') }}
+
+              <a href="https://developer.paypal.com/api/rest/#link-getclientidandclientsecret"
+                target="_blank" class="text-primary">
+                {{ p__('button', 'Click here') }}
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <label for="paypal.live.secret_key">
+            {{ p__('label', 'API secret key') }}
+          </label>
+
+          <template x-if="mode=='live'">
+            <input type="password" id="paypal.live.secret_key"
+              name="paypal[live][secret_key]" class="mt-2 input"
+              autocomplete="new-password" x-model="live_secret_key" />
+          </template>
+
+          <template x-if="mode=='sandbox'">
+            <input type="password" id="paypal.sandbox.secret_key"
+              name="paypal[sandbox][secret_key]" class="mt-2 input"
+              autocomplete="new-password" x-model="sandbox_secret_key" />
+          </template>
+
+          <ul
+            class="m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+            <li>
+              {{ __('Can\'t find yout API Secret Key?') }}
+
+              <a href="https://developer.paypal.com/api/rest/#link-getclientidandclientsecret"
+                target="_blank" class="text-primary">
+                {{ p__('button', 'Click here') }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-1 gap-6 box" data-density="comfortable">
+        <div class="flex items-center gap-2">
+          <h2>{{ p__('heading', 'Webhooks') }}</h2>
+
+          <span x-show="mode == 'sandbox'" class="badge">
+            {{ __('Sandbox mode') }}
+          </span>
+        </div>
+
+        <div>
+          <label>{{ p__('label', 'Webhook URL') }}</label>
+
+          <div class="flex items-center mt-2 input">
+            <span is="copyable-element" data-msg="URL copied to clipboard"
+              data-tippy-placement="right"
+              class="badge">{your_domain}/webhooks/paypal</span>
+          </div>
+
+          <ul
+            class="flex flex-col gap-1 m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+            <li>
+              {% set link %}
+              <a :href="mode == 'sandbox' ? 'https://developer.paypal.com/dashboard/applications/sandbox' : 'https://developer.paypal.com/dashboard/applications/'"
+                target="_blank" class="text-primary">
+                {{ p__('button', 'PayPal Developer Dashboard') }}
+              </a>
+              {% endset %}
+
+              {{ __('Create a webhook endpoint in your %s with the Webhook URL.', link) }}
+            </li>
+
+            <li>{{ __('Make sure to subscribe to All Events') }}</li>
+          </ul>
+        </div>
+
+        <div>
+          <label for="paypal.live.webhook_id">
+            {{ p__('label', 'Webhook ID') }}
+          </label>
+
+          <template x-if="mode=='live'">
+            <input type="text" id="paypal.live.webhook_id"
+              name="paypal[live][webhook_id]" class="mt-2 input"
+              autocomplete="off" x-model="live_webhook_id" />
+          </template>
+
+          <template x-if="mode=='sandbox'">
+            <input type="text" id="paypal.sandbox.webhook_id"
+              name="paypal[sandbox][webhook_id]" class="mt-2 input"
+              autocomplete="off" x-model="sandbox_webhook_id" />
+          </template>
+        </div>
+      </section>
+    </div>
+
+    <div class="flex justify-end gap-4">
+      <a href="admin/settings" class="button button-outline">
+        {{ p__('button', 'Cancel') }}
+      </a>
+
+      <button type="submit" class="button" x-ref="submit"
+        :disabled="!isSubmitable" :processing="isProcessing">
+        {% include "/snippets/spinner.twig" %}
+
+        {{ p__('button', 'Save changes') }}
+      </button>
+    </div>
+  </div>
+</form>
+{% endblock %}

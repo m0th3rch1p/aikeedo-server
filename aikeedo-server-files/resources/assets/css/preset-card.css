@@ -1,0 +1,71 @@
+@keyframes enter {
+  from {
+    @apply drop-shadow grayscale opacity-0 bg-transparent;
+    transform: scale(1.05) translateX(var(--x, 0px));
+  }
+}
+
+@keyframes enter-content {
+  from {
+    transform: translateY(10px);
+    opacity: 0.2;
+  }
+}
+
+.preset-card {
+  --view: 0px;
+
+  animation: enter both linear;
+  animation-timeline: view(36px);
+  animation-range: entry;
+
+  h3,
+  p,
+  .avatar {
+    animation: enter-content both linear;
+    animation-timeline: view(var(--view)));
+    animation-range: entry;
+  }
+
+  &:nth-child(3n + 1 of &) {
+    --x: -36px;
+    transform-origin: left center;
+
+    .avatar {
+      --view: 200px;
+    }
+
+    h3,
+    p {
+      --view: 3000px;
+    }
+  }
+
+  &:nth-child(3n + 2 of &) {
+    --x: 0%;
+    
+    .avatar {
+      --view: 50px;
+    }
+
+    h3,
+    p {
+      --view: 100px;
+    }
+  }
+
+  &:nth-child(3n + 3 of &) {
+    --x: 36px;
+    transform-origin: right center;
+
+    .avatar {
+      --view: 200px;
+    }
+
+    h3,
+    p {
+      --view: 3000px;
+    }
+
+  }
+}

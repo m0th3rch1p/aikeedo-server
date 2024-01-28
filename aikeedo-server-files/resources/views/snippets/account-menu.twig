@@ -1,0 +1,150 @@
+{% from "/macros/avatar.twig" import avatar %}
+
+<div class="relative"
+  @click.outside="$refs.usermenu.removeAttribute('data-open')">
+
+  <div
+    class="left-0 top-auto right-auto mb-1 w-60 bottom-full context-menu max-h-max peer"
+    x-ref="usermenu" @click="$el.removeAttribute('data-open')">
+
+    <a href="app/account"
+      class="flex items-center w-full gap-3 p-4 text-left hover:bg-intermediate hover:text-intermediate-content">
+      {{ avatar("`" ~ auth_user.first_name ~ " " ~ auth_user.last_name ~ "`", "`" ~ auth_user.avatar ?? null ~ "`") }}
+
+      <div class="max-w-[156px]">
+        <div class="overflow-hidden font-bold text-ellipsis">
+          {{ auth_user.first_name }}
+          {{ auth_user.last_name }}
+        </div>
+
+        <div
+          class="mt-1 overflow-hidden text-sm text-content-dimmed text-ellipsis">
+          {{ auth_user.email }}</div>
+      </div>
+    </a>
+
+    <hr class="border-t border-line-dimmed">
+    <ul>
+      {% if auth_user.role == 'admin' %}
+      {% if view_namespace == 'admin' %}
+      <li>
+        <a href="app"
+          class="flex items-center gap-2 px-4 py-2 hover:bg-intermediate hover:text-intermediate-content">
+          <i class="ti ti-sparkles"></i>
+          {{ p__('button', 'Switch to app') }}
+        </a>
+      </li>
+      {% else %}
+      <li>
+        <a href="admin/presets"
+          class="flex items-center gap-2 px-4 py-2 hover:bg-intermediate hover:text-intermediate-content">
+          <i class="ti ti-lock-cog"></i>
+          {{ p__('button', 'Switch to admin') }}
+        </a>
+      </li>
+      {% endif %}
+      {% endif %}
+
+      <li>
+        <mode-switcher>
+          <button type="button"
+            class="flex items-center w-full gap-2 px-4 py-2 hover:bg-intermediate hover:text-intermediate-content"
+            @click.stop>
+            <i class="ti ti-moon group-data-[mode=dark]/html:hidden"></i>
+            <i class="ti ti-sun hidden group-data-[mode=dark]/html:block"></i>
+
+            <span class="group-data-[mode=dark]/html:hidden">
+              {{ p__('button', 'Dark mode') }}
+            </span>
+
+            <span class="hidden group-data-[mode=dark]/html:inline">
+              {{ p__('button', 'Light mode') }}
+            </span>
+          </button>
+        </mode-switcher>
+      </li>
+    </ul>
+
+    <hr class="border-t border-line-dimmed">
+
+    <ul>
+      {% if view_namespace == 'app' %}
+      <li>
+        <a href="app/billing"
+          class="flex items-center gap-2 px-4 py-2 hover:bg-intermediate hover:no-underline">
+          <i class="ti ti-credit-card"></i>
+
+          {{ p__('button', 'Billing') }}
+        </a>
+      </li>
+      {% endif %}
+
+      <li>
+        <a href="app/account"
+          class="flex items-center gap-2 px-4 py-2 hover:bg-intermediate hover:text-intermediate-content">
+          <i class="ti ti-user-circle"></i>
+
+          {{ p__('button', 'Account') }}
+        </a>
+      </li>
+
+      <li>
+        <a href="logout"
+          class="flex items-center gap-2 px-4 py-2 hover:bg-intermediate hover:text-intermediate-content">
+          <i class="ti ti-logout"></i>
+
+          {{ p__('button', 'Logout') }}
+        </a>
+      </li>
+    </ul>
+
+    <hr class="border-t border-line-dimmed">
+
+    <ul class="flex flex-col gap-2 px-4 py-2 text-xs text-content-dimmed">
+      {% if option.policies.tos is defined and option.policies.tos is not empty %}
+      <li>
+        <a href="policies/terms" class="hover:text-content hover:underline">
+          {{ p__('button', 'Terms of services') }}
+        </a>
+      </li>
+      {% endif %}
+
+      {% if option.policies.privacy is defined and option.policies.privacy is not empty %}
+      <li>
+        <a href="policies/privacy" class="hover:text-content hover:underline">
+          {{ p__('button', 'Privacy policy') }}
+        </a>
+      </li>
+      {% endif %}
+
+      {% if option.policies.refund is defined and option.policies.refund is not empty %}
+      <li>
+        <a href="policies/refund" class="hover:text-content hover:underline">
+          {{ p__('button', 'Refund policy') }}
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+
+  <button
+    class="flex items-center w-full gap-2 py-2 rounded-lg text-intermediate-content-dimmed hover:text-content peer-data-[open]:text-intermediate-content text-left"
+    @click="$refs.usermenu.toggleAttribute('data-open')">
+
+    {{ avatar("`" ~ auth_user.first_name ~ " " ~ auth_user.last_name ~ "`", "`" ~ auth_user.avatar ?? null ~ "`") }}
+
+    <div class="max-w-[128px] whitespace-nowrap">
+      <div
+        class="overflow-hidden font-bold text-intermediate-content text-ellipsis">
+        {{ auth_user.first_name }} {{ auth_user.last_name }}
+      </div>
+
+      <div
+        class="overflow-hidden text-xs text-intermediate-content-dimmed text-ellipsis">
+        {{ auth_user.subscription ? auth_user.subscription.plan.title : auth_user.email }}
+      </div>
+    </div>
+
+    <i class="ml-auto ti ti-dots-vertical"></i>
+  </button>
+</div>

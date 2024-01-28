@@ -1,0 +1,167 @@
+{% extends "/layouts/main.twig" %}
+{% set active_menu = 'settings' %}
+
+{% set xdata = 'settings' %}
+{% block title p__('title', 'Account settings')|title %}
+
+{% block template %}
+<div>
+  {% include "snippets/back.twig" with {link: 'admin/settings', label: 'Settings'} %}
+
+  <h1 class="mt-4">{{ p__('heading', 'Account settings') }}</h1>
+</div>
+
+<form class="flex flex-col gap-8" @submit.prevent="submit" x-ref="form">
+  <section class="grid grid-cols-1 gap-6 px-16 box" data-density="comfortable"
+    x-data="{
+      user_accounts_enabled: `{{ option.site.user_accounts_enabled is not defined or option.site.user_accounts_enabled ? 1 : 0 }}`,
+      user_signup_enabled: `{{ option.site.user_signup_enabled is not defined or option.site.user_signup_enabled ? 1 : 0 }}`,
+    }">
+
+    <h2>{{ p__('heading', 'General') }}</h2>
+
+    <div>
+      <div
+        class="flex items-center justify-between p-3 rounded-lg bg-intermediate">
+        {{ p__('label', 'User accounts') }}
+
+        <label class="inline-flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" name="site[user_accounts_enabled]"
+            class="hidden peer"
+            {{ option.site.user_accounts_enabled is not defined or option.site.user_accounts_enabled ? 'checked' : '' }}
+            @change="user_accounts_enabled = $el.checked">
+
+          <span
+            class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+
+          <span class="text-content-dimmed peer-checked:hidden">
+            {{ __('Disabled') }}
+          </span>
+
+          <span class="hidden text-success peer-checked:inline">
+            {{ __('Enabled') }}
+          </span>
+        </label>
+      </div>
+
+      <ul
+        class="flex flex-col gap-1 m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+        <li>
+          {{ __('Disabling user accounts will prevent users from signing in through the sign in form and API. Admin accounts will still be able to sign in.') }}
+        </li>
+      </ul>
+    </div>
+
+    <template x-if="user_accounts_enabled == 1">
+      <div>
+        <div
+          class="flex items-center justify-between p-3 rounded-lg bg-intermediate">
+          {{ p__('label', 'Signup form') }}
+
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="site[user_signup_enabled]"
+              class="hidden peer"
+              {{ option.site.user_signup_enabled is not defined or option.site.user_signup_enabled ? 'checked' : '' }}>
+
+            <span
+              class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+
+            <span class="text-content-dimmed peer-checked:hidden">
+              {{ __('Disabled') }}
+            </span>
+
+            <span class="hidden text-success peer-checked:inline">
+              {{ __('Enabled') }}
+            </span>
+          </label>
+        </div>
+
+        <ul
+          class="flex flex-col gap-1 m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+          <li>
+            {{ __('Disabling registration will prevent users from signing up through the sign up form and API. Current users will still be able to sign in.') }}
+          </li>
+        </ul>
+      </div>
+    </template>
+
+    <template x-if="user_accounts_enabled == 1">
+      <div
+        x-data="{policy: `{{ option.site.email_verification_policy ?? 'none' }}`}">
+        <div>
+          <label
+            for="site[email_verification_policy]">{{ p__('label', 'Email verification policy') }}</label>
+
+          <select id="site[email_verification_policy]"
+            name="site[email_verification_policy]" class="mt-2 input" required
+            @change="policy=$el.value; console.log($el.value)">
+            <option value="none"
+              {{ option.site.email_verification_policy is defined and option.site.email_verification_policy == 'none' ? 'selected' : ''   }}>
+              {{ p__('input-value', 'None') }}
+            </option>
+
+            <option value="relaxed"
+              {{ option.site.email_verification_policy is defined and option.site.email_verification_policy == 'relaxed' ? 'selected' : ''   }}>
+              {{ p__('input-value', 'Relaxed') }}
+            </option>
+
+            <option value="strict"
+              {{ option.site.email_verification_policy is defined and option.site.email_verification_policy == 'strict' ? 'selected' : ''   }}>
+              {{ p__('input-value', 'Strict') }}
+            </option>
+          </select>
+        </div>
+
+        <ul
+          class="flex flex-col gap-1 m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+          <template x-if="policy == 'none'">
+            <li>
+              {{ __('Email verification will not be required.') }}
+            </li>
+          </template>
+
+          <template x-if="policy == 'relaxed'">
+            <li>
+              {{ __('Users can sign in without having their email addresses verified. However, an alert indicating that the email is unverified will be displayed on the dashboard.') }}
+            </li>
+          </template>
+
+          <template x-if="policy == 'strict'">
+            <li>
+              {{ __('Users will be able to sign in however can not access any page except the account pages until they verify their email address.') }}
+            </li>
+          </template>
+
+          <template x-if="policy != 'none'">
+            <li>
+              {% set mailer %}
+              <a href="admin/settings/mail"
+                class="text-content hover:underline">{{ p__('button', 'mailer transport') }}</a>
+              {% endset %}
+
+              {{ __('Configure :mailer to send emails.')|replace({':mailer': mailer })|raw }}
+            </li>
+          </template>
+
+          <li>
+            {{ __('Doesn\'t apply for the access to admin portal.') }}
+          </li>
+        </ul>
+      </div>
+    </template>
+  </section>
+
+  <div class="flex justify-end gap-4">
+    <a href="admin/settings" class="button button-outline">
+      {{ p__('button', 'Cancel') }}
+    </a>
+
+    <button type="submit" class="button" x-ref="submit"
+      :disabled="!isSubmitable" :processing="isProcessing">
+      {% include "/snippets/spinner.twig" %}
+
+      {{ p__('button', 'Save changes') }}
+    </button>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,329 @@
+{% extends "/layouts/main.twig" %}
+{% set active_menu = 'settings' %}
+
+{% set xdata = 'settings' %}
+{% block title p__('title', 'Brand settings')|title %}
+
+{% block template %}
+
+{% set svgborder %}
+<svg
+  class="absolute top-0 left-0 w-full h-full rounded-lg text-line group-hover:text-line group-data-[selected]:hidden stroke-2 stroke-current"
+  width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect cx="56" width="100%" height="100%" stroke-dasharray="4 4" rx="8"
+    ry="8" />
+</svg>
+{% endset %}
+
+<div>
+  {% include "snippets/back.twig" with {link: 'admin/settings', label: 'Settings'} %}
+
+  <h1 class="mt-4">{{ p__('heading', 'Brand settings') }}</h1>
+</div>
+
+<form class="flex flex-col gap-8" @submit.prevent="submit" x-ref="form">
+  <div class="flex flex-col gap-2">
+    <section class="grid grid-cols-1 gap-6 box" data-density="comfortable">
+      <h2>{{ p__('heading', 'Favicon') }}</h2>
+
+      <div>
+        <div class="flex items-center justify-between">
+          <label for="brand.favicon">{{ p__('label', 'Favicon') }}</label>
+
+          {% if option.brand.favicon is defined and option.brand.favicon is not empty %}
+          <div class="mt-2">
+            <a href="{{ option.brand.favicon }}" target="_blank"
+              class="flex items-center gap-1 text-xs text-content-dimmed hover:text-content hover:no-underline">
+              {{ p__('button', 'View current') }}
+
+              <i class="text-xs ti ti-external-link"></i>
+            </a>
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="relative p-6 mt-2" x-data="{file:null}">
+          {{ svgborder }}
+
+          <div
+            class="relative z-10 flex flex-col items-start justify-between gap-6 sm:flex-row">
+            <template x-if="!file">
+              <div>
+                <div class="font-semibold">{{ __('Upload file') }}</div>
+                <div class="mt-1 text-xs text-content-dimmed">
+                  png, jpg, jpeg, gif, ico, or svg
+                </div>
+              </div>
+            </template>
+
+            <template x-if="file">
+              <div>
+                <div class="font-semibold truncate" x-text="file.name"></div>
+
+                <div class="mt-1 text-xs text-intermediate-content"
+                  x-text="file.type">
+                </div>
+              </div>
+            </template>
+
+            <button type="button"
+              class="w-full button button-intermediate sm:w-auto"
+              @click="$refs.file.click()">{{ p__('button', 'Browse files') }}</button>
+          </div>
+
+          <input type="file" @change="file = $refs.file.files[0];"
+            name="brand[favicon]" id="file" class="hidden" accept="image/*"
+            x-ref="file">
+        </div>
+      </div>
+    </section>
+
+    <section class="grid gap-6 md:grid-cols-2 box" data-density="comfortable">
+      <h2 class="md:col-span-2">{{ p__('heading', 'Primary logo') }}</h2>
+
+      <div>
+        <div class="flex items-center justify-between">
+          <label for="brand.logo">{{ p__('label', 'Light mode') }}</label>
+
+          {% if option.brand.logo is defined and option.brand.logo is not empty %}
+          <div class="mt-2">
+            <a href="{{ option.brand.logo }}" target="_blank"
+              class="flex items-center gap-1 text-xs text-content-dimmed hover:text-content hover:no-underline">
+              {{ p__('button', 'View current') }}
+
+              <i class="text-xs ti ti-external-link"></i>
+            </a>
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="relative p-6 mt-2" x-data="{file:null}">
+          {{ svgborder }}
+
+          <div
+            class="relative z-10 flex flex-col items-start justify-between gap-6">
+            <template x-if="!file">
+              <div>
+                <div class="font-semibold">{{ __('Upload file') }}</div>
+                <div class="mt-1 text-xs text-content-dimmed">
+                  png, jpg, jpeg, gif, ico, or svg
+                </div>
+              </div>
+            </template>
+
+            <template x-if="file">
+              <div>
+                <div class="font-semibold truncate" x-text="file.name"></div>
+
+                <div class="mt-1 text-xs text-intermediate-content"
+                  x-text="file.type">
+                </div>
+              </div>
+            </template>
+
+            <button type="button" class="w-full button button-intermediate"
+              @click="$refs.file.click()">{{ p__('button', 'Browse files') }}</button>
+          </div>
+
+          <input type="file" @change="file = $refs.file.files[0];"
+            name="brand[logo]" id="file" class="hidden" accept="image/*"
+            x-ref="file">
+        </div>
+
+        <ul class="m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+          <li>
+            {{ __('Will be used in the header of the website/emails etc. in regular/light mode') }}
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between">
+          <label for="brand.logo_dark">{{ p__('label', 'Dark mode') }}</label>
+
+          {% if option.brand.logo_dark is defined and option.brand.logo_dark is not empty %}
+          <div class="mt-2">
+            <a href="{{ option.brand.logo_dark }}" target="_blank"
+              class="flex items-center gap-1 text-xs text-content-dimmed hover:text-content hover:no-underline">
+              {{ p__('button', 'View current') }}
+
+              <i class="text-xs ti ti-external-link"></i>
+            </a>
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="relative p-6 mt-2" x-data="{file:null}">
+          {{ svgborder }}
+
+          <div
+            class="relative z-10 flex flex-col items-start justify-between gap-6">
+            <template x-if="!file">
+              <div>
+                <div class="font-semibold">{{ __('Upload file') }}</div>
+                <div class="mt-1 text-xs text-content-dimmed">
+                  png, jpg, jpeg, gif, ico, or svg
+                </div>
+              </div>
+            </template>
+
+            <template x-if="file">
+              <div>
+                <div class="font-semibold truncate" x-text="file.name"></div>
+
+                <div class="mt-1 text-xs text-intermediate-content"
+                  x-text="file.type">
+                </div>
+              </div>
+            </template>
+
+            <button type="button" class="w-full button button-intermediate"
+              @click="$refs.file.click()">{{ p__('button', 'Browse files') }}</button>
+          </div>
+
+          <input type="file" @change="file = $refs.file.files[0];"
+            name="brand[logo_dark]" id="file" class="hidden" accept="image/*"
+            x-ref="file">
+        </div>
+
+        <ul class="m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+          <li>
+            {{ __('Will be used in the header of the website/emails etc. in dark mode') }}
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="grid gap-6 md:grid-cols-2 box" data-density="comfortable">
+      <h2 class="md:col-span-2">{{ p__('heading', 'Alternative logo') }}</h2>
+
+      <div>
+        <div class="flex items-center justify-between">
+          <label
+            for="brand.alternative_logo">{{ p__('label', 'Light mode') }}</label>
+
+          {% if option.brand.alternative_logo is defined and option.brand.alternative_logo is not empty %}
+          <div class="mt-2">
+            <a href="{{ option.brand.alternative_logo }}" target="_blank"
+              class="flex items-center gap-1 text-xs text-content-dimmed hover:text-content hover:no-underline">
+              {{ p__('button', 'View current') }}
+
+              <i class="text-xs ti ti-external-link"></i>
+            </a>
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="relative p-6 mt-2" x-data="{file:null}">
+          {{ svgborder }}
+
+          <div
+            class="relative z-10 flex flex-col items-start justify-between gap-6">
+            <template x-if="!file">
+              <div>
+                <div class="font-semibold">{{ __('Upload file') }}</div>
+                <div class="mt-1 text-xs text-content-dimmed">
+                  png, jpg, jpeg, gif, ico, or svg
+                </div>
+              </div>
+            </template>
+
+            <template x-if="file">
+              <div>
+                <div class="font-semibold truncate" x-text="file.name"></div>
+
+                <div class="mt-1 text-xs text-intermediate-content"
+                  x-text="file.type">
+                </div>
+              </div>
+            </template>
+
+            <button type="button" class="w-full button button-intermediate"
+              @click="$refs.file.click()">{{ p__('button', 'Browse files') }}</button>
+          </div>
+
+          <input type="file" @change="file = $refs.file.files[0];"
+            name="brand[alternative_logo]" id="file" class="hidden"
+            accept="image/*" x-ref="file">
+        </div>
+
+        <ul class="m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+          <li>
+            {{ __('Will be used in the footer of the website/emails etc. in regular/light mode') }}
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between">
+          <label for="brand.alternative_logo_dark">
+            {{ p__('label', 'Dark mode') }}
+          </label>
+
+          {% if option.brand.alternative_logo_dark is defined and option.brand.alternative_logo_dark is not empty %}
+          <div class="mt-2">
+            <a href="{{ option.brand.alternative_logo_dark }}" target="_blank"
+              class="flex items-center gap-1 text-xs text-content-dimmed hover:text-content hover:no-underline">
+              {{ p__('button', 'View current') }}
+
+              <i class="text-xs ti ti-external-link"></i>
+            </a>
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="relative p-6 mt-2" x-data="{file:null}">
+          {{ svgborder }}
+
+          <div
+            class="relative z-10 flex flex-col items-start justify-between gap-6">
+            <template x-if="!file">
+              <div>
+                <div class="font-semibold">{{ __('Upload file') }}</div>
+                <div class="mt-1 text-xs text-content-dimmed">
+                  png, jpg, jpeg, gif, ico, or svg
+                </div>
+              </div>
+            </template>
+
+            <template x-if="file">
+              <div>
+                <div class="font-semibold truncate" x-text="file.name"></div>
+
+                <div class="mt-1 text-xs text-intermediate-content"
+                  x-text="file.type">
+                </div>
+              </div>
+            </template>
+
+            <button type="button" class="w-full button button-intermediate"
+              @click="$refs.file.click()">{{ p__('button', 'Browse files') }}</button>
+          </div>
+
+          <input type="file" @change="file = $refs.file.files[0];"
+            name="brand[alternative_logo_dark]" id="file" class="hidden"
+            accept="image/*" x-ref="file">
+        </div>
+
+        <ul class="m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+          <li>
+            {{ __('Will be used in the footer of the website/emails etc. in dark mode') }}
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <div class="flex justify-end gap-4">
+    <a href="admin/settings" class="button button-outline">
+      {{ p__('button', 'Cancel') }}
+    </a>
+
+    <button type="submit" class="button" x-ref="submit"
+      :disabled="!isSubmitable" :processing="isProcessing">
+      {% include "/snippets/spinner.twig" %}
+      {{ p__('button', 'Save changes') }}
+    </button>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,114 @@
+<template x-if="documentsFetched">
+  <div>
+    <div class="flex items-center justify-between">
+      <h2>
+        {{ p__('heading', 'Recent documents') }}
+      </h2>
+
+      <template x-if="documents.length > 0">
+        <a href="app/documents"
+          class="hidden text-xs font-bold text-right uppercase hover:underline md:inline">
+          {{ p__('button', 'See all documents') }}
+        </a>
+      </template>
+    </div>
+
+    <template x-if="documents.length > 0">
+      <ul class="flex flex-col gap-1 mt-4 text-sm">
+        <li
+          class="items-center hidden grid-cols-12 gap-3 p-3 text-xs md:grid text-content-dimmed">
+          <div class="col-span-9">{{ p__('label', 'Document') }}
+          </div>
+          <div class="col-span-2">{{ p__('label', 'Created') }}
+          </div>
+
+          <div class="col-span-1"></div>
+        </li>
+
+        <template x-for="doc in documents" :key="doc.id">
+          <li
+            class="relative grid items-center grid-cols-12 gap-3 p-3 box hover:border-line"
+            x-data>
+
+            <a :href="`app/documents/${doc.id}`"
+              class="absolute top-0 left-0 w-full h-full cursor-pointer"></a>
+
+            <div class="flex items-center col-span-11 gap-3 md:col-span-9">
+              <div
+                class="rounded-full bg-line-dimmed flex items-center justify-center w-10 h-10 [&_svg]:w-6 [&_svg]:h-6 font-bold shrink-0 uppercase"
+                :style="{backgroundColor: doc.preset ? doc.preset.color : null}">
+
+                <template x-if="!doc.preset">
+                  <span
+                    x-text="doc.title.match(/(\b\S)?/g).join('').slice(0, 2)">
+                  </span>
+                </template>
+
+                <template x-if="doc.preset">
+                  <template
+                    x-if="doc.preset.image && doc.preset.image.startsWith('<svg')">
+                    <div x-html="doc.preset.image"></div>
+                  </template>
+
+                  <template
+                    x-if="doc.preset.image && !doc.preset.image.startsWith('<svg')">
+                    <i class="ti" :class='`ti-${doc.preset.image}`'></i>
+                  </template>
+
+                  <template x-if="!doc.preset.image">
+                    <span
+                      x-text="doc.preset.title.match(/(\b\S)?/g).join('').slice(0, 2)">
+                    </span>
+                  </template>
+                </template>
+              </div>
+
+              <div class="overflow-hidden text-ellipsis whitespace-nowrap"
+                x-html="doc.title">
+              </div>
+            </div>
+
+            <div class="hidden col-span-2 md:block" x-text="doc.created_at">
+            </div>
+
+            <div class="col-span-1 justify-self-end">
+              <div class="relative"
+                @click.outside="$refs.context.removeAttribute('data-open')">
+
+                <button @click="$refs.context.toggleAttribute('data-open')">
+                  <i
+                    class="ti ti-dots-vertical text-content-dimmed hover:text-intermediate-content"></i>
+                </button>
+
+                <div class="z-10 context-menu" x-ref="context">
+                  <ul>
+                    <li>
+                      <a :href="`app/documents/${doc.id}`"
+                        class="flex items-center gap-2 px-4 py-2 hover:no-underline hover:bg-intermediate">
+                        <i class="ti ti-pencil"></i>
+                        {{ p__('button', 'Edit') }}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+        </template>
+      </ul>
+    </template>
+
+    <template x-if="documents.length > 0">
+      <div class="mt-6 text-center md:hidden">
+        <a href="app/documents"
+          class="text-xs font-bold text-right uppercase hover:underline">
+          {{ p__('button', 'See all documents') }}
+        </a>
+      </div>
+    </template>
+
+    <template x-if="documents.length <= 0">
+      {% include "sections/empty.twig" with { title: p__('heading', 'No documents found'), message: __('Use our AI tools and create your first document.') } %}
+    </template>
+  </div>
+</template>

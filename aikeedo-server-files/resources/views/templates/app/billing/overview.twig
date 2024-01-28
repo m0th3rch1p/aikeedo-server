@@ -1,0 +1,164 @@
+{% extends "/layouts/main.twig" %}
+
+{% set xdata %}subscription({{ subscription|json_encode|raw }},
+{{ packs|json_encode|raw }}){% endset %}
+{% block title 'Billing overview'|title %}
+
+{% block template %}
+<div class="flex flex-col gap-8">
+  <div>
+    {% include "snippets/back.twig" with {link: 'app', label: p__('button', 'Dashboard')} %}
+
+    <h1 class="mt-4">
+      {{ p__('heading', 'Billing overview') }}
+    </h1>
+  </div>
+
+  <div>
+    {% if subscription %}
+    {% include "snippets/subscription.twig" %}
+
+    <div class="mt-1">
+      <a href="app/billing/checkout"
+        class="w-full button">{{ __('Change plan') }}</a>
+    </div>
+    {% else %}
+    <div class="py-8 border px-14 border-line-dimmed rounded-xl">
+      <h2 class="text-xl font-bold">{{ __('Recurring subscription') }}</h2>
+      <p class="mt-1 text-sm text-intermediate-content">
+        {{ __('Currently you are not subscribed to any recurring plan.') }}
+      </p>
+
+      <a class="mt-8 button button-outline" href="app/billing/checkout">
+        {{ __('Check subscription plans') }}
+      </a>
+    </div>
+    {% endif %}
+  </div>
+
+  {% if packs|length > 0 %}
+  <div>
+    <div class="py-8 border px-14 border-line-dimmed rounded-xl">
+      <h2 class="text-xl font-bold">{{ __('Credit packs') }}</h2>
+      <p class="mt-1 text-sm text-intermediate-content">
+        {{ __('Your credit pakcs are listed below. Credit packs are one-time purchases and do not renew automatically. They will expire when all credits used.') }}
+      </p>
+
+      <p class="mt-4 text-xs text-content-dimmed">
+        {{ __('You can always purchase one-time packs to get more credits.') }}
+      </p>
+    </div>
+
+    <ul class="grid grid-cols-1 gap-1 mt-1 group">
+      <template x-for="(p, index) in packs" :key="p.id">
+        <li>
+          <div
+            class="w-full py-8 text-left border px-14 border-line-dimmed rounded-xl bg-main">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="flex items-center gap-2 text-xl font-bold">
+                  <span x-text="p.plan.title"></span>
+                </h2>
+
+                <template x-if="p.plan.description">
+                  <div class="mt-1 text-sm" x-text="p.plan.description"></div>
+                </template>
+
+                <template x-if="!p.plan.description">
+                  <code is="resource-id" x-text="p.id"></code>
+                </template>
+              </div>
+
+              <div class="text-right">
+                <div class="text-xl font-bold"
+                  x-text="window.money(p.plan.price, true, p.currency).format({ pattern: `!#`})">
+                </div>
+
+                <div class="mt-1 text-sm text-content-dimmed"
+                  x-text="p.plan.billing_cycle"></div>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center gap-8 mt-4 text-xs text-intermediate-content">
+              <div>
+                <span class="block text-sm font-semibold"
+                  x-text="p.token_credit == null ? `{{ __('Unlimited') }}` : Intl.NumberFormat(document.documentElement.lang, { notation: 'compact' }).format(p.token_credit)"
+                  :title="`${p.token_credit == null ? 'Unlimited' : p.token_credit } tokens`"></span>
+                <span
+                  class="text-content-dimmed">{{ __('Token credits') }}</span>
+              </div>
+
+              <div>
+                <span class="block text-sm font-semibold"
+                  x-text="p.image_credit == null ? `{{ __('Unlimited') }}` : Intl.NumberFormat(document.documentElement.lang, { notation: 'compact' }).format(p.image_credit)"
+                  :title="`${p.image_credit == null ? 'Unlimited' : p.image_credit } images`"></span>
+                <span
+                  class="text-content-dimmed">{{ __('Image credits') }}</span>
+              </div>
+
+              <div>
+                <span class="block text-sm font-semibold"
+                  x-text="p.audio_credit == null ? `{{ __('Unlimited') }}` : Intl.NumberFormat(document.documentElement.lang, { notation: 'compact' }).format(p.audio_credit)"
+                  :title="`${p.audio_credit == null ? 'Unlimited' : p.audio_credit } seconds`"></span>
+                <span
+                  class="text-content-dimmed">{{ __('Audio credits') }}</span>
+              </div>
+            </div>
+          </div>
+        </li>
+      </template>
+    </ul>
+  </div>
+  {% else %}
+  <div>
+    <div class="py-8 border px-14 border-line-dimmed rounded-xl">
+      <h2 class="text-xl font-bold">{{ __('Credit packs') }}</h2>
+      <p class="mt-1 text-sm text-intermediate-content">
+        {{ __('Currently you don\'t have any active credit pack.Credit packs are one-time purchases and do not renew automatically. They will expire when all credits used.') }}
+      </p>
+
+      <p class="mt-4 text-xs text-content-dimmed">
+        {{ __('You can always purchase one-time packs to get more credits.') }}
+      </p>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}
+
+{% block modal %}
+<template x-if="showCancelModal">
+  <div class="max-w-sm mx-auto">
+    <div
+      class="relative flex items-center justify-center w-24 h-24 mx-auto rounded-full text-failure/25">
+
+      <svg class="absolute top-0 left-0 w-full h-full" width="112" height="112"
+        viewBox="0 0 112 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="56" cy="56" r="55.5" stroke="currentColor"
+          stroke-dasharray="8 8" />
+      </svg>
+
+      <div
+        class="flex items-center justify-center w-20 h-20 text-4xl transition-all rounded-full bg-failure/25 text-failure">
+        <i class="ti ti-arrow-big-down-lines"></i>
+      </div>
+    </div>
+
+    <h3 class="mt-4 text-lg text-center">
+      {{ __('Do you really want to cancel your subscription?') }}
+    </h3>
+
+    <div class="flex items-center justify-center gap-4 mt-10">
+      <button class="button button-outline" @click="overlay.close()">
+        {{ __('No') }}
+      </button>
+      <button class="text-white button bg-failure ring-failure"
+        @click="cancelSubscription">
+        {{ __('Yes, cancel my subscription') }}
+      </button>
+    </div>
+  </div>
+</template>
+{% endblock %}

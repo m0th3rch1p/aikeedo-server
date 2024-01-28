@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="{{ locale ?? 'en-US' }}" data-mode="light" class="group/html">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="">
+
+  <base href="/">
+
+  <link rel="icon" type="image/x-icon"
+    href="{{ option.brand.favicon ?? 'assets/favicon.ico' }}">
+
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.36.0/tabler-icons.min.css" />
+  <link rel="stylesheet" href="assets/app.css?v={{ version }}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif:wght@100;300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      /* Typography */
+      --font-family-primary: 'Inter', sans-serif;
+      --font-family-secondary: 'Inter', sans-serif;
+      --font-family-editor: 'Inter', sans-serif;
+      --font-family-editor-heading: 'Noto Serif';
+
+      /* Theme colors */
+      --color-main: 255 255 255;
+
+      --color-content: 36 40 44;
+      --color-content-dimmed: 172 174 175;
+
+      --color-line: 227 228 228;
+      --color-line-dimmed: 245 246 246;
+
+      --color-accent: 211 243 107;
+      --color-accent-content: 36 40 44;
+
+      --color-button: 36 40 44;
+      --color-button-content: 255 255 255;
+
+      --color-intermediate: 245 246 246;
+      --color-intermediate-content: 63 66 70;
+      --color-intermediate-content-dimmed: 172 174 175;
+
+      --color-gradient-from: 231 255 155;
+      --color-gradient-to: 207 230 255;
+
+      /* --------------- */
+      --color-info: 0 166 251;
+      --color-success: 48 200 98;
+      --color-failure: 254 81 87;
+      --color-alert: 254 212 73;
+    }
+
+    :root[data-mode="dark"] {
+      /* Theme colors */
+      --color-main: 36 40 44;
+
+      --color-content: 227 228 228;
+      --color-content-dimmed: 118 120 123;
+
+      --color-line: 118 120 123;
+      --color-line-dimmed: 63 66 70;
+
+      --color-button: 245 246 246;
+      --color-button-content: 38 40 43;
+
+      --color-intermediate: 22 25 27;
+      --color-intermediate-content: 172 174 175;
+    }
+  </style>
+
+  <title>
+    {% block title %}{% endblock %}
+    {{ block('title') is empty ? '' : ' | ' }}
+    {{ option.site.name ?? null }}
+  </title>
+
+  <script>
+    // Prevent iframe hijacking
+    this.top.location !== this.location && (this.top.location = this.location);
+
+    window.currency = JSON.parse('{{currency|json_encode|raw}}');
+
+    if (!('mode' in localStorage) || ['dark', 'light'].indexOf(localStorage.mode) === -1) {
+      localStorage.mode = window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : document.documentElement.dataset.mode;
+    }
+
+    document.documentElement.dataset.mode = localStorage.mode;
+
+    if ('collapsed' in localStorage) {
+      document.documentElement.dataset.collapsed = true;
+    }
+  </script>
+
+  <script>
+    window.locale = {
+      messages: {
+        'An unexpected error occurred! Please try again later!': '{{ __("An unexpected error occurred! Please try again later!") }}',
+        'Category has been updated successfully!': '{{ __("Category has been updated successfully!") }}',
+        'Category has been created successfully!': '{{ __("Category has been created successfully!") }}',
+        'Plan has been updated successfully!': '{{ __("Plan has been updated successfully!") }}',
+        'Plan has been created successfully!': '{{ __("Plan has been created successfully!") }}',
+        'Template has been updated successfully!': '{{ __("Template has been updated successfully!") }}',
+        'Template has been created successfully!': '{{ __("Template has been created successfully!") }}',
+        'Changes saved successfully!': '{{ __("Changes saved successfully!") }}',
+        'Cache cleared successfully!': '{{ __("Cache cleared successfully!") }}',
+        'User has been updated successfully!': '{{ __("User has been updated successfully!") }}',
+        'User has been created successfully!': '{{ __("User has been created successfully!") }}',
+        'Email sent successfully!': '{{ __("Email sent successfully!") }}',
+        'You have run out of credits. Please purchase more credits to continue using the app.': '{{ __("You have run out of credits. Please purchase more credits to continue using the app.") }}',
+        'Document copied to clipboard!': '{{ __("Document copied to clipboard!") }}',
+        'Document saved successfully!': '{{ __("Document saved successfully!") }}',
+        'Document deleted successfully!': '{{ __("Document deleted successfully!") }}',
+        'Subscription cancelled!': '{{ __("Subscription cancelled!") }}',
+        'Document has been updated successfully!': '{{ __("Document has been updated successfully!") }}',
+        'Image copied to clipboard!': '{{ __("Image copied to clipboard!") }}',
+        'Authentication failed! Please check your credentials and try again!': '{{ __("Authentication failed! Please check your credentials and try again!") }}',
+        'Click to copy': '{{ __("Click to copy") }}',
+        'Copied to clipboard': '{{ __("Copied to clipboard") }}',
+        'Resource UUID is copied to the clipboard.': '{{ __("Resource UUID is copied to the clipboard.") }}',
+      },
+    }
+  </script>
+</head>
+
+<body
+  class="bg-main text-content max-h-screen font-content data-[overlay]:overflow-hidden data-[overlay]:pr-[var(--scrollbar-width)] group/body"
+  x-data='{{ xdata is defined ? xdata : "" }}'>
+
+  <overlay-element
+    class="fixed top-0 left-0 h-full w-full z-50 bg-[rgba(36,40,44,0.50)] transition-al opacity-0 invisible group-data-[overlay]/body:visible group-data-[overlay]/body:opacity-100 group-data-[overlay]/body:backdrop-blur-lg"></overlay-element>
+
+  <div
+    class="fixed z-50 top-0 left-0 w-full h-full invisible transition-all opacity-0 group-data-[overlay=modal]/body:visible group-data-[overlay=modal]/body:opacity-100 overflow-y-auto">
+    {% block modal %}{% endblock %}
+  </div>
+
+  <toast-message
+    class="fixed left-1/2 z-50 -bottom-20 opacity-0 invisible data-[open]:bottom-4 data-[open]:opacity-100 data-[open]:visible flex items-center gap-3 rounded-lg -translate-x-1/2 px-4 py-3 bg-content text-main transition-all group/toast">
+  </toast-message>
+
+  {% block layout %}{% endblock %}
+
+  <script src="assets/base.js?v={{ version }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,253 @@
+{% extends "/layouts/main.twig" %}
+
+{% set active_menu = 'plans' %}
+
+{% set xdata %}
+plan({{ (plan is defined ? plan : {})|json_encode|raw }})
+{% endset %}
+
+{% block title (plan is defined ? p__('title', 'Edit plan') :p__('title', 'New plan'))|title %}
+
+{% block template %}
+<form class="flex flex-col gap-8" @submit.prevent="submit">
+  <div>
+    {% include "snippets/back.twig" with {link: 'admin/plans', label: 'Plans'} %}
+
+    <h1 class="mt-4">
+      <span x-show="!plan.id">
+        {{ p__('heading', 'Create new plan') }}
+      </span>
+      <span x-show="plan.id">
+        {{ p__('heading', 'Edit plan') }}:
+        <span class="font-normal text-intermediate-content"
+          x-text="plan.title"></span>
+      </span>
+    </h1>
+
+    <template x-if="plan.id">
+      <div class="mt-2">
+        <code is="resource-id" x-text="plan.id"></code>
+      </div>
+    </template>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <section class="grid gap-6 box" data-density="comfortable">
+      <h2>{{ p__('heading', 'Details') }}</h2>
+
+      <template x-if="plan.is_locked==true">
+        <div class="flex items-center gap-4 text-sm text-intermediate-content">
+          <div
+            class="flex items-center justify-center w-10 h-10 rounded-full bg-failure/10 shrink-0">
+            <i class="text-2xl ti ti-info-circle-filled text-failure"></i>
+          </div>
+
+          <p>
+            {{ __('Since this plan already has a subscription, it is locked for deletion and modification. You can only update the title, description, and status.') }}
+          </p>
+        </div>
+      </template>
+
+      <div>
+        <label for="title">{{ p__('label', 'Title') }}</label>
+
+        <input type="text" id="title" name="title" class="mt-2 input"
+          autocomplete="off"
+          :placeholder="plan.title || `{{ __('Include a title for the plan')|e('html_attr') }}`"
+          x-model="model.title" />
+      </div>
+
+      <div>
+        <label for="description">{{ p__('label', 'Description') }}</label>
+
+        <textarea id="description" rows="5" class="mt-2 input"
+          autocomplete="off" :placeholder="plan.description || ''"
+          x-model="model.description"></textarea>
+      </div>
+
+      <div>
+        <label for="icon">{{ p__('label', 'Icon') }}</label>
+
+        <input type="text" id="icon" name="icon" class="mt-2 input"
+          autocomplete="off" :placeholder="plan.icon || ''"
+          x-model="model.icon" />
+
+        <p
+          class="flex items-center gap-1 mt-2 text-sm text-intermediate-content">
+          <i class="text-lg ti ti-info-square-rounded "></i>
+
+          {% set link %}
+          <a href="https://tabler-icons.io/" target="_blank"
+            class="font-semibold text-content">Tabler Icons</a>
+          {% endset %}
+
+          {{ __('Include SVG source code or name of the any icon from %s', link)|raw }}
+        </p>
+      </div>
+
+      <div
+        class="flex items-center justify-between p-3 rounded-lg bg-intermediate">
+        {{ p__('label', 'Status') }}
+
+        <label class="inline-flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" name="status" class="hidden peer"
+            :checked="model.status == 1" x-model="model.status">
+
+          <span
+            class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+
+          <span class="text-content-dimmed peer-checked:hidden">
+            {{ p__('input-value', 'Inactive') }}
+          </span>
+
+          <span class="hidden text-success peer-checked:inline">
+            {{ p__('input-value', 'Active') }}
+          </span>
+        </label>
+      </div>
+
+      <div
+        class="flex items-center justify-between p-3 rounded-lg bg-intermediate">
+        {{ p__('label', 'Featured plan') }}
+
+        <label class="inline-flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" name="is_featured" class="hidden peer"
+            :checked="model.is_featured == 1" x-model="model.is_featured">
+
+          <span
+            class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+
+          <span class="text-content-dimmed peer-checked:hidden">
+            {{ p__('input-value', 'Off') }}
+          </span>
+
+          <span class="hidden text-success peer-checked:inline">
+            {{ p__('input-value', 'On') }}
+          </span>
+        </label>
+      </div>
+    </section>
+
+    <section class="grid gap-6 md:grid-cols-2 box" data-density="comfortable">
+      <h2 class="md:col-span-2">{{ p__('heading', 'Pricing') }}</h2>
+
+      <div>
+        <label for="price">{{ p__('label', 'Price') }}</label>
+
+        <div class="relative">
+          <input type="text" id="price" name="title" class="mt-2 pr-11 input"
+            autocomplete="off"
+            :placeholder="window.money(plan.price) || `{{ __('Include a title for the plan')|e('html_attr') }}`"
+            x-model="model.price"
+            x-mask:dynamic="$money($input, '.', ' ', window.currency.fraction_digits)"
+            :disabled="plan.is_locked==true" />
+
+          <code
+            class="absolute text-sm font-medium -translate-y-1/2 pointer-events-none right-3 top-1/2 text-content-dimmed">{{ currency.code }}</code>
+
+        </div>
+      </div>
+
+      <div class="md:col-span-2">
+        <label>{{ p__('label', 'Billing cycle') }}</label>
+
+        <div class="flex flex-wrap items-center gap-2 mt-2">
+          <label>
+            <input type="radio" name="billing-cycle" value="one-time"
+              class="radio-button" x-model="model.billing_cycle"
+              :checked="model.billing_cycle == 'one_time'"
+              :disabled="plan.is_locked==true" />
+
+            <span>{{ p__('label', 'One time token pack') }}</span>
+          </label>
+
+          <label>
+            <input type="radio" name="billing-cycle" value="monthly"
+              class="radio-button" x-model="model.billing_cycle"
+              :checked="model.billing_cycle == 'monthly'"
+              :disabled="plan.is_locked==true" />
+
+            <span>{{ p__('label', 'Monthly (30days)') }}</span>
+          </label>
+
+          <label>
+            <input type="radio" name="billing-cycle" value="yearly"
+              class="radio-button" x-model="model.billing_cycle"
+              :checked="model.billing_cycle == 'yearly'"
+              :disabled="plan.is_locked==true" />
+
+            <span>{{ p__('label', 'Yearly (365days)') }}</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid gap-6 md:grid-cols-3 box" data-density="comfortable">
+      <h2 class="md:col-span-3">{{ p__('heading', 'Feature list') }}</h2>
+
+      <div>
+        <label for="token">{{ p__('label', 'Max token limit') }}</label>
+
+        <input type="number" id="token" name="title" class="mt-2 input"
+          autocomplete="off"
+          :placeholder="plan.token_credit || `{{ __('Unlimited')|e('html_attr') }}`"
+          x-model="model.token_credit" :disabled="plan.is_locked==true" />
+      </div>
+
+      <div>
+        <label for="image">{{ p__('label', 'Max image limit') }}</label>
+
+        <input type="number" id="image" name="title" class="mt-2 input"
+          autocomplete="off"
+          :placeholder="plan.image_credit || `{{ __('Unlimited')|e('html_attr') }}`"
+          x-model="model.image_credit" :disabled="plan.is_locked==true" />
+      </div>
+
+      <div>
+        <label for="audio">
+          {{ p__('label', 'Max audio limit (seconds)') }}
+        </label>
+
+        <input type="number" id="audio" name="title" class="mt-2 input"
+          autocomplete="off"
+          :placeholder="plan.audio_credit || `{{ __('Unlimited')|e('html_attr') }}`"
+          x-model="model.audio_credit" :disabled="plan.is_locked==true" />
+      </div>
+
+      <div class="md:col-span-3">
+        <label for="features">{{ p__('label', 'Features') }}</label>
+
+        <textarea id="features" rows="5" class="mt-2 input" autocomplete="off"
+          :placeholder="plan.features || 'feature 1, feature 2, -feature 3'"
+          x-model="model.features"></textarea>
+
+        <ul class="flex flex-col gap-1 mt-3 text-xs text-content-dimmed">
+          <li>
+            {{ __('Comma separated list of features. To show the feature as excluded add a dash (-) before the feature name.') }}
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <div class="flex justify-end gap-4">
+    <a href="admin/plans" class="button button-outline">
+      {{ p__('button', 'Cancel') }}
+    </a>
+
+    <button type="submit" class="button" x-ref="submit"
+      :disabled="!isSubmitable()" :processing="isProcessing">
+
+      {% include "/snippets/spinner.twig" %}
+
+      <span x-show="!plan.id">
+        {{ p__('button', 'Create plan') }}
+      </span>
+
+      <span x-show="plan.id">
+        {{ p__('button', 'Update plan') }}
+      </span>
+    </button>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,140 @@
+<form action="app/writer" method="GET" x-data="search"
+  @input.debounce.200="search($event.target.value)" class="relative"
+  @click.outside="showResults = false">
+  <div
+    class="relative p-1 rounded-xl bg-line-dimmed text-content-dimmed focus-within:text-content focus-within:bg-gradient-from focus-within:bg-gradient-to-br focus-within:from-gradient-from focus-within:to-gradient-to">
+
+    <input type="text" name="q" placeholder="Search or ask AI directly..."
+      autocomplete="off"
+      class="w-full pl-12 pr-4 border-none rounded-xl h-[52px] bg-main text-content placeholder:text-content-dimmed focus:ring-0 focus:outline-none peer"
+      x-ref="input" @keyup.down="showResults = true">
+
+    <div
+      class="absolute flex items-center justify-center w-8 h-8 -mt-4 pointer-events-none left-3 top-1/2">
+      <i class="text-3xl transition-all ti ti-robot"
+        :class="{'hidden': isProcessing }"></i>
+
+      <div class="hidden" :class="{'hidden': !isProcessing }">
+        {% include "/snippets/spinner.twig" %}
+      </div>
+    </div>
+
+    {% set kybdcls = 'absolute items-center justify-center gap-1 px-4 text-sm transition-all rounded-lg pointer-events-none h-11 font-primary top-2 right-2' %}
+
+    <kbd
+      class="{{ kybdcls }} font-semibold peer-focus:invisible peer-focus:opacity-0 hidden md:flex">
+      <span>⌘</span>K
+    </kbd>
+
+    <kbd
+      class="{{ kybdcls }} font-semibold invisible opacity-0 peer-focus:peer-placeholder-shown:visible peer-focus:peer-placeholder-shown:opacity-100 hidden md:flex">
+      {{ p__('keyboard', 'ESC') }}
+    </kbd>
+
+    <button type="submit"
+      class="absolute gap-1 px-4 text-sm transition-all h-11 font-primary top-2 right-2 button peer-placeholder-shown:pointer-events-none peer-placeholder-shown:invisile peer-placeholder-shown:opacity-0">
+      <i class="ti ti-sparkles"></i>
+
+      <span class="hidden md:inline">
+        {{ p__('button', 'Generate') }}
+      </span>
+    </button>
+  </div>
+
+  <template x-if="showResults && results.length > 0">
+    <div
+      class="absolute left-0 z-50 w-full h-auto mt-2 overflow-y-auto shadow-menu bg-main top-full max-h-96 box">
+
+      <div class="flex items-center justify-between">
+        <h2>{{ p__('heading', 'Search results') }}</h2>
+
+        <span class="text-sm text-content-dimmed">
+          {% set count %}
+          <span x-text="results.length"></span>
+          {% endset %}
+          {{ __('%s resuls found', count)|raw }}
+        </span>
+      </div>
+
+      <ul class="flex flex-col gap-1 mt-4">
+        <template x-for="item in results" :key="item.id">
+          <li x-data>
+            <template x-if="item.object == 'preset'">
+              <div
+                class="relative flex items-center justify-between py-3 box hover:border-line">
+                <a :href="`app/writer/${item.id}`"
+                  class="absolute top-0 left-0 w-full h-full cursor-pointer"></a>
+
+                <div class="flex items-center gap-4">
+                  <div class="avatar"
+                    :style="{backgroundColor: item.color ?? null, color: item.color ? '#ffffff' : null, }">
+
+                    <template
+                      x-if="item.image && item.image.startsWith('<svg')">
+                      <div x-html="item.image"></div>
+                    </template>
+
+                    <template
+                      x-if="item.image && !item.image.startsWith('<svg')">
+                      <i class="ti" :class='`ti-${item.image}`'></i>
+                    </template>
+
+                    <template x-if="!item.image">
+                      <span
+                        x-text="item.title.match(/(\b\S)?/g).join('').slice(0, 2)">
+                      </span>
+                    </template>
+                  </div>
+
+                  <div>
+                    <div class="text-sm font-medium md:text-base"
+                      x-html="item.title">
+                    </div>
+
+                    <div class="md:hidden mt-0.5">
+                      <span class="badge">{{ __('Template') }}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="hidden md:block">
+                  <span class="badge">{{ __('Template') }}</span>
+                </div>
+              </div>
+            </template>
+
+            <template x-if="item.object == 'document'">
+              <div
+                class="relative flex items-center justify-between py-3 box hover:border-line">
+                <a :href="`app/documents/${item.id}`"
+                  class="absolute top-0 left-0 w-full h-full cursor-pointer"></a>
+
+                <div class="flex items-center gap-4">
+                  <div class="avatar">
+                    <span
+                      x-text="item.title.match(/(\b\S)?/g).join('').slice(0, 2)">
+                    </span>
+                  </div>
+
+                  <div>
+                    <div class="text-sm font-medium md:text-base"
+                      x-html="item.title">
+                    </div>
+
+                    <div class="md:hidden mt-0.5">
+                      <span class="badge">{{ __('Document') }}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="hidden md:block">
+                  <span class="badge">{{ __('Document') }}</span>
+                </div>
+              </div>
+            </template>
+          </li>
+        </template>
+      </ul>
+    </div>
+  </template>
+</form>

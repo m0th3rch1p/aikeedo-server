@@ -1,0 +1,130 @@
+{% extends "/layouts/main.twig" %}
+{% set active_menu = 'settings' %}
+
+{% set xdata = 'settings' %}
+{% block title p__('title', 'Public details')|title %}
+
+{% block template %}
+<div>
+  {% include "snippets/back.twig" with {link: 'admin/settings', label: 'Settings'} %}
+
+  <h1 class="mt-4">{{ p__('heading', 'Public details') }}</h1>
+</div>
+
+<form class="flex flex-col gap-8" @submit.prevent="submit" x-ref="form">
+  <div class="flex flex-col gap-2">
+    <section class="grid grid-cols-1 gap-6 box" data-density="comfortable">
+      <h2>{{ p__('heading', 'Business details') }}</h2>
+
+      <div>
+        <label for="business[name]">{{ p__('label', 'Business name') }}</label>
+
+        <input type="text" id="business[name]" name="business[name]"
+          class="mt-2 input" autocomplete="off"
+          placeholder="{{ (option.business.name ?? 'Acme, Inc.')|e('html_attr') }}"
+          value="{{ (option.business.name ?? '')|e('html_attr') }}" />
+      </div>
+
+      <div>
+        <label
+          for="business[address]">{{ p__('label', 'Business address') }}</label>
+
+        <textarea name="business[address]" id="business[address]" rows="3"
+          placeholder="{{ (option.business.address ?? 'Street XY, Apt 1, Newark, Delaware 19709, US')|e('html_attr') }}"
+          class="input">
+          {{- option.business.address ?? '' -}}
+        </textarea>
+      </div>
+    </section>
+
+    <section class="grid grid-cols-1 gap-6 box" data-density="comfortable">
+      <h2>{{ p__('heading', 'Social media accounts') }}</h2>
+
+      <div>
+        <label for="links[x]">{{ p__('label', 'X (Twitter)') }}</label>
+
+        <input type="text" id="links[x]" name="links[x]" class="mt-2 input"
+          autocomplete="off"
+          placeholder="{{ (option.links.x ?? 'https://x.com/heyaikeedo')|e('html_attr') }}"
+          value="{{ (option.links.x ?? '')|e('html_attr') }}" />
+      </div>
+
+      <div>
+        <label for="links[facebook]">{{ p__('label', 'Facebook') }}</label>
+
+        <input type="text" id="links[facebook]" name="links[facebook]"
+          class="mt-2 input" autocomplete="off"
+          placeholder="{{ (option.links.facebook ?? 'https://www.facebook.com/heyaikeedo')|e('html_attr') }}"
+          value="{{ (option.links.facebook ?? '')|e('html_attr') }}" />
+      </div>
+
+      <div>
+        <label for="links[instagram]">{{ p__('label', 'Instagram') }}</label>
+
+        <input type="text" id="links[instagram]" name="links[instagram]"
+          class="mt-2 input" autocomplete="off"
+          placeholder="{{ (option.links.instagram ?? 'https://www.instagram.com/heyaikeedo')|e('html_attr') }}"
+          value="{{ (option.links.instagram ?? '')|e('html_attr') }}" />
+      </div>
+
+      <div>
+        <label for="links[tiktok]">{{ p__('label', 'TikTok') }}</label>
+
+        <input type="text" id="links[tiktok]" name="links[tiktok]"
+          class="mt-2 input" autocomplete="off"
+          placeholder="{{ (option.links.tiktok ?? 'https://www.tiktok.com/@heyaikeedo')|e('html_attr') }}"
+          value="{{ (option.links.tiktok ?? '')|e('html_attr') }}" />
+      </div>
+
+      <div>
+        <label for="links[discord]">{{ p__('label', 'Discord') }}</label>
+
+        <input type="text" id="links[discord]" name="links[discord]"
+          class="mt-2 input" autocomplete="off"
+          placeholder="{{ (option.links.discord ?? 'https://www.discord.com/invite/:id')|e('html_attr') }}"
+          value="{{ (option.links.discord ?? '')|e('html_attr') }}" />
+      </div>
+
+      <div>
+        <label for="links[linkedin]">{{ p__('label', 'LinkedIn') }}</label>
+
+        <input type="text" id="links[linkedin]" name="links[linkedin]"
+          class="mt-2 input" autocomplete="off"
+          placeholder="{{ (option.links.linkedin ?? 'https://www.linkedin.com/company/heyaikeedo')|e('html_attr') }}"
+          value="{{ (option.links.linkedin ?? '')|e('html_attr') }}" />
+      </div>
+
+      <div>
+        <label for="links[youtube]">{{ p__('label', 'YouTube') }}</label>
+
+        <input type="text" id="links[youtube]" name="links[youtube]"
+          class="mt-2 input" autocomplete="off"
+          placeholder="{{ (option.links.youtube ?? 'https://www.youtube.com/@heyaikeedo')|e('html_attr') }}"
+          value="{{ (option.links.youtube ?? '')|e('html_attr') }}" />
+      </div>
+
+      <div>
+        <label for="links[github]">{{ p__('label', 'GitHub') }}</label>
+
+        <input type="text" id="links[github]" name="links[github]"
+          class="mt-2 input" autocomplete="off"
+          placeholder="{{ (option.links.github ?? 'https://www.github.com/heyaikeedo')|e('html_attr') }}"
+          value="{{ (option.links.github ?? '')|e('html_attr') }}" />
+      </div>
+    </section>
+  </div>
+
+  <div class="flex justify-end gap-4">
+    <a href="admin/settings" class="button button-outline">
+      {{ p__('button', 'Cancel') }}
+    </a>
+
+    <button type="submit" class="button" x-ref="submit"
+      :disabled="!isSubmitable" :processing="isProcessing">
+      {% include "/snippets/spinner.twig" %}
+
+      {{ p__('button', 'Save changes') }}
+    </button>
+  </div>
+</form>
+{% endblock %}

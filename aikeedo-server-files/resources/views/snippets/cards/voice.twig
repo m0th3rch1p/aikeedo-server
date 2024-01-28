@@ -1,0 +1,106 @@
+{% if placeholder is defined %}
+<div class="flex flex-col gap-6 box">
+  <div>
+    <h3 class="w-16 h-6 font-bold loading"></h3>
+    <div class="w-24 h-4 mt-1 loading"></div>
+  </div>
+
+  <div class="flex items-center gap-2">
+    <div type="button" class="w-6 h-6 rounded-full shrink-0 loading">
+    </div>
+
+    <div class="w-full h-8 grow-1 loading">
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-6 mt-auto">
+    <div class="flex items-center gap-2 mt-0.5">
+      <span class="w-10 h-6 py-1 loading"></span>
+      <span class="w-12 h-6 py-1 loading"></span>
+    </div>
+
+    <button type="button" class="w-full button button-intermediate" disabled>
+      {{ p__('button', 'Use this voice') }}
+    </button>
+  </div>
+</div>
+{% else %}
+<div class="flex flex-col gap-6 box hover:border-line">
+  <div>
+    <h3 class="font-bold" x-text="voice.name"></h3>
+    <div class="flex items-center gap-2">
+      <div class="text-sm capitalize">
+        <template x-if="voice.age">
+          <span x-text="voice.age"></span>
+        </template>
+
+        <template x-if="voice.accent">
+          <span x-text="voice.accent"></span>
+        </template>
+
+        <template x-if="voice.gender">
+          <span x-text="voice.gender"></span>
+        </template>
+      </div>
+
+      <template x-if="voice.model in languages">
+        <div class="relative" x-data
+          @click.outside="$refs.context.removeAttribute('data-open')">
+          <button
+            class="text-base ti ti-info-circle-filled text-content-dimmed hover:text-content"
+            @click="$refs.context.toggleAttribute('data-open')"></button>
+
+          <div class="w-96 context-menu context-menu-bl" x-ref="context">
+            <div class="p-4">
+              <h4 class="text-xs font-bold">
+                {{ p__('heading', 'Supported languages') }}
+              </h4>
+
+              <div class="flex flex-wrap items-center mt-4 gap-x-1 gap-y-4">
+                <template x-for="language in languages[voice.model]">
+                  <span
+                    class="px-2 text-xs border rounded-md p1-2 border-line-dimmed"
+                    x-text="language"></span>
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-2" x-data="wave(voice.sample_url)">
+    <button type="button" @click="wave.playPause();">
+      <i class="ti ti-player-pause-filled" x-show="isPlaying"></i>
+      <i class="ti ti-player-play-filled text-content-dimmed hover:text-content"
+        x-show="!isPlaying"></i>
+    </button>
+
+    <div class="w-full grow-1">
+      <div x-ref="wave"></div>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-6 mt-auto">
+    <div class="flex items-center gap-2">
+      <template x-if="voice.tone">
+        <span x-text="voice.tone"
+          class="px-2 py-1 text-xs capitalize bg-transparent border rounded-lg border-line text-content">
+        </span>
+      </template>
+
+      <template x-if="voice.use_case">
+        <span x-text="voice.use_case"
+          class="px-2 py-1 text-xs capitalize bg-transparent border rounded-lg border-line text-content">
+        </span>
+      </template>
+    </div>
+
+    <button type="button" class="w-full button button-intermediate"
+      @click="selectVoice(voice)">
+      {{ p__('button', 'Use this voice') }}
+    </button>
+  </div>
+</div>
+{% endif %}

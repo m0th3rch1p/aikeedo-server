@@ -1,0 +1,95 @@
+<?php
+
+namespace Presentation\RequestHandlers\Api\Aws;
+
+use Aws\Application\Commands\ReadByCustomerIdAwsCommand;
+use Billing\Application\Commands\CreateSubscriptionCommand;
+use Billing\Application\Commands\ReadPlanByTitleCommand;
+use Easy\Container\Attributes\Inject;
+use Easy\Http\Message\RequestMethod;
+use Easy\Router\Attributes\Route;
+use Presentation\Exceptions\HttpException;
+use Presentation\Exceptions\NotFoundException;
+use Presentation\Response\Api\Auth\AuthResponse;
+use Presentation\Validation\ValidationException;
+use Presentation\Validation\Validator;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
+use Shared\Infrastructure\CommandBus\Dispatcher;
+use User\Application\Commands\CreateUserCommand;
+use User\Domain\Exceptions\EmailTakenException;
+
+#[Route(path: '/register', method: RequestMethod::POST)]
+class RegisterRequestHandler extends AwsApi implements
+    RequestHandlerInterface
+{
+    public function __construct(
+        private Dispatcher $dispatcher,
+        private Validator $validator,
+        #[Inject('option.site.user_accounts_enabled')]
+        private bool $userAccountsEnabled = true,
+
+        #[Inject('option.site.user_signup_enabled')]
+        private bool $userSignupEnabled = true)
+    {
+
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    public function handle(ServerRequestInterface $request): ResponseInterface
+    {
+        // TODO: Implement handle() method.
+        $this->validateRequest($request);
+
+        $payload = (object) $request->getParsedBody();
+
+        $cmd = new CreateUserCommand(
+            $payload->email,
+            $payload->first_name,
+            $payload->last_name
+        );
+
+        $cmd->setPassword($payload->password);
+
+        try {
+            $user = $this->dispatcher->dispatch($cmd);
+
+            //Setup User Subscription
+            $awsCmd = new ReadByCustomerIdAwsCommand($payload->customer_id);
+            $aws = $this->dispatcher->dispatch($awsCmd);
+
+            $planCmd = new ReadPlanByTitleCommand($aws->dimension);
+            $plan = $this->dispatcher->dispatch($planCmd);
+
+            $subCmd = new CreateSubscriptionCommand($user, $plan, 'aws');
+            $this->dispatcher->dispatch($subCmd);
+        } catch (EmailTakenException $th) {
+            throw new HttpException(
+                message: $th->getMessage(),
+                param: 'email'
+            );
+        }
+
+        return new AuthResponse($user);
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    public function validateRequest (ServerRequestInterface $req): void
+    {
+        if (!$this->userAccountsEnabled || !$this->userSignupEnabled) {
+            throw new NotFoundException();
+        }
+
+        $this->validator->validateRequest($req, [
+            'first_name' => 'required|string|max:50',
+            'last_name' => 'required|string|max:50',
+            'email' => 'required|email',
+            'password' => 'required|string'
+        ]);
+    }
+}

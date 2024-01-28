@@ -1,0 +1,21 @@
+{% set count = identity_providers | length %}
+{% if count > 0 %}
+<div
+  class="relative flex justify-center text-xs text-content-dimmed before:absolute before:left-0 before:top-1/2 before:w-full before:h-px before:bg-line-dimmed">
+  <span class="relative z-10 px-4 bg-main">{{ __('or continue with') }}</span>
+</div>
+
+<div class="flex flex-wrap items-center gap-4">
+  {% for provider in identity_providers %}
+  <a href="{{ provider.getAuthUrl() }}"
+    class="flex-1 p-0 button button-outline min-w-[3rem]">
+    <img src="{{ provider.getIconSrc() }}" alt="{{ provider.getName() }}"
+      class="object-contain w-6 h-6">
+
+    {% if count < 3 %}
+    {{ provider.getName() }}
+    {% endif %}
+  </a>
+  {% endfor %}
+</div>
+{% endif %}

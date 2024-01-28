@@ -1,0 +1,108 @@
+{% extends "/layouts/main.twig" %}
+{% set active_menu = 'settings' %}
+
+{% set xdata = 'settings' %}
+{% block title p__('title', 'Facebook identity provider')|title %}
+
+{% block template %}
+<div>
+  {% include "snippets/back.twig" with {link: 'admin/settings/identity-providers', label: 'Identity providers'} %}
+
+  <h1 class="mt-4">
+    {{ p__('heading', 'Facebook identity provider') }}
+  </h1>
+</div>
+
+<form class="flex flex-col gap-8" @submit.prevent="submit" x-ref="form">
+  <section class="grid grid-cols-1 gap-6 box" data-density="comfortable"
+    x-data="{enabled: `{{ option.facebook.is_sso_enabled is defined and option.facebook.is_sso_enabled ? 1 : 0 }}`}">
+
+    <div class="flex items-center gap-2">
+      <h2>{{ p__('heading', 'Config') }}</h2>
+
+      <a href="https://docs.aikeedo.com/identity/facebook" class="badge"
+        target="_blank">
+        {{ p__('button', 'Docs') }}
+
+        <i class="text-base ti ti-external-link"></i>
+      </a>
+    </div>
+
+    <div
+      class="flex items-center justify-between p-3 rounded-lg bg-intermediate">
+      {{ p__('label', 'Login with Facebook') }}
+
+      <label class="inline-flex items-center gap-2 cursor-pointer">
+        <input type="checkbox" name="facebook[is_sso_enabled]"
+          class="hidden peer"
+          {{ option.facebook.is_sso_enabled is defined and option.facebook.is_sso_enabled ? 'checked' : '' }}
+          @change="enabled=$el.checked">
+
+        <span
+          class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+
+        <span class="text-content-dimmed peer-checked:hidden">
+          {{ __("Disabled") }}
+        </span>
+
+        <span class="hidden text-success peer-checked:inline">
+          {{ __("Enabled") }}
+        </span>
+      </label>
+    </div>
+
+    <template x-if="enabled == 1">
+      <div>
+        <label for="facebook[app_id]">
+          {{ p__('label', 'App ID') }}
+        </label>
+
+        <input type="text" id="facebook[app_id]" name="facebook[app_id]"
+          class="mt-2 input" autocomplete="off" required
+          value="{{ option.facebook.app_id ?? '' }}" />
+      </div>
+    </template>
+
+    <template x-if="enabled == 1">
+      <div>
+        <label for="facebook[app_secret]">
+          {{ p__('label', 'Client secret') }}
+        </label>
+
+        <input type="password" id="facebook[app_secret]" required
+          name="facebook[app_secret]" class="mt-2 input" autocomplete="off"
+          value="{{ environment == 'demo' ? 'hidden-in-demo' : option.facebook.app_secret ?? '' }}" />
+      </div>
+    </template>
+
+    <template x-if="enabled == 1">
+      <div>
+        <label>
+          {{ p__('label', 'Valid OAuth Redirect URI') }}
+        </label>
+
+        <div class="flex items-center mt-2 input">
+          <span is="copyable-element" class="badge"
+            data-msg="{{ __('URL copied to clipboard')|e('html_attr') }}"
+            data-tippy-placement="right">
+            {{ option.site.url ?? '{{your_site_url}}' }}/auth/facebook
+          </span>
+        </div>
+      </div>
+    </template>
+  </section>
+
+  <div class="flex justify-end gap-4">
+    <a href="admin/settings" class="button button-outline">
+      {{ p__('button', 'Cancel') }}
+    </a>
+
+    <button type="submit" class="button" x-ref="submit"
+      :disabled="!isSubmitable" :processing="isProcessing">
+      {% include "/snippets/spinner.twig" %}
+
+      {{ p__('button', 'Save changes') }}
+    </button>
+  </div>
+</form>
+{% endblock %}

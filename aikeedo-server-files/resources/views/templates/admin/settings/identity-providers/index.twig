@@ -1,0 +1,96 @@
+{% extends "/layouts/main.twig" %}
+{% set active_menu = 'settings' %}
+
+{% block title p__('title', 'Identity providers')|title %}
+
+{% block template %}
+<div>
+  {% include "snippets/back.twig" with {link: 'admin/settings', label: 'Settings'} %}
+
+  <h1 class="mt-4">{{ p__('title', 'Identity providers') }}</h1>
+</div>
+
+<div class="flex flex-col gap-4">
+  <div class="grid gap-2 sm:gap-4 sm:grid-cols-2">
+    <a href="admin/settings/identity-providers/google"
+      class="flex items-center justify-between box hover:border-line">
+      <div>
+        <h3>Google</h3>
+
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ option.google.is_sso_enabled is defined and option.google.is_sso_enabled ? __('Provider is enabled') : 'Provider is disabled' }}
+        </p>
+      </div>
+
+      <span
+        class="relative w-6 h-6 rounded-full {{ option.google.is_sso_enabled is defined and option.google.is_sso_enabled ? 'text-success' : 'text-content-dimmed' }}">
+        <span
+          class="absolute top-0 left-0 w-full h-full bg-current rounded-full opacity-20"></span>
+
+        <span
+          class="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-current rounded-full top-1/2 left-1/2"></span>
+      </span>
+    </a>
+
+    <a href="admin/settings/identity-providers/linkedin"
+      class="flex items-center justify-between box hover:border-line">
+      <div>
+        <h3>LinkedIn</h3>
+
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ option.linkedin.is_sso_enabled is defined and option.linkedin.is_sso_enabled ? __('Provider is enabled') : 'Provider is disabled' }}
+        </p>
+      </div>
+
+      <span
+        class="relative w-6 h-6 rounded-full {{ option.linkedin.is_sso_enabled is defined and option.linkedin.is_sso_enabled ? 'text-success' : 'text-content-dimmed' }}">
+        <span
+          class="absolute top-0 left-0 w-full h-full bg-current rounded-full opacity-20"></span>
+
+        <span
+          class="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-current rounded-full top-1/2 left-1/2"></span>
+      </span>
+    </a>
+
+    <a href="admin/settings/identity-providers/facebook"
+      class="flex items-center justify-between box hover:border-line">
+      <div>
+        <h3>Facebook</h3>
+
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ option.facebook.is_sso_enabled is defined and option.facebook.is_sso_enabled ? __('Provider is enabled') : 'Provider is disabled' }}
+        </p>
+      </div>
+
+      <span
+        class="relative w-6 h-6 rounded-full {{ option.facebook.is_sso_enabled is defined and option.facebook.is_sso_enabled ? 'text-success' : 'text-content-dimmed' }}">
+        <span
+          class="absolute top-0 left-0 w-full h-full bg-current rounded-full opacity-20"></span>
+
+        <span
+          class="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-current rounded-full top-1/2 left-1/2"></span>
+      </span>
+    </a>
+
+    <a href="admin/settings/identity-providers/github"
+      class="flex items-center justify-between box hover:border-line">
+      <div>
+        <h3>GitHub</h3>
+
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ option.github.is_sso_enabled is defined and option.github.is_sso_enabled ? __('Provider is enabled') : 'Provider is disabled' }}
+        </p>
+      </div>
+
+      <span
+        class="relative w-6 h-6 rounded-full {{ option.github.is_sso_enabled is defined and option.github.is_sso_enabled ? 'text-success' : 'text-content-dimmed' }}">
+        <span
+          class="absolute top-0 left-0 w-full h-full bg-current rounded-full opacity-20"></span>
+
+        <span
+          class="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-current rounded-full top-1/2 left-1/2"></span>
+      </span>
+    </a>
+  </div>
+</div>
+{% endblock %}

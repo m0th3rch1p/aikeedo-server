@@ -1,0 +1,122 @@
+{% extends "/layouts/main.twig" %}
+
+{% set wide_layout = true %}
+{% set active_menu = 'coder' %}
+{% set xdata = "ai" %}
+{% block title p__('title', 'Coding Assistant')|title %}
+
+{% block template %}
+
+{% embed "/sections/page-header.twig" with {  back: 'app' } %}
+
+{% block title p__('title', 'Coding Assistant') %}
+{% block desc __('Generate high quality code in seconds.') %}
+
+{% block badge %}
+<span
+  title="{{ auth_user.token_credit is not defined or auth_user.token_credit ==  null ? __('Unlimited tokens') : __('%s tokens', auth_user.token_credit) }}"
+  class="items-center hidden gap-1 px-2 py-1 text-sm rounded-lg md:inline-flex bg-intermediate text-intermediate-content">
+  <i class="text-base ti ti-square-rounded-letter-t"></i>
+
+  {% if auth_user.token_credit is not defined or auth_user.token_credit ==  null %}
+  {{ __('Unlimited tokens remaining') }}
+  {% else %}
+  {% set tokens %}
+  <strong
+    x-text="Intl.NumberFormat(document.documentElement.lang, { notation: 'compact' }).format('{{ auth_user.token_credit }}')"></strong>
+  {% endset %}
+  {{ __('%s tokens remaining', tokens)|raw }}
+  {% endif %}
+</span>
+
+{% if auth_user.token_credit is defined and auth_user.token_credit !=  null %}
+<span
+  class="inline-flex items-center gap-1 text-sm text-content-dimmed md:hidden">
+  <i class="text-base ti ti-square-rounded-letter-t"></i>
+
+  <span
+    x-text="Intl.NumberFormat(document.documentElement.lang, { notation: 'compact' }).format('{{ auth_user.token_credit }}')"></span>
+</span>
+{% endif %}
+{% endblock %}
+
+{% endembed %}
+
+<div class="flex flex-col gap-4 mt-4 md:items-start md:flex-row">
+  <section class="md:sticky md:top-4 md:w-96 box md:shrink-0">
+    <h2>{{ p__('heading', 'Prompts') }}</h2>
+
+    <form class="grid grid-cols-1 gap-6 mt-4"
+      @submit.prevent="submit('/code-generator')" x-ref="form">
+
+      <div>
+        <label for="prompt">
+          {{ p__('label', 'Description') }}
+
+          <i class="ti ti-help-square-rounded-filled help"
+            title="{{ __('The more details you provide, the better the result will be.')|e('html_attr') }}"
+            data-tooltip></i>
+        </label>
+
+        <textarea cols="8" id="prompt" name="prompt"
+          placeholder="Write a bouncing ball animation in CSS"
+          class="mt-2 input" rows="3" autocomplete="off" required></textarea>
+      </div>
+
+
+      <div>
+        <label for="language">
+          {{ p__('label', 'Programming language') }}
+        </label>
+
+        <input type="text" name="language" id="language" class="mt-2 input"
+          placeholder="PHP, JavaScript etc." required>
+      </div>
+
+      <div>
+        <button type="submit" class="w-full button" :disabled="!isSubmitable"
+          :processing="isProcessing">
+
+          <svg width="24" height="24" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg" class="spinner">
+            <style>
+              .spinner_S1WN {
+                animation: spinner_MGfb .8s linear infinite;
+                animation-delay: -.8s
+              }
+
+              .spinner_Km9P {
+                animation-delay: -.65s
+              }
+
+              .spinner_JApP {
+                animation-delay: -.5s
+              }
+
+              @keyframes spinner_MGfb {
+
+                93.75%,
+                100% {
+                  opacity: .2
+                }
+              }
+            </style>
+            <circle class="spinner_S1WN" cx="4" cy="12" r="3" />
+            <circle class="spinner_S1WN spinner_Km9P" cx="12" cy="12" r="3" />
+            <circle class="spinner_S1WN spinner_JApP" cx="20" cy="12" r="3" />
+          </svg>
+
+          <span class="inline-flex items-center gap-1" x-show="!isProcessing">
+            <i class="ti ti-sparkles"></i>
+            {{ p__('button', 'Generate Result') }}
+          </span>
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <div class="flex flex-col gap-4 md:grow" x-cloak>
+    {% include "sections/ai-result.twig" %}
+  </div>
+</div>
+{% endblock %}

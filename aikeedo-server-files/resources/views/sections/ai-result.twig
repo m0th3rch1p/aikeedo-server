@@ -1,0 +1,220 @@
+<div class="flex flex-col gap-4 box">
+  <div class="bg-main"
+    :class="doc.title ? 'border-b border-line-dimmed pb-4' : null">
+    <div class="text-xl autogrow-textarea font-editor-heading"
+      :data-replicated-value="doc.title">
+      <textarea placeholder="{{ __('Document title')|e('html_attr') }}"
+        autocomplete="off" x-model="doc.title" :readonly="readonly" rows="1"
+        class="block w-full px-0 py-0 transition-colors bg-transparent border-0 appearance-none resize-none focus:ring-0 placeholder:text-content-dimmed placeholder:opacity-50 read-only:text-content-dimmed"></textarea>
+    </div>
+
+    <div class="mt-1" x-show="doc.id">
+      <code is="resource-id" x-text="doc.id"></code>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-4 px-4 py-2" x-show="showWave">
+    <button type="button"
+      class="flex items-center justify-center w-12 h-12 p-0 rounded-full shrink-0 button button-outline"
+      @click="wave.playPause();">
+      <i class="text-2xl ti ti-player-pause" x-show="audioIsPlaying"></i>
+      <i class="text-2xl ti ti-player-play" x-show="!audioIsPlaying"></i>
+    </button>
+
+    <div class="w-full grow-1">
+      <div x-ref="wave"></div>
+    </div>
+  </div>
+
+  <div class="editor" x-html="output" x-show="output">
+  </div>
+
+  <ul
+    class="grid grid-cols-1 gap-4 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4"
+    x-show="showGallery">
+    <template x-for="i in images">
+      <li class="relative">
+        <div
+          class="pt-[100%] border-4 border-intermediate bg-intermediate/50 rounded-xl">
+
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            width="48px" height="48px" viewBox="0 0 50 50"
+            style="enable-background:new 0 0 50 50;" xml:space="preserve"
+            class="absolute -translate-x-1/2 -translate-y-1/2 spinner top-1/2 left-1/2">
+            <path fill="currentColor"
+              d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
+              <animateTransform attributeType="xml" attributeName="transform"
+                type="rotate" from="0 25 25" to="360 25 25" dur="0.6s"
+                repeatCount="indefinite"></animateTransform>
+            </path>
+          </svg>
+
+          <img
+            class="absolute top-0 left-0 z-10 object-cover w-full h-full rounded-xl"
+            :src="i" alt="">
+        </div>
+      </li>
+    </template>
+
+    <template x-if="showGallery && isContentProcessing">
+      <li class="relative">
+        <div
+          class="pt-[100%] border-4 border-intermediate bg-intermediate/50 rounded-xl">
+          <svg width="24" height="24" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            class="absolute -translate-x-1/2 -translate-y-1/2 spinner top-1/2 left-1/2">
+            <style>
+              .spinner_S1WN {
+                animation: spinner_MGfb .8s linear infinite;
+                animation-delay: -.8s
+              }
+
+              .spinner_Km9P {
+                animation-delay: -.65s
+              }
+
+              .spinner_JApP {
+                animation-delay: -.5s
+              }
+
+              @keyframes spinner_MGfb {
+
+                93.75%,
+                100% {
+                  opacity: .2
+                }
+              }
+            </style>
+            <circle class="spinner_S1WN" cx="4" cy="12" r="3" />
+            <circle class="spinner_S1WN spinner_Km9P" cx="12" cy="12" r="3" />
+            <circle class="spinner_S1WN spinner_JApP" cx="20" cy="12" r="3" />
+          </svg>
+        </div>
+      </li>
+    </template>
+  </ul>
+
+  <div class="flex items-center gap-4" x-show="showActions">
+    <button @click="copyDocumentContents"
+      class="flex items-center gap-1 text-sm transition-all text-content-dimmed hover:text-content disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none"
+      :disabled="isProcessing">
+      <i class="text-xl ti ti-copy"></i>
+
+      <span class="hidden md:inline">{{ p__('button', 'Copy') }}</span>
+    </button>
+
+    <div class="relative"
+      @click.outside="$refs.downloadOptions.removeAttribute('data-open')">
+
+      <button @click="$refs.downloadOptions.toggleAttribute('data-open')"
+        class="flex items-center gap-1 text-sm transition-all text-content-dimmed hover:text-content disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none"
+        :disabled="isProcessing">
+        <i class="text-xl ti ti-download"></i>
+
+        <span class="hidden md:inline">{{ p__('button', 'Download') }}</span>
+      </button>
+
+      <div class="context-menu context-menu-bl" x-ref="downloadOptions"
+        @click="$el.removeAttribute('data-open')">
+
+        <ul class="text-sm">
+          <li>
+            <button
+              class="flex items-center w-full gap-2 px-4 py-2 text-left hover:bg-intermediate"
+              @click="download('word')">
+              <i class="text-lg text-content-dimmed ti ti-letter-w"></i>
+
+              {{ p__('button', 'Word document') }}
+            </button>
+          </li>
+
+          <li>
+            <button
+              class="flex items-center w-full gap-2 px-4 py-2 text-left hover:bg-intermediate"
+              @click="download('html')">
+              <i class="text-lg text-content-dimmed ti ti-brand-html5"></i>
+              {{ p__('button', 'HTML file') }}
+            </button>
+          </li>
+
+          <li>
+            <button
+              class="flex items-center w-full gap-2 px-4 py-2 text-left hover:bg-intermediate"
+              @click="download('markdown')">
+              <i class="text-lg text-content-dimmed ti ti-markdown"></i>
+              {{ p__('button', 'Markdown') }}
+            </button>
+          </li>
+
+          <li>
+            <button
+              class="flex items-center w-full gap-2 px-4 py-2 text-left hover:bg-intermediate"
+              @click="download('text')">
+              <i class="text-lg text-content-dimmed ti ti-txt"></i>
+              {{ p__('button', 'Text') }}
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <template x-if="!autosave">
+      <button @click="saveDocument"
+        class="flex items-center gap-1 text-sm transition-all text-content-dimmed hover:text-content disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none"
+        :disabled="isProcessing || !doc.title">
+        <i class="text-xl ti ti-device-floppy"></i>
+
+        <span class="hidden md:inline">{{ p__('button', 'Save') }}</span>
+      </button>
+    </template>
+
+    <template x-if="autosave && saving">
+      <div class="flex items-center gap-1 text-sm text-content-dimmed">
+        <i class="text-xl ti ti-device-floppy"></i>
+
+        <span class="hidden md:inline">{{ __('Saving') }}</span>
+      </div>
+    </template>
+
+    <template x-if="doc.id">
+      <button @click="deleteDocument"
+        class="flex items-center gap-1 text-sm transition-all text-content-dimmed hover:text-content group">
+        <i class="text-xl ti ti-trash group-hover:text-failure"></i>
+
+        <span class="hidden md:inline">{{ p__('button', 'Delete') }}</span>
+      </button>
+    </template>
+  </div>
+
+  <template x-if="showCost">
+    <div class="flex flex-wrap items-center gap-2 text-xs text-content-dimmed">
+      <span class="text-intermediate-content">
+        {{ p__('label', 'Cost of request') }}:
+      </span>
+
+      <div class="flex items-center gap-1">
+        <template x-if="cost.token > 0">
+          <span class="flex items-center gap-1 font-mono">
+            <i class="text-base ti ti-square-rounded-letter-t"></i>
+            <span x-text="`${cost.token} tokens`"></span>
+          </span>
+        </template>
+
+        <template x-if="cost.image > 0">
+          <span class="flex items-center gap-1 font-mono">
+            <i class="text-base ti ti-photo"></i>
+            <span x-text="`${cost.image} images`"></span>
+          </span>
+        </template>
+
+        <template x-if="cost.audio > 0">
+          <span class="flex items-center gap-1 font-mono">
+            <i class="text-base ti ti-volume"></i>
+            <span x-text="`${cost.audio} seconds`"></span>
+          </span>
+        </template>
+      </div>
+    </div>
+  </template>
+</div>

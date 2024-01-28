@@ -1,0 +1,92 @@
+{% extends "/layouts/minimal.twig" %}
+
+{% block title p__('title','Password recovery')|title %}
+{% set xdata = 'auth' %}
+
+{% block template %}
+<div class="box" data-density="comfortable">
+  <form @submit.prevent="submit" x-ref="form" data-api-path="/recovery"
+    class="flex flex-col gap-6">
+    <div
+      class="relative flex items-center justify-center rounded-full w-28 h-28 text-accent">
+      <svg class="absolute top-0 left-0 w-full h-full" width="112" height="112"
+        viewBox="0 0 112 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="56" cy="56" r="55.5" stroke="currentColor"
+          stroke-dasharray="8 8" />
+      </svg>
+
+      <div
+        class="flex items-center justify-center w-24 h-24 text-5xl rounded-full bg-accent text-accent-content">
+
+        <i class="text-5xl ti ti-lock-square-rounded"
+          :class="{'hidden':success}"></i>
+
+        <template x-if="success">
+          <i class="text-5xl ti ti-mail"></i>
+        </template>
+      </div>
+    </div>
+
+    <div>
+      {% include "snippets/back.twig" with {link: 'login', label: p__('button', 'Back to login')} %}
+
+      <h1 class="mt-4 text-xl font-bold md:text-2xl">
+        <span :class="{'hidden':success}">
+          {{ p__('heading', 'Password recovery') }}
+        </span>
+
+        <template x-if="success">
+          <span>{{ p__('heading', 'Check your email!') }}</span>
+        </template>
+      </h1>
+
+      <template x-if="success">
+        <p class="mt-2 text-content-dimmed">
+          {{ __('We send password reset instruction to your email address. Please check your inbox and follow the instructions.') }}
+        </p>
+      </template>
+    </div>
+
+    <div :class="{'hidden':success}">
+      <label for="email">{{ p__('label', 'Email') }}</label>
+
+      <input type="email" id="email" name="email"
+        placeholder="{{ __('Type your email address')|e('html_attr') }}"
+        autocomplete="email" class="mt-2 input" required>
+    </div>
+
+    <div :class="{'hidden':success}">
+      {% include "/snippets/captcha.twig" %}
+    </div>
+
+    <button type="submit" class="w-full button" :class="{'hidden':success}"
+      x-ref="submit" :disabled="!isSubmitable" :processing="isProcessing">
+
+      {% include "/snippets/spinner.twig" %}
+
+      {{ p__('button', 'Send request') }}
+    </button>
+
+    {% set user_accounts_enabled = option.site.user_accounts_enabled is not defined or option.site.user_accounts_enabled %}
+    {% set user_signup_enabled = option.site.user_signup_enabled is not defined or option.site.user_signup_enabled %}
+
+    {% if user_accounts_enabled and user_signup_enabled %}
+    <div class="flex flex-col items-center gap-1 text-sm md:flex-row">
+      <span class="flex items-center gap-1">
+        <i class="text-base ti ti-help-square-rounded"></i>
+
+        {{ __('Don\'t have an account?') }}
+      </span>
+
+      <a href="signup" class="font-semibold">
+        {{ p__('button', 'Sign up')  }}
+      </a>
+    </div>
+    {% endif %}
+  </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="assets/auth.js?v={{ version }}"></script>
+{% endblock %}

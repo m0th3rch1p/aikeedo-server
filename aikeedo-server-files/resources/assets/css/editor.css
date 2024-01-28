@@ -1,0 +1,36 @@
+.editor {
+  @apply prose 
+    max-w-none 
+    font-editor 
+    prose-headings:font-editor-heading
+    prose-headings:font-semibold
+    prose-h1:text-2xl
+    prose-h2:text-xl
+    prose-h3:text-lg
+    prose-h4:text-base
+    prose-pre:p-6
+    prose-pre:relative
+    prose-pre:shadow-sm
+    prose-pre:rounded-lg
+    prose-pre:bg-line-dimmed/25;
+
+  & > *:first-child {
+    @apply mt-0;
+  }
+
+  & > *:last-child {
+    @apply mb-0;
+  }
+
+  pre {
+    @apply whitespace-pre-wrap;
+  }
+
+  pre svg {
+    @apply absolute top-0 left-0 w-full h-full rounded-lg text-line-dimmed group-hover:text-line group-data-[selected]:hidden -z-10;
+  }
+
+  pre .lang {
+    @apply absolute right-6 top-6 text-xs text-content-dimmed uppercase pointer-events-none;
+  }
+}

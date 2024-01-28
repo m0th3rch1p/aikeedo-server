@@ -1,0 +1,54 @@
+{% extends "/layouts/base.twig" %}
+
+{% set xdata = 'installer' %}
+{% block title p__('title', 'Installation')|title %}
+
+{% block layout %}
+<div class="container">
+  <div class="max-w-2xl mx-auto">
+    {% include "snippets/install/header.twig" %}
+
+    <div class="px-12 py-8 my-10 border border-line-dimmed rounded-xl"
+      x-ref="loading">
+      <div class="flex flex-col items-center gap-2 text-center">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="32px" height="32px" viewBox="0 0 50 50"
+          style="enable-background:new 0 0 50 50;" class="spinner"
+          xml:space="preserve">
+          <path fill="currentColor"
+            d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
+            <animateTransform attributeType="xml" attributeName="transform"
+              type="rotate" from="0 25 25" to="360 25 25" dur="0.6s"
+              repeatCount="indefinite"></animateTransform>
+          </path>
+        </svg>
+
+        <span class="text-xs text-content-dimmed">
+          {{ __('Initializing...') }}
+        </span>
+      </div>
+    </div>
+
+    <div class="px-12 py-8 my-10 border border-line-dimmed rounded-xl" x-cloak>
+      {% set steps = ['welcome', 'requirements', 'license', 'db', 'account', 'success', 'failure'] %}
+
+      {% for step in steps %}
+      <template x-if="step == '{{ step }}'">
+        {% include "snippets/install/" ~ step ~ ".twig" %}
+      </template>
+      {% endfor %}
+    </div>
+
+    <div class="my-10 text-xs leading-5 text-content-dimmed">
+      Made by humans on Planet Earth. <br>
+      &copy; {{ "now"|date("Y") }} <a href="https://aikeedo.com"
+        target="_blank">Aikeedo</a>. All rights reserved.
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="assets/install.js"></script>
+{% endblock %}

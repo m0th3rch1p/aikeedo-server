@@ -1,0 +1,187 @@
+{% extends "/layouts/main.twig" %}
+
+{% set active_menu = 'presets' %}
+
+{% set xdata %}
+preset({{ (preset is defined ? preset : {})|json_encode|raw }})
+{% endset %}
+
+{% block title (preset is defined ? p__('title', 'Edit template') : p__('title', 'New template'))|title %}
+
+{% block template %}
+<form class="flex flex-col gap-8" @submit.prevent="submit">
+  <div>
+    {% include "snippets/back.twig" with {link: 'admin/presets', label: 'Templates'} %}
+
+    <h1 class="mt-4">
+      <span x-show="!preset.id">
+        {{ p__('heading', 'Create new template') }}
+      </span>
+
+      <span x-show="preset.id">
+        {{ p__('heading', 'Edit template') }}:
+        <span class="font-normal text-intermediate-content"
+          x-text="preset.title"></span>
+      </span>
+    </h1>
+
+    <template x-if="preset.id">
+      <div class="mt-2">
+        <code is="resource-id" x-text="preset.id"></code>
+      </div>
+    </template>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <section class="grid gap-6 md:grid-cols-2 box" data-density="comfortable">
+      <h2 class="md:col-span-2">{{ p__('heading', 'Details') }}</h2>
+
+      <div class="md:col-span-2">
+        <label for="title">{{ p__('label', 'Title') }}</label>
+
+        <input type="text" id="title" name="title" class="mt-2 input"
+          autocomplete="off"
+          :placeholder="preset.title || `{{ __('Include a title for the template')|e('html_attr') }}`"
+          x-model="model.title" />
+      </div>
+
+      <div class="md:col-span-2">
+        <label for="description">{{ p__('label', 'Description') }}</label>
+
+        <textarea name="description" id="description" rows="5"
+          class="mt-2 input"
+          :placeholder="preset.description || `{{ __('Include a description for the template')|e('html_attr') }}`"
+          x-model="model.description"></textarea>
+      </div>
+
+      <div>
+        <label for="category">{{ p__('label', 'Category') }}</label>
+
+        <select name="category" id="category" class="mt-2 input"
+          x-model="model.category_id" :disabled="!categoriesFethed">
+          <option value="">{{ p__('input-value', 'Uncategorized') }}</option>
+
+          <template x-for="category in categories" :key="category.id">
+            <option :value="category.id" x-text="category.title"
+              :selected="category.id == model.category_id"></option>
+          </template>
+        </select>
+      </div>
+
+      <div>
+        <label for="color">{{ p__('label', 'Color') }}</label>
+
+        <div class="relative mt-2">
+          <div
+            class="absolute flex items-center justify-center w-6 h-6 overflow-hidden -translate-y-1/2 rounded-full top-1/2 left-3">
+
+            <span
+              class="absolute top-0 left-0 w-full h-full rounded-full opacity-10 bg-intermediate"
+              :style="{backgroundColor: model.color}"></span>
+
+            <div class="relative w-3 h-3 overflow-hidden rounded-full">
+              <input type="color"
+                class="w-[300%] h-[300%] absolute -top-full -left-full rounded-full border-none cursor-pointer appearance-none"
+                x-model="model.color">
+            </div>
+          </div>
+
+
+          <input type="text" id="color" name="color" class="pl-12 mt-2 input"
+            autocomplete="off"
+            :placeholder="preset.color || `{{ __('Include hex color code')|e('html_attr') }}`"
+            maxlength="7"
+            @input.debounce.500="sanitizeColor($event.target.value, $el)"
+            x-init="$watch('model.color', value => $el.value = value)"
+            :value="preset.color || '#000000'" />
+        </div>
+      </div>
+
+      <div class="md:col-span-2">
+        <label for="icon">{{ p__('label', 'Icon') }}</label>
+
+        <input type="text" id="icon" name="icon" class="mt-2 input"
+          autocomplete="off" :placeholder="preset.image || ''"
+          x-model="model.image" />
+
+        <p
+          class="flex items-center gap-1 mt-2 text-sm text-intermediate-content">
+          <i class="text-lg ti ti-info-square-rounded "></i>
+
+          {% set link %}
+          <a href="https://tabler-icons.io/" target="_blank"
+            class="font-semibold text-content">Tabler Icons</a>
+          {% endset %}
+
+          {{ __('Include SVG source code or name of the any icon from %s', link)|raw }}
+        </p>
+      </div>
+
+      <div
+        class="flex items-center justify-between p-3 rounded-lg md:col-span-2 bg-intermediate">
+        {{ p__('label', 'Status') }}
+
+        <label class="inline-flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" name="status" class="hidden peer"
+            :checked="model.status == 1" x-model="model.status">
+
+          <span class="text-content-dimmed peer-checked:hidden">
+            {{ p__('input-value', 'Inactive') }}
+          </span>
+
+          <span class="hidden text-success peer-checked:inline">
+            {{ p__('input-value', 'Active') }}
+          </span>
+
+          <span
+            class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+        </label>
+      </div>
+    </section>
+
+    <template x-if="!preset.is_locked">
+      <section class="grid gap-6 box" data-density="comfortable">
+        <div class="flex items-center gap-2">
+          <h2>{{ p__('heading', 'Prompt') }}</h2>
+
+          <a href="https://docs.aikeedo.com/guides/presets" class="badge"
+            target="_blank">
+            {{ p__('button', 'Docs') }}
+
+            <i class="text-base ti ti-external-link"></i>
+          </a>
+        </div>
+
+        <div>
+          <label for="template">
+            {{ p__('label', 'Prompt template') }}
+          </label>
+
+          <textarea name="template" id="template" rows="5" class="mt-2 input"
+            :placeholder="preset.template" x-model="model.template"></textarea>
+        </div>
+      </section>
+    </template>
+
+  </div>
+
+  <div class="flex justify-end gap-4">
+    <a href="admin/templates" class="button button-outline">
+      {{ p__('button', 'Cancel') }}
+    </a>
+
+    <button type="submit" class="button" x-ref="submit"
+      :disabled="!isSubmitable()" :processing="isProcessing">
+      {% include "/snippets/spinner.twig" %}
+
+      <span x-show="!preset.id">
+        {{ p__('button', 'Create template') }}
+      </span>
+
+      <span x-show="preset.id">
+        {{ p__('button', 'Update template') }}
+      </span>
+    </button>
+  </div>
+</form>
+{% endblock %}

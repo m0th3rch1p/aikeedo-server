@@ -1,0 +1,67 @@
+{% extends "/layouts/main.twig" %}
+{% set active_menu = 'settings' %}
+
+{% set xdata = 'settings' %}
+{% block title p__('title', 'Clipdrop Configuration') %}
+
+{% block template %}
+<div>
+  {% include "snippets/back.twig" with {link: 'admin/settings', label: 'Settings'} %}
+
+  <h1 class="mt-4">Clipdrop</h1>
+</div>
+
+<form class="flex flex-col gap-8" @submit.prevent="submit" x-ref="form">
+  <div class="flex flex-col gap-2">
+    <section class="grid gap-6 box" data-density="comfortable">
+      <h2>{{ p__('heading', 'API') }}</h2>
+
+      <div
+        class="flex items-center justify-between p-3 rounded-lg bg-intermediate">
+        {{ p__('label', 'Status') }}
+
+        <label class="inline-flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" name="clipdrop[is_enabled]" class="hidden peer"
+            {{ option.clipdrop.is_enabled is defined and option.clipdrop.is_enabled ? 'checked' : '' }}>
+
+          <span
+            class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+
+          <span class="text-content-dimmed peer-checked:hidden">
+            {{ __('Disabled') }}
+          </span>
+
+          <span class="hidden text-success peer-checked:inline">
+            {{ __('Enabled') }}
+          </span>
+        </label>
+      </div>
+
+      <div>
+        <label for="clipdrop[api_key]">
+          {{ p__('label', 'API Key') }}
+        </label>
+
+        <input class="mt-2 input" id="clipdrop[api_key]"
+          name="clipdrop[api_key]" type="password" autocomplete="off"
+          placeholder="{{ __('Include your Clipdrop API secret key')|e('html_attr') }}"
+          value="{{ environment == 'demo' ? 'hidden-in-demo' : option.clipdrop.api_key ?? '' }}"
+          required>
+      </div>
+    </section>
+  </div>
+
+  <div class="flex justify-end gap-4">
+    <a href="admin/settings" class="button button-outline">
+      {{ p__('button', 'Cancel') }}
+    </a>
+
+    <button type="submit" class="button" x-ref="submit"
+      :disabled="!isSubmitable" :processing="isProcessing">
+      {% include "/snippets/spinner.twig" %}
+
+      {{ p__('button', 'Save changes') }}
+    </button>
+  </div>
+</form>
+{% endblock %}

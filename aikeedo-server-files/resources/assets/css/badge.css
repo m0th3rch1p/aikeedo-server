@@ -1,0 +1,7 @@
+.badge {
+  @apply px-2 py-0.5 text-sm bg-intermediate text-intermediate-content rounded-md;
+}
+
+.badge-success {
+  @apply bg-success/10 text-success;
+}

@@ -1,0 +1,38 @@
+<div class="pt-32 text-center">
+  <div class="relative flex justify-center text-content-dimmed">
+    <i
+      class="absolute flex items-center justify-center w-16 h-16 -mx-8 -mt-8 text-3xl border-4 top-1/2 left-1/2 ti ti-files-off bg-line-dimmed rounded-2xl border-main rotate-[-20deg] -translate-y-14 -translate-x-5"></i>
+
+    <i
+      class="absolute flex items-center justify-center w-16 h-16 -mx-8 -mt-8 text-3xl border-4 top-1/2 left-1/2 ti ti-square-rounded-plus bg-line-dimmed rounded-2xl border-main rotate-[20deg] -translate-y-8 translate-x-6"></i>
+
+    <i
+      class="relative flex items-center justify-center w-16 h-16 text-3xl border-4 ti ti-folder-open bg-line-dimmed rounded-2xl border-main"></i>
+
+  </div>
+
+  <h2 class="mt-9">{{ title }}</h2>
+
+  {% if reset is defined %}
+  <template x-if="typeof isFiltered !== 'undefined' && isFiltered">
+    <p class="mt-2 text-sm text-content-dimmed">
+      {{ reset }} <br>
+
+      {% set reset_button %}
+      <button class="text-content hover:underline" @click="resetFilters()">
+        {{ p__('button', 'Reset filters') }}
+      </button>
+      {% endset %}
+
+      {{ __(':reset and and try again.')|replace({':reset': reset_button})|raw }}
+    </p>
+  </template>
+  {% endif %}
+
+  <template x-if="typeof isFiltered === 'undefined' || !isFiltered">
+    <p class="mt-2 text-sm text-content-dimmed">
+      {{ message }}
+    </p>
+  </template>
+
+</div>

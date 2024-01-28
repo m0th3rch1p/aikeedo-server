@@ -1,0 +1,22 @@
+{% extends "/layouts/minimal.twig" %}
+
+{% set xdata = 'home' %}
+
+{% block title p__('title', 'Not found')|title %}
+
+{% block template %}
+<section class="xs:p-8 box md:px-14">
+  {% if auth_user is defined %}
+  {% include "snippets/back.twig" with {link: 'app', label: p__('button', 'Go to app')} %}
+  {% else %}
+  {% include "snippets/back.twig" with {link: '/', label: p__('button', 'Go to home page')} %}
+  {% endif %}
+
+  <h1 class="mt-4 text-xl font-bold md:text-2xl">
+    {{ p__('heading', 'Page not found') }}
+  </h1>
+
+  <p class="mt-2">{{ __('The page you are looking for does not exist.') }}</p>
+</section>
+
+{% endblock %}

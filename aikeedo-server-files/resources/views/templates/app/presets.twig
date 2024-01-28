@@ -1,0 +1,109 @@
+{% extends "/layouts/main.twig" %}
+
+{% set active_menu = 'writer' %}
+{% set sort = [
+  {
+    value: null,
+    label: p__('label', 'Default')
+  },
+
+  {
+    value: 'title',
+    label: p__('label', 'Title')
+  }
+] %}
+
+{% set filters = [
+  {
+    label: p__('label', 'Category'),
+    model: 'category',
+    options: [
+    ]
+  }
+] %}
+
+{% set xdata %}
+list("presets", {{ sort|json_encode|raw }}, {{ filters|json_encode|raw }})
+{% endset %}
+
+{% block title p__('title', 'My documents')|title %}
+
+{% block template %}
+{# Header #}
+<div>
+  <a href="app"
+    class="inline-flex items-center gap-1 text-sm rounded-lg text-content-dimmed hover:text-content">
+    <i class="text-lg ti ti-square-rounded-arrow-left-filled"></i>
+
+    {{ p__('button', 'Dashboard') }}
+  </a>
+
+  <div class="flex items-center justify-between gap-4 mt-4">
+    <div>
+      <div class="flex items-center gap-2">
+        <h1>{{ p__('heading', 'Writer templates') }}</h1>
+
+        <template x-if="total !== null">
+          <div class="text-sm text-content-dimmed md:hidden">
+            (<span x-text="total"></span>)
+          </div>
+        </template>
+      </div>
+
+      <p class="mt-2 text-content-dimmed">
+        {{ __('Choose one of the predefined template presets or continue with free form') }}
+      </p>
+    </div>
+
+    <div class="md:hidden">
+      <button type="button" class="hidden w-8 h-8 avatar">
+        <i class="text-lg ti ti-adjustments-horizontal"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+{# Filters #}
+{% include "/snippets/filters.twig" with { total: "Total :count templates" } %}
+
+{# List #}
+<div class="group/list" data-state="initial" :data-state="state">
+  <div class="hidden group-data-[state=empty]/list:block">
+    {% include "sections/empty.twig" with { title: p__('heading', 'Empty result set'), message: __('There are no templates yet.'), reset: __('There are no template matching your search.') } %}
+  </div>
+
+  <div
+    class="grid sm:grid-cols-2 md:grid-cols-3 gap-5 group-data-[state=empty]/list:hidden">
+    {% for i in range(1,6) %}
+    <div class="hidden group-data-[state=initial]/list:block">
+      {% include "/snippets/cards/preset.twig" with {placeholder:true} only %}
+    </div>
+    {% endfor %}
+
+    <template x-if="resources.length > 0">
+      <div
+        class="relative flex flex-col gap-6 box box-selected hover:border-line">
+        <div class="flex items-center justify-between avatar">
+          <i
+            class="ti ti-text-caption flex items-center justify-center w-10 h-10 text-white bg-black rounded-full bg-gradient-to-br from-[#FCBF49] to-[#F77F00]"></i>
+        </div>
+
+        <div>
+          <h3 class="font-bold">{{ p__('heading', 'AI Writer') }}</h3>
+
+          <p class="text-sm mt-1 min-h-[3.75rem]">
+            {{ __('Don\'t need a template? Start writing with our AI writer.') }}
+          </p>
+        </div>
+
+        <a href="app/writer"
+          class="absolute top-0 left-0 z-10 w-full h-full"></a>
+      </div>
+    </template>
+
+    <template x-for="preset in resources" :key="preset.id">
+      {% include "/snippets/cards/preset.twig" only %}
+    </template>
+  </div>
+</div>
+{% endblock %}

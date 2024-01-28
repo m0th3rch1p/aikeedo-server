@@ -1,0 +1,186 @@
+{% extends "/layouts/main.twig" %}
+
+{% set active_menu = 'status' %}
+{% set xdata = 'settings' %}
+
+{% block title p__('title', 'Status')|title %}
+
+{% block template %}
+<h1>{{ p__('heading', 'Status') }}</h1>
+
+<form @submit.prevent="submit" x-ref="form"
+  class="grid gap-4 md:gap-5 sm:grid-cols-2 md:grid-cols-3">
+  <div class="flex items-center gap-4 box sm:col-span-2 md:col-span-3">
+    <span
+      class="avatar {{ debug ? 'text-alert bg-alert/25' : 'text-success bg-success/25' }}">
+      <i
+        class="ti ti-{{ debug ? 'alert-square-rounded' : 'square-rounded-check' }}"></i>
+    </span>
+
+    <div>
+      <h3>{{ p__('heading', 'Debug mode') }}</h3>
+
+      <p class="mt-1 text-sm text-content-dimmed">
+        {{ __('Disable for production') }}
+      </p>
+    </div>
+
+    <label class="inline-flex items-center gap-2 ml-auto cursor-pointer">
+      <input type="checkbox" name="env[DEBUG]" class="hidden peer"
+        {{ debug ? 'checked' : '' }} @change="submit">
+
+      <span
+        class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+
+      <span class="text-content-dimmed peer-checked:hidden">
+        {{ __('Disabled') }}
+      </span>
+
+      <span class="hidden text-success peer-checked:inline">
+        {{ __('Enabled') }}
+      </span>
+    </label>
+  </div>
+
+  <div class="flex items-center gap-4 box sm:col-span-2 md:col-span-3">
+    <span
+      class="avatar {{ cache ? 'text-success bg-success/25' : 'text-alert bg-alert/25' }}">
+      <i
+        class="ti ti-{{ cache ? 'square-rounded-check': 'alert-square-rounded' }}"></i>
+    </span>
+
+    <div>
+      <div class="flex items-center gap-4">
+        <h3>{{ p__('heading', 'Caching') }}</h3>
+
+        <button type="button" class="button button-intermediate button-xs"
+          :processing="isProcessing" @click="clearCache">
+          <i class="w-5 text-base ti ti-trash"
+            :class="{'hidden': isProcessing}"></i>
+
+          {% include "/snippets/spinner.twig" %}
+
+          {{ p__('button', 'Clear cache') }}
+        </button>
+      </div>
+
+      <p class="mt-1 text-sm text-content-dimmed">
+        {{ __('Turn on for production') }}
+      </p>
+    </div>
+
+    <label class="inline-flex items-center gap-2 ml-auto cursor-pointer">
+      <input type="checkbox" name="env[CACHE]" class="hidden peer"
+        {{ cache ? 'checked' : '' }} @change="submit">
+
+      <span
+        class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+
+      <span class="text-content-dimmed peer-checked:hidden">
+        {{ __('Off') }}
+      </span>
+
+      <span class="hidden text-success peer-checked:inline">
+        {{ __('On') }}
+      </span>
+    </label>
+  </div>
+
+  <div class="flex items-center gap-4 box">
+    <span
+      class="avatar {{ environment == 'prod' ? 'text-success bg-success/25' : 'text-failure bg-failure/25' }}">
+      <i
+        class="ti ti-{{ environment == 'prod' ? 'square-rounded-check' : 'square-rounded-x' }}"></i>
+    </span>
+
+    <div>
+      <h3>{{ p__('heading', 'Environment') }}</h3>
+      <p class="mt-1 text-sm text-content-dimmed">
+        {{ environment }}
+      </p>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-4 box">
+    <span
+      class="avatar {{ database ? 'text-success bg-success/25' : 'text-failure bg-failure/25' }}">
+      <i
+        class="ti ti-{{ database ? 'square-rounded-check' : 'square-rounded-x' }}"></i>
+    </span>
+
+    <div>
+      <h3>{{ p__('heading', 'Database') }}</h3>
+      <p class="mt-1 text-sm text-content-dimmed">
+        {{ database ? __('Connection established') : __('Connection failed') }}
+      </p>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-4 box">
+    <span
+      class="avatar {{ file_uploads ? 'text-success bg-success/25' : 'text-failure bg-failure/25' }}">
+      <i
+        class="ti ti-{{ file_uploads ? 'square-rounded-check' : 'square-rounded-x' }}"></i>
+    </span>
+
+    <div>
+      <h3>{{ p__('heading', 'File uploads') }}</h3>
+      <p class="mt-1 text-sm text-content-dimmed">
+        {{ file_uploads ? __('On') : __('Off') }}
+      </p>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-4 box">
+    <span class="avatar">
+      <i class="ti ti-info-square-rounded"></i>
+    </span>
+
+    <div>
+      <h3>{{ p__('heading', 'Post max size') }}</h3>
+      <p class="mt-1 text-sm text-content-dimmed">
+        {{ post_max_size }}
+      </p>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-4 box">
+    <span class="avatar">
+      <i class="ti ti-info-square-rounded"></i>
+    </span>
+
+    <div>
+      <h3>{{ p__('heading', 'Upload max filesize') }}</h3>
+      <p class="mt-1 text-sm text-content-dimmed">
+        {{ upload_max_filesize }}
+      </p>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-4 box">
+    <span class="avatar">
+      <i class="ti ti-info-square-rounded"></i>
+    </span>
+
+    <div>
+      <h3>{{ p__('heading', 'Memory limit') }}</h3>
+      <p class="mt-1 text-sm text-content-dimmed">
+        {{ memory_limit }}
+      </p>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-4 box">
+    <span class="avatar">
+      <i class="ti ti-info-square-rounded"></i>
+    </span>
+
+    <div>
+      <h3>{{ p__('heading', 'Disk space') }}</h3>
+      <p class="mt-1 text-sm text-content-dimmed">
+        {{ __('%1$s of %2$s is free', disk_free_space == null ? '-' : disk_free_space, disk_total_space == null ? '-' : disk_total_space) }}
+      </p>
+    </div>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,252 @@
+{% extends "/layouts/main.twig" %}
+
+{% set active_menu = 'templates' %}
+{% set sort = [
+  {
+    value: null,
+    label: p__('label', 'Default')
+  },
+
+  {
+    value: 'created_at',
+    label: p__('label', 'Date')
+  },
+
+  {
+    value: 'title',
+    label: p__('label', 'Title')
+  }
+] %}
+
+{% set filters = [
+  {
+    label: 'Category',
+    model: 'category',
+    options: [
+    ]
+  },
+  {
+    label: 'Type',
+    model: 'is_locked',
+    options: [
+      {
+        value: '1',
+        label: __('Built-in')
+      },
+      {
+        value: '0',
+        label: __('Custom')
+      }
+    ]
+  },
+  {
+    label: 'Status',
+    model: 'status',
+    options: [
+      {
+        value: '0',
+        label: p__('status', 'Inactive')
+      },
+      {
+        value: '1',
+        label: p__('status', 'Active')
+      }
+    ]
+  }
+] %}
+
+{% set strings = {
+  delete_success: __('Preset has been deleted successfully.')
+} %}
+
+
+{% set xdata %}
+list("presets", {{ sort|json_encode|raw }}, {{ filters|json_encode|raw }},
+{{ strings|json_encode() }})
+{% endset %}
+
+{% block title p__('title', 'Templates')|title %}
+
+{% block template %}
+{# Header #}
+<div class="flex items-center justify-between">
+  <div>
+    <h1>{{ p__('heading', 'Templates') }}</h1>
+
+    <template x-if="total !== null">
+      <div class="text-sm text-content-dimmed md:hidden">
+        {{ __('Total :count templates')|replace({':count': '<span x-text="total"></span>'})|raw }}
+      </div>
+    </template>
+  </div>
+
+  <div class="flex items-center gap-2 md:hidden">
+    <button type="button" class="hidden w-8 h-8 avatar">
+      <i class="text-lg ti ti-adjustments-horizontal"></i>
+    </button>
+
+    <a href="admin/templates/new" class="w-8 h-8 rounded-full button button-sm">
+      <i class="text-lg ti ti-plus"></i>
+    </a>
+  </div>
+
+  <a href="admin/templates/new" class="hidden md:flex button button-sm">
+    {{ p__('button', 'Create template') }}
+  </a>
+</div>
+
+{# Filters #}
+{% include "/snippets/filters.twig" with { total: "Total :count templates" } %}
+
+{# List #}
+<div class="group/list" :data-state="state">
+  <div class="hidden group-data-[state=empty]/list:block">
+    {% include "sections/empty.twig" with { title: p__('heading', 'Empty result set'), message: __('There are no templates yet.'), reset: __('There are no template matching your search.') } %}
+  </div>
+
+  <div
+    class="hidden md:grid grid-cols-12 gap-3 items-center px-3 py-2 text-content-dimmed text-xs group-data-[state=empty]/list:hidden">
+    <div class="col-span-7">{{ p__('label', 'Template') }}</div>
+    <div class="col-span-3">{{ p__('label', 'Category') }}</div>
+    <div class="col-span-1">{{ p__('label', 'Status') }}</div>
+    <div class="col-span-1"></div>
+  </div>
+
+  <ul class="text-sm group-data-[state=empty]/list:hidden flex flex-col gap-1">
+    {% for i in range(1,5) %}
+    <li
+      class="hidden md:grid-cols-12 justify-between gap-3 items-center p-3 box group-data-[state=initial]/list:flex md:group-data-[state=initial]/list:grid">
+      <div class="flex items-center gap-3 md:col-span-7">
+        <div class="avatar loading"></div>
+
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="h-5 w-28 loading"></span>
+            <span class="hidden w-16 h-6 loading md:block"></span>
+          </div>
+
+          <div class="md:hidden w-20 h-5 loading my-0.5"></div>
+        </div>
+      </div>
+
+      <div class="hidden md:block md:col-span-3">
+        <span class="inline-block w-20 h-5 my-0.5 loading"></span>
+      </div>
+
+      <div class="hidden md:block md:col-span-1"></div>
+
+      <div class="md:col-span-1 justify-self-end">
+        <i class="text-2xl ti ti-dots-vertical text-content-dimmed"></i>
+      </div>
+    </li>
+    {% endfor %}
+
+    <template x-for="preset in resources" :key="preset.id">
+      <li
+        class="relative flex items-center justify-between grid-cols-12 gap-3 p-3 md:grid box hover:border-line"
+        x-data>
+        <a :href="`admin/templates/${preset.id}`"
+          class="absolute top-0 left-0 w-full h-full cursor-pointer"></a>
+
+        <div class="flex items-center gap-3 md:col-span-7">
+          <div class="avatar"
+            :style="{backgroundColor: preset.color, color: '#fff'}">
+
+            <template x-if="!preset.image">
+              <span
+                x-text="preset.title.match(/(\b\S)?/g).join('').slice(0, 2)">
+              </span>
+            </template>
+
+            <template x-if="preset.image && preset.image.startsWith('<svg')">
+              <div x-html="preset.image"></div>
+            </template>
+
+            <template x-if="preset.image && !preset.image.startsWith('<svg')">
+              <i class="ti" :class='`ti-${preset.image}`'></i>
+            </template>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-6">
+              <div class="font-bold" x-text="preset.title"></div>
+
+              <template x-if="preset.is_locked">
+                <div class="hidden md:block">
+                  <span class="badge">{{ __('Built-in') }}</span>
+                </div>
+              </template>
+            </div>
+
+            <div class="text-content-dimmed md:hidden">
+              <span x-text="preset.category?.title"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hidden md:block md:col-span-3"
+          x-text="preset.category?.title"></div>
+
+        <div class="hidden md:block md:col-span-1">
+          <label
+            class="relative z-10 inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="status" class="hidden peer"
+              :checked="preset.status == 1" @click="toggleStatus(preset)">
+
+            <span
+              class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+
+            <span class="text-content-dimmed peer-checked:hidden">
+              {{ p__('status', 'Inactive') }}
+            </span>
+
+            <span class="hidden text-success peer-checked:inline">
+              {{ p__('status', 'Active') }}
+            </span>
+          </label>
+        </div>
+
+        <div class="md:col-span-1 justify-self-end">
+          <div class="relative"
+            @click.outside="$refs.context.removeAttribute('data-open')">
+
+            <button class="relative z-10"
+              @click="$refs.context.toggleAttribute('data-open')">
+              <i
+                class="ti ti-dots-vertical text-content-dimmed hover:text-intermediate-content"></i>
+            </button>
+
+            <div class="context-menu" x-ref="context">
+              <ul>
+                <li>
+                  <a :href="`admin/templates/${preset.id}`"
+                    class="flex items-center gap-2 px-4 py-2 hover:no-underline hover:bg-intermediate">
+                    <i class="ti ti-pencil"></i>
+                    {{ p__('button', 'Edit') }}
+                  </a>
+                </li>
+
+                <li x-show="!preset.is_locked">
+                  <button
+                    class="flex items-center w-full gap-2 px-4 py-2 hover:no-underline hover:bg-intermediate"
+                    @click.prevent="currentResource = preset; overlay.open('modal')">
+                    <i class="ti ti-trash"></i>
+                    {{ p__('button', 'Delete') }}
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+    </template>
+  </ul>
+</div>
+{% endblock %}
+
+{% block modal %}
+{% include "sections/delete-modal.twig" with { 
+  message: __('Do you really want to delete :title from templates?'),
+  title: 'currentResource.title'
+} %}
+{% endblock %}

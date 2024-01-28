@@ -1,0 +1,142 @@
+{% extends "/layouts/main.twig" %}
+{% set active_menu = 'settings' %}
+
+{% set xdata = 'settings' %}
+{% block title p__('title', 'General settings')|title %}
+
+{% block template %}
+<div>
+  {% include "snippets/back.twig" with {link: 'admin/settings', label: 'Settings'} %}
+
+  <h1 class="mt-4">{{ p__('heading', 'General settings') }}</h1>
+</div>
+
+<form class="flex flex-col gap-8" @submit.prevent="submit" x-ref="form">
+  <div class="flex flex-col gap-2">
+    <section class="grid grid-cols-1 gap-6 box" data-density="comfortable">
+      <h2>{{ p__('heading', 'Website') }}</h2>
+
+      <div>
+        <label for="site.name">{{ p__('label', 'Name') }}</label>
+
+        <input type="text" id="site.name" name="site[name]" class="mt-2 input"
+          autocomplete="off" placeholder="Aikeedo"
+          value="{{ option.site.name ?? '' }}" />
+      </div>
+
+      <div>
+        <label for="site[domain]">{{ p__('label', 'Site Domain') }}</label>
+
+        <input type="text" id="site[domain]" name="site[domain]"
+          class="mt-2 input" autocomplete="off"
+          placeholder="subdomain.example.com:8080"
+          value="{{ option.site.domain ?? '' }}" />
+
+        <ul
+          class="flex flex-col gap-1 m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+
+          <li>
+            {{ __('Include only domain, subdomain(if any) and port number(if any). Do not include protocol or path. Omit port number if it\'s 80 or 443.') }}
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div
+          class="flex items-center justify-between p-3 rounded-lg bg-intermediate">
+          {{ p__('label', 'Is SSL Enabled?') }}
+
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="site[is_secure]" class="hidden peer"
+              {{ option.site.is_secure is defined and option.site.is_secure ? 'checked' : '' }}>
+
+            <span
+              class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+
+            <span class="text-content-dimmed peer-checked:hidden">
+              {{ __('No') }}
+            </span>
+
+            <span class="hidden text-success peer-checked:inline">
+              {{ __('Yes') }}
+            </span>
+          </label>
+        </div>
+
+        <ul
+          class="flex flex-col gap-1 m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+
+          <li>
+            {{ __('Enable this only if you have SSL certificate installed on your server. SSL is required for various features like SSO, Payment Gateways etc. It\'s highly recommended to enable SSL.') }}
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div
+          class="flex items-center justify-between p-3 rounded-lg bg-intermediate">
+          {{ p__('label', 'Landing Page') }}
+
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="site[is_landing_page_enabled]"
+              class="hidden peer"
+              {{ option.site.is_landing_page_enabled is not defined or option.site.is_landing_page_enabled ? 'checked' : '' }}>
+
+            <span
+              class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+
+            <span class="text-content-dimmed peer-checked:hidden">
+              {{ __('Disabled') }}
+            </span>
+
+            <span class="hidden text-success peer-checked:inline">
+              {{ __('Enabled') }}
+            </span>
+          </label>
+        </div>
+
+        <ul
+          class="flex flex-col gap-1 m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+
+          <li>
+            {{ __('Disabling landing page will redirect users to login page.') }}
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="grid grid-cols-1 gap-6 box" data-density="comfortable">
+      <h2>{{ p__('heading', 'SEO') }}</h2>
+
+      <div>
+        <label for="site.keywords">{{ p__('label', 'Keywords') }}</label>
+
+        <input type="text" id="site.keywords" name="site[keywords]"
+          class="mt-2 input" autocomplete="off" placeholder="Aikeedo"
+          value="{{ option.site.keywords ?? '' }}" />
+      </div>
+
+      <div>
+        <label for="site.description">{{ p__('label', 'Description') }}</label>
+
+        <textarea name="site[description]" id="site.description"
+          class="mt-2 input"
+          rows="3">{{ option.site.description ?? '' }}</textarea>
+      </div>
+    </section>
+  </div>
+
+  <div class="flex justify-end gap-4">
+    <a href="admin/settings" class="button button-outline">
+      {{ p__('button', 'Cancel') }}
+    </a>
+
+    <button type="submit" class="button" x-ref="submit"
+      :disabled="!isSubmitable" :processing="isProcessing">
+      {% include "/snippets/spinner.twig" %}
+
+      {{ p__('button', 'Save changes') }}
+    </button>
+  </div>
+</form>
+{% endblock %}

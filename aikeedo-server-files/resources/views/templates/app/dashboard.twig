@@ -1,0 +1,41 @@
+{% extends "/layouts/main.twig" %}
+
+{% set active_menu = 'dashboard' %}
+{% set xdata = 'dashboard' %}
+{% block title p__('title', 'Dashboard')|title %}
+
+{% block template %}
+<div>
+  <h1 class="block text-base font-normal text-content-dimmed">
+    {% set fullname %}
+    <span class="block text-2xl font-bold text-content">
+      {{ auth_user.first_name }} {{ auth_user.last_name }}
+    </span>
+    {% endset %}
+
+    {{ p__('heading', 'Welcome %s', fullname)|raw }}
+  </h1>
+
+  <div class="mt-4">
+    {% include "sections/dashboard/billing.twig" %}
+  </div>
+
+  {% if auth_user.is_email_verified != true and option.site.email_verification_policy is defined and option.site.email_verification_policy in ['relaxed', 'strict'] %}
+  <div class="flex items-center gap-2 mt-4 box">
+    <i class="ti ti-alert-circle-filled text-failure"></i>
+
+    <div>
+      {{ __('Your email address is not verified.') }}
+
+      <a href="app/account/verification" class="font-semibold hover:underline">
+        {{ p__('button', 'Verify email') }}
+      </a>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+{% include "sections/dashboard/search.twig" %}
+{% include "sections/dashboard/tools.twig" %}
+{% include "sections/dashboard/documents.twig" %}
+{% endblock %}

@@ -1,0 +1,670 @@
+{% extends "/layouts/main.twig" %}
+
+{% set wide_layout = true %}
+{% set active_menu = 'imagine' %}
+{% set xdata = "imagine" %}
+{% block title p__('title', 'Imagine')|title %}
+
+{% block template %}
+
+{% embed "/sections/page-header.twig" with {  back: 'app' } %}
+
+{% block title p__('heading', 'Imagine') %}
+{% block desc __('Unlock your creativity, capable of producing breathtaking visuals within seconds.') %}
+
+{% block badge %}
+<span
+  title="{{ auth_user.image_credit is not defined or auth_user.image_credit ==  null ? __('Unlimited images') : __('%s images', auth_user.image_credit) }}"
+  class="items-center hidden gap-1 px-2 py-1 text-sm rounded-lg md:inline-flex bg-intermediate text-intermediate-content">
+  <i class="text-base ti ti-square-rounded-letter-t"></i>
+
+  {% if auth_user.image_credit is not defined or auth_user.image_credit ==  null %}
+  {{ __('Unlimited images remaining') }}
+  {% else %}
+  {% set images %}
+  <strong
+    x-text="Intl.NumberFormat(document.documentElement.lang, { notation: 'compact' }).format('{{ auth_user.image_credit }}')"></strong>
+  {% endset %}
+  {{ __('%s images remaining', images)|raw }}
+  {% endif %}
+</span>
+
+{% if auth_user.image_credit is defined and auth_user.image_credit !=  null %}
+<span
+  class="inline-flex items-center gap-1 text-sm text-content-dimmed md:hidden">
+  <i class="text-base ti ti-square-rounded-letter-t"></i>
+
+  <span
+    x-text="Intl.NumberFormat(document.documentElement.lang, { notation: 'compact' }).format('{{ auth_user.image_credit }}')"></span>
+</span>
+{% endif %}
+{% endblock %}
+
+{% endembed %}
+
+<div class="flex flex-col gap-4 mt-4 md:items-start md:flex-row">
+  <section class="md:sticky md:top-4 md:w-96 box md:shrink-0">
+    <h2>{{ p__('heading', 'Prompts') }}</h2>
+
+    <form class="grid grid-cols-1 gap-6 mt-4" @submit.prevent="submit"
+      x-ref="form">
+
+      <div x-init="model='dall-e-3'">
+        <label for="model">{{ p__('label', 'Model/Engine') }}</label>
+
+        <select id="model" name="model" class="mt-2 input" x-model="model"
+          @change="width=null; height=null">
+          <option value="dall-e-3">OpenAI Dall-E 3</option>
+          <option value="dall-e-2">OpenAI Dall-E 2</option>
+
+          {% if option.stabilityai.is_enabled is defined and option.stabilityai.is_enabled %}
+          <option value="stable-diffusion-v1-6">
+            Stable Diffusion v1.6
+          </option>
+
+          <option value="stable-diffusion-xl-1024-v1-0">
+            Stable Diffusion XL v1.0
+          </option>
+
+          <option value="stable-diffusion-512-v2-1">
+            Stable Diffusion v2.1
+          </option>
+
+          <option value="stable-diffusion-xl-beta-v2-2-2">
+            Stable Diffusion v2.2.2-XL Beta
+          </option>
+          {% endif %}
+
+          {% if option.clipdrop.is_enabled is defined and option.clipdrop.is_enabled %}
+          <option value="clipdrop-v1">
+            Clipdrop
+          </option>
+          {% endif %}
+        </select>
+      </div>
+
+      <div>
+        <label for="prompt">
+          {{ p__('label', 'Description') }}
+
+          <i class="ti ti-help-square-rounded-filled help"
+            title="{{ __('The more details you provide, the better the result will be.')|e('html_attr') }}"
+            data-tooltip></i>
+        </label>
+
+        <textarea rows="8" id="prompt" name="prompt"
+          placeholder="A 3D render of an astronaut walking in a green desert"
+          class="mt-2 input" autocomplete="off" required></textarea>
+      </div>
+
+
+      <input type="hidden" name="width" x-model="width">
+      <input type="hidden" name="height" x-model="height">
+      <template
+        x-if="config.hasOwnProperty(model) && config[model].hasOwnProperty('sizes')">
+        <div>
+          <label for="size">{{ p__('label', 'Image resolution') }}</label>
+
+          <div class="flex flex-wrap items-center gap-2 mt-2">
+
+            <template x-for="(size, index) in config[model].sizes"
+              :key="model+index">
+              <label>
+                <input type="radio" name="size" class="radio-button"
+                  @change="width=size.width; height=size.height" />
+
+                <span class="flex items-center">
+                  <span x-text="size.width"></span>
+
+                  <i class="text-xs ti ti-x text-content-dimmed"></i>
+
+                  <span x-text="size.height"></span>
+                </span>
+              </label>
+            </template>
+          </div>
+        </div>
+      </template>
+
+      <template
+        x-if="!config.hasOwnProperty(model) || config[model].style === 'default'">
+        <div>
+          <label for="art">{{ p__('label', 'Art style') }}</label>
+
+          <select id="art" name="art" class="mt-2 input">
+            <option value="">
+              {{ p__('art-style', 'None') }}
+            </option>
+
+            <option value="3d render">
+              {{ p__('art-style', '3D Render') }}
+            </option>
+
+            <option value="anime">
+              {{ p__('art-style', 'Anime') }}
+            </option>
+
+            <option value="isometric">
+              {{ p__('art-style', 'Isometric') }}
+            </option>
+
+            <option value="line-art">
+              {{ p__('art-style', 'Line Art') }}
+            </option>
+
+            <option value="low-poly">
+              {{ p__('art-style', 'Low Poly') }}
+            </option>
+
+            <option value="origami">
+              {{ p__('art-style', 'Origami') }}
+            </option>
+
+            <option value="photographic">
+              {{ p__('art-style', 'Photographic') }}
+            </option>
+
+            <option value="pixel">
+              {{ p__('art-style', 'Pixel') }}
+            </option>
+
+            <option value="pop-art">
+              {{ p__('art-style', 'Pop art') }}
+            </option>
+
+            <option value="surrealism">
+              {{ p__('art-style', 'Surrealism') }}
+            </option>
+
+            <option value="abstract-expressionism">
+              {{ p__('art-style', 'Abstract expressionism') }}
+            </option>
+
+            <option value="realism">
+              {{ p__('art-style', 'Realism') }}
+            </option>
+
+            <option value="fauvism">
+              {{ p__('art-style', 'Fauvism') }}
+            </option>
+
+            <option value="art-deco">
+              {{ p__('art-style', 'Art Deco') }}
+            </option>
+
+            <option value="futurism">
+              {{ p__('art-style', 'Futurism') }}
+            </option>
+
+            <option value="minimalism">
+              {{ p__('art-style', 'Minimalism') }}
+            </option>
+
+            <option value="expressionism">
+              {{ p__('art-style', 'Expressionism') }}
+            </option>
+
+            <option value="contemporary-art">
+              {{ p__('art-style', 'Contemporary art') }}
+            </option>
+
+            <option value="abstract-art">
+              {{ p__('art-style', 'Abstract art') }}
+            </option>
+
+            <option value="constructivism">
+              {{ p__('art-style', 'Constructivism') }}
+            </option>
+
+            <option value="rococo">
+              {{ p__('art-style', 'Rococo') }}
+            </option>
+
+            <option value="impressionism">
+              {{ p__('art-style', 'Impressionism') }}
+            </option>
+
+            <option value="art-nouveau">
+              {{ p__('art-style', 'Art Nouveau') }}
+            </option>
+
+            <option value="modern-art">
+              {{ p__('art-style', 'Modern art') }}
+            </option>
+
+            <option value="conceptual-art">
+              {{ p__('art-style', 'Conceptual art') }}
+            </option>
+
+            <option value="cubism">
+              {{ p__('art-style', 'Cubism') }}
+            </option>
+
+            <option value="romanticism">
+              {{ p__('art-style', 'Romanticism') }}
+            </option>
+
+            <option value="post-impressionism">
+              {{ p__('art-style', 'Post-Impressionism') }}
+            </option>
+
+            <option value="baroque">
+              {{ p__('art-style', 'Baroque') }}
+            </option>
+
+            <option value="bauhaus">
+              {{ p__('art-style', 'Bauhaus') }}
+            </option>
+
+            <option value="cartoon">
+              {{ p__('art-style', 'Cartoon') }}
+            </option>
+
+            <option value="clay">
+              {{ p__('art-style', 'Clay') }}
+            </option>
+
+            <option value="dadaism">
+              {{ p__('art-style', 'Dadaism') }}
+            </option>
+
+            <option value="neoclassicism">
+              {{ p__('art-style', 'Neoclassicism') }}
+            </option>
+
+            <option value="cyberpunk">
+              {{ p__('art-style', 'Cyberpunk') }}
+            </option>
+
+            <option value="retro">
+              {{ p__('art-style', 'Retro') }}
+            </option>
+
+            <option value="glitchcore">
+              {{ p__('art-style', 'Glitchcore') }}
+            </option>
+
+            <option value="ballpoint-pen-drawing">
+              {{ p__('art-style', 'Ballpoint Pen Drawing') }}
+            </option>
+
+            <option value="pencil-drawing">
+              {{ p__('art-style', 'Pencil Drawing') }}
+            </option>
+
+            <option value="sticker">
+              {{ p__('art-style', 'Sticker') }}
+            </option>
+
+            <option value="renaissance">
+              {{ p__('art-style', 'Renaissance') }}
+            </option>
+
+            <option value="watercolor">
+              {{ p__('art-style', 'Watercolor') }}
+            </option>
+
+            <option value="pointillism">
+              {{ p__('art-style', 'Pointillism') }}
+            </option>
+
+            <option value="steampunk">
+              {{ p__('art-style', 'Steampunk') }}
+            </option>
+
+            <option value="ukiyo">
+              {{ p__('art-style', 'Ukiyo') }}
+            </option>
+
+            <option value="vaporwave">
+              {{ p__('art-style', 'Vaporwave') }}
+            </option>
+
+            <option value="vector">
+              {{ p__('art-style', 'Vector') }}
+            </option>
+          </select>
+        </div>
+      </template>
+
+      <template
+        x-if="config.hasOwnProperty(model) && config[model].style === 'stable-diffusion'">
+        <div>
+          <label for="art">{{ p__('label', 'Art style') }}</label>
+
+          <select id="art" name="art" class="mt-2 input">
+            <option value="">
+              {{ p__('art-style', 'None') }}
+            </option>
+
+            <option value="3d-model">
+              {{ p__('art-style', '3d model') }}
+            </option>
+
+            <option value="analog-film">
+              {{ p__('art-style', 'Analog film') }}
+            </option>
+
+            <option value="anime">
+              {{ p__('art-style', 'Anime') }}
+            </option>
+
+            <option value="cinematic">
+              {{ p__('art-style', 'Cinematic') }}
+            </option>
+
+            <option value="comic-book">
+              {{ p__('art-style', 'Comic book') }}
+            </option>
+
+            <option value="digital-art">
+              {{ p__('art-style', 'Digital art') }}
+            </option>
+
+            <option value="enhance">
+              {{ p__('art-style', 'Enhance') }}
+            </option>
+
+            <option value="fantasy-art">
+              {{ p__('art-style', 'Fantasy art') }}
+            </option>
+
+            <option value="isometric">
+              {{ p__('art-style', 'Isometric') }}
+            </option>
+
+            <option value="line-art">
+              {{ p__('art-style', 'Line art') }}
+            </option>
+
+            <option value="low-poly">
+              {{ p__('art-style', 'Low poly') }}
+            </option>
+
+            <option value="modeling-compound">
+              {{ p__('art-style', 'Modeling compound') }}
+            </option>
+
+            <option value="neon-punk">
+              {{ p__('art-style', 'Neon punk') }}
+            </option>
+
+            <option value="origami">
+              {{ p__('art-style', 'Origami') }}
+            </option>
+
+            <option value="photographic">
+              {{ p__('art-style', 'Photographic') }}
+            </option>
+
+            <option value="pixel-art">
+              {{ p__('art-style', 'Pixel art') }}
+            </option>
+
+            <option value="tile-texture">
+              {{ p__('art-style', 'Tile texture') }}
+            </option>
+          </select>
+        </div>
+      </template>
+
+
+      <div>
+        <label for="lightning">
+          {{ p__('label', 'Lightning Style') }}
+        </label>
+
+        <select id="lightning" name="lightning" class="mt-2 input">
+          <option value="">
+            {{ p__('lightning', 'None') }}
+          </option>
+
+          <option value="ambient">
+            {{ p__('lightning', 'Ambient') }}
+          </option>
+
+          <option value="backlight">
+            {{ p__('lightning', 'Backlight') }}
+          </option>
+
+          <option value="blue_hour">
+            {{ p__('lightning', 'Blue') }} Hour
+          </option>
+
+          <option value="cinematic">
+            {{ p__('lightning', 'Cinematic') }}
+          </option>
+
+          <option value="cold">
+            {{ p__('lightning', 'Cold') }}
+          </option>
+
+          <option value="dramatic">
+            {{ p__('lightning', 'Dramatic') }}
+          </option>
+
+          <option value="foggy">
+            {{ p__('lightning', 'Foggy') }}
+          </option>
+
+          <option value="golden_hour">
+            {{ p__('lightning', 'Golden') }} Hour
+          </option>
+
+          <option value="hard">
+            {{ p__('lightning', 'Hard') }}
+          </option>
+
+          <option value="natural">
+            {{ p__('lightning', 'Natural') }}
+          </option>
+
+          <option value="neon">
+            {{ p__('lightning', 'Neon') }}
+          </option>
+
+          <option value="studio">
+            {{ p__('lightning', 'Studio') }}
+          </option>
+
+          <option value="warm">
+            {{ p__('lightning', 'Warm') }}
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <label for="mood">{{ p__('label', 'Mood') }}</label>
+
+        <select id="mood" name="mood" class="mt-2 input">
+          <option value="">
+            {{ p__('mood', 'None') }}
+          </option>
+
+          <option value="aggressive">
+            {{ p__('mood', 'Aggressive') }}
+          </option>
+
+          <option value="angry">
+            {{ p__('mood', 'Angry') }}
+          </option>
+
+          <option value="boring">
+            {{ p__('mood', 'Boring') }}
+          </option>
+
+          <option value="bright">
+            {{ p__('mood', 'Bright') }}
+          </option>
+
+          <option value="calm">
+            {{ p__('mood', 'Calm') }}
+          </option>
+
+          <option value="cheerful">
+            {{ p__('mood', 'Cheerful') }}
+          </option>
+
+          <option value="chilling">
+            {{ p__('mood', 'Chilling') }}
+          </option>
+
+          <option value="colorful">
+            {{ p__('mood', 'Colorful') }}
+          </option>
+
+          <option value="dark">
+            {{ p__('mood', 'Dark') }}
+          </option>
+
+          <option value="neutral">
+            {{ p__('mood', 'Neutral') }}
+          </option>
+        </select>
+      </div>
+
+      <div>
+        {% if environment == 'demo' %}
+        <button type="submit" class="w-full button" disabled>
+          {{ p__('button', 'This feature is disabled in demo.') }}
+        </button>
+        {% else %}
+        <button type="submit" class="w-full button" :disabled="!isSubmitable"
+          :processing="isProcessing">
+
+          <svg width="24" height="24" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg" class="spinner">
+            <style>
+              .spinner_S1WN {
+                animation: spinner_MGfb .8s linear infinite;
+                animation-delay: -.8s
+              }
+
+              .spinner_Km9P {
+                animation-delay: -.65s
+              }
+
+              .spinner_JApP {
+                animation-delay: -.5s
+              }
+
+              @keyframes spinner_MGfb {
+
+                93.75%,
+                100% {
+                  opacity: .2
+                }
+              }
+            </style>
+            <circle class="spinner_S1WN" cx="4" cy="12" r="3" />
+            <circle class="spinner_S1WN spinner_Km9P" cx="12" cy="12" r="3" />
+            <circle class="spinner_S1WN spinner_JApP" cx="20" cy="12" r="3" />
+          </svg>
+
+          <span class="inline-flex items-center gap-1" x-show="!isProcessing">
+            <i class="ti ti-sparkles"></i>
+            {{ p__('button', 'Generate') }}
+          </span>
+        </button>
+        {% endif %}
+      </div>
+    </form>
+  </section>
+
+  <div class="md:grow" x-cloak>
+    <ul
+      class="grid grid-cols-1 gap-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gallery">
+      <template x-if="isProcessing">
+        <li class="relative">
+          <div
+            class="pt-[100%] border-4 border-intermediate bg-intermediate/50 rounded-xl">
+            <svg width="24" height="24" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              class="absolute -translate-x-1/2 -translate-y-1/2 spinner top-1/2 left-1/2">
+              <style>
+                .spinner_S1WN {
+                  animation: spinner_MGfb .8s linear infinite;
+                  animation-delay: -.8s
+                }
+
+                .spinner_Km9P {
+                  animation-delay: -.65s
+                }
+
+                .spinner_JApP {
+                  animation-delay: -.5s
+                }
+
+                @keyframes spinner_MGfb {
+
+                  93.75%,
+                  100% {
+                    opacity: .2
+                  }
+                }
+              </style>
+              <circle class="spinner_S1WN" cx="4" cy="12" r="3" />
+              <circle class="spinner_S1WN spinner_Km9P" cx="12" cy="12" r="3" />
+              <circle class="spinner_S1WN spinner_JApP" cx="20" cy="12" r="3" />
+            </svg>
+          </div>
+        </li>
+      </template>
+
+      <template x-for="i in images" :key="i.id">
+        <li class="relative border border-line-dimmed rounded-xl">
+          <button type="button"
+            class="pt-[100%] relative bg-intermediate/50 rounded-xl block w-full overflow-hidden hover:ring-offset-2 hover:ring-line hover:ring-4 hover:ring-offset-main group transition-all ring-offset-0 duration-500"
+            @click.prevent="currentResource = i; overlay.open('modal')">
+            <img
+              class="absolute top-0 left-0 z-10 object-cover w-full h-full transition-all group-hover:duration-1000 rounded-xl group-hover:scale-125"
+              :src="i.url" alt="">
+          </button>
+        </li>
+      </template>
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+{% block modal %}
+<template x-if="currentResource">
+  <div class="absolute w-full pb-20 -translate-x-1/2 top-20 left-1/2">
+    <div class="max-w-3xl p-6 mx-auto">
+      <div class="relative">
+        <img :src="currentResource.url" alt=""
+          class="w-full h-auto mx-auto rounded-2xl">
+
+        <div
+          class="absolute left-0 flex items-center justify-start w-full gap-4 px-4 top-4">
+          <a :href="currentResource.url" download target="_blank"
+            class="flex items-center justify-center w-8 h-8 rounded-full cursor-pointer bg-main hover:bg-content hover:text-main"
+            title="{{ p__('button', 'Download')|e("html_attr") }}">
+            <i class="text-base ti ti-download"></i>
+          </a>
+
+          <button
+            class="flex items-center justify-center w-8 h-8 rounded-full cursor-pointer bg-main hover:bg-content hover:text-main"
+            @click="copyImgToClipboard(currentResource.url)"
+            title="{{ p__('button', 'Copy to clipboard')|e("html_attr") }}">
+            <i class="text-base ti ti-copy"></i>
+          </button>
+
+          <button
+            class="flex items-center justify-center w-8 h-8 ml-auto rounded-full cursor-pointer bg-main hover:bg-content hover:text-main"
+            @click="overlay.close()"
+            title="{{ p__('button', 'Close')|e("html_attr") }}">
+            <i class="text-base ti ti-x"></i>
+          </button>
+        </div>
+
+        <div
+          class="absolute h-8 px-4 py-2 text-xs font-bold bottom-4 left-4 rounded-2xl bg-main"
+          x-text="currentResource.model">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</template>
+{% endblock %}

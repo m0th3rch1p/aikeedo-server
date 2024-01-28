@@ -1,0 +1,32 @@
+# VS CODE Workspace file
+*.code-workspace
+
+# IntelliJ IDE files
+**/.idea
+
+# OS X Desktop Services Store files
+**/.DS_Store
+
+# Vendors
+/vendor/
+/node_modules/
+
+# Var
+var/**/*
+!var/cache/
+
+# Code coverage output files
+coverage
+
+# .env files
+.env*
+!.env.example
+
+# Public assets (build files)
+/public/**/*
+!/public/uploads/
+!/public/index.php
+!/public/.htaccess
+
+# Keep empty directories
+!**/.gitkeep

@@ -1,0 +1,135 @@
+<div class="flex-col hidden gap-3 md:flex">
+  <div class="flex items-start gap-4">
+    <div class="relative w-64 shrink-0 mt-[7px]">
+      <i
+        class="absolute left-0 text-xl -translate-y-1/2 pointer-events-none ti ti-search top-1/2 text-content-dimmed"></i>
+
+      <input type="search" name="query" placeholder="Search..."
+        class="block w-full h-6 pr-2 text-sm bg-transparent border-none pl-7 placeholder:text-content-dimmed focus:outline-none focus:ring-0"
+        autocomplete="off" x-model="params.query">
+    </div>
+
+    <template x-if="filters.length > 0">
+      <span class="block h-6 border-l border-l-line-dimmed mt-[7px]"></span>
+    </template>
+
+    <template x-if="filters.length > 0">
+      <div class="flex flex-wrap items-center gap-2">
+        <template x-for="f in filters">
+          <div class="relative group" x-data :data-selected="params[f.model]"
+            @click.outside="$refs.filter.removeAttribute('data-open')">
+
+            <button
+              class="relative whitespace-nowrap flex items-center gap-1 px-2 py-1 text-sm border border-transparent rounded-lg text-content-dimmed group-data-[selected]:border-line hover:group-data-[selected]:border-line"
+              @click="$refs.filter.toggleAttribute('data-open')">
+
+              <i
+                class="text-xl ti ti-square-rounded-plus-filled group-data-[selected]:hidden"></i>
+
+              <i class="hidden text-xl text-content ti ti-square-rounded-x-filled group-data-[selected]:block transition-all hover:scale-125 hover:rotate-90"
+                @click.stop="params[f.model]=null"></i>
+
+              <span x-text="f.label"></span>
+              <span class="hidden group-data-[selected]:block">:</span>
+
+
+              <span
+                class="hidden group-data-[selected]:inline text-content font-medium"
+                x-text="f.options.find(o => o.value == params[f.model])?.label"></span>
+
+              <svg
+                class="absolute top-0 left-0 w-full h-full rounded-lg text-line-dimmed group-hover:text-line group-data-[selected]:hidden"
+                width="100%" height="100%" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <rect cx="56" width="100%" height="100%" stroke="currentColor"
+                  stroke-dasharray="4 4" rx="8" ry="8" stroke-width="2" />
+              </svg>
+            </button>
+
+            <div class="context-menu context-menu-bl max-h-72"
+              @click="$el.removeAttribute('data-open')" x-ref="filter">
+              <ul class="text-sm">
+                <template x-for="option in f.options">
+                  <li>
+                    <button
+                      class="block w-full px-4 py-2 text-left hover:bg-intermediate"
+                      x-text="option.label"
+                      @click="params[f.model]=option.value;">
+                    </button>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </div>
+        </template>
+      </div>
+    </template>
+
+    <div class="ml-auto overflow-hidden shrink-0 mt-[5px]">
+      <button
+        class="flex items-center gap-1 text-sm transition-colors text-content-dimmed hover:text-content"
+        :class="isFiltered || 'opacity-0 invisible'" @click="resetFilters()">
+        {{ p__('button', 'Reset') }}
+
+        <i class="text-xl ti ti-x"></i>
+      </button>
+    </div>
+  </div>
+
+  <hr class="border-line-dimmed">
+
+  <div class="flex items-center justify-between">
+    {% if total is defined %}
+    <template x-if="total !== null">
+      <div class="text-sm text-content-dimmed">
+        {{ total|replace({':count': '<span x-text="total"></span>'})|raw }}
+      </div>
+    </template>
+    {% endif %}
+
+    <div class="relative ml-auto" x-data
+      @click.outside="$refs.sortel.removeAttribute('data-open')">
+
+      <input type="hidden" name="sort" x-model="orderby">
+
+      <button
+        class="flex items-center gap-1 px-2 py-1 text-sm rounded-lg hover:bg-intermediate hover:text-intermediate-content"
+        @click="$refs.sortel.toggleAttribute('data-open')">
+
+        <i class="text-sm ti ti-sort-ascending-2 text-content-dimmed"
+          x-show="dir=='asc'"></i>
+        <i class="text-sm ti ti-sort-descending-2 text-content-dimmed"
+          x-show="dir=='desc'"></i>
+        <span
+          class="mr-1 text-content-dimmed">{{ p__('label', 'Sort by') }}:</span>
+
+        <span x-text="sort.find(o => o.value == orderby)?.label">
+        </span>
+
+        <i class="text-xl ti ti-chevron-down"></i>
+      </button>
+
+      <div class="context-menu" x-ref="sortel"
+        @click="$el.removeAttribute('data-open')">
+
+        <ul class="text-sm">
+          <template x-for="option in sort">
+            <li x-show="option.value != null">
+              <button
+                class="flex items-center w-full gap-2 px-4 py-2 text-left hover:bg-intermediate group/option"
+                @click="dir = (dir=='desc' || dir==null ? 'asc' : 'desc'); orderby=option.value;">
+
+                <span x-text="option.label"></span>
+
+                <i class="invisible text-sm text-content-dimmed ti ti-arrow-up group-hover/option:visible"
+                  x-show="orderby!=option.value || dir=='desc'"></i>
+                <i class="invisible text-sm text-content-dimmed ti ti-arrow-down group-hover/option:visible"
+                  x-show="orderby==option.value && dir=='asc'"></i>
+              </button>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,2147 @@
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Article Generator
+  description: Generate well-researched and engaging articles effortlessly.
+  color: '#4287f5'
+  image: 'edit'
+  template: >
+    Write an article about { topic | placeholder: Your chosen subject | info: Important details }.
+
+    Include relevant statistics (add the links of the sources you use) and consider diverse perspectives. 
+
+    Write it in a { language } language by using {tone} voice tone and mention the source links in the end.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Article & Blog Ideas
+  description: Suggestions for Articles and Blog Topics to Drive Increased Traffic, Generate Leads, and Boost Sales for Your Business.
+  color: '#F5D98B'
+  image: 'bulb'
+  template: >
+    Write an article and blog post ideas about { topic | multiline | placeholder: Include topic to articles | info: Additional details about the topics }. Use following keywords: { keywords | placeholder: AI Writer, AI Copywriting tools, SEO }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Article Outlines
+  description: Detailed article outlines that assisting you in producing consistently improved content.
+  color: '#FF5733'
+  image: 'border-corners'
+  template: >
+    Write an article outline about { topic | multiline | placeholder:Your choosen topic | info:The main subject of the article }. Use following keywords: { keywords | placeholder: AI Writer, AI Copywriting tools, SEO }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Article Intros
+  description: Attractive article and blog introductions that engage your audience's interest.
+  color: '#4F75E6'
+  image: 'float-none'
+  template: >
+    Write an article/blog intro about { topic | multiline | placeholder:Your choosen topic | info:The main subject of the article/blog }. Use following keywords: { keywords | placeholder: Enter keywords } { words_length | type:enum | options: 0-100 words, 100-150 words, 150-200 words, 200-250 words }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Blog Outline
+  description: Develop structured and engaging blog outlines.
+  color: '#e57373'
+  image: 'book'
+  template: >
+    Create a blog outline about { topic | placeholder:Your chosen topic | info:The main subject of the blog }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+    Optional details:
+    { optional_details | multiline | optional | placeholder:Additional details | info:Additional details about the blog outline | value: Focus on [a unique perspective] to guide the reader on how to [achieve a particular goal]. }.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Blog Titles
+  description: Blog titles to boost traffic and engagement.
+  color: '#FFA124'
+  image: 'typography'
+  template: >
+    Write a blog titles about { topic | multiline | placeholder:Type your blog idea | info:The main idea of the your blog }.
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Blog Post
+  description: Craft engaging and informative blog posts.
+  color: '#9c27b0'
+  image: 'file-text'
+  template: >
+    Write a blog about { topic | placeholder:Your chosen topic | info:The main subject of the blog }.
+
+    Make sure to focus on { key_points | multiline | placeholder:Important insights | info:The key points you want to highlight }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Blog Post Conclusion Paragraph
+  description: Wrap up your blog posts with a engaging closing paragraph.
+  color: '#6B2ED5'
+  image: 'flag'
+  template: >
+    Write a blog post conclusion paragraph about { topic | multiline | placeholder:Type your main points of your post | info:The main points or outline of the blog post }. Use following call to action: { call_to_action | placeholder: What type of car do you have? Let me know in the comments below! }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: One-Shot Blog Post
+  description: Generate a full blog post with intro, body, and conclusion.
+  color: '#FF6C80'
+  image: 'bolt'
+  template: >
+    Write an one-shot full blog post with intro, body and conclusion about { topic | multiline | placeholder:Type your blog topic | info:The main topic of the blog }. Use following intended audience: { intended_audience | placeholder: CEO's, CMO's, CIO's }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Paragraph Generator
+  description: Generate paragraphs that will captivate your readers.
+  color: '#2E8E9C'
+  image: 'pilcrow'
+  template: >
+    Write a paragraph about { topic | multiline | placeholder:Type paragraph topic | info:The main topic of the paragraph }. Use following keywords: { keywords | placeholder: vegetables, healthy | info:Separate keywords with a comma. Do not use a space after the comma. }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Conclusion Writer
+  description: Powerful conclusion copy that will make a reader take action.
+  color: '#FFB42E'
+  image: 'flag-3'
+  template: >
+    Write a conclusion content about { content | multiline | placeholder:Your article here | info:The article that would like to write a conclusion about }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Content Improver
+  description: Take a piece of content and rewrite it to make it more interesting, creative, and engaging.
+  color: '#5D38A7'
+  image: 'sparkles'
+  template: >
+    Rewrite following content to make it more interesting, creative, and engaging: { content | multiline | placeholder:Your content here | info:Type content that you would like to improve }. Use following type of content: { type_of_content | placeholder: Examples: Blog post, Ad Copy, Email | info:Enter type of content you would like to create. }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Text Extender
+  description: Extend short sentences into more descriptive and interesting ones.
+  color: '#FF8A5E'
+  image: 'text-wrap-disabled'
+  template: >
+    Extend following content more descriptive and interesting one: { text | multiline | placeholder:Your text here | info:Text that you would like to expand. }. Use following keywords: { keywords | placeholder: daily routines, life hacks | info:Separate keywords with a comma. Do not use a space after the comma. }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Content Shorten
+  description: Short your content in a different voice and style to appeal to different readers.
+  color: '#4C94F0'
+  image: 'text-wrap'
+  template: >
+    To describe with less and specific words following content: { content | multiline | placeholder:Your text here | info:The text that you would like to shorten. }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Text Summarizer
+  description: Get the key points from a piece of text.
+  color: '#FF533A'
+  image: 'wand'
+  template: >
+    Get the key points from the following text: { text | multiline | placeholder:Your text here | info:The text that you would like to get the key points. }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Story Writer
+  description: Engaging and persuasive stories that will attract your reader's attention and interest.
+  color: '#3177A0'
+  image: 'article'
+  template: >
+    Write engaging and persuasive story about { description | multiline | placeholder:Describe your story }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Personal Bio Writer
+  description: Perfect personal bio copy that shows your expertise and brings you more customers.
+  color: '#FFA654'
+  image: 'user-square-rounded'
+  template: >
+    Write Bio for { select_platform | type:enum | options: Resume, Twitter, Instagram, LinkedIn } by considering following info: 
+
+    { infromation | multiline | placeholder:Type something about yourself | info:Give some details about yourself. These will be included in the generated bio. }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Translator
+  description: Translate your content into any language you want.
+  color: '#795BF2'
+  image: 'language'
+  template: >
+    Translate following text to { language }:
+
+    { text | multiline | placeholder:Your text here }
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Bullet Point Answers
+  description: Precise and informative answers that provide quick and valuable points to your customers' questions.
+  color: '#FF8765'
+  image: 'list-check'
+  template: >
+    Write bullet point answers for following question:
+
+    { question | multiline | placeholder:What is benefits of Computer Era? | info:Ask your question here }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Passive to Active Voice
+  description: Easy and quick solution to converting your passive voice sentences into active voice sentences.
+  color: '#409DD8'
+  image: 'transform'
+  template: >
+    Transform the following passive voice sentences into active voice sentences, maintaining the same lines:
+
+    { sentences | multiline | placeholder:Your text here | info:Type your passive voice sentences and let our generator to convert to active voice sentences. }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Definition
+  description: A definition for a word, phrase, or acronym that's used often by your target buyers.
+  color: '#FF6E4D'
+  image: 'book-2'
+  template: >
+    Write definition and show some examples of following keywords:
+
+    { keyword | multiline | placeholder:Noun | info:Type your keyword here which our generator provide definition of your keyword. }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Answers
+  description: Quality answers to any questions or concerns that your audience might have.
+  color: '#478CBF'
+  image: 'message'
+  template: >
+    Write answer with 2 or 3 lines to following question:
+
+    { question | multiline | placeholder:What are some tips of the marketing? | info:Type your question here. }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Pros and Cons
+  description: List of the main benefits versus the most common problems and concerns.
+  color: '#FF4E27'
+  image: 'plus-minus'
+  template: >
+    Provide the pros and cons of the following paragraph:
+
+    { content | multiline | placeholder:Your content here }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Questions
+  description: A tool to create engaging questions and polls that increase audience participation and engagement.
+  color: '#3564B8'
+  image: 'help'
+  template: >
+    Generate engaging questions based on the following paragraph:
+
+    { content | multiline | placeholder:Your content here }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Rewrite with Keywords
+  description: Rewrite your existing content to include more keywords and boost your search engine rankings.
+  color: '#FFAF51'
+  image: 'float-none'
+  template: >
+    Rewrite the following article:
+
+    { article | multiline | placeholder:Your content here } Use following keywords: { keywords | placeholder: daily routines, life hacks | info:Separate keywords with a comma. Do not use a space after the comma. }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Explain to Child
+  description: Rephrase text to make it easier to read and understand.
+  color: '#AA54E6'
+  image: 'horse-toy'
+  template: >
+    Explain following text to child, rewrite it more easier to read and understand:
+
+    { your_text | multiline | placeholder:Your text here } Use following grade level: { grade_levels | placeholder: 5 }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Listicle
+  description: Generate a numbered list based on a topic. Perfect for filling in detail of a blog post.
+  color: '#FF5F46'
+  image: 'list-numbers'
+  template: >
+    Generate a numbered list based on a following topic:
+
+    { topic | multiline | placeholder:Your topic here } Using following count of paragraph to create: { list_count | placeholder: How many paragraphs do you want? }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Tone Changer
+  description: Change the tone of your writing to match your audience and copy.
+  color: '#5890D0'
+  image: 'exchange'
+  template: >
+    Change the tone of voice following content:
+
+    { content | multiline | placeholder:Your content here }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Song Lyrics Generator
+  description: Unique song lyrics that will be perfect for your next hit song.
+  color: '#FF9B56'
+  image: 'music'
+  template: >
+    Generate unique song lyrics for the following topic:
+
+    { topic | multiline | placeholder:Always believe you | info:Type your topic for generate music lyrics. } Using following genre: { genre | placeholder: Rock }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Review Responder
+  description: Automatically create personalized replies for reviews.
+  color: '#6E49F4'
+  image: 'message-2-star'
+  template: >
+    Generate short respond for following customer's review:
+
+    { customer's_review | multiline | placeholder:Place your customer's review here } Using following review type: { review_type | placeholder:Positive | info:Positive, Negative or Positive }
+
+    Using following customer name: { customer_name | placeholder:Michael } Using following responder company name: { company_name | placeholder:AIkeedo | info:Type your company name here. }
+
+    Using following company's contact if need help: { company's_contact | placeholder:supoort@aikeedo.com | info:Type your company's support email or phone number }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Product Name Generator
+  description: Catchy and meaningful names and slogans that fit your product or service.
+  color: '#FF7C62'
+  image: 'forms'
+  template: >
+    Generate 5 product names and slogans for following product description:
+
+    { description | multiline | placeholder:Describe your product or service } Using following keywords: { keywords | placeholder:Marketing, Content Writing, Social Media | info:Separate keywords with a comma. Do not use a space after the comma. }
+
+    Using following structure: Product name - Slogan
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Analogy Maker
+  description: Unique analogies that make your sales pitch more memorable and engaging.
+  color: '#478DBD'
+  image: 'spacing-horizontal'
+  template: >
+    Create analogy content from the following content:
+
+    { content | multiline | placeholder:Your content here }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Keywords Extractor
+  description: Keywords extracted from content that you can use for your optimization, SEO, or content creation purposes.
+  color: '#FF582E'
+  image: 'input-search'
+  template: >
+    Extract most specific 5 keywords from following content:
+
+    { content | multiline | placeholder:Your content here }
+
+    Follow the following structure to generated result:
+    keyword, keyword, keyword
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Product Brochure
+  description: Craft compelling brochures to showcase your product.
+  color: '#9e9e9e'
+  image: 'news'
+  template: >
+    Create a brochure outlining the features and benefits of { product_name | placeholder:White sneakers | info:The name of your product }. Include customer testimonials and a call to action.
+
+    Product details: 
+    { product_details | multiline | placeholder:Key specifications and features | info:Important details about the product }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Product Descriptions
+  description: Create compelling product descriptions that drive interest.
+  color: '#673ab7'
+  image: 'file-text'
+  template: >
+    Craft an irresistible product description that highlights the benefits of { product_name | placeholder:White sneakers | info:The name of the product }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Content Rewriter
+  description: Enhance content quality through revision.
+  color: '#2196f3'
+  image: 'restore'
+  template: >
+    Revise the given content to improve its clarity, conciseness, and overall quality.
+
+    Instructions:
+    1. Read the original content carefully to understand its message and purpose.
+    2. Identify any areas that need improvement, such as grammar, word choice, or sentence structure.
+    3. Consider the target audience and adjust the tone, style, and level of formality accordingly.
+    4. Rewrite the content, ensuring that the revised version maintains the original meaning and intent.
+    5. Use clear and concise language, avoiding unnecessary jargon or complex terms.
+    6. Break down lengthy sentences into shorter, more digestible ones.
+    7. Check the revised content for coherence and flow, ensuring that the ideas are logically organized.
+    8. Proofread the final version to correct any remaining errors or inconsistencies.
+
+    Original content:
+    { content | multiline | placeholder: The original content goes here | info: The content you need to revise }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Short Summary
+  description: Craft concise and impactful summaries.
+  color: '#607d8b'
+  image: 'info-circle'
+  template: >
+    Write a 50-word summary that encapsulates { topic_or_keyword | multiline | placeholder:The main topic or keyword | info:The core subject you're summarizing }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Writing Tools
+  title: Step-by-Step Guide
+  description: Craft comprehensive and easy-to-follow guides.
+  color: '#795548'
+  image: 'list'
+  template: >
+    Create a step-by-step guide to instruct how to { topic | multiline | placeholder:Perform a specific task | info:Accomplish a certain goal }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Ads
+  title: Facebook Ad
+  description: Create compelling ad copy for effective Facebook campaigns.
+  color: '#2196f3'
+  image: 'brand-facebook'
+  template: >
+    Create 3 variations of effective ad copy to promote { product | placeholder:your product name | info:the name of your offering } for {audience | placeholder:your target audience | info:the intended customer group }.
+
+    Make sure they are { content_tone | option: persuasive,playful,emotional | info:persuasive and engaging } and mention these benefits:
+
+    { benefit_1 | multiline | placeholder:Benefit 1 | info:the first advantage }
+
+    { benefit_2 | multiline | placeholder:Benefit 2 | info:the second advantage }
+
+    { benefit_3 | multiline | placeholder:Benefit 3 | info:the third advantage }
+
+    Finish with a call to action saying { CTA | placeholder:Click now to learn more | info:the action you want them to take }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Ads
+  title: Facebook Ad (PAS)
+  description: Create compelling Facebook ads using PAS framework.
+  color: '#f44336'
+  image: 'brand-facebook'
+  template: >
+    Product Name: { product_name | placeholder:Your Product Name | info:The name of your offering }
+
+    Product Description: { description | multiline | placeholder:Description of your product | info:Key details about your product }
+
+    Write a PAS for the product:
+
+    Convert the Problem Agitate Solution into Facebook ad copy:
+
+    Write a Facebook ad headline.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Ads
+  title: Facebook Headlines
+  description: Generate attention-grabbing Facebook ad headlines.
+  color: '#ff5722'
+  image: 'ad-circle'
+  template: >
+    Brainstorm 20 compelling headlines for a Facebook ad promoting { product_description | multiline | placeholder:your product description | info:the description of your offering } for { audience | placeholder:your target audience | info:the intended customer group }. Format the output as a table.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Ads
+  title: Facebook Video Script
+  description: Craft effective Facebook ad video scripts.
+  color: '#e91e63'
+  image: 'player-play'
+  template: >
+    Write a Facebook ad video script for { product_description | multiline | placeholder:your product description | info:the description of your offering } that speaks directly to { audience | placeholder:your target audience | info:the intended customer group } and addresses their pain points and desires.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Ads
+  title: Google Ads
+  description: Craft compelling Google ads for effective campaigns.
+  color: '#4caf50'
+  image: 'brand-google'
+  template: >
+    Create 10 Google ads (a headline and a description) for { product_description | multiline | placeholder:your product description | info:the description of your offering } targeting the keyword { keyword | placeholder:your target keyword | info:the specific keyword }.
+
+    The headline of the ad needs to be under 30 characters. The description needs to be under 90 characters. Format the output as a table.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Ads
+  title: LinkedIn Text Ads
+  description: Use AIkeedo with LinkedIn Text Ads to reach the right professional audience
+  color: '#0e76a8'
+  image: 'brand-linkedin'
+  template: >
+    Create LinkedIn text ads for following description:
+    { background_info | multiline | placeholder: Tell us about your company or product. Include all key details to be mentioned throughout the post. }
+    Using following Intended Audience:
+    { intended_audience | placeholder:Tech Startups }
+
+    Must follow the following needs:
+    The headline of the ad needs to be under 25 characters.
+    The description needs to be under 75 characters.
+
+    Follow the following structure:
+    Headline:
+    Description:
+    Call-to-Action text:
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Ads
+  title: LinkedIn Single Image Ads
+  description: Use AIkeedo with LinkedIn Single Image Ads to reach the right professional audience
+  color: '#0e76a8'
+  image: 'brand-linkedin'
+  template: >
+    Create LinkedIn Single Image Ads for following description:
+    { background_info | multiline | placeholder: Tell us about your company or product. Include all key details to be mentioned throughout the post. }
+    Using following Intended Audience:
+    { intended_audience | placeholder:Tech Startups }
+
+    Must follow the following needs:
+    The Ad Name of the ad need to be under 255 chracters and optional filed.
+    The headline of the ad needs to be under 70 characters.
+    The Introductory Text needs to be under 150 characters.
+    The description needs to be under 70 characters.
+
+    Follow the following structure:
+    Ad Name:
+    Headline:
+    Introductory Text:
+    Description:
+    Call-to-Action text:
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Ads
+  title: LinkedIn Ads
+  description: Eye-catching ads that will not only attract the right audience but also drive them to your lead magnet.
+  color: '#0e76a8'
+  image: 'brand-linkedin'
+  template: >
+    Create LinkedIn ads for following product description:
+    { background_info | multiline | placeholder: Tell us about your company or product. Include all key details to be mentioned throughout the post. }
+    Use following target keywords:
+    { target_keywords | placeholder: Content Writing, Marketing, Copywriting | info:Separate keywords with a comma. Do not use a space after the comma. }
+    Using following discount code:
+    { discount | placeholder: 30% Off with code LINK30 | info:Type your discount code if you have. }
+
+    Follow the following structure:
+    Headline:
+    Description:
+    CTA Button:
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Ads
+  title: LinkedIn Ad Description
+  description: Professional and eye-catching ad descriptions that will make your product shine.
+  color: '#0e76a8'
+  image: 'brand-linkedin'
+  template: >
+    Create LinkedIn Ad Description for following product description:
+    { background_info | multiline | placeholder: Tell us about your company or product. Include all key details to be mentioned throughout the post. }
+    Use following target keywords:
+    { target_keywords | placeholder: Content Writing, Marketing, Copywriting | info:Separate keywords with a comma. Do not use a space after the comma. }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Ads
+  title: LinkedIn Ad Headline
+  description: Attention-grabbing, click-inducing, and high-converting ad headlines for Linkedin.
+  color: '#0e76a8'
+  image: 'brand-linkedin'
+  template: >
+    Create LinkedIn Ad Headline for following product description:
+    { background_info | multiline | placeholder: Tell us about your company or product. Include all key details to be mentioned throughout the post. }
+    Use following target keywords:
+    { target_keywords | placeholder: Content Writing, Marketing, Copywriting | info:Separate keywords with a comma. Do not use a space after the comma. }
+    Using following discount code:
+    { discount | placeholder: 30% Off with code LINK30 | info:Type your discount code if you have. }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Ads
+  title: App and SMS Notifications
+  description: Notification messages for your apps, websites, and mobile devices that keep users coming back for more.
+  color: '#1E6CB5'
+  image: 'bell'
+  template: >
+    Create 5 App or SMS notification texts for following description:
+    { description | multiline | placeholder: Your content here }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Reframing Business Perspectives
+  description: Utilize the technique of Reframing Business Perspectives to analyze critical business decisions. View the issue from diverse angles and question existing assumptions.
+  color: '#FF9900'
+  image: 'alt'
+  template: >
+    Apply Reframing Business Perspectives to analyze { business_decision | multiline | placeholder: the introduction of a new product line | info: Describe the business decision that needs analysis }. Look at the problem from different angles, challenging the existing beliefs.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Behavioral Economics Principles
+  description: Utilize Behavioral Economics Principles to analyze important business decisions. Explore the influence of cognitive, emotional, and social factors on economic choices.
+  color: '#FFCC00'
+  image: 'activity'
+  template: >
+    Apply Behavioral Economics Principles to analyze { business_decision | multiline | placeholder: consumer purchasing behavior for a new product | info: Describe the specific business decision for analysis }. Consider how cognitive, emotional, and social factors affect economic decisions.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Blue Ocean Strategy
+  description: Implement the Blue Ocean Strategy to assess significant business decisions. Emphasize the creation of new market space rather than competing in existing industries.
+  color: '#005B80'
+  image: 'anchor'
+  template: >
+    Apply the Blue Ocean Strategy to evaluate { business_decision | multiline | placeholder: the launch of a disruptive product | info: Provide details about the specific business decision }. Focus on creating uncontested market space rather than competing in existing industries.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Brand Ecosystem Development
+  description: Leverage Brand Ecosystem Development to evaluate significant business decisions. Construct a network of interconnected products, services, and stakeholders.
+  color: '#4CAF50'
+  image: 'leaf'
+  template: >
+    Utilize Brand Ecosystem Development to assess { business_decision | multiline | placeholder: the expansion into new markets | info: Provide context for the business decision being assessed }. Build a network of interrelated products, services, and stakeholders.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Consumer Behavior Analysis
+  description: Apply Consumer Behavior Analysis to assess important business decisions. Explore the psychological, personal, and social factors influencing consumer choices.
+  color: '#FF5733'
+  image: 'user'
+  template: >
+    Use Consumer Behavior Analysis to evaluate { business_decision | multiline | placeholder: the rebranding of a product | info: Describe the specific business decision you're analyzing }. Dive into the psychological, personal, and social influences on consumer choices.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Cost-Benefit Analysis
+  description: Utilize Cost-Benefit Analysis to evaluate significant business decisions. Examine the anticipated trade-off between benefits and costs, considering potential risks and uncertainties.
+  color: '#8E44AD'
+  image: 'chart-bar'
+  template: >
+    Apply Cost-Benefit Analysis to assess { business_decision | multiline | placeholder: implementing a new technology infrastructure | info: Describe the specific business decision you're analyzing }. Analyze the expected balance of benefits and costs, including possible risk and uncertainties.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Customer Lifetime Value
+  description: Evaluate important business decisions by utilizing Customer Lifetime Value. Examine the enduring value of customers to align acquisition, retention, and monetization strategies.
+  color: '#3498DB'
+  image: 'currency-dollar'
+  template: >
+    Assess { business_decision | multiline | placeholder: implementing a loyalty program | info: Describe the specific business decision you're assessing } by considering Customer Lifetime Value. Analyze the long-term value of customers to understand how acquisition, retention, and monetization strategies align.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Customer Persona Building
+  description: Leverage Customer Persona Building to assess significant business decisions. Define distinct customer archetypes with detailed attributes and requirements.
+  color: '#FF5733'
+  image: 'users'
+  template: >
+    Utilize Customer Persona Building to evaluate { business_decision | multiline | placeholder: launching a new product line | info: Describe the specific business decision you're evaluating }. Define specific customer archetypes with detailed attributes and needs.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Disruptive Innovation
+  description: Utilize Disruptive Innovation to evaluate significant business decisions. Explore the potential impact of revolutionary changes in technology or methodology on your industry or market.
+  color: '#E74C3C'
+  image: 'bolt'
+  template: >
+    Apply Disruptive Innovation to assess { business_decision | multiline | placeholder: adopting blockchain technology | info: Describe the specific business decision you're evaluating }. Consider how groundbreaking changes in technology or methodology might impact your industry or market.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Double Loop Learning
+  description: Apply Double Loop Learning to assess important business decisions. Reflect not only on solutions, but also on underlying assumptions and beliefs, fostering adaptive learning.
+  color: '#27AE60'
+  image: 'rotate-clockwise-2'
+  template: >
+    Use Double Loop Learning to evaluate { business_decision | multiline | placeholder: changing the company's communication strategy | info: Describe the specific business decision you're evaluating }. Reflect not just on solutions, but on underlying assumptions and beliefs, encouraging adaptive learning.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Eisenhower Matrix
+  description: Utilize the Eisenhower Matrix to assess significant business decisions. Categorize tasks or elements based on urgency and importance to enhance effective prioritization.
+  color: '#3498DB'
+  image: 'square-check-filled'
+  template: >
+    Use the Eisenhower Matrix to evaluate { business_decision | multiline | placeholder: the implementation of a new project | info: Describe the specific business decision you're assessing }. Categorize tasks or elements based on urgency and importance to prioritize effectively.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Emotional Intelligence
+  description: Assess significant business decisions with Emotional Intelligence in mind. Recognize and manage both your own and others' emotions to make more empathetic and effective choices.
+  color: '#FF5733'
+  image: 'heart'
+  template: >
+    Evaluate { business_decision | multiline | placeholder: team restructuring | info: Describe the specific business decision you're evaluating } with Emotional Intelligence in mind. Recognize and manage both your own and others' emotions to make more empathetic and effective decisions.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Freemium Business Model
+  description: Utilize the Freemium Business Model to evaluate significant business decisions. Investigate the possibility of offering basic services for free while charging for premium features.
+  color: '#27AE60'
+  image: 'currency-dollar'
+  template: >
+    Apply the Freemium Business Model to { business_decision | multiline | placeholder: launching a new software product | info: Describe the specific business decision you're evaluating }. Explore offering basic services for free while charging for premium features.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Heuristics and Decision Trees
+  description: Analyze important business decisions using Heuristics and Decision Trees. Construct simplified models to grasp complex issues and identify optimal paths.
+  color: '#9B59B6'
+  image: 'git-branch'
+  template: >
+    Evaluate { business_decision | multiline | placeholder: supply chain optimization | info: Describe the specific business decision you're evaluating } using Heuristics and Decision Trees. Create simplified models to understand complex problems and find optimal paths.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Hyper-Personalization Strategy
+  description: Utilize the Hyper-Personalization Strategy to assess significant business decisions. Harness data and AI to deliver an exceedingly personalized experience.
+  color: '#3498DB'
+  image: 'user-check'
+  template: >
+    Use Hyper-Personalization Strategy to evaluate { business_decision | multiline | placeholder: enhancing the customer onboarding process | info: Describe the specific business decision you're evaluating }. Leverage data and AI to provide an extremely personalized experience.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Innovation Ambition Matrix
+  description: Assess significant business decisions using the Innovation Ambition Matrix. Plot initiatives on a matrix to balance core enhancements, adjacent opportunities, and transformational innovations.
+  color: '#9B59B6'
+  image: 'layout-grid'
+  template: >
+    Evaluate { business_decision | multiline | placeholder: the expansion into new markets | info: Describe the specific business decision you're evaluating } through the Innovation Ambition Matrix. Plot initiatives on a matrix to balance core enhancements, adjacent opportunities, and transformational innovations.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Jobs to Be Done Framework
+  description: Analyze significant business decisions using the Jobs to Be Done Framework. Concentrate on understanding the problems customers aim to solve.
+  color: '#E74C3C'
+  image: 'target'
+  template: >
+    Assess { business_decision | multiline | placeholder: the redesign of the user interface | info: Describe the specific business decision you're evaluating } by applying the Jobs to Be Done Framework. Focus on the problems customers are trying to solve.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Kano Model Analysis
+  description: Assess important business decisions using the Kano Model Analysis. Prioritize customer needs into basic, performance, and excitement categories.
+  color: '#8E44AD'
+  image: 'trending-up'
+  template: >
+    Evaluate { business_decision | multiline | placeholder: new feature development | info: Describe the specific business decision you're evaluating } using the Kano Model Analysis. Prioritize customer needs into basic, performance, and excitement categories.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Lean Startup Principles
+  description: Apply Lean Startup Principles to assess significant business decisions. Prioritize the development of a minimum viable product, measure its success, and learn from the outcomes.
+  color: '#27AE60'
+  image: 'cpu'
+  template: >
+    Apply Lean Startup Principles to { business_decision | multiline | placeholder: introducing a new service | info: Describe the specific business decision you're evaluating }. Focus on creating a minimum viable product, measuring its success, and learning from the results.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Long Tail Strategy
+  description: Examine significant business decisions with a focus on the Long Tail Strategy. Consider how catering to niche markets or products might contribute to overall success.
+  color: '#E74C3C'
+  image: 'box'
+  template: >
+    Analyze { business_decision | multiline | placeholder: expanding product offerings | info: Describe the specific business decision you're analyzing } focusing on the Long Tail Strategy. Consider how niche markets or products may contribute to overall success.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Network Effects
+  description: Analyze significant business decisions by understanding Network Effects. Consider how the value of a product or service increases as more people use it.
+  color: '#3498DB'
+  image: 'share-2'
+  template: >
+    Analyze { business_decision | multiline | placeholder: launching a new social media platform | info: Describe the specific business decision you're analyzing } through the understanding of Network Effects. Consider how the value of a product or service increases as more people use it.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Pre-Mortem Analysis
+  description: Apply Pre-Mortem Analysis to evaluate significant business decisions. Envision a future failure of the decision and work backward to identify potential causes and mitigation strategies.
+  color: '#E74C3C'
+  image: 'trending-down'
+  template: >
+    Utilize Pre-Mortem Analysis to assess { business_decision | multiline | placeholder: the launch of a new marketing campaign | info: Describe the specific business decision you're assessing }. Imagine a future failure of the decision and work backward to identify potential causes and mitigation strategies.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Prospect Theory
+  description: Apply Prospect Theory to evaluate significant business decisions. Understand how people perceive gains and losses, and how that perception can influence decision-making.
+  color: '#8E44AD'
+  image: 'activity'
+  template: >
+    Utilize Prospect Theory to assess { business_decision | multiline | placeholder: pricing strategy for a new product | info: Describe the specific business decision you're evaluating }. Understand how people perceive gains and losses and how that can influence decision-making.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Pygmalion Effect
+  description: Utilize the Pygmalion Effect to assess significant business decisions. Recognize how expectations can impact outcomes, whether positively or negatively.
+  color: '#FF5733'
+  image: 'mood-smile'
+  template: >
+    Apply the Pygmalion Effect to analyze { business_decision | multiline | placeholder: employee training program | info: Describe the specific business decision you're evaluating }. Recognize how expectations can influence outcomes, both positively and negatively.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Resource-Based View
+  description: Utilize the Resource-Based View to assess significant business decisions. Focus on leveraging the company's internal strengths and weaknesses in relation to external opportunities and threats.
+  color: '#3498DB'
+  image: 'database'
+  template: >
+    Apply the Resource-Based View to evaluate { business_decision | multiline | placeholder: entering a new market segment | info: Describe the specific business decision you're evaluating }. Focus on leveraging the company's internal strengths and weaknesses in relation to external opportunities and threats.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Risk-Reward Analysis
+  description: Analyze significant business decisions using Risk-Reward Analysis. Evaluate the potential risks against the potential rewards to understand the balance and make an informed decision.
+  color: '#E74C3C'
+  image: 'chart-bar'
+  template: >
+    Analyze { business_decision | multiline | placeholder: launching a new product line | info: Describe the specific business decision you're analyzing } through Risk-Reward Analysis. Evaluate the potential risks against the potential rewards to understand the balance and make an informed decision.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Scenario Planning
+  description: Utilize Scenario Planning to evaluate significant business decisions. Create different future scenarios and analyze how the decision performs in each to identify potential risks and opportunities.
+  color: '#27AE60'
+  image: 'trending-up'
+  template: >
+    Apply Scenario Planning to assess { business_decision | multiline | placeholder: expanding into new markets | info: Describe the specific business decision you're evaluating }. Create different future scenarios and analyze how the decision performs in each to identify potential risks and opportunities.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Six Thinking Hats
+  description: Evaluate significant business decisions using the Six Thinking Hats method. Analyze the decision from different perspectives such as logical, emotional, cautious, creative, and more.
+  color: '#FFC300'
+  image: 'activity'
+  template: >
+    Evaluate { business_decision | multiline | placeholder: a potential business partnership | info: Describe the specific business decision you're evaluating } through the Six Thinking Hats method. Analyze the decision from different perspectives such as logical, emotional, cautious, creative, and more.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Temporal Discounting
+  description: Utilize Temporal Discounting to assess significant business decisions. Consider how the value of outcomes changes over time and how that might influence the decision-making process.
+  color: '#FF5733'
+  image: 'clock'
+  template: >
+    Use Temporal Discounting to analyze { business_decision | multiline | placeholder: a long-term investment | info: Describe the specific business decision you're analyzing }. Consider how the value of outcomes changes over time and how that might influence the decision-making process.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: The Five Whys Technique
+  description: Apply the Five Whys Technique to assess significant business decisions. Ask 'why?' multiple times to uncover the root cause of problems or challenges.
+  color: '#3498DB'
+  image: 'help-circle'
+  template: >
+    Utilize the Five Whys Technique to analyze { business_decision | multiline | placeholder: a recent project delay | info: Describe the specific business decision you're analyzing }. Ask 'why?' multiple times to get to the root cause of problems or challenges.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: OODA Loop Analysis
+  description: Utilize the OODA Loop to assess significant business decisions. Cycle through observing the situation, orienting yourself, making a decision, and taking action, then repeat as necessary.
+  color: '#E74C3C'
+  image: 'rotate'
+  template: >
+    Use the OODA Loop to evaluate { business_decision | multiline | placeholder: a competitive response strategy | info: Describe the specific business decision you're evaluating }. Cycle through observing the situation, orienting yourself, making a decision, and taking action, then repeating as necessary.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Value Chain Analysis
+  description: Apply Value Chain Analysis to assess significant business decisions. Examine all the activities performed by a company to create value and find opportunities for competitive advantage.
+  color: '#8E44AD'
+  image: 'clipboard'
+  template: >
+    Apply Value Chain Analysis to evaluate { business_decision | multiline | placeholder: optimizing supply chain processes | info: Describe the specific business decision you're evaluating }. Examine all the activities performed by a company to create value and find opportunities for competitive advantage.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Viral Loop Strategy
+  description: Utilize the Viral Loop Strategy to evaluate significant business decisions. Construct a process where existing users help in recruiting new ones.
+  color: '#27AE60'
+  image: 'activity'
+  template: >
+    Use Viral Loop Strategy to assess { business_decision | multiline | placeholder: user onboarding process | info: Describe the specific business decision you're evaluating }. Construct a process where existing users help in recruiting new ones.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Customer Case Study
+  description: Craft compelling customer success case studies.
+  color: '#9c27b0'
+  image: 'users'
+  template: >
+    Write a customer case study highlighting how { company_name | placeholder:Company XYZ | info:the company's name } used { product_name | placeholder:Product ABC | info:the name of the product } to achieve success. Include customer quotes, customer success metrics, and visual elements.
+
+    Case details:
+
+    { additional_case_details | placeholder:Additional case details | info:Details about the success story }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Event Invite
+  description: Craft persuasive event invitation emails.
+  color: '#673ab7'
+  image: 'calendar-event'
+  template: >
+    Write a persuasive email to increase attendance at our upcoming event about { event_theme | placeholder:the latest trends in technology | info:the theme of the event }.
+
+    Here are additional details about the event to include:
+
+    { additional_event_details | info:Details about the event }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Internal Memos
+  description: Draft effective internal memos for communication.
+  color: '#2196f3'
+  image: 'book'
+  template: >
+    Write an internal memo to {department | label: Department/team | placeholder:the Marketing Department | info:the specific department or team } regarding { topic | placeholder:the upcoming product launch | info:the topic of the memo }.
+
+    In the memo, explain { key_details | multiline | placeholder:the objectives of the launch, target audience, key features, and expected outcomes | info:the key details } and the desired outcome. Provide an action plan with clear steps and timeline.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Pitch a Journalist
+  description: Compose effective pitches to journalists.
+  color: '#f44336'
+  image: 'news'
+  template: >
+    Pitch a story to { reporter | label: Reporter name / publication | placeholder:John Smith from Tech Times | info:the name of the journalist or publication }.
+
+    Story details: 
+    { story_details | multiline | info:Details about the story you wish to pitch }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Press Release
+  description: Compose effective press releases for announcements.
+  color: '#ff9800'
+  image: 'article'
+  template: >
+    Instructions:
+
+    Write a press release for { company | label: Company or organization | placeholder:XYZ Tech Solutions | info:The name of your company or organization } announcing a recent achievement or milestone. Begin with a concise and attention-grabbing headline that summarizes the main news. In the opening paragraph, provide a brief overview of the announcement and its significance. In the following paragraphs, provide more details about the achievement, including any relevant statistics or data. Use quotes from company representatives or experts to add credibility and context to the announcement. End the press release with a brief company description and contact information for media inquiries.
+
+    Remember to keep the press release concise, informative, and engaging, highlighting the key takeaways and benefits of the announcement.
+
+    Press release details:
+
+    { press_release_details | multiline | info:Additional details about the press release }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Product Brochure
+  description: Design effective product brochures for marketing.
+  color: '#00bcd4'
+  image: 'file-text'
+  template: >
+    Create a brochure outlining the features and benefits of { product | placeholder:our latest product offering | info:the name of your product }. Include customer testimonials and a call to action.
+
+    Product details: 
+
+    { details | multiline | label: Product details | info:Details about the product features, benefits, and customer testimonials }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Linkedin Connection Invite Message
+  description: Craft compelling LinkedIn connection invite messages.
+  color: '#4caf50'
+  image: 'brand-linkedin'
+  template: >
+    You are a recruiter trying to attract top talent.
+
+    You came across this LinkedIn profile { url | label: LinkedIn profile URL | placeholder:https://www.linkedin.com/in/john-doe/ | info:the URL of the LinkedIn profile }.
+
+    You have to pitch them and you can't write more than 500 characters.
+
+    Your message should include:
+
+    - the name of the company they're currently working for
+    - praise for their areas of expertise
+    - why they would be a good fit as a { role | label: Role you are hiring for | placeholder:Senior Software Engineer | info:the role you're hiring for }
+    - some exciting news about { company_url | label: Company URL }
+
+    The message should be exciting and make them want to learn more about the opportunity.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Company Bio Writer
+  description: Short and sweet company bio that will help you connect with your target audience.
+  color: '#FFB44C'
+  image: 'building'
+  template: >
+    Write short Bio for { select_platform | type:enum | options: Website, Twitter, Instagram, LinkedIn } by considering following company:
+    { company_name | placeholder:Your company name here }
+
+    Using following company information: 
+    { company_infromation | multiline | placeholder:Type something about your company }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Company Mission Writer
+  description: A clear and concise statement of your company's goals and purpose.
+  color: '#9E4BF1'
+  image: 'currency'
+  template: >
+    Write short company mission for following company:
+    { company_name | placeholder:Your company name here }
+
+    Using following company information: 
+    { company_infromation | multiline | placeholder:Type something about your company }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Company Vision Writer
+  description: A vision that attracts the right people, clients, and employees.
+  color: '#FF7D6A'
+  image: 'focus'
+  template: >
+    Write short company vision for following company:
+    { company_name | placeholder:Your company name here }
+
+    Using following company information: 
+    { company_infromation | multiline | placeholder:Type something about your company }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Business and Strategy
+  title: Job Description Writer
+  description: Generate job descriptions for any position in your company.
+  color: '#3F75AF'
+  image: 'layout-distribute-horizontal'
+  template: >
+    Write a Job Description using following Job Title:
+    { job_title | placeholder:Product Designer }
+
+    Using following company name: 
+    { company_name | placeholder:Your company name here }
+
+    Using following company description: 
+    { company_description | multiline | placeholder:Type something about your company }
+
+    Using following important requirements:
+    { important_requirements | multiline | placeholder:Enter important requirements}
+
+    Using following additional information:
+    { additional_informtions | multiline | placeholder:Enter additional informations}
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: E-Commerce
+  title: 3 Step Outreach Sequence
+  description: Create effective 3 step outreach sequences.
+  color: '#8bc34a'
+  image: 'heart-handshake'
+  template: >
+    Generate a 3-step outreach sequence for { company_url | label: Company URL } selling to { target_customer | placeholder:prospective clients in the healthcare industry | info:the target customer segment }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: E-Commerce
+  title: Analyze Industry Trends
+  description: Analyze industry trends and present findings.
+  color: '#673ab7'
+  image: 'chart-line'
+  template: >
+    Analyze the industry trends for { industry | placeholder:the technology sector | info:the specific industry you're analyzing } in the { country | label: Country/region | placeholder:United States | info:the country/region you're focusing on } for the past 12 months and compare it to the same period last year.
+
+    Present your findings in a report.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: E-Commerce
+  title: Brainstorm Pain Points
+  description: Identify pain points and language for target personas.
+  color: '#ff5722'
+  image: 'brain'
+  template: >
+    Act as a { target_persona | placeholder:potential small business owner | info:specific target persona, such as a potential small business owner }. 
+
+    What pain points do they face and what language would they use for { goals | label: Their Goals | placeholder: growing their customer base, increasing revenue, and streamlining operations | info:the goals they aim to achieve }?
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: E-Commerce
+  title: Competitive Analysis
+  description: >
+    Conduct a comprehensive analysis of { competitor_company_name | placeholder: [placeholder] | info: Name of the competitor company }. Identify the competitive advantages and disadvantages of their product.
+  color: '#3498DB'
+  image: 'chart-bar'
+  template: >
+    Conduct a full analysis of { competitor_company_name | placeholder: XYZ Corporation | info: Name of the competitor company } and identify the competitive advantages and disadvantages of their product.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: E-Commerce
+  title: Linkedin Boolean Search
+  description: Conduct more targeted searches on LinkedIn Sales Navigator using boolean search techniques. Boolean searches allow you to combine keywords and operators to find specific profiles that match your criteria.
+  color: '#4287f5'
+  image: 'user'
+  template: >
+    Write me a boolean search on variations of { roles | placeholder: job titles | info: Specify the job titles you're interested in } that I can plug into Sales Navigator search.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: E-Commerce
+  title: Personalized Cold Email From LinkedIn Profile
+  description: Craft effective personalized cold emails using LinkedIn profile information to engage potential clients.
+  color: '#FF5733'
+  image: 'at'
+  template: >
+    Write a personalized cold email to { linkedin_profile_url | placeholder: the prospect's LinkedIn profile URL | info: Provide the LinkedIn profile URL of the recipient } selling { product_description | multiline | placeholder: your cutting-edge product | info: Describe your innovative product offering }.
+
+    Make sure the first 7 words of the email catch the reader's attention. Make the email 4-6 sentences.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: E-Commerce
+  title: Research Prospect From Linkedin
+  description: Gather insightful information about potential leads from their LinkedIn profiles to tailor your sales approach effectively.
+  color: '#59A14F'
+  image: 'search'
+  template: >
+    Summarize { linkedin_profile_url | placeholder: the prospect's LinkedIn profile | info: Provide the LinkedIn profile URL of the potential lead } into 10 bullet points, brainstorming the pain points they might have around { topic | placeholder: your product's value proposition | info: Understand the unique challenges your product solves }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: E-Commerce
+  title: Amazon Product Features
+  description: Advantages and features of your products that will make them irresistible to shoppers.
+  color: '#ff9900'
+  image: 'brand-amazon'
+  template: >
+    Write product features of following product for amazon.com:
+    { produc_name | placeholder:Macbook Pro 14' | info:Type your product name here }
+    Using following product description:
+    {product_description | multiline | placeholder:Product description here}
+    Using following target keywords:
+    { target_keywords | placeholder: Desinging, Video Editing, Copywriting | info:Separate keywords with a comma. Do not use a space after the comma. }
+
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: E-Commerce
+  title: Amazon Product Titles
+  description: Product titles that will make your product stand out in a sea of competition.
+  color: '#ff9900'
+  image: 'brand-amazon'
+  template: >
+    Write 5 product titles of following product for amazon.com:
+    { produc_name | placeholder:Macbook Pro 14' | info:Type your product name here }
+    Using following product description:
+    {product_description | multiline | placeholder:Product description here}
+    Using following keywords:
+    { keywords | placeholder: Desinging, Video Editing, Copywriting | info:Separate keywords with a comma. Do not use a space after the comma. }
+
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: E-Commerce
+  title: Amazon Product Descriptions
+  description: Descriptions for Amazon products that rank on the first page of the search results.
+  color: '#ff9900'
+  image: 'brand-amazon'
+  template: >
+    Write short description of following product for amazon.com:
+    { produc_name | placeholder:Macbook Pro 14' | info:Type your product name here }
+    Using following product description:
+    {product_description | multiline | placeholder:Product description here}
+    Using following target keywords:
+    { target_keywords | placeholder: Desinging, Video Editing, Copywriting | info:Separate keywords with a comma. Do not use a space after the comma. }
+
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Email
+  title: Attention-Interest-Desire-Action
+  description: Craft effective email marketing campaigns.
+  color: '#ff9800'
+  image: 'mail'
+  template: >
+    Using the 'Attention-Interest-Desire-Action' framework, write an email marketing campaign that highlights the { features | multiline | placeholder:Unique aspects | info:The distinctive qualities } of our { product | label: The offering | options: product,service } and explains how these { advantages | placeholder:Benefits } can be helpful to { customer_persona | placeholder:Our target audience | info:The intended customer group }.
+
+    Elaborate on the { benefits | label: Benefits of the product/service | multiline | placeholder:positive outcomes } of our product and how it can positively impact the reader.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Email
+  title: Email Subject Generator
+  description: Craft compelling email subject lines.
+  color: '#673ab7'
+  image: 'mail'
+  template: >
+    Develop five subject lines for a cold email offering { name | label: Product/service name | placeholder:Your product/service name | info:The name of your offering } to a potential client.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Email
+  title: Features-Advantages-Benefits
+  description: Create persuasive email marketing campaigns.
+  color: '#e91e63'
+  image: 'mail'
+  template: >
+    Using the 'Features-Advantages-Benefits' framework, please write an email marketing campaign that highlights the { features | multiline | placeholder:Unique aspects | info:The distinctive qualities } of our { product | label: The offering | options: product,service } and explains how these { advantages | placeholder:Benefits } can be helpful to { customer_persona | placeholder:our target audience | info:the intended customer group }.
+
+    Elaborate on the { benefits | label: Benefits of the product/service | multiline | placeholder:Positive outcomes | info:The positive impacts } of our product and how it can positively impact the reader.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Email
+  title: Newsletter From Recent News
+  description: Craft engaging newsletters from recent news.
+  color: '#009688'
+  image: 'news'
+  template: >
+    Find recent news about {topic_or_event | placeholder:a current event or topic | info:the subject you're focusing on} and then turn it into a long-form newsletter consisting of a subject line, intro, body paragraph, bullet point list, and a conclusion.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Email
+  title: Newsletter Inspiration
+  description: Gather insights for impactful newsletters.
+  color: '#03a9f4'
+  image: 'bulb'
+  template: >
+    What are the top trends in {industry | placeholder:your industry | info:the field you're working in} that I can include in my next newsletter focused on {details_about_newsletter | multiline | placeholder:specific newsletter topic | info:the subject of the newsletter}.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Email
+  title: Pain-Agitate-Solution
+  description: Create impactful email marketing campaigns using PAS framework.
+  color: '#ffeb3b'
+  image: 'mail'
+  template: >
+    Using the 'Pain-Agitate-Solution' framework, please write an email marketing campaign that highlights the { features | multiline | placeholder:unique aspects | info:the distinctive qualities } of our { product | label: What the features are about? | options: product,service | placeholder:product or service | info:the offering } and explains how these { advantages | placeholder:benefits | info:advantages } can be helpful to { customer_persona | placeholder:our target audience | info:the intended customer group }.
+
+    Elaborate on the { benefits | label: Benefits of the product/service | multiline | placeholder:positive outcomes | info:the positive impacts } of our product and how it can positively impact the reader.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Email
+  title: Backlink Outreach Email
+  description: Reach out to other websites for link exchange opportunities.
+  color: '#6ac259'
+  image: 'mail'
+  template: >
+    Write a link-exchange outreach email on behalf of { name | placeholder: John Doe | info: Name of the person who will write the email } from { company | placeholder: Acme SEO Services | info: Name of the company that the person who will write the email works for } to ask for a backlink from their { website_url | placeholder:example.com | info: Their Website URL } to { your_website_url | placeholder:yourwebsite.com | info: Company's Website URL}.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Email
+  title: Email Writer
+  description: Professional-looking emails that help you engage leads and customers.
+  color: '#FF823B'
+  image: 'mail'
+  template: >
+    Write short email to following recipient:
+    { name | placeholder: Erlich Bachman | info: Name of the person who will receive the email }
+    Using following recipient position:
+    { position | placeholder: Co-Founder and Motivator | info: Position of the recipient }
+    Using following description:
+    { description | placeholder:Request an interview at AIKeedo. I am a software engineer and would like to help build AI models. | info: Type your email description }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Email
+  title: Personalized Cold Emails
+  description: Write cold emails that actually work and get responses.
+  color: '#3473A4'
+  image: 'mail-cog'
+  template: >
+    Write personalized short cold email without benefits that send from:
+    { from | placeholder: Erlich Bachman | info: Type your or company name }
+    This email send to:
+    { to | placeholder: John Doe | info: Type recipient name }
+    Using following goal text:
+    { goal | placeholder:Following up on an email we sent earlier }
+    Using following scenario:
+    { scenario | placeholder:AI software that helps businesses to manage their customers and leads over the chatbots. }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Social Media
+  title: Caption Generator
+  description: Create captivating and interactive social media captions that resonate with your audience and encourage engagement.
+  color: '#FFB366'
+  image: 'text-caption'
+  template: >
+    Write a catchy caption about { theme | placeholder: your upcoming beach vacation | info: Capture the excitement of your upcoming trip } and infuse it with playful language. Engage users by asking them questions, incorporating emojis, and concluding with three relevant hashtags.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Social Media
+  title: Generate Content Calendar
+  description: Create a well-structured content calendar to effectively plan and manage your social media content.
+  color: '#6E8CD5'
+  image: 'calendar'
+  template: >
+    Generate a content calendar about { topic | placeholder: your upcoming product launch | info: Plan the content schedule for your upcoming product launch }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Social Media
+  title: Headlines
+  description: Craft compelling and attention-grabbing headlines to enhance the impact of your social media posts.
+  color: '#F28888'
+  image: 'news'
+  template: >
+    Write 5 attention-grabbing headlines for a { platform | placeholder: Twitter | info: Choose the social media platform, e.g., Twitter } post on { topic | placeholder: healthy eating tips | info: Specify the topic, e.g., healthy eating } for { audience | placeholder: busy professionals | info: Define your target audience, e.g., busy professionals }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Social Media
+  title: Instagram Captions
+  description: Craft engaging and relatable Instagram captions that highlight your product's uniqueness and connect with your target audience.
+  color: '#E973A8'
+  image: 'brand-instagram'
+  template: >
+    Write 5 variations of Instagram captions for { product | placeholder: your new handmade jewelry collection | info: Describe your product, e.g., a collection of handcrafted jewelry }.
+
+    Use friendly, human-like language that appeals to { target_audience | placeholder: fashion enthusiasts | info: Define your target audience, e.g., fashion enthusiasts }.
+
+    Emphasize the unique qualities of { product | placeholder: these exquisite pieces | info: Highlight the distinct features of your jewelry line },
+
+    use ample emojis, and don't sound too promotional.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Social Media
+  title: LinkedIn Post
+  description: Craft an engaging LinkedIn post that captures attention and tells an immersive story about your chosen topic.
+  color: '#0077B5'
+  image: 'brand-linkedin'
+  template: >
+    Create a narrative LinkedIn post using immersive writing about { topic | placeholder: the future of remote work | info: Illustrate your chosen topic, e.g., the future of remote work }.
+
+    Details:
+
+    { details | multiline | placeholder: - Advantages of remote work\n- Impact on company cultures\n- Challenges and solutions | info: Provide key points and details in bullet point format }
+
+    Use a mix of short and long sentences. Make it punchy and dramatic.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Social Media
+  title: TikTok Script
+  description: Develop an attention-grabbing TikTok video script that captivates viewers and encourages them to keep watching.
+  color: '#69C9D0'
+  image: 'brand-tiktok'
+  template: >
+    Write a super engaging TikTok video script on { topic | placeholder: quick and easy recipe hacks | info: Specify your topic, e.g., quick and easy recipe hacks }. Each sentence should catch the viewer's attention to make them keep watching.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Social Media
+  title: Give a Controversial Opinion on [topic], Then Turn It into a Twitter Thread
+  description: Express a thought-provoking opinion on a particular topic and craft it into a Twitter thread to spark meaningful discussions.
+  color: '#000000'
+  image: 'brand-x'
+  template: >
+    Give a controversial opinion on { topic | placeholder: the role of AI in job automation | info: Choose your topic, e.g., the role of AI in job automation }, then turn it into a Twitter thread.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Social Media
+  title: YouTube Video Description
+  description: Craft a concise and compelling YouTube video description that encourages your target audience to watch the video on your chosen topic.
+  color: '#FF0000'
+  image: 'brand-youtube'
+  template: >
+    Write a 100-word YouTube video description that compels [audience]
+
+    to watch a video on { topic | placeholder: mastering photography techniques | info: Specify the topic of the video, e.g., mastering photography techniques }
+
+    and mentions the following keywords:
+
+    { keywords | multiline | placeholder: photography tips, camera settings, creative composition | info: List relevant keywords related to the video content }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Social Media
+  title: Google My Business - Event Post
+  description: Generate event details for your Google My Business event posts
+  color: '#4285F4'
+  image: 'brand-google'
+  template: >
+    Generate short event details for Google My Business - Event Posts using following event informations:
+    { tell_us_about_your_event | placeholder: Yoga class on our outdoor patio. Free pint of beer and socializing afterward. Saturday Mar 27th 5-9pm. }
+
+    Follow the following structure:
+    Event name:
+    Event details:
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Social Media
+  title: Google My Business - Offer Post
+  description: Generate offer details for your Google My Business offer posts
+  color: '#4285F4'
+  image: 'brand-google'
+  template: >
+    Generate short offer details for Google My Business - Offer Posts using following offer informations:
+    { tell_us_about_your_offer | placeholder: Free seats up to 100 teammates }
+
+    Using following company name:
+    { company_name | placeholder: Slack | info: Type your company or product name }
+
+    Follow the following structure:
+    Offer title:
+    Offer details:
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Social Media
+  title: Google My Business - Product Description
+  description: Generate product descriptions for your Google My Business
+  color: '#4285F4'
+  image: 'brand-google'
+  template: >
+    Generate short product description for Google My Business using following product name:
+    { company_name | placeholder: Slack | info: Type your company or product name }
+
+    Using following product description:
+    { tell_us_about_your_offer | placeholder: Free seats up to 100 teammates }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Social Media
+  title: Tweet Machine
+  description: Generate viral tweets for X.
+  color: '#000000'
+  image: 'brand-x'
+  template: >
+    Write short viral tweets for Twitter using following informations:
+    { what_is_your_tweet_about? | placeholder: Type your content here }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Social Media
+  title: Pinterest Pin Title & Description
+  description: Create great Pinterest pin titles and descriptions that drive engagement, traffic, and reach.
+  color: '#E60023'
+  image: 'brand-pinterest'
+  template: >
+    Create great Pinterest pin title and description about following information:
+    { tell_us_about_the_pin | placeholder: Coolest travel offers that are affordable }
+
+    Using following keywords:
+    { keywords | placeholder: Italy, France | info:Separate keywords with a comma. Do not use a space after the comma. }
+
+    Using following product name:
+    { company_name | placeholder: Go Away | info: Type your company or product name }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Website
+  title: Customer Case Study
+  description: Create compelling customer success stories.
+  color: '#00bcd4'
+  image: 'users'
+  template: >
+    Write a customer case study highlighting how { company_name | placeholder:Acme Inc. } used { product_name | placeholder:Product X } to achieve success. Include customer quotes, success metrics, and visual elements.
+
+    Case details:
+    { additional_case_details | multiline | placeholder:Notable challenges faced and solutions implemented | info:The additional details of the case study }.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Website
+  title: FAQ Generator
+  description: Generate comprehensive and SEO-friendly FAQs.
+  color: '#ff9800'
+  image: 'help-circle'
+  template: >
+    Create a list of { count | label: How many questions should be created? | placeholder: 10 | info: The number of questions | value: 10 } frequently asked questions about { keywords | multiline | placeholder: Your chosen keywords | info: The relevant keywords } and provide answers for each one of them considering the SERP and rich result guidelines.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Website
+  title: Headline Generator
+  description: Craft captivating and effective article headlines.
+  color: '#03a9f4'
+  image: 'heading'
+  template: >
+    Generate 10 attention-grabbing headlines for an article about { topic | placeholder:Your chosen topic | info:The main subject of the article}.
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Website
+  title: Landing Page Copy
+  description: Craft compelling copy for landing pages.
+  color: '#4caf50'
+  image: 'copy'
+  template: >
+    Create website copy about { about | label: What the page is about? | placeholder: Write about your product or service | info: The main focus of the page }.
+
+    Follow the following structure:
+
+    Hero
+
+    Subheader
+
+    Call to action
+
+    Tagline
+
+    H2
+
+    Paragraph
+
+    H2
+
+    Paragraph
+
+    H2
+
+    Paragraph
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Website
+  title: Unique Value Propositions
+  description: Create a clear statement that describes the benefit of your offer in a powerful way.
+  color: '#FFA437'
+  image: 'current-location'
+  template: >
+    Describe the following sentence with less and specific words:
+
+    { description | multiline | placeholder:Describe your product }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Website
+  title: Homepage - Title and Meta Descriptions
+  description: Write SEO optimized title tags and meta descriptions for homepages that will rank well on Google.
+  color: '#7A61F5'
+  image: 'seo'
+  template: >
+    Write SEO optimized title tag and meta description for homepages that will rank well on Google for following product:
+    { product_name | placeholder:Slack | info: Type your company or product name}
+
+    Using following product description:
+    { product_description | multiline | placeholder:Describe your product }
+
+    Using following keywords:
+    { keywords | placeholder: Marketing, Copywriting | info:Separate keywords with a comma. Do not use a space after the comma. }
+
+    Follow the following structure:
+    Title Tag:
+    Meta Description:
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Website
+  title: Services Page - Title and Meta Descriptions
+  description: Write SEO optimized title tags and meta descriptions for services page that will rank well on Google.
+  color: '#FF885B'
+  image: 'seo'
+  template: >
+    Write SEO optimized title tag and meta description for services page that will rank well on Google for following product:
+    { product_name | placeholder:Slack | info: Type your company or product name}
+
+    Using following product description:
+    { product_description | multiline | placeholder:Describe your product }
+
+    Using following keywords:
+    { keywords | placeholder: Marketing, Copywriting | info:Separate keywords with a comma. Do not use a space after the comma. }
+
+    Follow the following structure:
+    Title Tag:
+    Meta Description:
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Website
+  title: Blog Post - Title and Meta Descriptions
+  description: Write SEO optimized title tags and meta descriptions for blog posts that will rank well on Google.
+  color: '#437CC7'
+  image: 'seo'
+  template: >
+    Write SEO optimized title tag and meta description for blog post that will rank well on Google for following company:
+    { product_name | placeholder:Slack | info: Type your company or product name}
+
+    Using following blog post title:
+    { blog_post_title | multiline | placeholder:Your blog post title here}
+
+    Using following blog post description:
+    { blog_post_description | multiline | placeholder:Your content here }
+
+    Using following keywords:
+    { keywords | placeholder: Marketing, Copywriting | info:Separate keywords with a comma. Do not use a space after the comma. }
+
+    Follow the following structure:
+    Title Tag:
+    Meta Description:
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Website
+  title: Product Page - Title and Meta Descriptions
+  description: Write SEO optimized title tags and meta descriptions that will rank well on Google for product pages.
+  color: '#FF6530'
+  image: 'seo'
+  template: >
+    Write SEO optimized title tag and meta description for product page that will rank well on Google for following company:
+    { company_name | placeholder:your company name here }
+
+    Using following product name:
+    { product_name | placeholder:Your product name here }
+
+    Using following product description:
+    { product_description | multiline | placeholder:Describe your product }
+
+    Using following keywords:
+    { keywords | placeholder: Marketing, Copywriting | info:Separate keywords with a comma. Do not use a space after the comma. }
+
+    Follow the following structure:
+    Title Tag:
+    Meta Description:
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Website
+  title: Website Sub-headline
+  description: Create delightfully informative sub-headlines (H2) for your websites and landing pages.
+  color: '#4678C2'
+  image: 'h-2'
+  template: >
+    Create 3 delightfully informative sub-headlines (H2) for websites and landing pages using following product description:
+    { product_description | multiline | placeholder:Describe your product }
+
+    Using following company name:
+    { company_name | placeholder:Your company name here }
+
+    Using following Headline:
+    { headline | placeholder:Type your headline | info:Input the headline this sub-head will go underneath. }
+
+    Additional instructions:
+    - Write it in { language } language by using {tone} voice tone.
+
+- type: completion
+  status: 1
+  category: Website
+  title: Landing Page Headline Writer
+  description: Unique and catchy headlines that are perfect for your product or service.
+  color: '#FFA14B'
+  image: 'heading'
+  template: >
+    Generate landing page headline for following product:
+    { product_name | placeholder:Product name here | info:Type your company, product or service name here }
+
+    Using following product description:
+    { product_description | multiline | placeholder:Describe your product }
+
+    Additional instructions:
+    - Write it in { language }
+
+- type: completion
+  status: 1
+  category: Website
+  title: Call to Action
+  description: Eye-catching calls to action that will encourage conversions and boost your sales.
+  color: '#8247F2'
+  image: 'box-align-top'
+  template: >
+    Generate 3 short and specific call-to-action text for following description:
+    { description | multiline | placeholder:Your content here | info:Descripbe your business, product or service here }
+
+    Additional instructions:
+    - Write it in { language }

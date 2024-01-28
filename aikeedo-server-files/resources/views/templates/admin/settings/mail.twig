@@ -1,0 +1,81 @@
+{% extends "/layouts/main.twig" %}
+{% set active_menu = 'settings' %}
+
+{% set xdata = 'settings' %}
+{% block title p__('title', 'Email settings')|title %}
+
+{% block template %}
+<div>
+  {% include "snippets/back.twig" with {link: 'admin/settings', label: 'Settings'} %}
+
+  <h1 class="mt-4">{{ p__('heading', 'Mail') }}</h1>
+</div>
+
+<form class="flex flex-col gap-8" @submit.prevent="submit" x-ref="form">
+  <div class="flex flex-col gap-2">
+    <section class="grid gap-6 md:grid-cols-2 box" data-density="comfortable">
+      <h2 class="md:col-span-2">
+        {{ p__('heading', 'General') }}
+      </h2>
+
+      <div>
+        <label for="mail.transport">
+          {{ p__('label', 'Mailer transport') }}
+        </label>
+
+        <select id="mail.transport" name="mail[transport]" class="mt-2 input">
+          <option value="null"
+            {{ option.mail.transport is defined and option.mail.transport == "null" ? 'selected' : '' }}>
+            {{ __('Null Transport') }}
+          </option>
+
+          <option value="smtp"
+            {{ option.mail.transport is defined and option.mail.transport == "smtp" ? 'selected' : '' }}>
+            {{ __('SMTP Transport') }}
+          </option>
+        </select>
+      </div>
+    </section>
+
+    <section class="grid gap-6 md:grid-cols-2 box" data-density="comfortable">
+      <h2 class="md:col-span-2">
+        {{ p__('heading', 'Sender details') }}
+      </h2>
+
+      <div>
+        <label for="mail.from.address">
+          {{ p__('label', 'Sender email') }}
+        </label>
+
+        <input type="email" id="mail.from.address" name="mail[from][address]"
+          class="mt-2 input" autocomplete="email"
+          :placeholder="'example@aikeedo.com'"
+          value="{{ option.mail.from.address ?? '' }}" />
+      </div>
+
+      <div>
+        <label for="mail[from][name]">
+          {{ p__('label', 'Sender name') }}
+        </label>
+
+        <input type="text" id="mail.from.name" name="mail[from][name]"
+          class="mt-2 input" autocomplete="name"
+          value="{{ option.mail.from.name ?? '' }}" />
+      </div>
+    </section>
+  </div>
+
+  <div class="flex justify-end gap-4">
+    <a href="admin/settings" class="button button-outline">
+      {{ p__('button', 'Cancel') }}
+    </a>
+
+    <button type="submit" class="button" x-ref="submit"
+      :disabled="!isSubmitable" :processing="isProcessing">
+      {% include "/snippets/spinner.twig" %}
+
+      {{ p__('button', 'Save changes') }}
+    </button>
+  </div>
+</form>
+{% endblock %}

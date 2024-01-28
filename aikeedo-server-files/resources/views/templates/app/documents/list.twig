@@ -1,0 +1,182 @@
+{% extends "/layouts/main.twig" %}
+
+{% set active_menu = 'documents' %}
+{% set sort = [
+  {
+    value: null,
+    label: p__('label', 'Default')
+  },
+
+  {
+    value: 'created_at',
+    label: p__('label', 'Date')
+  },
+
+  {
+    value: 'title',
+    label: p__('label', 'Title')
+  }
+] %}
+
+{% set filters = [] %}
+
+{% set strings = {
+  delete_success: __("Document has been deleted successfully.")
+} %}
+
+{% set xdata %}
+list("documents", {{ sort|json_encode|raw }}, {{ filters|json_encode|raw }},
+{{ strings|json_encode|raw }})
+{% endset %}
+
+{% block title p__('title', 'My documents')|title %}
+
+{% block template %}
+{# Header #}
+<div>
+  <a href="app"
+    class="inline-flex items-center gap-1 text-sm rounded-lg text-content-dimmed hover:text-content">
+    <i class="text-lg ti ti-square-rounded-arrow-left-filled"></i>
+    {{ __('Dashboard') }}
+  </a>
+
+  <h1 class="mt-4">{{ __('My documents') }}</h1>
+
+  <template x-if="total !== null">
+    <div class="mt-2 text-sm text-content-dimmed md:hidden">
+      {{ __('Total :count documents')|replace({':count': '<span x-text="total"></span>'})|raw }}
+    </div>
+  </template>
+</div>
+
+{# Filters #}
+{% include "/snippets/filters.twig" with { total: __("Total :count documents") } %}
+
+{# List #}
+<div class="group/list" data-state="initial" :data-state="state">
+  <div class="hidden group-data-[state=empty]/list:block">
+    {% include "sections/empty.twig" with { title: p__('heading', 'Empty result set'), message: __('There are no documents yet.'), reset: __('There are no documment matching your search.') } %}
+  </div>
+
+  <div
+    class="hidden md:grid grid-cols-12 gap-3 items-center px-3 py-2 text-content-dimmed text-xs group-data-[state=empty]/list:hidden">
+    <div class="col-span-9">{{ p__('label', 'Document') }}</div>
+    <div class="col-span-2">{{ p__('label', 'Created') }}</div>
+    <div class="col-span-1"></div>
+  </div>
+
+  <ul class="text-sm group-data-[state=empty]/list:hidden flex flex-col gap-1">
+    {% for i in range(1,5) %}
+    <li
+      class="hidden md:grid-cols-12 justify-between gap-3 items-center p-3 box group-data-[state=initial]/list:flex md:group-data-[state=initial]/list:grid">
+      <div class="flex items-center col-span-9 gap-3">
+
+        <div class="avatar loading">
+        </div>
+
+        <div>
+          <div class="w-32 h-5 my-0.5 loading"></div>
+
+          <div class="w-20 h-5 my-0.5 loading md:hidden"></div>
+        </div>
+      </div>
+
+      <div class="hidden md:block md:col-span-2">
+        <div class="w-20 h-5 my-0.5 loading"></div>
+      </div>
+
+      <div class="md:col-span-1 justify-self-end">
+        <i class="ti ti-dots-vertical text-content-dimmed"></i>
+      </div>
+    </li>
+    {% endfor %}
+
+    <template x-for="doc in resources" :key="doc.id">
+      <li
+        class="relative flex items-center justify-between gap-3 p-3 md:grid md:grid-cols-12 box hover:border-line"
+        x-data>
+        <a :href="`app/documents/${doc.id}`"
+          class="absolute top-0 left-0 w-full h-full cursor-pointer"></a>
+
+        <div class="flex items-center gap-3 md:col-span-9">
+          <div class="avatar"
+            :style="{backgroundColor: doc.preset ? doc.preset.color : null, color: doc.preset ? '#fff' : null}">
+
+            <template x-if="!doc.preset">
+              <span x-text="doc.title.match(/(\b\S)?/g).join('').slice(0, 2)">
+              </span>
+            </template>
+
+            <template x-if="doc.preset">
+              <template
+                x-if="doc.preset.image && doc.preset.image.startsWith('<svg')">
+                <div x-html="doc.preset.image"></div>
+              </template>
+
+              <template
+                x-if="doc.preset.image && !doc.preset.image.startsWith('<svg')">
+                <i class="ti" :class='`ti-${doc.preset.image}`'></i>
+              </template>
+
+              <template x-if="!doc.preset.image">
+                <span
+                  x-text="doc.preset.title.match(/(\b\S)?/g).join('').slice(0, 2)">
+                </span>
+              </template>
+            </template>
+          </div>
+
+          <div>
+            <div x-html="doc.title"></div>
+
+            <div class="md:hidden text-content-dimmed" x-text="doc.created_at">
+            </div>
+          </div>
+        </div>
+
+        <div class="hidden md:block md:col-span-2" x-text="doc.created_at">
+        </div>
+
+        <div class="md:col-span-1 justify-self-end">
+          <div class="relative"
+            @click.outside="$refs.context.removeAttribute('data-open')">
+
+            <button @click="$refs.context.toggleAttribute('data-open')">
+              <i
+                class="ti ti-dots-vertical text-content-dimmed hover:text-intermediate-content"></i>
+            </button>
+
+            <div class="z-10 context-menu" x-ref="context">
+              <ul>
+                <li>
+                  <a :href="`app/documents/${doc.id}`"
+                    class="flex items-center gap-2 px-4 py-2 hover:no-underline hover:bg-intermediate">
+                    <i class="ti ti-pencil"></i>
+                    {{ __('Edit') }}
+                  </a>
+                </li>
+
+                <li>
+                  <button
+                    class="flex items-center w-full gap-2 px-4 py-2 hover:no-underline hover:bg-intermediate"
+                    @click.prevent="currentResource = doc; overlay.open('modal')">
+                    <i class="ti ti-trash"></i>
+                    {{ __('Delete') }}
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+    </template>
+  </ul>
+</div>
+{% endblock %}
+
+{% block modal %}
+{% include "sections/delete-modal.twig" with { 
+  message: __('Do you really want to delete :title from documents?'),
+  title: 'currentResource.title'
+} %}
+{% endblock %}

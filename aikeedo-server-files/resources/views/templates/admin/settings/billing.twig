@@ -1,0 +1,180 @@
+{% extends "/layouts/main.twig" %}
+{% set active_menu = 'settings' %}
+
+{% set xdata = 'settings' %}
+{% block title p__('title', 'Billing settings')|title %}
+
+{% block template %}
+<div>
+  {% include "snippets/back.twig" with {link: 'admin/settings', label: 'Settings'} %}
+
+  <h1 class="mt-4">{{ p__('heading', 'Billing Configuration') }}</h1>
+</div>
+
+<form class="flex flex-col gap-8" @submit.prevent="submit" x-ref="form">
+  <div class="flex flex-col gap-2">
+    <section class="grid grid-cols-1 gap-6 box" data-density="comfortable">
+
+      <h2>{{ p__('heading', 'General') }}</h2>
+
+      <div>
+        <label for="billing.currency">
+          {{ p__('label', 'Default Currency') }}
+        </label>
+
+        <select id="billing.currency" name="billing[currency]"
+          class="mt-2 input">
+
+          {% for code, name in currencies %}
+          <option value="{{ code }}"
+            {{ option.billing.currency is defined and code == option.billing.currency ? 'selected' : ''  }}>
+            {{ name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </section>
+
+    <section
+      class="grid grid-cols-2 gap-6 px-16 py-12 border rounded-xl border-line-dimmed">
+
+      <h2 class="col-span-2">{{ p__('heading', 'Trialing') }}</h2>
+
+      <div>
+        <label for="billing.trial_period_days">
+          {{ p__('label', 'Trial period days') }}
+        </label>
+
+        <input type="number" id="billing.trial_period_days"
+          name="billing[trial_period_days]" min="0" max="90" class="mt-2 input"
+          value="{{ option.billing.trial_period_days ?? 0 }}">
+
+        <ul
+          class="flex flex-col gap-1 m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+          <li>
+            {{ __('Set value to %s to disable trailing', '<code>0</code>')|raw }}
+          </li>
+          <li>
+            {{ __('Each user is eligible for trailing only once in any paid plan') }}
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <label>&nbsp;</label>
+
+        <div class="mt-2">
+          <label class="inline-flex items-center gap-2 mt-3 cursor-pointer">
+            <input type="checkbox" name="billing[trial_without_payment]"
+              class="hidden peer"
+              {{ option.billing.trial_without_payment is defined and option.billing.trial_without_payment ? 'checked' : '' }}>
+
+            <span
+              class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+
+            <span class="text-content-dimmed peer-checked:text-success">
+              {{ p__('label', 'Trial without payment')}}
+            </span>
+          </label>
+        </div>
+
+        <ul
+          class="flex flex-col gap-1 m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+          <li>I
+            {{ __('If enabled, eligible users can upgrade to any paid plan with provinding any payment method.') }}
+          </li>
+          <li>
+            {{ __('After trial ends, a payment method will be required.') }}
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="grid grid-cols-2 gap-6 box" data-density="comfortable">
+      <h2 class="col-span-2">
+        {{ p__('heading', 'Default & Fallback plans') }}
+      </h2>
+
+      <div>
+        <label for="billing.signup_plan">
+          {{ p__('label', 'Sign up plan') }}
+        </label>
+
+        <select id="billing.signup_plan" name="billing[signup_plan]"
+          class="mt-2 input" :disabled="!plansFetched">
+          <option value="">{{ __('None') }}</option>
+
+          <template x-for="plan in plans" :key="plan.id">
+            <template
+              x-if="plan.billing_cycle == 'monthly' || plan.billing_cycle == 'yearly'">
+              <option :value="plan.id"
+                x-text="`${plan.title} / ${plan.billing_cycle}`"
+                :selected="plan.id == '{{ option.billing.signup_plan ?? '' }}'">
+              </option>
+            </template>
+          </template>
+        </select>
+
+        <ul class="m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+          <li>
+            {{ __('New users will be automatically subscribed to this plan <strong>without provinding payment details</strong>.')|raw }}
+          </li>
+
+          <li>
+            {{ __('Select %s to disable automatic subscription. Users will be required to choose a plan by themself', '<strong>' ~ __('None') ~ '</strong>')|raw }}
+          </li>
+
+          <li>
+            {{ __('If you\'re going to select any paid plan, then it\'s highly recommended to enable trialing. Otherwise, new users will be able to the selected paid plan for free.') }}
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <label for="billing.fallback_plan">
+          {{ p__('label', 'Fallback plan') }}
+        </label>
+
+        <select id="billing.fallback_plan" name="billing[fallback_plan]"
+          class="mt-2 input" :disabled="!plansFetched">
+          <option value="">{{ __('None') }}</option>
+
+          <template x-for="plan in plans" :key="plan.id">
+            <template
+              x-if="plan.billing_cycle == 'monthly' || plan.billing_cycle == 'yearly'">
+              <option :value="plan.id"
+                x-text="`${plan.title} / ${plan.billing_cycle}`"
+                :selected="plan.id == '{{ option.billing.fallback_plan ?? '' }}'">
+              </option>
+            </template>
+          </template>
+        </select>
+
+        <ul
+          class="flex flex-col gap-1 m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+          <li>
+            {{ __('If any subscription expires or fails to renew, then the user will be automatically subscribed to this plan.') }}
+          </li>
+
+          <li>
+            {{ __('Select %s to disable automatic downgrading. Users will be required to choose a new plan by themself.', '<strong>' ~ __('None') ~ '</strong>')|raw }}
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <div class="flex justify-end gap-4">
+    <a href="admin/settings" class="button button-outline">
+      {{ p__('button', 'Cancel') }}
+    </a>
+
+    <button type="submit" class="button" x-ref="submit"
+      :disabled="!isSubmitable" :processing="isProcessing">
+
+      {% include "/snippets/spinner.twig" %}
+
+      {{ p__('button', 'Save changes') }}
+    </button>
+  </div>
+</form>
+{% endblock %}

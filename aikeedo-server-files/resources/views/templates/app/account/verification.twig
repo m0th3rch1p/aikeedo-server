@@ -1,0 +1,48 @@
+{% extends "/layouts/main.twig" %}
+
+{% block title p__('title', 'Verification')|title %}
+{% set xdata = 'account' %}
+
+{% block template %}
+<form class="flex flex-col gap-8" x-ref="form">
+  <div>
+    {% include "snippets/back.twig" with {link: 'app/account', label: p__('button', 'Go back to account')} %}
+
+    <h1 class="mt-4">{{ p__('heading', 'Email verification') }}</h1>
+    <p class="mt-2">
+      {{ __('Your account email needs to be verified. Please follow the instruction sent to your email address.') }}
+    </p>
+  </div>
+
+  <section class="grid gap-6 box" data-density="comfortable">
+    <div>
+      <div class="flex items-center justify-between">
+        <label for="email">{{ p__('label', 'Email') }}</label>
+
+        <a href="app/account/email"
+          class="text-xs font-semibold hover:underline">
+          {{ p__('button', 'Change email') }}
+        </a>
+      </div>
+
+      <input type="text" id="email" class="mt-2 input" autocomplete="off"
+        placeholder="{{ auth_user.email }}" value="{{ auth_user.email }}"
+        disabled />
+    </div>
+
+    <div class="flex flex-col items-center gap-1 text-sm md:flex-row">
+      <span class="flex items-center gap-1">
+        <i class="text-base ti ti-help-square-rounded"></i>
+
+        {{ __('Didn\'t recevie email?') }}
+      </span>
+
+      <button type="button" class="font-semibold"
+        :class="{'opacity-50': resendIn > 0, 'cursor-pointer hover:underline': resendIn <= 0}"
+        :disabled="resendIn > 0" @click="resendVerificationEmail">
+        {{ p__('button', 'Resend email')  }}
+      </button>
+    </div>
+  </section>
+</form>
+{% endblock %}

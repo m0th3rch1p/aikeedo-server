@@ -1,0 +1,103 @@
+{% extends "/layouts/main.twig" %}
+
+{% set xdata %}subscription({{ subscription|json_encode|raw }},
+{{ packs|json_encode|raw }}){% endset %}
+{% block title __('Payment required')|title %}
+
+{% block template %}
+<div class="flex flex-col gap-8 my-6">
+  <div class="py-8 border px-14 border-line-dimmed rounded-xl">
+    <h2 class="text-xl font-bold">
+      <i class="ti ti-forbid-2"></i>
+      {{ __('Account is locked') }}
+    </h2>
+    <p class="mt-1 text-sm text-intermediate-content">
+      {{ __('You have no credits remaining. You can purchase one-time packs or upgrade your subscription to get more credits.') }}
+    </p>
+
+    <a class="mt-8 button button-secondary" href="app/billing/checkout">
+      {{ __('Check subscription plans') }}
+    </a>
+  </div>
+
+  {% if subscription %}
+  {% include "snippets/subscription.twig" %}
+  {% endif %}
+
+  {% if packs|length > 0 %}
+  <div>
+    <div class="py-8 border px-14 border-line-dimmed rounded-xl">
+      <h2 class="text-xl font-bold">{{ __('Credit packs') }}</h2>
+      <p class="mt-1 text-sm text-intermediate-content">
+        {{ __('Your credit pakcs are listed below. Credit packs are one-time purchases and do not renew automatically. They will expire when all credits used.') }}
+      </p>
+
+      <p class="mt-4 text-xs text-content-dimmed">
+        {{ __('You can always purchase one-time packs to get more credits.') }}
+      </p>
+    </div>
+
+    <ul class="grid grid-cols-1 gap-1 mt-1 group">
+      <template x-for="(p, index) in packs" :key="p.id">
+        <li>
+          <div
+            class="w-full py-8 text-left border px-14 border-line-dimmed rounded-xl bg-main">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="flex items-center gap-2 text-xl font-bold">
+                  <span x-text="p.plan.title"></span>
+                </h2>
+
+                <template x-if="p.plan.description">
+                  <div class="mt-1 text-sm" x-text="p.plan.description"></div>
+                </template>
+
+                <template x-if="!p.plan.description">
+                  <code is="resource-id" x-text="p.id"></code>
+                </template>
+              </div>
+
+              <div class="text-right">
+                <div class="text-xl font-bold"
+                  x-text="window.money(p.plan.price).format({ pattern: `!#`})">
+                </div>
+
+                <div class="mt-1 text-sm text-content-dimmed"
+                  x-text="p.plan.billing_cycle"></div>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center gap-8 mt-4 text-xs text-intermediate-content">
+              <div>
+                <span class="block text-sm font-semibold"
+                  x-text="p.token_credit == null ? `{{ __('Unlimited') }}` : Intl.NumberFormat(document.documentElement.lang, { notation: 'compact' }).format(p.token_credit)"
+                  :title="`${p.token_credit == null ? 'Unlimited' : p.token_credit } tokens`"></span>
+                <span
+                  class="text-content-dimmed">{{ __('Token credits') }}</span>
+              </div>
+
+              <div>
+                <span class="block text-sm font-semibold"
+                  x-text="p.image_credit == null ? `{{ __('Unlimited') }}` : Intl.NumberFormat(document.documentElement.lang, { notation: 'compact' }).format(p.image_credit)"
+                  :title="`${p.image_credit == null ? 'Unlimited' : p.image_credit } images`"></span>
+                <span
+                  class="text-content-dimmed">{{ __('Image credits') }}</span>
+              </div>
+
+              <div>
+                <span class="block text-sm font-semibold"
+                  x-text="p.audio_credit == null ? `{{ __('Unlimited') }}` : Intl.NumberFormat(document.documentElement.lang, { notation: 'compact' }).format(p.audio_credit)"
+                  :title="`${p.audio_credit == null ? 'Unlimited' : p.audio_credit } seconds`"></span>
+                <span
+                  class="text-content-dimmed">{{ __('Audio credits') }}</span>
+              </div>
+            </div>
+          </div>
+        </li>
+      </template>
+    </ul>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

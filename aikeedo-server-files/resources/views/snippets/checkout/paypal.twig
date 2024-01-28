@@ -1,0 +1,27 @@
+<script
+  src="https://www.paypal.com/sdk/js?client-id={{ option.paypal.client_id ?? '' }}&vault=true&intent=subscription&enable-funding=card,credit,paylater,bancontact,blik,eps,giropay,ideal,mercadopago,mybank,p24,sepa,sofort,venmo"></script>
+
+<script>
+  paypal.Buttons({
+    style: {
+      color: 'blue'
+    },
+    createSubscription: async (data, actions) => {
+      window.checkout.error(null);
+
+      let { params } = await window.checkout.createSubscription(
+        'paypal'
+      );
+
+      return actions.subscription.create({
+        'plan_id': params.plan_id || params.id
+      });
+    },
+    onApprove: async function (data, actions) {
+      await window.checkout.activateSubscription(data.subscriptionID);
+    },
+    onError(error) {
+      window.checkout.error(error.message);
+    }
+  }).render('#payment-buttons');
+</script>

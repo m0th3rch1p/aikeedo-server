@@ -1,0 +1,35 @@
+{% extends "/layouts/base.twig" %}
+
+{% block layout %}
+<div class="lg:flex lg:items-start lg:min-h-screen">
+  {% include "/sections/aside.twig" %}
+
+  <div class="block lg:hidden">
+    <div
+      class="w-full mx-auto {{ wide_layout is defined ? 'max-w-6xl' : 'max-w-4xl' }}">
+      {% include "/sections/mobile-nav.twig" %}
+    </div>
+  </div>
+
+  <div
+    class="flex flex-col px-4 lg:pt-7 md:min-h-screen grow group-data-[mobile-menu]/html:hidden lg:group-data-[mobile-menu]/html:flex">
+    <div
+      class="w-full mx-auto {{ wide_layout is defined ? 'max-w-6xl' : 'max-w-4xl' }}">
+      <main class="flex flex-col gap-5 px-2 md:gap-10">
+        {% block template %}{% endblock %}
+      </main>
+    </div>
+
+    <div
+      class="lg:sticky lg:z-40 gf:bottom-0 lg:pt-5 lg:mt-auto lg:bg-gradient-to-t lg:from-main lg:from-50% lg:to-transparent">
+      {% include "/sections/footer.twig" %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% if view_namespace in ['app', 'admin'] %}
+<script src="assets/{{ view_namespace }}.js?v={{ version }}"></script>
+{% endif %}
+{% endblock %}

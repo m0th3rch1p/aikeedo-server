@@ -1,0 +1,182 @@
+{% extends "/layouts/main.twig" %}
+
+{% set active_menu = 'dashboard' %}
+
+{% set xdata %}
+{% endset %}
+
+{% block title p__('title', 'Dashboard')|title %}
+
+{% block template %}
+<div>
+  <div>
+    <h1 class="block text-base font-normal text-content-dimmed">
+      {% set fullname %}
+      <div class="block text-2xl font-bold text-content">
+        {{ auth_user.first_name }} {{ auth_user.last_name }}
+      </div>
+      {% endset %}
+
+      {{ p__('heading', 'Welcome %s', fullname)|raw }}
+    </h1>
+
+    <p class="mt-2 text-sm text-content-dimmed">
+      {{ __('Once you\'re done, you\'ll unlock a whole array of awesome tools.') }}
+    </p>
+  </div>
+
+  <div class="mt-10">
+    <h2>{{ p__('heading', 'Getting started') }}</h2>
+
+    <div class="flex flex-col gap-2 mt-4">
+      <div class="relative flex items-center justify-between gap-4 box">
+        <div class="flex items-center gap-4">
+          <span class="avatar bg-button text-button-content">
+            <i class="ti ti-brand-openai"></i>
+          </span>
+
+          <div class="text-sm font-bold md:text-base">
+            {{ __('Connect your OpenAI Key') }}
+          </div>
+        </div>
+
+        {% if option.openai.api_secret_key is defined %}
+        <div class="flex items-center gap-4 text-success">
+          <span class="hidden font-medium md:inline">{{ __('Done') }}</span>
+
+          <span class="avatar bg-success/25 text-success">
+            <i class="ti ti-square-rounded-check-filled"></i>
+          </span>
+        </div>
+        {% else %}
+        <div class="hidden md:block">
+          <a href="admin/settings/openai" class="button button-outline">
+            {{ p__('button', 'Connect') }}
+          </a>
+        </div>
+
+        <div class="block md:hidden">
+          <a href="admin/settings/openai"
+            class="absolute top-0 left-0 w-full h-full"></a>
+
+          <span class="w-10 h-10 rounded-full button button-sm">
+            <i class="text-lg ti ti-arrow-right"></i>
+          </span>
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="relative flex items-center justify-between gap-4 box">
+        <div class="flex items-center gap-4">
+          <span class="avatar bg-button text-button-content">
+            <i class="ti ti-cash"></i>
+          </span>
+
+          <div class="text-sm font-bold md:text-base">
+            {{ __('Configure payment gateways') }}
+          </div>
+        </div>
+
+        {% if option.stripe is defined or option.paypal is defined %}
+        <div class="flex items-center gap-4 text-success">
+          <span class="hidden font-medium md:inline">{{ __('Done') }}</span>
+
+          <span class="avatar bg-success/25 text-success">
+            <i class="ti ti-square-rounded-check-filled"></i>
+          </span>
+        </div>
+        {% else %}
+        <div class="hidden md:block">
+          <a href="admin/settings/payments" class="button button-outline">
+            {{ p__('button', 'Configure') }}
+          </a>
+        </div>
+
+        <div class="block md:hidden">
+          <a href="admin/settings/payments"
+            class="absolute top-0 left-0 w-full h-full"></a>
+
+          <span class="w-10 h-10 rounded-full button button-sm">
+            <i class="text-lg ti ti-arrow-right"></i>
+          </span>
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="relative flex items-center justify-between gap-4 box">
+        <div class="flex items-center gap-4">
+          <span class="avatar bg-button text-button-content">
+            <i class="ti ti-settings-2"></i>
+          </span>
+
+          <div class="text-sm font-bold md:text-base">
+            {{ __('Set business details') }}
+          </div>
+        </div>
+
+        {% if option.site is defined %}
+        <div class="flex items-center gap-4 text-success">
+          <span class="hidden font-medium md:inline">{{ __('Done') }}</span>
+
+          <span class="avatar bg-success/25 text-success">
+            <i class="ti ti-square-rounded-check-filled"></i>
+          </span>
+        </div>
+        {% else %}
+        <div class="hidden md:block">
+          <a href="admin/settings/general" class="button button-outline">
+            {{ p__('button', 'Business details') }}
+          </a>
+        </div>
+
+        <div class="block md:hidden">
+          <a href="admin/settings/general"
+            class="absolute top-0 left-0 w-full h-full"></a>
+
+          <span class="w-10 h-10 rounded-full button button-sm">
+            <i class="text-lg ti ti-arrow-right"></i>
+          </span>
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="relative flex items-center justify-between gap-4 box">
+        <div class="flex items-center gap-4">
+          <span class="avatar bg-button text-button-content">
+            <i class="ti ti-carousel-horizontal"></i>
+          </span>
+
+          <div class="text-sm font-bold md:text-base">
+            {{ __('Setup membership plans') }}
+          </div>
+        </div>
+
+        {% if plans_count is defined and plans_count > 0 %}
+        <div class="flex items-center gap-4 text-success">
+          <span class="hidden font-medium md:inline">{{ __('Done') }}</span>
+
+          <span class="avatar bg-success/25 text-success">
+            <i class="ti ti-square-rounded-check-filled"></i>
+          </span>
+        </div>
+        {% else %}
+        <div class="hidden md:block">
+          <a href="admin/plans/new" class="button button-outline">
+            {{ p__('button', 'Add pricing plan') }}
+          </a>
+        </div>
+
+        <div class="block md:hidden">
+          <a href="admin/plans/new"
+            class="absolute top-0 left-0 w-full h-full"></a>
+
+          <span class="w-10 h-10 rounded-full button button-sm">
+            <i class="text-lg ti ti-arrow-right"></i>
+          </span>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

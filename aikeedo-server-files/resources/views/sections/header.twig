@@ -1,0 +1,143 @@
+<header class="flex items-center justify-between mt-4">
+  <div>
+    <a href="app">
+      <img src="{{ option.brand.logo_dark ?? '/assets/logo-light.svg' }}"
+        alt="{{ option.site.name ?? 'Logo'  }}"
+        class="hidden group-data-[mode=dark]/html:block max-w-[140px]">
+
+      <img src="{{ option.brand.logo ?? '/assets/logo-dark.svg' }}"
+        alt="{{ option.site.name ?? 'Logo'  }}"
+        class="block group-data-[mode=dark]/html:hidden  max-w-[140px]">
+    </a>
+  </div>
+
+  <div class="flex items-center gap-4">
+    <mode-switcher>
+      <button
+        class="flex items-center justify-center w-10 h-10 text-2xl rounded-full bg-intermediate hover:bg-accent hover:text-accent-content">
+        <i class="ti ti-moon group-data-[mode=dark]/html:hidden"></i>
+        <i class="ti ti-sun hidden group-data-[mode=dark]/html:block"></i>
+      </button>
+    </mode-switcher>
+
+    {% if auth_user is defined %}
+    <div class="relative flex items-center group"
+      @click.outside="$refs.usermenu.removeAttribute('data-open')">
+
+      <div
+        class="w-0 h-6 border-l border-l-line-dimmed group-hover:opacity-0 group-data-[open]:opacity-0">
+      </div>
+
+      <button
+        class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-intermediate group-data-[open]:bg-intermediate"
+        @click="$refs.usermenu.toggleAttribute('data-open')">
+
+        <div class="avatar bg-accent text-accent-content">
+          <span>{{ auth_user.first_name[0:1] ~ auth_user.last_name[0:1] }}</span>
+
+          {% if auth_user.avatar %}
+          <img src="{{ auth_user.avatar }}"
+            alt="{{ auth_user.first_name ~ " " ~ auth_user.last_name }}"
+            class="absolute top-0 left-0 object-cover w-full h-full rounded-full">
+          {% endif %}
+        </div>
+
+        <i class="text-xl ti ti-chevron-down"></i>
+      </button>
+
+      <div class="context-menu w-60" @click="$el.removeAttribute('data-open')"
+        x-ref="usermenu">
+
+        <a href="app/account"
+          class="flex items-center w-full gap-3 p-4 text-left hover:bg-intermediate hover:no-underline">
+          <div class="avatar bg-accent text-accent-content">
+            <span>{{ auth_user.first_name[0:1] ~ auth_user.last_name[0:1] }}</span>
+
+            {% if auth_user.avatar %}
+            <img src="{{ auth_user.avatar }}"
+              alt="{{ auth_user.first_name ~ " " ~ auth_user.last_name }}"
+              class="absolute top-0 left-0 object-cover w-full h-full rounded-full">
+            {% endif %}
+          </div>
+
+          <div class="max-w-[156px]">
+            <div class="overflow-hidden font-bold text-ellipsis">
+              {{ auth_user.first_name }}
+              {{ auth_user.last_name }}
+            </div>
+
+            <div
+              class="mt-1 overflow-hidden text-sm text-content-dimmed text-ellipsis">
+              {{ auth_user.email }}</div>
+          </div>
+        </a>
+
+        {% if auth_user.role == 'admin' %}
+        <hr class="border-t border-line-dimmed">
+        <ul>
+          {% if view_namespace == 'admin' %}
+          <li>
+            <a href="app"
+              class="flex items-center gap-2 px-4 py-2 hover:bg-intermediate hover:no-underline">
+              <i class="text-2xl ti ti-sparkles"></i>
+              {{ p__('button', 'Switch to app') }}
+            </a>
+          </li>
+          {% else %}
+          <li>
+            <a href="admin/presets"
+              class="flex items-center gap-2 px-4 py-2 hover:bg-intermediate hover:no-underline">
+              <i class="text-2xl ti ti-lock-cog"></i>
+              {{ p__('button', 'Switch to admin') }}
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+        {% endif %}
+
+        {% if view_namespace == 'app' %}
+        <hr class="border-t border-line-dimmed">
+
+        <ul>
+          <li>
+            <a href="app/documents"
+              class="flex items-center gap-2 px-4 py-2 hover:bg-intermediate hover:no-underline">
+              <i class="text-2xl ti ti-files"></i>
+              {{ p__('button', 'Documents') }}
+            </a>
+          </li>
+
+          <li>
+            <a href="app/billing"
+              class="flex items-center gap-2 px-4 py-2 hover:bg-intermediate hover:no-underline">
+              <i class="text-2xl ti ti-credit-card"></i>
+              {{ p__('button', 'Billing') }}
+            </a>
+          </li>
+        </ul>
+        {% endif %}
+
+        <hr class="border-t border-line-dimmed">
+
+        <ul>
+          <li>
+            <a href="app/account"
+              class="flex items-center gap-2 px-4 py-2 hover:bg-intermediate hover:no-underline">
+              <i class="text-2xl ti ti-user-circle"></i>
+              {{ p__('button', 'Account') }}
+            </a>
+          </li>
+
+          <li>
+            <a href="logout"
+              class="flex items-center gap-2 px-4 py-2 hover:bg-intermediate hover:no-underline">
+              <i class="text-2xl ti ti-logout"></i>
+              {{ p__('button', 'Logout') }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</header>

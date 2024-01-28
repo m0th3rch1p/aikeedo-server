@@ -1,0 +1,20 @@
+@import 'tailwindcss/base';
+@import 'base.css';
+
+@import 'tailwindcss/components';
+@import 'components.css';
+
+@import 'button.css';
+@import 'input.css';
+@import 'badge.css';
+@import 'preset-card.css';
+@import 'highlight.css';
+@import 'editor.css';
+@import 'context-menu.css';
+
+@import 'tippy.js/dist/tippy';
+@import 'tippy.js/dist/backdrop.css';
+@import 'tippy.js/animations/shift-away.css';
+
+@import 'tailwindcss/utilities';
+@import 'utilities.css';

@@ -1,0 +1,95 @@
+{% extends "/layouts/main.twig" %}
+{% set active_menu = 'settings' %}
+
+{% set xdata = 'settings' %}
+{% block title p__('title', 'Google reCAPTCHA') %}
+
+{% block template %}
+<div>
+  {% include "snippets/back.twig" with {link: 'admin/settings', label: 'Settings'} %}
+
+  <h1 class="mt-4">
+    {{ p__('heading', 'Google reCAPTCHA') }}
+  </h1>
+</div>
+
+<form class="flex flex-col gap-8" @submit.prevent="submit" x-ref="form">
+  <div class="flex flex-col gap-2">
+    <section class="grid grid-cols-1 gap-6 box" data-density="comfortable"
+      x-data="{enabled: `{{ option.recaptcha.is_enabled is defined and option.recaptcha.is_enabled ? 1 : 0 }}`}">
+
+      <div class="flex items-center gap-2">
+        <h2>Config</h2>
+
+        <a href="https://docs.aikeedo.com/recaptcha" class="badge"
+          target="_blank">
+          {{ p__('button', 'Docs') }}
+
+          <i class="text-base ti ti-external-link"></i>
+        </a>
+      </div>
+
+      <div
+        class="flex items-center justify-between p-3 rounded-lg bg-intermediate">
+        {{ p__('label', 'Protect with Google reCAPTCHA') }}
+
+        <label class="inline-flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" name="recaptcha[is_enabled]"
+            class="hidden peer"
+            {{ option.recaptcha.is_enabled is defined and option.recaptcha.is_enabled ? 'checked' : '' }}
+            @change="enabled=$el.checked">
+
+          <span
+            class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+
+          <span class="text-content-dimmed peer-checked:hidden">
+            {{ __("Disabled") }}
+          </span>
+
+          <span class="hidden text-success peer-checked:inline">
+            {{ __("Enabled") }}
+          </span>
+        </label>
+      </div>
+
+      <template x-if="enabled == 1">
+        <div>
+          <label for="recaptcha[site_key]">
+            {{ p__('label', 'Site key') }}
+          </label>
+
+          <input type="text" id="recaptcha[site_key]" name="recaptcha[site_key]"
+            class="mt-2 input" autocomplete="off" required
+            value="{{ option.recaptcha.site_key ?? '' }}" />
+        </div>
+      </template>
+
+      <template x-if="enabled == 1">
+        <div>
+          <label for="recaptcha[secret_key]">
+            {{ p__('label', 'Secret key') }}
+          </label>
+
+
+          <input type="password" id="recaptcha[secret_key]" required
+            name="recaptcha[secret_key]" class="mt-2 input" autocomplete="off"
+            value="{{ environment == 'demo' ? 'hidden-in-demo' : option.recaptcha.secret_key ?? '' }}" />
+        </div>
+      </template>
+    </section>
+  </div>
+
+  <div class="flex justify-end gap-4">
+    <a href="admin/settings" class="button button-outline">
+      {{ p__('button', 'Cancel') }}
+    </a>
+
+    <button type="submit" class="button" x-ref="submit"
+      :disabled="!isSubmitable" :processing="isProcessing">
+      {% include "/snippets/spinner.twig" %}
+
+      {{ p__('button', 'Save changes') }}
+    </button>
+  </div>
+</form>
+{% endblock %}

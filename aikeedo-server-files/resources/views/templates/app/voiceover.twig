@@ -1,0 +1,428 @@
+{% extends "/layouts/main.twig" %}
+
+{% set active_menu = 'voiceover' %}
+{% set sort = [
+  {
+    value: null,
+    label: p__('label', 'Default')
+  },
+
+  {
+    value: 'name',
+    label: p__('label', 'Name')
+  }
+] %}
+
+{% set filters = [
+  {
+    label: p__('label', 'Use case'),
+    model: 'use_case',
+    options: [
+      {
+        value: 'narration',
+        label: p__('voiceover-use-case', 'Narration')
+      },
+      {
+        value: "video games",
+        label: p__('voiceover-use-case', "Video Games")
+      },
+      {
+        value: "meditation",
+        label: p__('voiceover-use-case', "Meditation")
+      },
+      {
+        value: "conversational",
+        label: p__('voiceover-use-case', "Conversational")
+      },
+      {
+        value: "children's story",
+        label: p__('voiceover-use-case', "Children's Story")
+      },
+      {
+        value: "audiobook",
+        label: p__('voiceover-use-case', "Audiobook")
+      },
+      {
+        value: "news",
+        label: p__('voiceover-use-case', "News")
+      },
+      {
+        value: "ASMR",
+        label: p__('voiceover-use-case', "ASMR")
+      },
+      {
+        value: "animation",
+        label: p__('voiceover-use-case', "Animation")
+      },
+      {
+        value: "news presenter",
+        label: p__('voiceover-use-case', "News Presenter")
+      },
+      {
+        value: "interactive", 
+        label: p__('voiceover-use-case', "Interactive")
+      },
+      {
+        value: "informative_educational",
+        label: p__('voiceover-use-case', "Informative/Educational")
+      },
+      {
+        value: "narrative_store",
+        label: p__('voiceover-use-case', "Narrative/Story")
+      }
+    ]
+  },
+  {
+    label: p__('label', 'Age'),
+    model: 'age',
+    options: [
+      {
+        value: "young",
+        label: p__('age-group', "Young")
+      },
+      {
+        value: "middle-aged",
+        label: p__('age-group', "Middle aged")
+      },
+      {
+        value: "old",
+        label: p__('age-group', "Old")
+      }
+    ]
+  },
+  {
+    label: p__('label', 'Accent'),
+    model: 'accent',
+    options: [
+      {
+        value: "american",
+        label: p__('label', "American" )
+      },
+      {
+        value: "american-irish",
+        label: p__('label', "American-Irish")
+      },
+      {
+        value: "american-southern",
+        label: p__('label', "American-Southern")
+      },
+      {
+        value: "australian",
+        label: p__('label', "Australian")
+      },
+      {
+        value: "british",
+        label: p__('label', "British")
+      },
+      {
+        value: "british-essex",
+        label: p__('label', "British-Essex")
+      },
+      {
+        value: "english-swedish",
+        label: p__('label', "English-Swedish")
+      },
+      {
+        value: "english-italian",
+        label: p__('label', "English-Italian")
+      },
+      {
+        value: "indian",
+        label: p__('label', "Indian")
+      },
+      {
+        value: "irish",
+        label: p__('label', "Irish")
+      }
+    ]
+  },
+  {
+    label: p__('label', 'Gender'),
+    model: 'gender',
+    options: [
+      {
+        value: "male",
+        label: p__('gender', "Male")
+      },
+      {
+        value: "female",
+        label: p__('gender', "Female")
+      },
+      {
+        value: "neutral",
+        label: p__('gender', "Neutral")
+      }
+    ]
+  }
+] %}
+
+{% set xdata %}
+voiceover({{ sort|json_encode|e('html_attr') }},
+{{ filters|json_encode|e('html_attr') }},)
+{% endset %}
+{% block title p__('title', 'Voice Over')|title %}
+
+{% block template %}
+<template x-if="selected">
+  <div>
+    <div>
+      <button type="button"
+        class="inline-flex items-center gap-1 text-sm rounded-lg text-content-dimmed hover:text-content"
+        @click="selected = null; 'demo' in $refs.form.dataset ? docs = [] : null">
+        <i class="text-lg ti ti-square-rounded-arrow-left-filled"></i>
+        {{ p__('button', 'Voice list') }}
+      </button>
+
+      <h1 class="mt-4 text-2xl font-bold" x-text="selected && selected.name">
+      </h1>
+
+      <div class="flex items-center gap-2 mt-2">
+        <div class="capitalize text-content-dimmed">
+          <template x-if="selected && selected.age">
+            <span x-text="selected && selected.age"></span>
+          </template>
+
+          <template x-if="selected && selected.accent">
+            <span x-text="selected && selected.accent"></span>
+          </template>
+
+          <template x-if="selected && selected.gender">
+            <span x-text="selected && selected.gender"></span>
+          </template>
+        </div>
+
+        <template x-if="selected && selected.model in languages">
+          <div class="relative" x-data
+            @click.outside="$refs.context.removeAttribute('data-open')">
+            <button
+              class="text-base ti ti-info-circle-filled text-content-dimmed hover:text-content"
+              @click="$refs.context.toggleAttribute('data-open')"></button>
+
+            <div class="w-96 context-menu context-menu-bl" x-ref="context">
+              <div class="p-4">
+                <h4 class="text-xs font-bold">
+                  {{ p__('heading', 'Supported languages') }}
+                </h4>
+
+                <div class="flex flex-wrap items-center mt-4 gap-x-1 gap-y-4">
+                  <template
+                    x-for="language in selected ? languages[selected.model] : []">
+                    <span
+                      class="px-2 text-xs border rounded-md p1-2 border-line-dimmed"
+                      x-text="language"></span>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2 mt-4">
+      <template x-if="selected && selected.tone">
+        <span x-text="selected && selected.tone"
+          class="px-2 py-1 text-xs capitalize bg-transparent border rounded-lg border-line text-content">
+        </span>
+      </template>
+
+      <template x-if="selected && selected.use_case">
+        <span x-text="selected && selected.use_case"
+          class="px-2 py-1 text-xs capitalize bg-transparent border rounded-lg border-line text-content">
+        </span>
+      </template>
+    </div>
+  </div>
+</template>
+
+<template x-if="selected">
+  <form @submit.prevent="submit" x-ref="form"
+    {% if environment == 'demo' %}data-demo{% endif %}>
+    <div
+      class="relative p-1 rounded-xl bg-line-dimmed text-content-dimmed focus-within:text-content focus-within:bg-gradient-from focus-within:bg-gradient-to-br focus-within:from-gradient-from focus-within:to-gradient-to">
+
+      <div class="flex flex-col gap-3 p-3 bg-main rounded-xl">
+        <div class="overflow-y-auto autogrow-textarea max-h-48 text-content"
+          :data-replicated-value="prompt">
+          <textarea
+            placeholder="Type or paste text here. The model works best on longer fragments."
+            autocomplete="off" rows="3" x-model="prompt" maxlength="2500"
+            class="block w-full p-0 bg-transparent border-none appearance-none resize-none focus:ring-0 placeholder:text-content-dimmed"></textarea>
+        </div>
+
+        <hr class="border-line-dimmed">
+
+        <div class="flex items-center justify-between">
+          <div class="text-xs text-content-dimmed">
+            {% set count %}
+            <span x-text="prompt.length"></span>
+            {% endset %}
+            {{ __(':count of :total characters')|replace({':count':count, ':total':2500})|raw }}
+          </div>
+
+          <button type="submit" class="button"
+            :disabled="prompt.trim().length < 1 || isProcessing"
+            :processing="isProcessing">
+
+            {% include "/snippets/spinner.twig" %}
+            <i class="ti ti-sparkles" x-show="!isProcessing"></i>
+
+            {{ p__('button', 'Generate') }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</template>
+
+{% if environment == 'demo' %}
+<template x-if="selected">
+  <div class="flex items-center gap-4 box">
+    <i class="ti ti-info-square-rounded-filled"></i>
+    <p>
+      {{ __('This feature is disabled in demo environment. However, you can submit the form to see sample results for each language with selected voice') }}
+    </p>
+  </div>
+</template>
+{% endif %}
+
+<template x-if="selected && docs.length > 0">
+  <div class="flex flex-col gap-1">
+    <template x-for="doc in docs" :key="doc.id">
+      <div class="flex flex-col gap-3 box">
+        <template x-if="doc.title">
+          <div>
+            <h2 class="text-xl font-editor-heading" x-text="doc.title"></h2>
+
+            <template x-if="doc.text">
+              <p class="mt-1 text-content-dimmed" x-text="doc.text"></p>
+            </template>
+          </div>
+        </template>
+
+        <template x-if="!doc.title">
+          <div class="h-7 loading w-36"></div>
+        </template>
+
+        <hr>
+
+        <template x-if="!doc.audio">
+          <div class="flex items-center gap-4 my-2">
+            <div type="button"
+              class="flex items-center justify-center rounded-full w-11 h-11 loading shrink-0">
+              {% include "snippets/spinner.twig" %}
+            </div>
+
+            <div class="flex items-center w-full gap-2 grow-1">
+              <span class="w-10 h-6 shrink-0 loading"></span>
+
+              <div class="w-full h-8 grow-1 loading">
+              </div>
+            </div>
+
+            <div type="button" class="w-7 h-7 loading"></div>
+          </div>
+        </template>
+
+        <template x-if="doc.audio">
+          <div class="flex items-center gap-4 my-2" x-data="wave(doc.audio)"
+            :id="`wave-${doc.id}`">
+            <button type="button"
+              class="flex items-center justify-center rounded-full w-11 h-11 rounded-ful bg-line-dimmed shrink-0"
+              @click="wave.playPause();">
+              <i class="ti ti-player-pause-filled" x-show="isPlaying"></i>
+              <i class="ti ti-player-play-filled" x-show="!isPlaying"></i>
+            </button>
+
+            <div class="flex items-center w-full gap-2 grow-1">
+              <span class="font-mono text-xs shrink-0" x-text="progress"></span>
+
+              <div class="w-full grow-1">
+                <div x-ref="wave"></div>
+              </div>
+            </div>
+
+            <button type="button" class="text-lg ti"
+              :class="{'ti-volume': !isMuted, 'ti-volume-off': isMuted}"
+              @click="wave.setMuted(!isMuted); isMuted = !isMuted"></button>
+          </div>
+        </template>
+
+        <template x-if="doc.audio == null">
+          <div class="flex items-center justify-end gap-4">
+            <div class="flex items-center gap-2 px-2 py-1">
+              <i class="w-6 h-6 loading"></i>
+              <span class="h-5 w-14 loading"></span>
+            </div>
+          </div>
+        </template>
+
+        <template x-if="doc.audio != null">
+          <div class="flex items-center justify-end gap-4">
+            <a :href="doc.audio" download
+              :target="doc.isSample ? '_blank' : '_self'"
+              class="flex items-center gap-2 px-2 py-1 text-sm rounded-lg text-content-dimmed hover:bg-line-dimmed hover:text-content">
+              <i class="text-base ti ti-download"></i>
+              {{ p__('button', 'Download') }}
+            </a>
+          </div>
+        </template>
+      </div>
+    </template>
+  </div>
+</template>
+
+<template x-if="!selected">
+  <div>
+    <a href="app"
+      class="inline-flex items-center gap-1 text-sm rounded-lg text-content-dimmed hover:text-content">
+      <i class="text-lg ti ti-square-rounded-arrow-left-filled"></i>
+      {{ p__('button', 'Dashboard') }}
+    </a>
+
+    <div class="flex items-center justify-between gap-4 mt-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <h1>{{ p__('heading', 'Voice over') }}</h1>
+
+          <template x-if="total !== null">
+            <div class="text-sm text-content-dimmed md:hidden">
+              (<span x-text="total"></span>)
+            </div>
+          </template>
+        </div>
+        <p class="mt-2 text-content-dimmed">
+          {{ __('Select one of the following voices and start transform your words to voice easily.') }}
+        </p>
+      </div>
+
+      <div class="md:hidden">
+        <button type="button" class="hidden w-8 h-8 avatar">
+          <i class="text-lg ti ti-adjustments-horizontal"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template x-if="!selected">
+  {# Filters #}
+  {% include "/snippets/filters.twig" with { total: "Total :count voices" } %}
+</template>
+
+<template x-if="!selected">
+  <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 group/grid"
+    data-state="initial" :data-state="state">
+    {% for i in range(1,6) %}
+    <div class="hidden group-data-[state=initial]/grid:block">
+      {% include "/snippets/cards/voice.twig" with {placeholder:true} %}
+    </div>
+    {% endfor %}
+
+    <template x-for="voice in voices" :key="voice.external_id">
+      {% include "/snippets/cards/voice.twig" %}
+    </template>
+  </div>
+</template>
+
+{% endblock %}

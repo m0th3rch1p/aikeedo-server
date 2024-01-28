@@ -1,0 +1,108 @@
+{% extends "/layouts/main.twig" %}
+
+{% block title p__('title', 'Account')|title %}
+
+{% set xdata %}
+account()
+{% endset %}
+
+{% block template %}
+{# Header #}
+<form class="flex flex-col gap-8" @submit.prevent="submit" x-ref="form">
+  <div>
+    {% include "snippets/back.twig" with {link: 'app', label: p__('button', 'Dashboard')} %}
+
+    <h1 class="mt-4">
+      {{ p__('heading', 'Account') }}
+    </h1>
+
+    <div class="mt-2">
+      <code is="resource-id">{{ auth_user.id }}</code>
+    </div>
+  </div>
+
+  <section class="grid gap-6 md:grid-cols-2 box" data-density="comfortable">
+    <div>
+      <label for="first_name">{{ p__('label', 'First name') }}</label>
+
+      <input type="text" id="first_name" name="first_name" class="mt-2 input"
+        autocomplete="off" value="{{ auth_user.first_name }}"
+        placeholder="{{ auth_user.first_name }}" required />
+    </div>
+
+    <div>
+      <label for="last_name">{{ p__('label', 'Last name') }}</label>
+
+      <input type="text" id="last_name" name="last_name" class="mt-2 input"
+        autocomplete="off" value="{{ auth_user.last_name }}"
+        placeholder="{{ auth_user.last_name }}" required />
+    </div>
+
+    <div>
+      <label for="language">{{ p__('label', 'Language') }}</label>
+
+      <select name="language" id="language" class="input">
+        {% for locale in locales %}
+        {% if locale.enabled %}
+        <option value="{{ locale.name }}"
+          {{ locale.name == auth_user.language ? 'selected' : '' }}>
+          {{ locale.label }}</option>
+        {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+
+    <div>
+      <div class="flex items-center justify-between">
+        <label for="email" class="inline-flex items-center gap-2">
+          {{ p__('label', 'Email') }}
+
+          {% if auth_user.is_email_verified %}
+          <span class="text-xs text-success">{{ __('Verified') }}</span>
+          {% elseif option.site.email_verification_policy is defined and option.site.email_verification_policy in ['relaxed', 'strict']  %}
+          <a href="app/account/verification"
+            class="text-xs text-failure hover:underline">
+            {{ p__('button', 'Verify email') }}
+          </a>
+          {% endif %}
+        </label>
+
+        <a href="app/account/email"
+          class="text-xs font-semibold hover:underline">
+          {{ p__('button', 'Change email') }}
+        </a>
+      </div>
+
+      <input type="text" id="email" class="mt-2 input" autocomplete="off"
+        placeholder="{{ auth_user.email }}" value="{{ auth_user.email }}"
+        disabled />
+    </div>
+
+    <div class="md:col-span-2">
+      <button type="submit" class="w-full button" x-ref="submit"
+        :disabled="!isSubmitable" :processing="isProcessing">
+
+        {% include "/snippets/spinner.twig" %}
+
+        {{ p__('button', 'Save changes') }}
+      </button>
+    </div>
+
+    <div class="flex items-center gap-1 text-sm md:col-span-2">
+      <i class="text-xl ti ti-lock"></i>
+
+      <a href="app/account/password">{{ p__('button', 'Change password') }}</a>
+    </div>
+
+    <div class="text-xs sm:col-span-2 text-content-dimmed">
+      {% set provider %}
+      <a href="https://en.gravatar.com/" target="_blank">
+        Gravatar <i class="text-xs ti ti-external-link"></i>
+      </a>
+      {% endset %}
+
+      {{ __('Profile images are provided by %s', provider)|raw }}
+    </div>
+  </section>
+</form>
+{% endblock %}

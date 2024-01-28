@@ -1,0 +1,35 @@
+{% macro avatar(title, image, size) %}
+<div
+  class="relative flex items-center justify-center w-10 h-10 text-xs font-bold uppercase rounded-full bg-accent text-accent-content shrink-0">
+  <span
+    x-text="{{ title }}.match(/(\b\S)?/g).join('').slice(0, 2)">{{ title[0:2]}}</span>
+
+  {% if image %}
+  <template x-if="{{ image }}">
+    <img :src="{{ image }}" :alt="{{ title }}"
+      class="absolute top-0 left-0 object-cover w-full h-full rounded-full">
+  </template>
+  {% endif %}
+</div>
+{% endmacro %}
+
+{% macro preset_avatar(preset='preset') %}
+<div
+  class="rounded-full text-white bg-black flex items-center justify-center w-10 h-10 [&_svg]:w-6 [&_svg]:h-6 font-semibold shrink-0"
+  :style="{backgroundColor: {{ preset }}.color}">
+
+  <template x-if="!{{ preset }}.image">
+    <span x-text="{{ preset }}.title.match(/(\b\S)?/g).join('').slice(0, 2)">
+    </span>
+  </template>
+
+  <template x-if="{{ preset }}.image && {{ preset }}.image.startsWith('<svg')">
+    <div x-html="{{ preset }}.image"></div>
+  </template>
+
+  <template x-if="{{ preset }}.image && !{{ preset }}.image.startsWith('<svg')">
+    <i class="text-2xl ti" :class='`ti-{{ "${#{preset}.image}" }}`'></i>
+  </template>
+</div>
+
+{% endmacro %}

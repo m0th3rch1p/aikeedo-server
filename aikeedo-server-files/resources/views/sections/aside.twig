@@ -1,0 +1,45 @@
+<aside
+  class="sticky top-0 hidden lg:flex flex-col h-screen shrink-0 w-60 bg-intermediate text-intermediate-conten group-data-[collapsed]/html:-ml-60"
+  x-data>
+
+  <div
+    class="flex flex-col gap-10 overflow-x-hidden overflow-y-auto group-data-[collapsed]/html:overflow-visible px-4 pt-6 pb-10">
+    <div class="relative flex items-center justify-between">
+      <a href="{{ view_namespace }}">
+        <img src="{{ option.brand.logo_dark ?? '/assets/logo-light.svg' }}"
+          alt="{{ option.site.name ?? 'Logo'  }}"
+          class="hidden group-data-[mode=dark]/html:block max-w-[140px] h-8 object-contain object-left">
+
+        <img src="{{ option.brand.logo ?? '/assets/logo-dark.svg' }}"
+          alt="{{ option.site.name ?? 'Logo'  }}"
+          class="block group-data-[mode=dark]/html:hidden  max-w-[140px] h-8 object-contain object-left">
+      </a>
+
+      <button
+        class="w-6 h-8 text-intermediate-content-dimmed hover:text-intermediate-content"
+        title="Close sidebar" data-tippy-placement="right"
+        @click="document.documentElement.dataset.collapsed = true; localStorage.collapsed=true;">
+        <i class="ti ti-layout-sidebar-left-collapse"></i>
+      </button>
+
+      <button
+        class="absolute invisible w-6 h-8 -mt-4 group-data-[collapsed]/html:transition-all group-data-[collapsed]/html:delay-200 group-data-[collapsed]/html:translate-x-8 translate-x-4 opacity-0 text-intermediate-content-dimmed hover:text-intermediate-content top-1/2 left-full group-data-[collapsed]/html:visible group-data-[collapsed]/html:opacity-100 group-data-[collapsed]/html:pointer-events-auto pointer-events-none"
+        @click="delete document.documentElement.dataset.collapsed; delete localStorage.collapsed;"
+        title="Open sidebar" data-tippy-placement="right">
+        <i class="ti ti-layout-sidebar-left-expand"></i>
+      </button>
+    </div>
+
+    {% include "/snippets/navigation.twig" %}
+  </div>
+
+  <div class="flex flex-col gap-6 px-4 mt-auto mb-6">
+    {% if auth_user.subscription == null or auth_user.subscription.plan.price <= 0 %}
+    <a href="app/billing/checkout" class="button button-secondary">
+      {{ p__('button', 'Upgrade plan') }}
+    </a>
+    {% endif %}
+
+    {% include "/snippets/account-menu.twig" %}
+  </div>
+</aside>

@@ -1,0 +1,86 @@
+<form id="stripe-form">
+  <div class="flex items-center input">
+    <div id="card" class="w-full"></div>
+  </div>
+
+  <button type="submit" class="w-full mt-6 button" disabled>
+
+    {% include "/snippets/spinner.twig" %}
+
+    {% set amount %}
+    <span x-text="window.money(plan.price).format()"></span>
+    {% endset %}
+
+    {{ p__('button', 'Pay :amount')|replace({':amount' : amount})|raw }}
+  </button>
+</form>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  const form = document.getElementById('stripe-form');
+  const button = form.querySelector('button');
+
+  var stripe = Stripe('{{ option.stripe.publishable_key ?? "" }}');
+  var elements = stripe.elements();
+  var card = elements.create("card", {
+    style: {
+      base: {
+        lineHeight: '48px',
+        fontSize: '16px',
+        color: `rgb(${getComputedStyle(document.documentElement).getPropertyValue('--color-content')})`,
+      }
+    }
+  });
+
+  card.mount("#card");
+  card.on('change', ({ complete, error }) => {
+    button.disabled = !complete;
+    window.checkout.error(error ? error.message : null);
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (button.disabled || button.hasAttribute('processing')) {
+      return;
+    }
+
+    window.checkout.error(null);
+    button.setAttribute('processing', '');
+
+    const { subscription, params, error } = await window.checkout.createSubscription(
+      'stripe'
+    );
+
+    if (error) {
+      window.checkout.error(error.message || error);
+      button.disabled = false;
+      button.removeAttribute('processing');
+
+      return;
+    }
+
+    const confirmIntent = params.pending_setup_intent
+      ? stripe.confirmCardSetup
+      : stripe.confirmCardPayment;
+
+    const secret = params.pending_setup_intent?.client_secret
+      || params.latest_invoice?.payment_intent?.client_secret
+      || params.client_secret;
+
+    // Confirm the Intent using the details collected by the Payment Element
+    const result = await confirmIntent(secret, {
+      payment_method: {
+        card: card,
+      }
+    });
+
+    if (result.error) {
+      window.checkout.error(result.error.message || result.error);
+      button.disabled = false;
+      button.removeAttribute('processing');
+    } else {
+      await window.checkout.activateSubscription();
+    }
+  });
+</script>

@@ -1,0 +1,15 @@
+Dear {{ user.first_name }},
+
+<p>
+  To ensure the security of your account, please verify your email address.
+</p>
+
+<p>
+  Click the link below to verify your email: <br>
+  <a href="{{ verification_url }}">Verify Your Email</a>
+</p>
+
+<p>
+  Warm regards, <br>
+  {{ option.site.name ?? '' }} team
+</p>

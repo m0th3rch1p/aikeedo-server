@@ -1,0 +1,111 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Aws\Domain\Entities;
+
+use DateTime;
+use DateTimeInterface;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
+use Shared\Domain\ValueObjects\Id;
+use Shared\Domain\ValueObjects\StringValue;
+use User\Domain\Entities\UserEntity;
+
+/**
+ * @package Aws\Domain\Entities
+ */
+#[ORM\Entity]
+#[ORM\Table(name: 'aws')]
+#[ORM\UniqueConstraint(columns: ['user_id', 'customer_id', 'dimension'])]
+class AwsEntity
+{
+    /**
+     * A unique numeric identifier of the entity. Don't set this property
+     * programmatically. It is automatically set by Doctrine ORM.
+     */
+    #[ORM\Embedded(class: Id::class, columnPrefix: false)]
+    private Id $id;
+
+    #[ORM\Column(name: 'customer_id', length: 255)]
+    private string $customerId;
+
+    #[ORM\Column(name: 'dimension', length: 255)]
+    private string $dimension;
+
+    #[ORM\OneToOne(targetEntity: UserEntity::class)]
+    #[ORM\JoinColumn(name: 'user_id', nullable: true)]
+    private UserEntity $user;
+
+    /** Creation date and time of the entity */
+    #[ORM\Column(type: 'datetime', name: 'created_at')]
+    private DateTimeInterface $createdAt;
+
+    /** The date and time when the entity was last modified. */
+    #[ORM\Column(type: 'datetime', name: 'updated_at', nullable: true)]
+    private ?DateTimeInterface $updatedAt = null;
+
+    /**
+     * @return void
+     */
+    public function __construct(string $customerId, string $dimension)
+    {
+        $this->id = new Id();
+        $this->customerId = $customerId;
+        $this->dimension = $dimension;
+        $this->createdAt = new DateTime();
+    }
+
+    /**
+     * @return Id
+     */
+    public function getId(): Id
+    {
+        return $this->id;
+    }
+
+    public function getCustomerId(): StringValue
+    {
+        return $this->customerId;
+    }
+
+    public function getDimension(): StringValue
+    {
+        return $this->dimension;
+    }
+
+    public function getUser(): UserEntity
+    {
+        return $this->user;
+    }
+
+    public function setUser(UserEntity $user): void
+    {
+        $this->user = $user;
+    }
+
+
+    /**
+     * @return DateTimeInterface
+     */
+    public function getCreatedAt(): DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @return null|DateTimeInterface
+     */
+    public function getUpdatedAt(): ?DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @return void
+     */
+    public function preUpdate(): void
+    {
+        $this->updatedAt = new DateTime();
+    }
+}

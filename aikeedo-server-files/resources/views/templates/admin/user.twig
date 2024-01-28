@@ -1,0 +1,129 @@
+{% extends "/layouts/main.twig" %}
+
+{% set active_menu = 'users' %}
+
+{% set xdata %}
+user({{ (user is defined ? user : {})|json_encode|raw }})
+{% endset %}
+
+{% block title (user is defined ? p__('title', 'Edit user') : p__('title', 'New user'))|title %}
+
+{% block template %}
+<form class="flex flex-col gap-8" @submit.prevent="submit">
+  <div>
+    {% include "snippets/back.twig" with {link: 'admin/users', label: 'Users'} %}
+
+    <h1 class="mt-4">
+      <span x-show="!user.id">{{ p__('heading', 'Add new user') }}</span>
+      <span x-show="user.id">
+        {{ p__('heading', 'Edit user') }}:
+        <span class="font-normal text-intermediate-content"
+          x-text="`${user.first_name} ${user.last_name}`"></span>
+      </span>
+    </h1>
+
+    <template x-if="user.id">
+      <div class="mt-2">
+        <code is="resource-id" x-text="user.id"></code>
+      </div>
+    </template>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <section class="grid gap-6 md:grid-cols-2 box" data-density="comfortable">
+      <h2 class="md:col-span-2">{{ p__('heading', 'Profile') }}</h2>
+
+      <div>
+        <label for="first_name">{{ p__('label', 'First name') }}</label>
+
+        <input type="text" id="first_name" class="mt-2 input" autocomplete="off"
+          :placeholder="user.first_name || 'User\'s first name'"
+          x-model="model.first_name" />
+      </div>
+
+      <div>
+        <label for="last_name">{{ p__('label', 'Last name') }}</label>
+
+        <input type="text" id="last_name" class="mt-2 input" autocomplete="off"
+          :placeholder="user.last_name || 'User\'s last name'"
+          x-model="model.last_name" />
+      </div>
+
+      <div class="md:col-span-2">
+        <label for="email">{{ p__('label', 'Email') }}</label>
+
+        <input type="text" id="email" class="mt-2 input" autocomplete="off"
+          {% if environment != 'demo' %}
+          :placeholder="user.email || `{{ __('User\'s email')|e('html_attr')}}`"
+          x-model="model.email"
+          {% else %}value="Email is hidden in demo environment" {% endif %}
+          :disabled="user.id ? true : false" />
+      </div>
+    </section>
+
+    <template x-if="model.id != '{{ auth_user.id }}'">
+      <section class="grid grid-cols-1 gap-6 box" data-density="comfortable">
+
+        <h2>{{ p__('heading', 'Account details') }}</h2>
+
+        <div>
+          <label>{{ p__('label', 'Role') }}</label>
+
+          <div class="flex items-center gap-2 mt-2">
+            <label>
+              <input type="radio" name="role" value="0" class="radio-button"
+                x-model="model.role"
+                :checked="!model.role || model.role == 0" />
+
+              <span>{{ p__('input-value', 'User') }}</span>
+            </label>
+
+            <label>
+              <input type="radio" name="role" value="1" class="radio-button"
+                x-model="model.role" :checked="model.role == 1" />
+
+              <span>{{ p__('input-value', 'Admin') }}</span>
+            </label>
+          </div>
+        </div>
+
+        <div
+          class="flex items-center justify-between p-3 rounded-lg bg-intermediate">
+          {{ p__('label', 'Status') }}
+
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="status" class="hidden peer"
+              :checked="model.status == 1" x-model="model.status">
+
+            <span
+              class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+
+            <span class="text-content-dimmed peer-checked:hidden">
+              {{ p__('input-value', 'Inactive') }}
+            </span>
+
+            <span class="hidden text-success peer-checked:inline">
+              {{ p__('input-value', 'Active') }}
+            </span>
+          </label>
+        </div>
+      </section>
+    </template>
+  </div>
+
+  <div class="flex justify-end gap-4">
+    <a href="admin/users" class="button button-outline">
+      {{ p__('button', 'Cancel') }}
+    </a>
+
+    <button type="submit" class="button" x-ref="submit"
+      :disabled="!isSubmitable()" :processing="isProcessing">
+
+      {% include "/snippets/spinner.twig" %}
+
+      <span x-show="!user.id">{{ p__('button', 'Create user') }}</span>
+      <span x-show="user.id">{{ p__('button', 'Update user') }}</span>
+    </button>
+  </div>
+</form>
+{% endblock %}

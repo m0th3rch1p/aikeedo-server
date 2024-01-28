@@ -1,0 +1,45 @@
+.tippy-content {
+  @apply text-xs;
+}
+
+.ti {
+  @apply text-2xl;
+}
+
+.box {
+  @apply p-4 border border-line-dimmed rounded-xl;
+
+  &[data-density='comfortable'] {
+    @apply px-8 py-6 sm:px-16 sm:py-12;
+  }
+
+  &.box-selected {
+    @apply outline outline-1 outline-offset-4 outline-line-dimmed border-line hover:outline-line;
+  }
+}
+
+.loading {
+  @apply rounded-lg bg-line-dimmed animate-pulse;
+}
+
+.avatar {
+  @apply relative w-10 h-10 rounded-full bg-intermediate text-intermediate-content flex items-center justify-center font-bold shrink-0 text-xs uppercase whitespace-nowrap;
+
+  & > img {
+    @apply absolute top-0 left-0 object-cover w-full h-full rounded-full;
+  }
+
+  & > svg {
+    @apply w-6 h-6;
+  }
+}
+
+a.full {
+  @apply absolute top-0 left-0 w-full h-full;
+}
+
+.gallery {
+  & li:nth-of-type(15n + 1) {
+    @apply col-span-2 row-span-2;
+  }
+}

@@ -1,0 +1,181 @@
+{% set active_menu = active_menu ?? null %}
+
+<nav class="flex flex-col gap-6">
+  {% set cls = 'flex items-center gap-2 p-2 rounded-lg transition hover:bg-intermediate lg:hover:bg-main hover:text-intermediate-content lg:hover:text-content lg:dark:hover:bg-[#040505]' %}
+  {% set active = 'bg-main no-underline text-content dark:bg-[#040505]' %}
+
+  {% if view_namespace == 'admin' %}
+  <ul class="flex flex-col gap-0.5">
+    <li>
+      <a href="admin"
+        class="{{ cls }} {{ active_menu == 'dashboard' ? active : '' }}">
+        <i class="ti ti-home"></i>
+
+        {{ p__('button', 'Dashboard') }}
+      </a>
+    </li>
+
+    <li>
+      <a href="admin/templates"
+        class="{{ cls }} {{ active_menu == 'templates' ? active : '' }}">
+        <i class="ti ti-stack"></i>
+
+        {{ p__('button', 'Templates') }}
+      </a>
+    </li>
+
+    <li>
+      <a href="admin/categories"
+        class="{{ cls }} {{ active_menu == 'categories' ? active : '' }}">
+        <i class="ti ti-category"></i>
+
+        {{ p__('button', 'Categories') }}
+      </a>
+    </li>
+
+    <li>
+      <a href="admin/plans"
+        class="{{ cls }} {{ active_menu == 'plans' ? active : '' }}">
+        <i class="ti ti-coins"></i>
+
+        {{ p__('button', 'Plans') }}
+      </a>
+    </li>
+
+    <li>
+      <a href="admin/users"
+        class="{{ cls }} {{ active_menu == 'users' ? active : '' }}">
+        <i class="ti ti-users"></i>
+
+        {{ p__('button', 'Users') }}
+      </a>
+    </li>
+  </ul>
+
+  <ul class="flex flex-col gap-0.5">
+    <li>
+      <a href="admin/settings"
+        class="{{ cls }} {{ active_menu == 'settings' ? active : '' }}">
+        <i class="ti ti-settings"></i>
+
+        {{ p__('button', 'Settings') }}
+      </a>
+    </li>
+
+    <li>
+      <a href="admin/status"
+        class="{{ cls }} {{ active_menu == 'status' ? active : '' }}">
+        <i class="ti ti-broadcast"></i>
+
+        {{ p__('button', 'Site health') }}
+      </a>
+    </li>
+  </ul>
+  {% else %}
+  {% if auth_user.is_email_verified == false and option.site.email_verification_policy is defined and option.site.email_verification_policy == 'strict' %}
+  {% set cls = cls ~ " opacity-50 hover:opacity-100 group grayscale hover:grayscale-0" %}
+  {% set lock %}
+  <i class="hidden ml-auto text-base ti ti-lock group-hover:block"
+    data-tippy-placement="right"
+    title="{{ __('Email verification required') }}"></i>
+  {% endset %}
+  {% else %}
+  {% set lock = '' %}
+  {% endif %}
+
+  <ul class="flex flex-col gap-0.5">
+    <li>
+      <a href="app"
+        class="{{ cls }} {{ active_menu == 'dashboard' ? active : '' }}">
+        <i class="ti ti-home"></i>
+
+        {{ p__('button', 'Home') }}
+        {{ lock }}
+      </a>
+    </li>
+
+    <li>
+      <a href="app/documents"
+        class="{{ cls }} {{ active_menu == 'documents' ? active : '' }}">
+        <i class="ti ti-files"></i>
+
+        {{ p__('button', 'Documents') }}
+        {{ lock }}
+      </a>
+    </li>
+  </ul>
+
+  <div>
+    <h4 class="p-2 font-bold">{{ p__('heading', 'Tools') }}</h4>
+
+    <ul class="flex flex-col gap-0.5">
+      <li>
+        <a href="app/presets"
+          class="{{ cls }} {{ active_menu == 'writer' ? active : '' }}">
+          <div
+            class="flex items-center justify-center w-6 h-6 text-white bg-black rounded-full bg-gradient-to-br from-[#FCBF49] to-[#F77F00]">
+            <i class="text-sm ti ti-text-caption"></i>
+          </div>
+
+          {{ p__('button', 'Writer') }}
+          {{ lock }}
+        </a>
+      </li>
+
+      <li>
+        <a href="app/coder"
+          class="{{ cls }} {{ active_menu == 'coder' ? active : '' }}">
+          <div
+            class="flex items-center justify-center w-6 h-6 text-white bg-black rounded-full bg-gradient-to-br from-[#F099C3] to-[#E03339]">
+            <i class="text-sm ti ti-device-laptop"></i>
+          </div>
+
+          {{ p__('button', 'Coder') }}
+          {{ lock }}
+        </a>
+      </li>
+
+      <li>
+        <a href="app/imagine"
+          class="{{ cls }} {{ active_menu == 'imagine' ? active : '' }}">
+          <div
+            class="flex items-center justify-center w-6 h-6 text-white bg-black rounded-full bg-gradient-to-br from-[#E6C0FE] to-[#984CF8]">
+            <i class="text-sm ti ti-palette"></i>
+          </div>
+
+          {{ p__('button', 'Imagine') }}
+          {{ lock }}
+        </a>
+      </li>
+
+      <li>
+        <a href="app/transcriber"
+          class="{{ cls }} {{ active_menu == 'transcriber' ? active : '' }}">
+          <div
+            class="flex items-center justify-center w-6 h-6 text-white bg-black rounded-full bg-gradient-to-br from-[#30C862] to-[#00A6FB]">
+            <i class="text-sm ti ti-headphones"></i>
+          </div>
+
+          {{ p__('button', 'Transcriber') }}
+          {{ lock }}
+        </a>
+      </li>
+
+      {% if option.elevenlabs.is_enabled is defined and option.elevenlabs.is_enabled %}
+      <li>
+        <a href="app/voiceover"
+          class="{{ cls }} {{ active_menu == 'voiceover' ? active : '' }}">
+          <div
+            class="flex items-center justify-center w-6 h-6 text-white bg-black rounded-full bg-gradient-to-br from-[#BCE143] to-[#30C862]">
+            <i class="text-sm ti ti-microphone"></i>
+          </div>
+
+          {{ p__('button', 'Voiceover') }}
+          {{ lock }}
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+  {% endif %}
+</nav>

@@ -1,0 +1,42 @@
+<template x-if="currentResource">
+  <div class="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+    <div class="p-8 rounded-xl bg-main dark:bg-intermediate w-[480px]">
+      <div class="max-w-xs mx-auto">
+        <div
+          class="relative flex items-center justify-center w-24 h-24 mx-auto rounded-full text-failure/25">
+
+          <svg class="absolute top-0 left-0 w-full h-full" width="112"
+            height="112" viewBox="0 0 112 112" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <circle cx="56" cy="56" r="55.5" stroke="currentColor"
+              stroke-dasharray="8 8" />
+          </svg>
+
+          <div
+            class="flex items-center justify-center w-20 h-20 text-4xl transition-all rounded-full bg-failure/25 text-failure">
+            <i class="text-4xl ti ti-trash"></i>
+          </div>
+        </div>
+
+        <div class="mt-4 text-lg text-center">
+          {% set title_html %}
+          <strong x-text="{{ title|e("html_attr") }}"></strong>
+          {% endset %}
+
+          {{ message|replace({':title': title_html})|raw }}
+        </div>
+
+        <div class="flex items-center justify-center gap-4 mt-10">
+          <button class="button button-outline" @click="overlay.close()">
+            {{ p__('button', 'No, cancel') }}
+          </button>
+
+          <button class="text-white button button-failure"
+            @click="deleteResource(currentResource); overlay.close()">
+            {{ p__('button', 'Yes, delete') }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

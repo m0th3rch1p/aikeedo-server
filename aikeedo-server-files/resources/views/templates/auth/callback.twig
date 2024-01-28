@@ -1,0 +1,17 @@
+{% extends "/layouts/minimal.twig" %}
+
+{% block title p__('title', 'Authentication')|title %}
+
+{% block template %}
+<div class="box" data-density="comfortable">
+  {% include "snippets/initializing.twig" with {text: __('Authenticating...')} only %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Save the JWT to local storage to be used for future api requests
+  localStorage.setItem('jwt', '{{ jwt }}');
+  window.location.href = 'app';
+</script>
+{% endblock %}

@@ -1,0 +1,155 @@
+{
+    "default": "en-US",
+    "locales": [
+        {
+            "name": "af-ZA",
+            "label": "Afrikaans",
+            "enabled": false
+        },
+        {
+            "name": "ar-SA",
+            "label": "Arabic",
+            "enabled": false
+        },
+        {
+            "name": "ca-ES",
+            "label": "Catalan",
+            "enabled": false
+        },
+        {
+            "name": "cs-CZ",
+            "label": "Czech",
+            "enabled": false
+        },
+        {
+            "name": "da-DK",
+            "label": "Danish",
+            "enabled": false
+        },
+        {
+            "name": "de-DE",
+            "label": "German",
+            "enabled": false
+        },
+        {
+            "name": "el-GR",
+            "label": "Greek",
+            "enabled": false
+        },
+        {
+            "name": "es-ES",
+            "label": "Spanish",
+            "enabled": false
+        },
+        {
+            "name": "en-US",
+            "label": "English (US)",
+            "enabled": true
+        },
+        {
+            "name": "fi-FI",
+            "label": "Finnish",
+            "enabled": false
+        },
+        {
+            "name": "fr-FR",
+            "label": "French",
+            "enabled": false
+        },
+        {
+            "name": "he-IL",
+            "label": "Hebrew",
+            "enabled": false
+        },
+        {
+            "name": "hu-HU",
+            "label": "Hungarian",
+            "enabled": false
+        },
+        {
+            "name": "it-IT",
+            "label": "Italian",
+            "enabled": false
+        },
+        {
+            "name": "ja-JP",
+            "label": "Japanese",
+            "enabled": false
+        },
+        {
+            "name": "ko-KR",
+            "label": "Korean",
+            "enabled": false
+        },
+        {
+            "name": "nl-NL",
+            "label": "Dutch",
+            "enabled": false
+        },
+        {
+            "name": "no-NO",
+            "label": "Norwegian",
+            "enabled": false
+        },
+        {
+            "name": "pl-PL",
+            "label": "Polish",
+            "enabled": false
+        },
+        {
+            "name": "pt-BR",
+            "label": "Portuguese, Brazilian",
+            "enabled": false
+        },
+        {
+            "name": "pt-PT",
+            "label": "Portuguese",
+            "enabled": false
+        },
+        {
+            "name": "ro-RO",
+            "label": "Romanian",
+            "enabled": false
+        },
+        {
+            "name": "ru-RU",
+            "label": "Russian",
+            "enabled": false
+        },
+        {
+            "name": "sr-SP",
+            "label": "Serbian (Cyrillic)",
+            "enabled": false
+        },
+        {
+            "name": "sv-SE",
+            "label": "Swedish",
+            "enabled": false
+        },
+        {
+            "name": "tr-TR",
+            "label": "Turkish",
+            "enabled": false
+        },
+        {
+            "name": "uk-UA",
+            "label": "Ukrainian",
+            "enabled": false
+        },
+        {
+            "name": "vi-VN",
+            "label": "Vietnamese",
+            "enabled": false
+        },
+        {
+            "name": "zh-CN",
+            "label": "Chinese Simplified",
+            "enabled": false
+        },
+        {
+            "name": "zh-TW",
+            "label": "Chinese Traditional",
+            "enabled": false
+        }
+    ]
+}

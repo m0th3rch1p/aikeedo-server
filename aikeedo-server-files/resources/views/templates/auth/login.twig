@@ -1,0 +1,147 @@
+{% extends "/layouts/minimal.twig" %}
+
+{% block title p__('title', 'Login')|title %}
+{% set xdata = 'auth' %}
+
+{% block template %}
+<div class="flex flex-col gap-1">
+  {% if environment == 'demo' %}
+  <div class="flex flex-col gap-6 box" data-density="comfortable">
+    <div>
+      <h1 class="text-xl font-bold md:text-2xl">
+        {{ p__('heading', 'Demo mode') }}
+      </h1>
+
+      <p class="mt-4">
+        {{ __('Demo mode is enabled. Some features might be disabled. All of those features will be available in the purchased version.') }}
+      </p>
+    </div>
+
+    {% if demo_account_email is not empty and demo_account_password is not empty %}
+    <div>
+      <p>
+        {{ __('Use following credentials to login as an admin.') }}
+      </p>
+
+      <div class="mt-4 font-mono text-sm">
+        <div>
+          <span class="font-semibold uppercase">
+            {{ p__('label', 'Email') }}:
+          </span>
+          <span is="copyable-element"
+            data-tippy-placement="right">{{ demo_account_email }}</span>
+        </div>
+
+        <div class="mt-1">
+          <span class="font-semibold uppercase">
+            {{ p__('label', 'Password') }}:
+          </span>
+          <span is="copyable-element"
+            data-tippy-placement="right">{{ demo_account_password }}</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-xs text-content-dimmed">
+      {{ __('You can signup as a new user too to view the app as a normal user.') }}
+    </p>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <div class="box" data-density="comfortable">
+    <form @submit.prevent="submit" x-ref="form" data-api-path="/basic"
+      class="flex flex-col gap-6">
+
+      <h1 class="text-xl font-bold md:text-2xl">
+        {{ p__('heading', 'Sign in to your account') }}
+      </h1>
+
+      <div>
+        <label for="email">{{ p__('label', 'Email') }}</label>
+
+        <div class="mt-2">
+          <input type="email" id="email" name="email" class="input"
+            placeholder="{{ __('Type your email address')|e('html_attr') }}"
+            autocomplete="email" required>
+        </div>
+
+      </div>
+
+      <div>
+        <label for="password">{{ p__('label', 'Password') }}</label>
+
+        <div class="relative mt-2" x-data="{isVisible: false}">
+          <input :type="isVisible ? 'text' : 'password'" id="password"
+            name="password"
+            placeholder="{{ __('Type your password')|e('html_attr') }}"
+            autocomplete="current-password" class="input" required>
+
+          <button type="button"
+            class="absolute text-2xl -translate-y-1/2 top-1/2 right-3 text-content-dimmed"
+            @click="isVisible = !isVisible">
+            <i class="block ti"
+              :class="{'ti-eye-closed' : isVisible, 'ti-eye':!isVisible}"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <label class="inline-flex items-center gap-1">
+          <input type="checkbox" name="remember" class="hidden peer">
+
+          <i
+            class="ti ti-square-rounded text-content-dimmed peer-checked:hidden"></i>
+          <i
+            class="hidden ti ti-square-rounded-check-filled text-success peer-checked:block"></i>
+
+          <span
+            class="font-normal select-none">{{ p__('button', 'Remember me') }}</span>
+        </label>
+
+        <a href="recovery"
+          class="inline-flex items-center gap-1 text-sm font-semibold">
+          <i class="ti ti-lock-question md:hidden"></i>
+
+          <span class="hidden md:inline">
+            {{ p__('button', 'Forgot password?') }}
+          </span>
+        </a>
+      </div>
+
+      {% include "/snippets/captcha.twig" %}
+
+      <button type="submit" class="w-full button" x-ref="submit"
+        :disabled="!isSubmitable" :processing="isProcessing">
+
+        {% include "/snippets/spinner.twig" %}
+
+        {{ p__('button', 'Sign in') }}
+      </button>
+
+      {% set user_accounts_enabled = option.site.user_accounts_enabled is not defined or option.site.user_accounts_enabled %}
+      {% set user_signup_enabled = option.site.user_signup_enabled is not defined or option.site.user_signup_enabled %}
+
+      {% if user_accounts_enabled and user_signup_enabled %}
+      <div class="flex flex-col items-center gap-1 text-sm md:flex-row">
+        <span class="flex items-center gap-1">
+          <i class="text-base ti ti-help-square-rounded"></i>
+
+          {{ __('Don\'t have an account?') }}
+        </span>
+
+        <a href="signup" class="font-semibold">
+          {{ p__('button', 'Sign up')  }}
+        </a>
+      </div>
+      {% endif %}
+
+      {% include "/snippets/sso.twig" %}
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="assets/auth.js?v={{ version }}"></script>
+{% endblock %}

@@ -1,0 +1,44 @@
+<form class="flex flex-col gap-6" @submit.prevent="submitLicenseForm()">
+    <h1 class="text-lg font-bold">License</h1>
+
+    <div>
+        <label for="license" class="text-sm font-semibold">Purchase code</label>
+        <input type="text" class="mt-2 input" id="license" required
+            x-model="model.license">
+
+        <template x-if="error">
+            <ul class="m-3 mb-0 text-xs list-disc list-inside text-failure">
+                <li class="my-1" x-text="error"></li>
+            </ul>
+        </template>
+    </div>
+
+    <button type="submit" class="w-full button group" :disabled="!isSubmitable"
+        :processing="isProcessing">
+        Continue
+        <i
+            class="text-2xl ti ti-square-rounded-chevron-right group-[[processing]]:hidden"></i>
+
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            width="24px" height="24px" viewBox="0 0 50 50"
+            style="enable-background:new 0 0 50 50;" class="spinner"
+            xml:space="preserve">
+            <path fill="currentColor"
+                d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
+                <animateTransform attributeType="xml" attributeName="transform"
+                    type="rotate" from="0 25 25" to="360 25 25" dur="0.6s"
+                    repeatCount="indefinite"></animateTransform>
+            </path>
+        </svg>
+    </button>
+
+    <p class="text-xs text-content-dimmed">
+        <i class="ti ti-help-square-rounded-filled"></i>
+
+        <a href="https://help.market.envato.com/hc/en-us/articles/202822600-Where-Is-My-Purchase-Code-"
+            target="_blank">
+            Where is my purchase code?
+        </a>
+    </p>
+</form>

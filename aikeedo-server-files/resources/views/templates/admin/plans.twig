@@ -1,0 +1,271 @@
+{% extends "/layouts/main.twig" %}
+
+{% set active_menu = 'plans' %}
+{% set sort = [
+  {
+    value: null,
+    label: p__('label', 'Default')
+  },
+
+  {
+    value: 'created_at',
+    label: p__('label', 'Date')
+  },
+
+  {
+    value: 'price',
+    label: p__('label', 'Price')
+  },
+
+  {
+    value: 'superiority',
+    label: p__('label', 'Superiority')
+  }
+] %}
+
+{% set filters = [
+  {
+    label: p__('label', 'Billing cycle'),
+    model: 'billing_cycle',
+    options: [
+      {
+        value: 'monthly',
+        label: p__('billing-cycle', 'Monthly')
+      },
+      {
+        value: 'yearly',
+        label: p__('billing-cycle', 'Yearly')
+      },
+      {
+        value: 'one-time',
+        label: p__('billing-cycle', 'One time pack')
+      }
+    ]
+  },
+  {
+    label: p__('label', 'Status'),
+    model: 'status',
+    options: [
+      {
+        value: '0',
+        label: p__('status', 'Inactive')
+      },
+      {
+        value: '1',
+        label: p__('status', 'Active')
+      }
+    ]
+  }
+] %}
+
+{% set strings = {
+  delete_success: __('Plan has been deleted successfully.')
+} %}
+
+{% set xdata %}
+list("plans", {{ sort|json_encode|raw }}, {{ filters|json_encode|raw }},
+{{ strings|json_encode() }})
+{% endset %}
+
+{% block title p__('title', 'Plans')|title %}
+
+{% block template %}
+{# Header #}
+<div class="flex items-center justify-between">
+  <div>
+    <h1>{{ p__('heading', 'Plans') }}</h1>
+
+    <template x-if="total !== null">
+      <div class="text-sm text-content-dimmed md:hidden">
+        {{ __('Total :count plans')|replace({':count': '<span x-text="total"></span>'})|raw }}
+      </div>
+    </template>
+  </div>
+
+  <div class="flex items-center gap-2 md:hidden">
+    <button type="button" class="hidden w-8 h-8 avatar">
+      <i class="text-lg ti ti-adjustments-horizontal"></i>
+    </button>
+
+    <a href="admin/plans/new" class="w-8 h-8 rounded-full button button-sm">
+      <i class="text-lg ti ti-plus"></i>
+    </a>
+  </div>
+
+  <a href="admin/plans/new" class="hidden md:flex button button-sm">
+    {{ p__('button', 'Create new plan') }}
+  </a>
+</div>
+
+{# Filters #}
+{% include "/snippets/filters.twig" with { total: "Total :count plans" } %}
+
+{# List #}
+<div class="group/list" :data-state="state">
+  <div class="hidden group-data-[state=empty]/list:block">
+    {% include "sections/empty.twig" with { title: p__('heading', 'Empty result set'), message: __('There are no plans yet.'), reset: __('TThere are no plans matching your search.') } %}
+  </div>
+
+  <div
+    class="hidden md:grid grid-cols-12 gap-3 items-center px-3 py-2 text-content-dimmed text-xs group-data-[state=empty]/list:hidden">
+    <div class="col-span-4">{{ p__('label', 'Name') }}</div>
+    <div class="col-span-2">{{ p__('label', 'Billing cycle') }}</div>
+    <div class="col-span-2">{{ p__('label', 'Price') }}</div>
+    <div class="col-span-2">{{ p__('label', 'Created') }}</div>
+    <div class="col-span-1">{{ p__('label', 'Status') }}</div>
+    <div class="col-span-1"></div>
+  </div>
+
+  <ul class="text-sm group-data-[state=empty]/list:hidden flex flex-col gap-1">
+    {% for i in range(1,5) %}
+    <li
+      class="hidden md:grid-cols-12 gap-3 items-center justify-between p-3 box group-data-[state=initial]/list:flex md:group-data-[state=initial]/list:grid">
+      <div class="flex items-center col-span-4 gap-3">
+        <div class="avatar loading"></div>
+
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="h-5 w-28 loading"></span>
+            <span class="hidden w-16 h-6 loading md:block"></span>
+          </div>
+
+          <div class="md:hidden">
+            <span class="inline-block w-20 h-5 loading my-0.5"></span>
+            <span class="inline-block w-20 h-5 loading my-0.5"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden md:block md:col-span-2">
+        <span class="inline-block w-20 h-5 my-0.5 loading"></span>
+      </div>
+
+      <div class="hidden md:block md:col-span-2">
+        <span class="inline-block w-20 h-5 my-0.5 loading"></span>
+      </div>
+
+      <div class="hidden md:block md:col-span-2">
+        <span class="inline-block w-20 h-5 my-0.5 loading"></span>
+      </div>
+
+      <div class="hidden md:block md:col-span-1"></div>
+
+      <div class="md:col-span-1 justify-self-end">
+        <i class="ti ti-dots-vertical text-content-dimmed"></i>
+      </div>
+    </li>
+    {% endfor %}
+
+    <template x-for="plan in resources" :key="plan.id">
+      <li
+        class="relative flex items-center justify-between grid-cols-12 gap-3 p-3 md:grid box hover:border-line"
+        x-data>
+        <a :href="`admin/plans/${plan.id}`"
+          class="absolute top-0 left-0 w-full h-full cursor-pointer"></a>
+
+        <div class="flex items-center col-span-4 gap-3">
+          <div class="avatar bg-accent text-accent-content">
+            <span
+              x-text="plan.title.match(/(\b\S)?/g).join('').slice(0, 2)"></span>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-2">
+              <div class="font-bold" x-text="`${plan.title}`"></div>
+
+              <div class="hidden md:block">
+                <template x-if="plan.is_featured">
+                  <span class="badge badge-success">{{ __('Featured') }}</span>
+                </template>
+
+                <template x-if="plan.is_locked">
+                  <span class="relative z-20 badge"
+                    title="Plan is locked for deletion and modification.">
+                    {{ __('Locked') }}
+                  </span>
+                </template>
+              </div>
+            </div>
+
+            <div class="text-content-dimmed md:hidden">
+              <span x-text="window.money(plan.price).format()"></span> /
+              <span x-text="plan.billing_cycle"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hidden md:block md:col-span-2" x-text="plan.billing_cycle">
+        </div>
+
+        <div class="hidden md:block md:col-span-2"
+          x-text="window.money(plan.price).format()">
+        </div>
+
+        <div class="hidden md:block md:col-span-2" x-text="plan.created_at">
+        </div>
+
+        <div class="hidden md:block md:col-span-1">
+          <label
+            class="relative z-10 inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" name="status" class="hidden peer"
+              :checked="plan.status == 1" @click="toggleStatus(plan)">
+
+            <span
+              class="h-6 w-10 rounded-3xl bg-line relative block peer-checked:bg-success transition-all after:h-5 after:w-5 after:top-0.5 after:absolute after:left-0 after:ml-0.5 after:transition-all after:rounded-full after:bg-white peer-checked:after:left-4"></span>
+
+            <span class="text-content-dimmed peer-checked:hidden">
+              {{ p__('status', 'Inactive') }}
+            </span>
+
+            <span class="hidden text-success peer-checked:inline">
+              {{ p__('status', 'Active') }}
+            </span>
+          </label>
+        </div>
+
+        <div class="md:col-span-1 justify-self-end">
+          <div class="relative"
+            @click.outside="$refs.context.removeAttribute('data-open')">
+
+            <button class="relative z-10"
+              @click="$refs.context.toggleAttribute('data-open')">
+              <i
+                class="ti ti-dots-vertical text-content-dimmed hover:text-intermediate-content"></i>
+            </button>
+
+            <div class="context-menu" x-ref="context">
+              <ul>
+                <li>
+                  <a :href="`admin/plans/${plan.id}`"
+                    class="flex items-center gap-2 px-4 py-2 hover:no-underline hover:bg-intermediate">
+                    <i class="ti ti-pencil"></i>
+                    {{ p__('button', 'Edit') }}
+                  </a>
+                </li>
+
+                <template x-if="!plan.is_locked">
+                  <li>
+                    <button
+                      class="flex items-center w-full gap-2 px-4 py-2 hover:no-underline hover:bg-intermediate"
+                      @click.prevent="currentResource = plan; overlay.open('modal')">
+                      <i class="ti ti-trash"></i>
+                      {{ p__('button', 'Delete') }}
+                    </button>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+    </template>
+  </ul>
+</div>
+{% endblock %}
+
+{% block modal %}
+{% include "sections/delete-modal.twig" with { 
+  message: __('Do you really want to delete :title from membership plans?'),
+  title: 'currentResource.title'
+} %}
+{% endblock %}

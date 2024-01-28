@@ -1,0 +1,81 @@
+<div class="grid gap-4 md:gap-5 md:grid-cols-2">
+  <div class="box">
+    <i
+      class="flex items-center justify-center w-10 h-10 rounded-full ti ti-credit-card bg-button text-button-content"></i>
+
+    {% if auth_user.subscription %}
+    <p class="mt-4">
+      {{ "You are currently subscribed to %s."|format('<strong>' ~ auth_user.subscription.plan.title ~ '</strong>')|raw }}
+
+      {% if auth_user.subscription.plan.price <= 0 %}
+      {{ __('Subscribe to one of the our plans to get access to all features and benefits.') }}
+      {% endif %}
+    </p>
+
+    {% if auth_user.subscription.plan.price > 0 %}
+    <a href="app/billing" class="mt-4 button button-secondary">
+      {{ p__('button', 'Billing overview') }}
+    </a>
+    {% else %}
+    <a href="app/billing/checkout" class="mt-4 button">
+      {{ p__('button', 'Upgrade plan') }}
+    </a>
+    {% endif %}
+    {% else %}
+    <p class="mt-4">
+      {{ __('Currently you don\'t have any active subscription. Subscribe to one of the our plans to get access to all features and benefits.') }}
+    </p>
+
+    <a href="app/billing/checkout" class="mt-4 button">
+      {{ p__('button', 'Upgrade plan') }}
+    </a>
+    {% endif %}
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-3 md:gap-3">
+    <div
+      class="flex items-center gap-4 sm:items-start sm:flex-col sm:justify-between box">
+      <i
+        class="flex items-center justify-center w-10 h-10 rounded-full ti ti-square-rounded-letter-t bg-button text-button-content"></i>
+
+      <div>
+        <div class="text-sm text-content-dimmed">
+          {{ p__('label', 'Tokens left') }}
+        </div>
+        <div class="text-lg font-bold">
+          {{ auth_user.token_credit is not null ? auth_user.token_credit | format_number({grouping_size: 3}) : __('Unlimited') }}
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="flex items-center gap-4 sm:items-start sm:flex-col sm:justify-between box">
+      <i
+        class="flex items-center justify-center w-10 h-10 rounded-full ti ti-photo bg-button text-button-content"></i>
+
+      <div>
+        <div class="text-sm text-content-dimmed">
+          {{ p__('label', 'Images left') }}
+        </div>
+        <div class="text-lg font-bold">
+          {{ auth_user.image_credit is not null ? auth_user.image_credit | format_number({grouping_size: 3}) : __('Unlimited') }}
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="flex items-center gap-4 sm:items-start sm:flex-col sm:justify-between box">
+      <i
+        class="flex items-center justify-center w-10 h-10 rounded-full ti ti-volume bg-button text-button-content"></i>
+
+      <div>
+        <div class="text-sm text-content-dimmed">
+          {{ p__('label', 'Audio left') }}
+        </div>
+        <div class="text-lg font-bold">
+          {{ auth_user.audio_credit is not null ? auth_user.audio_credit | format_number({grouping_size: 3}) : __('Unlimited') }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<form class="flex flex-col gap-8" @submit.prevent="viewRequirement()">
+    <h1 class="text-lg font-bold">Aikeedo Installation</h1>
+
+    <p class="text-intermediate-content">
+        Welcome! Aikeedo is an AI Powered Content Platform (web application)
+        that allows
+        you generate blogs, social media content, marketing emails, programming
+        codes, images and more.
+    </p>
+
+    <p class="flex items-center gap-2 text-sm text-intermediate-content">
+        Installation process is very easy and it takes less than a minute!
+        <i class="text-xl ti ti-sparkles text-success"></i>
+    </p>
+
+    <button type="submit" class="w-full button group" :disabled="!isSubmitable"
+        :processing="isProcessing">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            width="24px" height="24px" viewBox="0 0 50 50"
+            style="enable-background:new 0 0 50 50;" class="spinner"
+            xml:space="preserve">
+            <path fill="currentColor"
+                d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
+                <animateTransform attributeType="xml" attributeName="transform"
+                    type="rotate" from="0 25 25" to="360 25 25" dur="0.6s"
+                    repeatCount="indefinite"></animateTransform>
+            </path>
+        </svg>
+
+        Start installation
+    </button>
+</form>

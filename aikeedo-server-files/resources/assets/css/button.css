@@ -1,0 +1,91 @@
+.button {
+  @apply inline-flex 
+        items-center
+        px-6 
+        h-12 
+        rounded-lg 
+        text-accent-content 
+        bg-accent 
+        text-center 
+        font-medium 
+
+        justify-center 
+        gap-2
+        transition-colors;
+
+  &:not(.button-outline) {
+    @apply hover:ring-offset-2
+        hover:ring-accent
+        hover:ring-1
+        hover:ring-offset-main;
+
+    .bg-intermediate & {
+      @apply hover:ring-offset-intermediate;
+    }
+  }
+
+  &:disabled {
+    @apply opacity-50 
+            cursor-not-allowed 
+            pointer-events-none
+            bg-line-dimmed;
+  }
+
+  &[processing] {
+    @apply opacity-50
+            cursor-not-allowed 
+            pointer-events-none;
+  }
+
+  .spinner {
+    @apply hidden;
+  }
+
+  &[processing] .spinner {
+    @apply block;
+  }
+}
+
+.button-secondary {
+  @apply bg-button text-button-content;
+
+  &:not(.button-outline) {
+    @apply hover:ring-button;
+
+    .bg-intermediate & {
+      @apply hover:ring-offset-intermediate;
+    }
+  }
+}
+
+.button-intermediate {
+  @apply bg-intermediate text-intermediate-content;
+
+  &:not(.button-outline) {
+    @apply hover:ring-intermediate;
+  }
+}
+
+.button-failure {
+  @apply bg-failure;
+
+  &:not(.button-outline) {
+    @apply hover:ring-failure;
+  }
+}
+
+.button-sm {
+  @apply h-10 px-4;
+}
+
+.button-xs {
+  @apply h-7 px-2 py-0.5 text-sm rounded-md gap-1;
+}
+
+.button-outline {
+  @apply bg-transparent 
+        border 
+        border-line-dimmed 
+        text-content
+        hover:border-line;
+}

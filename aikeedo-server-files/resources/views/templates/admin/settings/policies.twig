@@ -1,0 +1,77 @@
+{% extends "/layouts/main.twig" %}
+{% set active_menu = 'settings' %}
+
+{% set xdata = 'settings' %}
+{% block title p__('title', 'Policies')|title %}
+
+{% block template %}
+<div>
+  {% include "snippets/back.twig" with {link: 'admin/settings', label: 'Settings'} %}
+
+  <h1 class="mt-4">{{ p__('heading', 'Policies') }}</h1>
+</div>
+
+<form class="flex flex-col gap-8" @submit.prevent="submit" x-ref="form">
+  <div class="flex flex-col gap-2">
+    <section class="grid grid-cols-1 gap-6 box" data-density="comfortable">
+      <h2>{{ p__('heading', 'Terms of services') }}</h2>
+
+      <div>
+        <label for="policies.tos">{{ p__('label', 'Content') }}</label>
+
+        <textarea name="policies[tos]" id="policies.tos"
+          class="h-auto mt-2 input"
+          rows="20">{{ option.policies.tos ?? '' }}</textarea>
+
+        <ul class="m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+          <li>{{ __('Markdown is supported') }}</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="grid grid-cols-1 gap-6 box" data-density="comfortable">
+      <h2>{{ p__('heading', 'Privacy policy') }}</h2>
+
+      <div>
+        <label for="policies.privacy">{{ p__('label', 'Content') }}</label>
+
+        <textarea name="policies[privacy]" id="policies.tos"
+          class="h-auto mt-2 input"
+          rows="20">{{ option.policies.privacy ?? '' }}</textarea>
+
+        <ul class="m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+          <li>{{ __('Markdown is supported') }}</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="grid grid-cols-1 gap-6 box" data-density="comfortable">
+      <h2>{{ p__('heading', 'Refund policy') }}</h2>
+
+      <div>
+        <label for="policies.refund">{{ p__('label', 'Content') }}</label>
+
+        <textarea name="policies[refund]" id="policies.tos"
+          class="h-auto mt-2 input"
+          rows="20">{{ option.policies.refund ?? '' }}</textarea>
+
+        <ul class="m-3 mb-0 text-xs list-disc list-inside text-content-dimmed">
+          <li>{{ __('Markdown is supported') }}</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <div class="flex justify-end gap-4">
+    <a href="admin/settings"
+      class="button button-outline">{{ p__('button', 'Cancel') }}</a>
+
+    <button type="submit" class="button" x-ref="submit"
+      :disabled="!isSubmitable" :processing="isProcessing">
+      {% include "/snippets/spinner.twig" %}
+
+      {{ p__('button', 'Save changes') }}
+    </button>
+  </div>
+</form>
+{% endblock %}

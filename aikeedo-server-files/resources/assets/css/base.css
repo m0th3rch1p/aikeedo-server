@@ -1,0 +1,43 @@
+/* Let's get this party started */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-line-dimmed/0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-line rounded-xl;
+
+  &:hover {
+    @apply bg-content-dimmed;
+  }
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  @apply bg-line/50;
+}
+
+hr {
+  @apply border-line-dimmed;
+}
+
+label {
+  @apply inline-block text-sm font-semibold cursor-pointer;
+}
+
+/* Headings */
+h1 {
+  @apply text-2xl font-bold;
+}
+
+h2 {
+  @apply text-lg font-bold;
+}
+
+h3 {
+  @apply text-base font-bold;
+}

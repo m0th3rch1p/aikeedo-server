@@ -1,0 +1,64 @@
+{% extends "/layouts/main.twig" %}
+
+{% set active_menu = 'categories' %}
+
+{% set xdata %}
+category({{ (category is defined ? category : {})|json_encode|raw }})
+{% endset %}
+
+{% block title (category is defined ? p__('title', 'Edit category') : p__('title', 'New category'))|title %}
+
+{% block template %}
+<form class="flex flex-col gap-8" @submit.prevent="submit">
+  <div>
+    {% include "snippets/back.twig" with {link: 'admin/categories', label: 'Categories'} %}
+
+    <h1 class="mt-4">
+      <span
+        x-show="!category.id">{{ p__('title', 'Create new category') }}</span>
+      <span x-show="category.id">
+        {{ p__('title', 'Edit category') }}:
+
+        <span class="font-normal text-intermediate-content"
+          x-text="category.title"></span>
+      </span>
+    </h1>
+
+    <template x-if="category.id">
+      <div class="mt-2">
+        <code is="resource-id" x-text="category.id"></code>
+      </div>
+    </template>
+  </div>
+
+  <section class="box" data-density="comfortable">
+    <div>
+      <label for="title">{{ p__('label', 'Title') }}</label>
+
+      <input type="text" id="title" name="title" class="mt-2 input"
+        autocomplete="off"
+        :placeholder="category.title || {{ __('Include a title for the category')|e('html_attr') }}"
+        x-model="model.title" />
+    </div>
+  </section>
+
+  <div class="flex justify-end gap-4">
+    <a href="admin/categories" class="button button-outline">
+      {{ p__('button', 'Cancel') }}
+    </a>
+
+    <button type="submit" class="button" x-ref="submit"
+      :disabled="!isSubmitable()" :processing="isProcessing">
+      {% include "/snippets/spinner.twig" %}
+
+      <span x-show="!category.id">
+        {{ p__('button', 'Create category') }}
+      </span>
+
+      <span x-show="category.id">
+        {{ p__('button', 'Update category') }}
+      </span>
+    </button>
+  </div>
+</form>
+{% endblock %}

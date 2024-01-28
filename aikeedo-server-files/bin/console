@@ -1,0 +1,34 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Psr\Container\ContainerInterface;
+use Symfony\Component\Console\Application;
+
+/** @var ContainerInterface $container */
+$container = include __DIR__ . '/../bootstrap/app.php';
+$console = $container->get(Application::class);
+
+$container->set(\Aws\Domain\Repositories\AwsUsageRepositoryInterface::class, \Aws\Infrastructure\Repositories\DoctrineOrm\AwsUsageRepository::class);
+$container->get(\Aws\Domain\Services\ReadAwsUsageService::class);
+$container->get(\Aws\Infrastructure\Services\MeteringService::class);
+$container->get(\Presentation\Commands\SendBatchRequestsCommand::class);
+
+$container->get(\Aws\Infrastructure\Services\EntitlementSqsService::class);
+$container->get(\Presentation\Commands\EntitlementNotificationListenerCommand::class);
+
+//$container->get(\Symfony\Component\Messenger\Command\DebugCommand::class);
+
+//$routableBus = $container->get(\Symfony\Component\Messenger\RoutableMessageBus::class);
+//$eventDispatcher = $container->get(\Symfony\Component\EventDispatcher\EventDispatcher::class);
+
+//$console->add(new \Symfony\Component\Messenger\Command\ConsumeMessagesCommand($routableBus, $container, $eventDispatcher));
+//$console->add(new \Symfony\Component\Messenger\Command\StatsCommand($container));
+//try {
+//    $console->add(new \Symfony\Component\Messenger\Command\DebugCommand([]));
+//} catch (\Psr\Container\NotFoundExceptionInterface $e) {
+//} catch (\Psr\Container\ContainerExceptionInterface $e) {
+//}
+
+$console->run();

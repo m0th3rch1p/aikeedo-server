@@ -1,0 +1,114 @@
+{% extends "/layouts/main.twig" %}
+
+{% set active_menu = 'documents' %}
+{% set xdata %}
+document({{ (document ?: {})|json_encode() }})
+{% endset %}
+
+{% block title p__('title', 'Document')|title %}
+
+{% block template %}
+{# Header #}
+
+{% embed "/sections/page-header.twig" with { back: 'app/documents' } only %}
+
+{% block title p__('heading', 'Document') %}
+{% block desc %}
+<code is="resource-id" x-text="doc.id"></code>
+{% endblock %}
+
+{% endembed %}
+
+<form @submit.prevent="submit" class="flex flex-col gap-8">
+  <div class="flex flex-col gap-6 box" data-density="comfortable">
+    <div class="pb-4 border-b bg-main border-line-dimmed">
+      <div class="text-xl autogrow-textarea font-editor-heading"
+        :data-replicated-value="model.title">
+        <textarea placeholder="{{ __('Document title')|e('html_attr') }}"
+          autocomplete="off" x-model="model.title" rows="1"
+          class="block w-full px-0 py-0 transition-colors bg-transparent border-0 appearance-none resize-none focus:ring-0 placeholder:text-content-dimmed placeholder:opacity-50 read-only:text-content-dimmed"></textarea>
+      </div>
+    </div>
+
+    <div class="editor" x-html="output">
+    </div>
+
+    <div class="flex items-center gap-4 mt-2">
+      <button type="button" @click="copyDocumentContents"
+        class="flex items-center gap-1 text-sm transition-all text-content-dimmed hover:text-content disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none"
+        :disabled="isProcessing">
+        <i class="text-xl ti ti-copy"></i>
+
+        <span class="hidden md:inline">{{ p__('button', 'Copy') }}</span>
+      </button>
+
+      <div class="relative"
+        @click.outside="$refs.downloadOptions.removeAttribute('data-open')">
+
+        <button type="button"
+          @click="$refs.downloadOptions.toggleAttribute('data-open')"
+          class="flex items-center gap-1 text-sm transition-all text-content-dimmed hover:text-content disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none"
+          :disabled="isProcessing">
+          <i class="text-xl ti ti-download"></i>
+
+          <span class="hidden md:inline">{{ p__('button', 'Download') }}</span>
+        </button>
+
+        <div class="context-menu context-menu-bl" x-ref="downloadOptions"
+          @click="$el.removeAttribute('data-open')">
+
+          <ul class="text-sm">
+            <li>
+              <button type="button"
+                class="flex items-center w-full gap-2 px-4 py-2 text-left hover:bg-intermediate"
+                @click="download('word')">
+                <i class="text-lg text-content-dimmed ti ti-letter-w"></i>
+                {{ p__('button', 'Word document') }}
+              </button>
+            </li>
+
+            <li>
+              <button type="button"
+                class="flex items-center w-full gap-2 px-4 py-2 text-left hover:bg-intermediate"
+                @click="download('html')">
+                <i class="text-lg text-content-dimmed ti ti-brand-html5"></i>
+                {{ p__('button', 'HTML file') }}
+              </button>
+            </li>
+
+            <li>
+              <button type="button"
+                class="flex items-center w-full gap-2 px-4 py-2 text-left hover:bg-intermediate"
+                @click="download('markdown')">
+                <i class="text-lg text-content-dimmed ti ti-markdown"></i>
+                {{ p__('button', 'Markdown') }}
+              </button>
+            </li>
+
+            <li>
+              <button type="button"
+                class="flex items-center w-full gap-2 px-4 py-2 text-left hover:bg-intermediate"
+                @click="download('text')">
+                <i class="text-lg text-content-dimmed ti ti-txt"></i>
+                {{ p__('button', 'Text') }}
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex gap-4">
+    <a href="app/documents" class="button button-outline">{{ __('Cancel') }}</a>
+
+    <button type="submit" class="button" x-ref="submit"
+      :disabled="!isSubmitable()" :processing="isProcessing">
+
+      {% include "/snippets/spinner.twig" %}
+
+      {{ __('Update document') }}
+    </button>
+  </div>
+</form>
+{% endblock %}

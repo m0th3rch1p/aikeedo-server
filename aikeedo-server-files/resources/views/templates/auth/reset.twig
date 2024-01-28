@@ -1,0 +1,89 @@
+{% extends "/layouts/minimal.twig" %}
+
+{% block title p__('title', 'Password reset')|title %}
+{% set xdata = 'auth' %}
+
+{% block template %}
+<div class="box" data-density="comfortable">
+  <form @submit.prevent="submit" x-ref="form"
+    data-api-path="/recovery/{{ id }}/{{ token }}" class="flex flex-col gap-6">
+    <div
+      class="relative flex items-center justify-center rounded-full w-28 h-28 text-accent"
+      :class="{'text-success/25': success, 'text-accent': !success}">
+      <svg class="absolute top-0 left-0 w-full h-full" width="112" height="112"
+        viewBox="0 0 112 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="56" cy="56" r="55.5" stroke="currentColor"
+          stroke-dasharray="8 8" />
+      </svg>
+
+      <div
+        class="flex items-center justify-center w-24 h-24 text-5xl transition-all rounded-full bg-accent text-accent-content"
+        :class="{'bg-success/25': success, 'text-success': success, 'bg-accent': !success, 'text-accent-content': !success}">
+        <i class="text-5xl ti ti-password"
+          :class="{'ti-password': !success, 'ti-square-rounded-check': success}"></i>
+      </div>
+    </div>
+
+    <div>
+      {% include "snippets/back.twig" with {link: 'login', label: p__('button', 'Back to login')} %}
+
+      <h1 class="mt-4 text-xl font-bold md:text-2xl">
+        <span :class="{'hidden':success}">
+          {{ p__('heading', 'Reset your password') }}
+        </span>
+
+        <template x-if="success">
+          <span>{{ p__('heading', 'Successfully completed!') }}</span>
+        </template>
+      </h1>
+
+      <p class="mt-2 text-content-dimmed" :class="{'hidden':success}">
+        {{ __('Set your new password') }}
+      </p>
+
+      <template x-if="success">
+        <p class="mt-2 text-content-dimmed">
+          {{ __('Your password successfully changed. Please login your account to continue.') }}
+        </p>
+      </template>
+    </div>
+
+    <div :class="{'hidden':success}">
+      <label for="new-password">
+        {{ p__('label', 'Enter new password') }}
+      </label>
+
+      <div class="relative mt-2" x-data="{isVisible: false}">
+        <input :type="isVisible ? 'text' : 'password'" id="new-password"
+          name="password"
+          placeholder="{{ __('Type your new password')|e('html_attr') }}"
+          autocomplete="new-password" class="input" required>
+
+        <button type="button"
+          class="absolute text-2xl -translate-y-1/2 top-1/2 right-3 text-content-dimmed"
+          @click="isVisible = !isVisible">
+          <i class="block ti"
+            :class="{'ti-eye-closed' : isVisible, 'ti-eye':!isVisible}"></i>
+        </button>
+      </div>
+    </div>
+
+    <button type="submit" class="w-full button" :class="{'hidden':success}"
+      x-ref="submit" :disabled="!isSubmitable" :processing="isProcessing">
+
+      {% include "/snippets/spinner.twig" %}
+
+      {{ p__('button', 'Reset password') }}
+    </button>
+
+    <template x-if="success">
+      <a href="/login"
+        class="w-full button">{{ __('Login to your account') }}</a>
+    </template>
+  </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="assets/auth.js"></script>
+{% endblock %}

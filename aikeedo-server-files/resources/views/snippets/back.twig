@@ -1,0 +1,5 @@
+<a href="{{ link ?? '#' }}"
+  class="inline-flex items-center gap-1 text-sm rounded-lg text-content-dimmed hover:text-content">
+  <i class="text-lg ti ti-square-rounded-arrow-left-filled"></i>
+  {{ label is defined ? label : p__('button', 'Back') }}
+</a>

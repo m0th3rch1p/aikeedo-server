@@ -1,0 +1,121 @@
+<div>
+  <h2 class="text-lg font-bold">{{ p__('heading', 'Tools') }}</h2>
+
+  <div class="grid gap-4 mt-4 md:gap-5 xs:grid-cols-2 md:grid-cols-3">
+    <div
+      class="relative flex flex-col justify-start gap-4 box hover:border-line">
+      <i
+        class="ti ti-text-caption flex items-center justify-center w-10 h-10 text-white bg-black rounded-full bg-gradient-to-br from-[#FCBF49] to-[#F77F00]"></i>
+
+      <div>
+        <h3 class="font-bold">{{ p__('heading', 'Writer') }}</h3>
+        <p class="text-sm text-content-dimmed mt-1 min-h-[3.75rem]">
+          {{ p__('writer-tool-description', 'Write SEO optimized blogs, sales emails and more...') }}
+        </p>
+      </div>
+
+      <div class="mt-auto">
+        <span
+          class="px-2 py-1 text-xs bg-transparent border rounded-lg border-line text-content">
+          {{ __('Text generator') }}
+        </span>
+      </div>
+
+      <a href="app/presets"
+        class="absolute top-0 left-0 z-10 w-full h-full"></a>
+    </div>
+
+    <div
+      class="relative flex flex-col justify-start gap-4 box hover:border-line">
+      <i
+        class="ti ti-device-laptop flex items-center justify-center w-10 h-10 text-white bg-black rounded-full bg-gradient-to-br from-[#F099C3] to-[#E03339]"></i>
+
+      <div>
+        <h3 class="font-bold">{{ p__('heading', 'Coder') }}</h3>
+        <p class="text-sm text-content-dimmed mt-1 min-h-[3.75rem]">
+          {{ p__('coder-tool-description', 'Ready to write code at the speed of light?') }}
+        </p>
+      </div>
+
+      <div class="mt-auto">
+        <span
+          class="px-2 py-1 text-xs bg-transparent border rounded-lg border-line text-content">
+          {{ __('Code writer') }}
+        </span>
+      </div>
+
+      <a href="app/coder" class="absolute top-0 left-0 z-10 w-full h-full"></a>
+    </div>
+
+    <div
+      class="relative flex flex-col justify-start gap-4 box hover:border-line">
+      <i
+        class="ti ti-palette flex items-center justify-center w-10 h-10 text-white bg-black rounded-full bg-gradient-to-br from-[#E6C0FE] to-[#984CF8]"></i>
+
+      <div>
+        <h3 class="font-bold">{{ p__('heading', 'Imagine') }}</h3>
+        <p class="text-sm text-content-dimmed mt-1 min-h-[3.75rem]">
+          {{ p__('imagine-tool-description', 'Visualize what you dream of. Create images from text.') }}
+        </p>
+      </div>
+
+      <div class="mt-auto">
+        <span
+          class="px-2 py-1 text-xs bg-transparent border rounded-lg border-line text-content">
+          {{ __('Image generator') }}
+        </span>
+      </div>
+
+      <a href="app/imagine"
+        class="absolute top-0 left-0 z-10 w-full h-full"></a>
+    </div>
+
+    <div
+      class="relative flex flex-col justify-start gap-4 box hover:border-line">
+      <i
+        class="ti ti-headphones flex items-center justify-center w-10 h-10 text-white bg-black rounded-full bg-gradient-to-br from-[#30C862] to-[#00A6FB]"></i>
+
+      <div>
+        <h3 class="font-bold">{{ p__('heading', 'Transcriber') }}</h3>
+        <p class="text-sm text-content-dimmed mt-1 min-h-[3.75rem]">
+          {{ p__('transcriber-tool-description', 'Instantly transcribe spoken words into text.')  }}
+        </p>
+      </div>
+
+      <div class="mt-auto">
+        <span
+          class="px-2 py-1 text-xs bg-transparent border rounded-lg border-line text-content">
+          {{ __('Speech to text') }}
+        </span>
+      </div>
+
+      <a href="app/transcriber"
+        class="absolute top-0 left-0 z-10 w-full h-full"></a>
+    </div>
+
+    {% if option.elevenlabs.is_enabled is defined and option.elevenlabs.is_enabled %}
+    <div
+      class="relative flex flex-col justify-start gap-4 box hover:border-line">
+      <i
+        class="ti ti-microphone flex items-center justify-center w-10 h-10 text-white bg-black rounded-full bg-gradient-to-br from-[#BCE143] to-[#30C862]"></i>
+
+      <div>
+        <h3 class="font-bold">{{ p__('heading', 'Voiceover') }}</h3>
+        <p class="text-sm text-content-dimmed mt-1 min-h-[3.75rem]">
+          {{ p__('voiceover-tool-description', 'Convert your texts into lifelike speech') }}
+        </p>
+      </div>
+
+      <div class="mt-auto">
+        <span
+          class="px-2 py-1 text-xs bg-transparent border rounded-lg border-line text-content">
+          {{ __('Text to speech') }}
+        </span>
+      </div>
+
+      <a href="app/voiceover"
+        class="absolute top-0 left-0 z-10 w-full h-full"></a>
+    </div>
+    {% endif %}
+  </div>
+</div>

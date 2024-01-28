@@ -1,0 +1,250 @@
+{% extends "/layouts/main.twig" %}
+
+{% set active_menu = 'settings' %}
+
+{% block title p__('title', 'Settings')|title %}
+
+{% block template %}
+<h1>{{ p__('heading', 'Settings') }}</h1>
+
+<div>
+  <h2>{{ p__('heading', 'Common') }}</h2>
+
+  <div class="grid gap-2 mt-4 sm:gap-4 md:gap-5 sm:grid-cols-2">
+    <a href="admin/settings/general"
+      class="flex items-center gap-4 box hover:border-line">
+      <span class="avatar">
+        <i class="ti ti-settings-2"></i>
+      </span>
+
+      <div>
+        <h3>{{ p__('heading', 'General') }}</h3>
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ __('Website and SEO') }}
+        </p>
+      </div>
+    </a>
+
+    <a href="admin/settings/brand"
+      class="flex items-center gap-4 box hover:border-line">
+      <span class="avatar">
+        <i class="ti ti-brand-abstract"></i>
+      </span>
+
+      <div>
+        <h3>{{ p__('heading', 'Brand') }}</h3>
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ __('Branding and logo') }}
+        </p>
+      </div>
+    </a>
+
+    <a href="admin/settings/public-details"
+      class="flex items-center gap-4 box hover:border-line">
+      <span class="avatar">
+        <i class="ti ti-circles-relation"></i>
+      </span>
+
+      <div>
+        <h3>{{ p__('heading', 'Public details') }}</h3>
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ __('Address, contacts etc.') }}
+        </p>
+      </div>
+    </a>
+
+    <a href="admin/settings/policies"
+      class="flex items-center gap-4 box hover:border-line">
+      <span class="avatar">
+        <i class="ti ti-shield-check"></i>
+      </span>
+
+      <div>
+        <h3>{{ p__('heading', 'Policies') }}</h3>
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ __('Legal terms') }}
+        </p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div>
+  <h2>{{ p__('heading', 'Finance') }}</h2>
+
+  <div class="grid gap-2 mt-4 sm:gap-4 md:gap-5 sm:grid-cols-2">
+    <a href="admin/settings/billing"
+      class="flex items-center gap-4 box hover:border-line">
+      <span class="avatar">
+        <i class="ti ti-file-invoice"></i>
+      </span>
+
+      <div>
+        <h3>{{ p__('heading', 'Billing') }}</h3>
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ __('Currency and subscriptions') }}
+        </p>
+      </div>
+    </a>
+
+    <a href="admin/settings/payments"
+      class="flex items-center gap-4 box hover:border-line">
+      <span class="avatar">
+        <i class="ti ti-cash"></i>
+      </span>
+
+      <div>
+        <h3>{{ p__('heading', 'Payments') }}</h3>
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ __('Payment gateway integrations') }}
+        </p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div>
+  <h2>{{ p__('heading', 'Email') }}</h2>
+
+  <div class="grid gap-2 mt-4 sm:gap-4 md:gap-5 sm:grid-cols-2">
+    <a href="admin/settings/mail"
+      class="flex items-center gap-4 box hover:border-line">
+      <span class="avatar">
+        <i class="ti ti-at"></i>
+      </span>
+
+      <div>
+        <h3>{{ p__('heading', 'Mail') }}</h3>
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ __('Transport and sender details') }}
+        </p>
+      </div>
+    </a>
+
+    <a href="admin/settings/smtp"
+      class="flex items-center gap-4 box hover:border-line">
+      <span class="avatar">
+        <i class="ti ti-server-cog"></i>
+      </span>
+
+      <div>
+        <h3>{{ p__('heading', 'SMTP') }}</h3>
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ __('SMTP transport details') }}
+        </p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div>
+  <h2>{{ p__('heading', 'User accounts') }}</h2>
+
+  <div class="grid gap-2 mt-4 sm:gap-4 md:gap-5 sm:grid-cols-2">
+    <a href="admin/settings/accounts"
+      class="flex items-center gap-4 box hover:border-line">
+      <span class="avatar">
+        <i class="ti ti-user-cog"></i>
+      </span>
+
+      <div>
+        <h3>{{ p__('heading', 'Account settings') }}</h3>
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ __('Accounts and sign up form') }}
+        </p>
+      </div>
+    </a>
+
+    <a href="admin/settings/identity-providers"
+      class="flex items-center gap-4 box hover:border-line">
+      <span class="avatar">
+        <i class="ti ti-fingerprint"></i>
+      </span>
+
+      <div>
+        <h3>{{ p__('heading', 'Identity providers') }}</h3>
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ __('3rd party identiy providers') }}
+        </p>
+      </div>
+    </a>
+
+    <a href="admin/settings/recaptcha"
+      class="flex items-center gap-4 box hover:border-line">
+      <span class="avatar">
+        <i class="ti ti-scan"></i>
+      </span>
+
+      <div>
+        <h3>{{ p__('heading', 'CAPTCHA') }}</h3>
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ __('Google reCAPTCHA') }}
+        </p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div>
+  <h2>{{ p__('heading', 'Integrations') }}</h2>
+
+  <div class="grid gap-2 mt-4 sm:gap-4 md:gap-5 sm:grid-cols-2">
+    <a href="admin/settings/openai"
+      class="flex items-center gap-4 box hover:border-line">
+      <span class="avatar">
+        <i class="ti ti-brand-openai"></i>
+      </span>
+
+      <div>
+        <h3>{{ p__('heading', 'OpenAI') }}</h3>
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ __('API keys and service config') }}
+        </p>
+      </div>
+    </a>
+
+    <a href="admin/settings/elevenlabs"
+      class="flex items-center gap-4 box hover:border-line">
+      <span class="avatar">
+        II
+      </span>
+
+      <div>
+        <h3>{{ p__('heading', 'ElevenLabs') }}</h3>
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ __('API keys and service config') }}
+        </p>
+      </div>
+    </a>
+
+    <a href="admin/settings/stabilityai"
+      class="flex items-center gap-4 box hover:border-line">
+      <span class="avatar">
+        S.
+      </span>
+
+      <div>
+        <h3>{{ p__('heading', 'Stability AI') }}</h3>
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ __('API keys and service config') }}
+        </p>
+      </div>
+    </a>
+
+    <a href="admin/settings/clipdrop"
+      class="flex items-center gap-4 box hover:border-line">
+      <span class="avatar">
+        CD
+      </span>
+
+      <div>
+        <h3>{{ p__('heading', 'Clipdrop') }}</h3>
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ __('API keys and service config') }}
+        </p>
+      </div>
+    </a>
+  </div>
+</div>
+
+{% endblock %}

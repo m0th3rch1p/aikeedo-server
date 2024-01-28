@@ -1,0 +1,45 @@
+{% extends "/layouts/main.twig" %}
+{% set active_menu = 'settings' %}
+
+{% block title p__('title', 'Payment settings')|title %}
+
+{% block template %}
+<div>
+  {% include "snippets/back.twig" with {link: 'admin/settings', label: 'Settings'} %}
+
+  <h1 class="mt-4">{{ p__('title', 'Payments') }}</h1>
+</div>
+
+<div class="flex flex-col gap-4">
+  <div class="grid gap-2 sm:gap-4 sm:grid-cols-2">
+    {% for gateway in payment_gateways %}
+    <a href="admin/settings/payments/{{ gateway.lookup_key }}"
+      class="flex items-center justify-between box hover:border-line">
+      <div>
+        {% if gateway.logo %}
+        <div class="py-1">
+          <img src="{{ gateway.logo }}" alt="{{ gateway.name }}"
+            class="w-auto h-4" />
+        </div>
+        {% else %}
+        <h3>{{ gateway.name }}</h3>
+        {% endif %}
+
+        <p class="mt-1 text-sm text-content-dimmed">
+          {{ gateway.is_enabled ? __('Gateway is enabled') : 'Gateway is disabled' }}
+        </p>
+      </div>
+
+      <span
+        class="relative w-6 h-6 rounded-full {{ gateway.is_enabled ? 'text-success' : 'text-content-dimmed' }}">
+        <span
+          class="absolute top-0 left-0 w-full h-full bg-current rounded-full opacity-20"></span>
+
+        <span
+          class="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-current rounded-full top-1/2 left-1/2"></span>
+      </span>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

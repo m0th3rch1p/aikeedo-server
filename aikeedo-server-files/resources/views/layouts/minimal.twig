@@ -1,0 +1,17 @@
+{% extends "/layouts/base.twig" %}
+
+{% block layout %}
+<div class="px-4">
+  <div class="flex flex-col max-w-xl gap-5 mx-auto md:gap-10">
+    {% include "sections/header.twig" %}
+
+    {% block template %}{% endblock %}
+
+    {% include "/sections/footer.twig" %}
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="assets/app.js?v={{ version }}"></script>
+{% endblock %}

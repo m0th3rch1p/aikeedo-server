@@ -1,0 +1,48 @@
+.input {
+  @apply bg-transparent block w-full rounded-lg border border-line h-12 p-3 appearance-none font-normal text-base;
+
+  &:disabled {
+    @apply bg-line-dimmed cursor-not-allowed opacity-50;
+  }
+}
+
+textarea.input {
+  @apply min-h-[48px] resize-y h-auto;
+}
+
+input[type='radio'].radio-button {
+  @apply hidden;
+
+  & + span {
+    @apply inline-flex px-3 py-1 border rounded-lg cursor-pointer border-line hover:border-content;
+  }
+
+  &:checked + span {
+    @apply bg-button border-button text-button-content cursor-default;
+  }
+
+  &:disabled + span {
+    @apply border-line-dimmed cursor-not-allowed opacity-75;
+  }
+}
+
+label:has(+ [required]) {
+  @apply before:text-failure before:content-['*'] before:text-xs;
+}
+
+label .help {
+  @apply text-base text-content-dimmed transition-all hover:scale-125 hover:text-intermediate-content;
+}
+
+.autogrow-textarea {
+  @apply grid after:whitespace-pre-wrap after:invisible after:row-start-1 after:col-start-1 after:row-end-2 after:col-end-2;
+
+  &:after {
+    content: attr(data-replicated-value) ' ';
+  }
+
+  & > textarea {
+    @apply resize-none overflow-hidden row-start-1 col-start-1 row-end-2 col-end-2;
+    font: inherit;
+  }
+}

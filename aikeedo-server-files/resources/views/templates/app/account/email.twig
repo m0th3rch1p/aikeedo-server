@@ -1,0 +1,51 @@
+{% extends "/layouts/main.twig" %}
+
+{% block title p__('title', 'Account email')|title %}
+{% set xdata = 'account' %}
+
+{% block template %}
+{# Header #}
+<form class="flex flex-col gap-8" data-path="/email" @submit.prevent="submit"
+  x-ref="form">
+  <div>
+    {% include "snippets/back.twig" with {link: 'app/account', label: p__('button', 'Go back to account')} %}
+
+    <h1 class="mt-4 text-xl font-bold md:text-2xl">
+      {{ p__('heading', 'Update email') }}
+    </h1>
+  </div>
+
+  <section class="grid grid-cols-1 gap-6 box" data-density="comfortable">
+    {% if auth_user.has_password %}
+    <div>
+      <label for="email">{{ p__('label', 'Email') }} </label>
+
+      <input type="text" id="email" name="email" class="mt-2 input"
+        value="{{ auth_user.email }}" placeholder="{{ auth_user.email }}"
+        required />
+    </div>
+
+    <div>
+      <label for="password">{{ p__('label', 'Password') }}</label>
+
+      <input type="password" id="password" name="password" class="mt-2 input"
+        required />
+    </div>
+
+    <div>
+      <button type="submit" class="w-full button" x-ref="submit"
+        :disabled="!isSubmitable" :processing="isProcessing">
+
+        {% include "/snippets/spinner.twig" %}
+
+        {{ p__('button', 'Change email') }}
+      </button>
+    </div>
+    {% else %}
+    <p>
+      {{ __('You account doesn\'t have a password. To change your email, you need to set a password first. You can sign out and follow the password reset process to set a password.') }}
+    </p>
+    {% endif %}
+  </section>
+</form>
+{% endblock %}

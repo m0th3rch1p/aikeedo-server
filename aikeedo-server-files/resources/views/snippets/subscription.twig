@@ -1,0 +1,111 @@
+<div x-init="console.log(subscription.currency)">
+  <div
+    class="flex items-center justify-between py-8 border px-14 border-line-dimmed rounded-xl">
+    <div>
+      <h2 class="flex items-center gap-2">
+        <span class="text-xl font-bold" x-text="subscription.plan.title"></span>
+        <span
+          class="badge">{{ p__('heading', 'Recurring subscription') }}</span>
+      </h2>
+
+      <div class="mt-1 text-sm" x-text="subscription.plan.description"></div>
+    </div>
+
+    <div class="text-right">
+      <div class="text-xl font-bold"
+        x-text="window.money(subscription.plan.price, true, subscription.currency).format({ pattern: `!#`})">
+      </div>
+
+      <div class="mt-1 text-sm text-content-dimmed"
+        x-text="subscription.plan.billing_cycle"></div>
+    </div>
+  </div>
+
+  <div class="py-8 mt-1 border px-14 border-line-dimmed rounded-xl">
+    <div class="flex items-center gap-8 text-sm text-intermediate-content">
+      <div>
+        <i class="text-2xl ti ti-square-rounded-letter-t"></i>
+
+        <div class="mt-2">
+          <div class="flex items-center gap-2">
+            <span class="text-base font-semibold"
+              x-text="subscription.token_credit == null ? 'Unlimited' : Intl.NumberFormat(document.documentElement.lang, { notation: 'compact' }).format(subscription.token_credit)"
+              :title="`${subscription.token_credit == null ? 'Unlimited' : subscription.token_credit } tokens`"></span>
+
+            <template x-if="subscription.token_credit != null">
+              <span
+                class="font-normal text-sm px-1 py-0.5 rounded-lg bg-intermediate"
+                x-text="`${subscription.token_credit_percentage }%`"></span>
+            </template>
+          </div>
+          <span
+            class="text-content-dimmed">{{ p__('label', 'Token credits') }}</span>
+        </div>
+      </div>
+
+      <div>
+        <i class="text-2xl ti ti-photo"></i>
+
+        <div class="mt-2">
+          <div class="flex items-center gap-2">
+            <span class="text-base font-semibold"
+              x-text="subscription.image_credit == null ? 'Unlimited' : Intl.NumberFormat(document.documentElement.lang, { notation: 'compact' }).format(subscription.image_credit)"
+              :title="`${subscription.image_credit == null ? 'Unlimited' : subscription.image_credit } images`"></span>
+
+            <template x-if="subscription.image_credit != null">
+              <span
+                class="font-normal text-sm px-1 py-0.5 rounded-lg bg-intermediate"
+                x-text="`${subscription.image_credit_percentage }%`"></span>
+            </template>
+          </div>
+
+          <span
+            class="text-content-dimmed">{{ p__('label', 'Image credits') }}</span>
+        </div>
+      </div>
+
+      <div>
+        <i class="text-2xl ti ti-volume"></i>
+
+        <div class="mt-2">
+          <div class="flex items-center gap-2">
+            <span class="text-base font-semibold"
+              x-text="subscription.audio_credit == null ? 'Unlimited' : Intl.NumberFormat(document.documentElement.lang, { notation: 'compact' }).format(subscription.audio_credit)"
+              :title="`${subscription.audio_credit == null ? 'Unlimited' : subscription.audio_credit } seconds`"></span>
+
+            <template x-if="subscription.audio_credit != null">
+              <span
+                class="font-normal text-sm px-1 py-0.5 rounded-lg bg-intermediate"
+                x-text="`${subscription.audio_credit_percentage }%`"></span>
+            </template>
+          </div>
+          <span
+            class="text-content-dimmed">{{ p__('label', 'Audio credits') }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 text-sm text-content-dimmed">
+      <template x-if="subscription.reset_credits_at">
+        <div class="mb-2 text-xs">
+          {% set renew_at %}
+          <span
+            x-text="Intl.DateTimeFormat(document.documentElement.lang, { dateStyle: 'full', timeStyle: 'long' }).format(new Date(subscription.reset_credits_at*1000))"></span>.
+          {% endset %}
+
+          {{ __('Usage renews at :date')|replace({':date' : renew_at})|raw }}
+        </div>
+      </template>
+
+      {% if hideCancelButton is not defined %}
+      <template x-if="subscription.plan.price > 0">
+        <button class="font-semibold text-content hover:underline"
+          @click="showCancelModal=true; overlay.open('modal')">
+          {{ p__('button', 'Cancel subscription') }}
+        </button>
+      </template>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
