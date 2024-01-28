@@ -29,6 +29,11 @@ export function authView() {
             this.isProcessing = true;
 
             let data = new FormData(this.$refs.form);
+            const params = new Proxy(new URLSearchParams(window.location.search), {
+                get: (searchParams, prop) => searchParams.get(prop),
+            });
+
+            if (params.customer_id) data.set('customer_id', params.customer_id);
             this.$refs.form.querySelectorAll('input[type="checkbox"]').forEach((element) => {
                 data.append(element.name, element.checked ? '1' : '0');
             });

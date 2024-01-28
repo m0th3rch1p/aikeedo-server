@@ -15,7 +15,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 use User\Infrastructure\SSO\IdentityProviderFactoryInterface;
 
 #[Middleware(ViewMiddleware::class)]
-#[Route(path: '/aws', method: RequestMethod::GET)]
+#[Route(path: '/aws/register', method: RequestMethod::GET)]
 class AwsViewRequestHandler extends AbstractRequestHandler implements
     RequestHandlerInterface
 {
