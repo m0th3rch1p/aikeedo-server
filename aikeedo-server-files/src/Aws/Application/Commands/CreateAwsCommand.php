@@ -14,14 +14,14 @@ use Shared\Infrastructure\CommandBus\Attributes\Handler;
 #[Handler(CreateAwsCommandHandler::class)]
 class CreateAwsCommand
 {
-    public StringValue $customerId;
-    public StringValue $dimension;
+    public string $customerId;
+    public string $dimension;
 
     /**
      * @param StringValue $customerId
      * @param StringValue $dimension
      */
-    public function __construct(StringValue $customerId, StringValue $dimension)
+    public function __construct(string $customerId, string $dimension)
     {
         $this->customerId = $customerId;
         $this->dimension = $dimension;
