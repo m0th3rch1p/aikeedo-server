@@ -66,7 +66,7 @@ class ResolveCustomerRequestHandler extends AwsApi implements
             return new RedirectResponse(uri: '/aws/register?c_id='.$customer['CustomerIdentifier']);
         } catch (MarketplaceMeteringException $e) {
             return new JsonResponse(json_encode([
-                'message' => $e->getMessage()
+                'message' => $e->getAwsErrorMessage()
             ]), StatusCode::BAD_REQUEST);
         }
     }
