@@ -7,6 +7,7 @@ use Aws\Application\Commands\CreateAwsCommand;
 use Aws\Domain\Entities\AwsEntity;
 use Aws\Infrastructure\Services\EntitlementService;
 use Aws\Infrastructure\Services\MeteringService;
+use Aws\MarketplaceEntitlementService\Exception\MarketplaceEntitlementServiceException;
 use Aws\MarketplaceMetering\Exception\MarketplaceMeteringException;
 use Easy\Http\Message\RequestMethod;
 use Easy\Http\Message\StatusCode;
@@ -65,7 +66,7 @@ class ResolveCustomerRequestHandler extends AwsApi implements
 
             // Finish up registration
             return new RedirectResponse(uri: '/aws/register?c_id='.$customer['CustomerIdentifier']);
-        } catch (MarketplaceMeteringException $e) {
+        } catch (MarketplaceMeteringException|MarketplaceEntitlementServiceException $e) {
             return new JsonResponse(json_encode([
                 'message' => $e->getAwsErrorMessage()
             ]), StatusCode::BAD_REQUEST);
