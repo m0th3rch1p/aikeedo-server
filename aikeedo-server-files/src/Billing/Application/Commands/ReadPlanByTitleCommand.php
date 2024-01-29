@@ -9,10 +9,10 @@ use Shared\Infrastructure\CommandBus\Attributes\Handler;
 #[Handler(ReadPlanByTitleCommandHandler::class)]
 class ReadPlanByTitleCommand
 {
-    public Title $title;
+    public string $title;
 
     /**
-     * @param Title $title
+     * @param string $title
      */
     public function __construct(string $title)
     {
