@@ -13,7 +13,7 @@ class EntitlementSqsService
     {
         $credentials = new Credentials(env('AWS_KEY'), env('AWS_SECRET'));
         $this->client = new SqsClient([
-            'region' => 'us-west-2',
+            'region' => 'us-east-1',
             'version' => 'latest',
             'credentials' => $credentials
         ]);
