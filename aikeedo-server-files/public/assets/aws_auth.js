@@ -5975,7 +5975,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     n.prototype = new Error(), n.prototype.name = "InvalidTokenError";
 
     function authView() {
-        module_default.data('auth', function (view) {
+        module_default.data('api', function (view) {
             return {
                 required: [],
                 isProcessing: false,
