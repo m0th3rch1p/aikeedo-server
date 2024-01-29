@@ -48,15 +48,17 @@ class ResolveCustomerRequestHandler extends AwsApi implements
         try {
             $customer = $this->meteringService->resolve($payload->{'x-amzn-marketplace-token'});
             dump($customer);
-            if (!$customer || !isset($customer['CustomerIdentifier'])) {
+            if (($customer->get('CustomerIdentifier') === null) || ($customer->get('ProductCode') === null)) {
                 //Handle Error Redirection
+                return new JsonResponse(json_encode([
+                    'message' => 'something went wrong. Please try again'
+                ]), StatusCode::INTERNAL_SERVER_ERROR);
             }
 
 //            $awsCommand = new CreateAwsCommand($customer['CustomerIdentifier'], $customer['ProductCode']);
 //            $this->dispatcher->dispatch($awsCommand);
 
-            $entitlementResults = $this->entitlementService->getEntitlementByCustomerId($customer['CustomerIdentifier'], $customer['ProductCode']);
-
+            $entitlementResults = $this->entitlementService->getEntitlementByCustomerId($customer->get('CustomerIdentifier'), $customer->get('ProductCode'));
             dump("Entitlement Results", $entitlementResults);
             $entitlements = $entitlementResults['Entitlements'];
 
