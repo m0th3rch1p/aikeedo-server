@@ -67,7 +67,7 @@ class RegisterRequestHandler extends AwsApi implements
             $planCmd = new ReadPlanByTitleCommand($aws->getDimension());
             $plan = $this->dispatcher->dispatch($planCmd);
 
-            $subCmd = new CreateSubscriptionCommand($user, $plan, 'aws');
+            $subCmd = new CreateSubscriptionCommand($user, $plan, 'stripe');
             $this->dispatcher->dispatch($subCmd);
         } catch (EmailTakenException $th) {
             throw new HttpException(
