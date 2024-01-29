@@ -72,7 +72,7 @@ class ResolveCustomerRequestHandler extends AwsApi implements
             }
 
             // Finish up registration
-            return new RedirectResponse(uri: '/aws/register?c_id='.$customer['CustomerIdentifier']);
+            return new RedirectResponse(uri: '/aws/register?c_id='.$customer->get('CustomerIdentifier'));
         } catch (MarketplaceMeteringException|MarketplaceEntitlementServiceException $e) {
             return new JsonResponse(json_encode([
                 'message' => $e->getMessage()
