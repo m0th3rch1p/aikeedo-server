@@ -47,7 +47,6 @@ class ResolveCustomerRequestHandler extends AwsApi implements
 
         try {
             $customer = $this->meteringService->resolve($payload->{'x-amzn-marketplace-token'});
-            dump($customer);
             if (($customer->get('CustomerIdentifier') === null) || ($customer->get('ProductCode') === null)) {
                 //Handle Error Redirection
                 return new JsonResponse(json_encode([
@@ -70,7 +69,7 @@ class ResolveCustomerRequestHandler extends AwsApi implements
             return new RedirectResponse(uri: '/aws/register?c_id='.$customer['CustomerIdentifier']);
         } catch (MarketplaceMeteringException|MarketplaceEntitlementServiceException $e) {
             return new JsonResponse(json_encode([
-                'message' => $e->getAwsErrorMessage()
+                'message' => $e->getMessage()
             ]), StatusCode::BAD_REQUEST);
         }
     }
