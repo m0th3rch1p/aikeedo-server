@@ -62,7 +62,7 @@ class ResolveCustomerRequestHandler extends AwsApi implements
             $awsCustomerCmd = new ReadByCustomerIdAwsCommand($customer->get('CustomerIdentifier'));
             $awsCustomer = $this->dispatcher->dispatch($awsCustomerCmd);
             if (!($awsCustomer)) {
-                $awsCommand = new CreateAwsCommand($customer->get('CustomerIdentifier'), $customer->get('ProductCode'));
+                $awsCommand = new CreateAwsCommand($customer->get('CustomerIdentifier'), $customer->get('Dimension'));
                 $this->dispatcher->dispatch($awsCommand);
             }
 
