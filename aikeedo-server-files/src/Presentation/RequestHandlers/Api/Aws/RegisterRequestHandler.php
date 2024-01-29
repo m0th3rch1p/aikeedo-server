@@ -72,7 +72,7 @@ class RegisterRequestHandler extends AwsApi implements
             $subCmd = new CreateSubscriptionCommand($user, $plan, new PaymentGateway('aws'));
             $response = $this->dispatcher->dispatch($subCmd);
 
-            $activateCmd = new ActivateSubscriptionCommand($user, $response->subscription);
+            $activateCmd = new ActivateSubscriptionCommand($user, $response->subscription->getId());
             $this->dispatcher->dispatch($activateCmd);
         } catch (EmailTakenException $th) {
             throw new HttpException(
