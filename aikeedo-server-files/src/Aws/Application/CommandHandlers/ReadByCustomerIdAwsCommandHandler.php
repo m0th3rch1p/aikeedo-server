@@ -21,6 +21,6 @@ class ReadByCustomerIdAwsCommandHandler
      * @throws AwsNotFoundException
      */
     public function handle (ReadByCustomerIdAwsCommand $cmd) {
-        return $this->service->findAwsByCustomerIdOrFail($cmd->customerId);
+        return $this->service->findAwsByCustomerId($cmd->customerId);
     }
 }

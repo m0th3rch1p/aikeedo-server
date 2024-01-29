@@ -41,7 +41,7 @@ interface AwsRepositoryInterface extends RepositoryInterface
      */
     public function ofId(Id $id): ?AwsEntity;
 
-    public function ofCustomerId(StringValue $customerId): array;
+    public function ofCustomerId(string $customerId): ?AwsEntity;
 
     /**
      * @param SortDirection $dir

@@ -39,9 +39,13 @@ class ReadAwsService
         return $aws;
     }
 
-    public function findAwsByCustomerIdOrFail (StringValue $customerId) {
+    public function findAwsByCustomerId (string $customerId) {
+        return $this->repo->ofCustomerId($customerId);
+    }
+
+    public function findAwsByCustomerIdOrFail (string $customerId) {
         $awsResults = $this->repo->ofCustomerId($customerId);
-        if (!count($awsResults)) throw new AwsNotFoundException($customerId);
+        if (!$awsResults) throw new AwsNotFoundException($customerId);
 
         return $awsResults[0];
     }

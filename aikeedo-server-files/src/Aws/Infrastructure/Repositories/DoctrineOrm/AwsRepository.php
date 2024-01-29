@@ -65,9 +65,9 @@ class AwsRepository extends AbstractRepository implements AwsRepositoryInterface
         return $object instanceof AwsEntity ? $object : null;
     }
 
-    public function ofCustomerId(StringValue $customerId): array
+    public function ofCustomerId(string $customerId): ?AwsEntity
     {
-       return $this->em->getRepository(self::ENTITY_CLASS)->findBy(criteria: ['customer_id' => $customerId]);
+       return $this->em->getRepository(self::ENTITY_CLASS)->findOneBy(criteria: ['customer_id' => $customerId]);
     }
 
     /**

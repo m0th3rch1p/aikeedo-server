@@ -9,12 +9,12 @@ use Shared\Infrastructure\CommandBus\Attributes\Handler;
 #[Handler(className: ReadByCustomerIdAwsCommandHandler::class)]
 class ReadByCustomerIdAwsCommand
 {
-    public StringValue $customerId;
+    public string $customerId;
 
     /**
-     * @param StringValue $customerId
+     * @param string $customerId
      */
-    public function __construct(StringValue $customerId)
+    public function __construct(string $customerId)
     {
         $this->customerId = $customerId;
     }
