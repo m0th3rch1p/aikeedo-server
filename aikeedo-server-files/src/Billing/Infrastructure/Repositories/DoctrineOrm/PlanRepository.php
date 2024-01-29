@@ -73,10 +73,10 @@ class PlanRepository extends AbstractRepository implements PlanRepositoryInterfa
     /**
      * @throws NonUniqueResultException
      */
-    public function ofTitle(Title $title): ?PlanEntity
+    public function ofTitle(string $title): ?PlanEntity
     {
         // TODO: Implement ofTitle() method.
-        return $this->em->getRepository(self::ENTITY_CLASS)->findOneBy([self::ALIAS.'.title' => $title->value]);;
+        return $this->em->getRepository(self::ENTITY_CLASS)->findOneBy([self::ALIAS.'.title' => $title]);;
     }
 
     /**

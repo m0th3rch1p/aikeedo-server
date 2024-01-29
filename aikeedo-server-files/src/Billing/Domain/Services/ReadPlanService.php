@@ -39,7 +39,7 @@ class ReadPlanService
         return $plan;
     }
 
-    public function findPlanByTitleOrFail (Title $title): PlanEntity
+    public function findPlanByTitleOrFail (string $title): PlanEntity
     {
         $plan = $this->repo->ofTitle($title);
 
