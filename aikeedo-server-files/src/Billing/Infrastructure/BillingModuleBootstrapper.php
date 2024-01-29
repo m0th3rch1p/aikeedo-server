@@ -8,6 +8,7 @@ use Application;
 use Billing\Domain\Payments\PaymentGatewayFactoryInterface;
 use Billing\Domain\Repositories\PlanRepositoryInterface;
 use Billing\Domain\Repositories\SubscriptionRepositoryInterface;
+use Billing\Infrastructure\Payments\Gateways\Aws\AwsGateway;
 use Billing\Infrastructure\Payments\Gateways\PayPal\PayPal;
 use Billing\Infrastructure\Payments\Gateways\Stripe\Stripe;
 use Billing\Infrastructure\Payments\PaymentGatewayFactory;
@@ -59,7 +60,8 @@ class BillingModuleBootstrapper implements BootstrapperInterface
     {
         $this->factory
             ->register(Stripe::class)
-            ->register(PayPal::class);
+            ->register(PayPal::class)
+            ->register(AwsGateway::class);
 
         if ($this->stripeSectetKey) {
             $client = new StripeClient($this->stripeSectetKey);
