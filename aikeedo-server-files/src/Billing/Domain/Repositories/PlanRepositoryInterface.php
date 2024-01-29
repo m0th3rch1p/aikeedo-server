@@ -43,7 +43,7 @@ interface PlanRepositoryInterface extends RepositoryInterface
      */
     public function ofId(Id $id): ?PlanEntity;
 
-    public function ofTitle (Title $title): ?PlanEntity;
+    public function ofTitle (Title $title): ?PlanRepositoryInterface;
 
     /**
      * @param BillingCycle $billingCycle 
