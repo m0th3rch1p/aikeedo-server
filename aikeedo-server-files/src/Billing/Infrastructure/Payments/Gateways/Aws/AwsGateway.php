@@ -42,7 +42,9 @@ class AwsGateway implements PaymentGatewayInterface
     public function createSubscription(SubscriptionEntity $subscription, array $params = []): JsonSerializable
     {
         // TODO: Implement createSubscription() method.
-        return new Subscription($subscription);
+        return [
+            'id' => ''
+        ];
     }
 
     public function cancelSubscription(SubscriptionEntity $subscription): void
