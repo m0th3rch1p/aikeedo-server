@@ -69,19 +69,13 @@ class PlanRepository extends AbstractRepository implements PlanRepositoryInterfa
         return $object instanceof PlanEntity ? $object : null;
     }
 
-    public function ofTitle(Title $title): PlanRepositoryInterface
+    public function ofTitle(Title $title): mixed
     {
         // TODO: Implement ofTitle() method.
-        return $this->filter(
-            static function (QueryBuilder $qb) use ($title) {
-                $qb->andWhere(self::ALIAS . '.title = :title')
-                    ->setParameter(
-                        ':title',
-                        $title,
-                        Types::STRING
-                    );
-            }
-        );
+        return $this->query()
+            ->where(self::ENTITY_CLASS.'.title = :title')
+            ->setParameter(':title', $title)
+            ->getQuery()->execute();
     }
 
     /**

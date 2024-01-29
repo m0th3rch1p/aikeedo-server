@@ -39,7 +39,8 @@ class ReadPlanService
         return $plan;
     }
 
-    public function findPlanByTitleOrFail (Title $title): PlanEntity {
+    public function findPlanByTitleOrFail (Title $title): mixed
+    {
         $plan = $this->repo->ofTitle($title);
 
         if (null === $plan) {
