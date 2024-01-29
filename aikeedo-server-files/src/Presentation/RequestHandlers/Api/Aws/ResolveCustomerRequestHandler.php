@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Presentation\RequestHandlers\Api\Aws;
 
 use Aws\Application\Commands\CreateAwsCommand;
+use Aws\Application\Commands\ReadByCustomerIdAwsCommand;
 use Aws\Domain\Entities\AwsEntity;
 use Aws\Infrastructure\Services\EntitlementService;
 use Aws\Infrastructure\Services\MeteringService;
@@ -54,15 +55,20 @@ class ResolveCustomerRequestHandler extends AwsApi implements
                 ]), StatusCode::INTERNAL_SERVER_ERROR);
             }
 
-//            $awsCommand = new CreateAwsCommand($customer['CustomerIdentifier'], $customer['ProductCode']);
-//            $this->dispatcher->dispatch($awsCommand);
-
             $entitlementResults = $this->entitlementService->getEntitlementByCustomerId($customer->get('CustomerIdentifier'), $customer->get('ProductCode'));
-            dump("Entitlement Results", $entitlementResults);
-            $entitlements = $entitlementResults['Entitlements'];
+            $entitlements = $entitlementResults->get('Entitlements');
+
+            //Check if customer id already exists
+            $awsCustomerCmd = new ReadByCustomerIdAwsCommand($customer->get('CustomerIdentifier'));
+            $awsCustomer = $this->dispatcher->dispatch($awsCustomerCmd);
+            if ($awsCustomer) {
+                $awsCommand = new CreateAwsCommand($customer->get('CustomerIdentifier'), $customer->get('ProductCode'));
+                $this->dispatcher->dispatch($awsCommand);
+            }
 
             if (!count($entitlements)) {
                 //Handle not active subscription
+                return new RedirectResponse(uri: '/signup');
             }
 
             // Finish up registration
