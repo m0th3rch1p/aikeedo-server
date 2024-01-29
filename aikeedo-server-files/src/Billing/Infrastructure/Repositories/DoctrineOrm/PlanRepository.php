@@ -73,7 +73,7 @@ class PlanRepository extends AbstractRepository implements PlanRepositoryInterfa
     {
         // TODO: Implement ofTitle() method.
         return $this->em->getRepository(self::ENTITY_CLASS)->findOneBy(criteria: [
-            self::ALIAS.'.title' => $title
+            'title' => $title
         ]);
     }
 
