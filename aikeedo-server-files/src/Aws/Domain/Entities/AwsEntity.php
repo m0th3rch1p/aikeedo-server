@@ -28,7 +28,7 @@ class AwsEntity
     private Id $id;
 
     #[ORM\Column(name: 'customer_id', length: 255)]
-    private string $customerId;
+    private string $customer_id;
 
     #[ORM\Column(name: 'dimension', length: 255)]
     private string $dimension;
@@ -51,7 +51,7 @@ class AwsEntity
     public function __construct(string $customerId, string $dimension)
     {
         $this->id = new Id();
-        $this->customerId = $customerId;
+        $this->customer_id = $customerId;
         $this->dimension = $dimension;
         $this->createdAt = new DateTime();
     }
@@ -64,12 +64,12 @@ class AwsEntity
         return $this->id;
     }
 
-    public function getCustomerId(): StringValue
+    public function getCustomerId(): string
     {
-        return $this->customerId;
+        return $this->customer_id;
     }
 
-    public function getDimension(): StringValue
+    public function getDimension(): string
     {
         return $this->dimension;
     }

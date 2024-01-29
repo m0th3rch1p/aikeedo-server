@@ -43,6 +43,7 @@ class AwsRepository extends AbstractRepository implements AwsRepositoryInterface
      */
     public function add(AwsEntity $aws): self
     {
+
         $this->em->persist($aws);
         return $this;
     }
