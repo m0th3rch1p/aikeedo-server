@@ -14,8 +14,8 @@ class ReadPlanByTitleCommand
     /**
      * @param Title $title
      */
-    public function __construct(Title $title)
+    public function __construct(string $title)
     {
-        $this->title = $title;
+        $this->title = new Title($title);
     }
 }
