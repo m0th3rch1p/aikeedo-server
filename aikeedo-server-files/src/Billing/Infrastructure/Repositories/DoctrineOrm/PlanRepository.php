@@ -8,6 +8,7 @@ use Billing\Domain\ValueObjects\Title;
 use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
 use InvalidArgumentException;
 use Iterator;
@@ -69,10 +70,17 @@ class PlanRepository extends AbstractRepository implements PlanRepositoryInterfa
         return $object instanceof PlanEntity ? $object : null;
     }
 
+    /**
+     * @throws NonUniqueResultException
+     */
     public function ofTitle(Title $title): ?PlanEntity
     {
         // TODO: Implement ofTitle() method.
-        return $this->em->getRepository(self::ENTITY_CLASS)->findOneBy(criteria: array('title' => $title));
+        return $this->em->getRepository(self::ENTITY_CLASS)->createQueryBuilder('p') // Use the entity alias 'p'
+        ->where('p.title = :title') // Use the property name 'title'
+        ->setParameter('title', $title)
+            ->getQuery()
+            ->getOneOrNullResult();;
     }
 
     /**
