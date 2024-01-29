@@ -29,6 +29,7 @@ export function authView() {
             this.isProcessing = true;
 
             let data = new FormData(this.$refs.form);
+
             this.$refs.form.querySelectorAll('input[type="checkbox"]').forEach((element) => {
                 data.append(element.name, element.checked ? '1' : '0');
             });
