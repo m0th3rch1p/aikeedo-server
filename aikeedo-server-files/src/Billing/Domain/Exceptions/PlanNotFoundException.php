@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Billing\Domain\Exceptions;
 
+use Billing\Domain\ValueObjects\Title;
 use Exception;
 use Shared\Domain\ValueObjects\Id;
 use Throwable;
@@ -20,7 +21,7 @@ class PlanNotFoundException extends Exception
      * @return void
      */
     public function __construct(
-        public readonly Id $id,
+        public readonly Id | Title $id,
         int $code = 0,
         ?Throwable $previous = null,
     ) {
