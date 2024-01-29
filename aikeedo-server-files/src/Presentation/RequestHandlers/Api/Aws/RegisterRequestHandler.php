@@ -3,6 +3,7 @@
 namespace Presentation\RequestHandlers\Api\Aws;
 
 use Aws\Application\Commands\ReadByCustomerIdAwsCommand;
+use Billing\Application\Commands\ActivateSubscriptionCommand;
 use Billing\Application\Commands\CreateSubscriptionCommand;
 use Billing\Application\Commands\ReadPlanByTitleCommand;
 use Billing\Domain\ValueObjects\PaymentGateway;
@@ -69,7 +70,10 @@ class RegisterRequestHandler extends AwsApi implements
             $plan = $this->dispatcher->dispatch($planCmd);
 
             $subCmd = new CreateSubscriptionCommand($user, $plan, new PaymentGateway('aws'));
-            $this->dispatcher->dispatch($subCmd);
+            $sub = $this->dispatcher->dispatch($subCmd);
+
+            $activateCmd = new ActivateSubscriptionCommand($user, $sub);
+            $this->dispatcher->dispatch($activateCmd);
         } catch (EmailTakenException $th) {
             throw new HttpException(
                 message: $th->getMessage(),
