@@ -19,6 +19,7 @@ class AwsGateway implements PaymentGatewayInterface
     public function getLookupKey(): string
     {
         // TODO: Implement getLookupKey() method.
+        return 'aws';
     }
 
     public function isEnabled(): bool
