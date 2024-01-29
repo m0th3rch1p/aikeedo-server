@@ -12,7 +12,7 @@ class EntitlementSnsService
 {
     private SnsClient $client;
     private string $topicArn = "arn:aws:sns:us-east-1:287250355862:aws-mp-entitlement-notification-1cothn9ewdy8kts24xi9fre3y";
-    private string $endpoint = "https://sqs.us-east-1.amazonaws.com/436917423698/chatrov2";
+    private string $endpoint = "arn:aws:sqs:us-east-1:436917423698:chatrov2";
     public function __construct()
     {
         $credentials = new Credentials(env('AWS_KEY'), env('AWS_SECRET'));
