@@ -61,7 +61,7 @@ class ResolveCustomerRequestHandler extends AwsApi implements
             //Check if customer id already exists
             $awsCustomerCmd = new ReadByCustomerIdAwsCommand($customer->get('CustomerIdentifier'));
             $awsCustomer = $this->dispatcher->dispatch($awsCustomerCmd);
-            if ($awsCustomer) {
+            if (!($awsCustomer)) {
                 $awsCommand = new CreateAwsCommand($customer->get('CustomerIdentifier'), $customer->get('ProductCode'));
                 $this->dispatcher->dispatch($awsCommand);
             }
