@@ -8,7 +8,7 @@ use Aws\Sqs\SqsClient;
 class EntitlementSqsService
 {
     private SqsClient $client;
-    private string $queueUrl = "https://sqs.us-west-2.amazonaws.com/436917423698/chatrova";
+    private string $queueUrl = "https://sqs.us-east-1.amazonaws.com/436917423698/chatrov2";
     public function __construct()
     {
         $credentials = new Credentials(env('AWS_KEY'), env('AWS_SECRET'));
