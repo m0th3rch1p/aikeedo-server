@@ -78,7 +78,7 @@ class PlanRepository extends AbstractRepository implements PlanRepositoryInterfa
         // TODO: Implement ofTitle() method.
         return $this->em->getRepository(self::ENTITY_CLASS)->createQueryBuilder('p') // Use the entity alias 'p'
         ->where('p.title = :title') // Use the property name 'title'
-        ->setParameter('title', $title)
+        ->setParameter(':title', $title)
             ->getQuery()
             ->getOneOrNullResult();;
     }
