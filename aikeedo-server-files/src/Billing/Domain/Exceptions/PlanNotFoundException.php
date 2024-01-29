@@ -28,7 +28,7 @@ class PlanNotFoundException extends Exception
         parent::__construct(
             sprintf(
                 "Plan with id <%s> doesn't exists!",
-                $id->getValue()
+                $id instanceof Id ? $id->getValue() : $id->value
             ),
             $code,
             $previous
