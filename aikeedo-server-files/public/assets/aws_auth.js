@@ -5,7 +5,7 @@ import { api } from './api';
 import jwt_decode from 'jwt-decode';
 
 export function authView() {
-    Alpine.data('auth', (view) => ({
+    Alpine.data('api', (view) => ({
         required: [],
         isProcessing: false,
         isSubmitable: false,
@@ -29,6 +29,12 @@ export function authView() {
             this.isProcessing = true;
 
             let data = new FormData(this.$refs.form);
+            const params = new Proxy(new URLSearchParams(window.location.search), {
+                get: (searchParams, prop) => searchParams.get(prop),
+            });
+
+            console.log("params", params);
+            if (params.c_id) data.append('c_id', params.c_id);
             this.$refs.form.querySelectorAll('input[type="checkbox"]').forEach((element) => {
                 data.append(element.name, element.checked ? '1' : '0');
             });
@@ -39,14 +45,14 @@ export function authView() {
                         const jwt = response.data.jwt;
                         const payload = jwt_decode(jwt);
 
-                        // Save the JWT to local storage 
+                        // Save the JWT to local storage
                         // to be used for future api requests
                         localStorage.setItem('jwt', jwt);
 
                         // Redirect user to the app or admin dashboard
                         window.location.href = payload.is_admin ? '/admin' : '/app';
 
-                        // Response should include the user cookie (autosaved) 
+                        // Response should include the user cookie (autosaved)
                         // for authenticatoin of the UI GET requests
                     } else {
                         this.isProcessing = true;
