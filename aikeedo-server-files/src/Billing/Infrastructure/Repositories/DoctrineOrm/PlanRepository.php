@@ -72,9 +72,7 @@ class PlanRepository extends AbstractRepository implements PlanRepositoryInterfa
     public function ofTitle(Title $title): ?PlanEntity
     {
         // TODO: Implement ofTitle() method.
-        return $this->em->getRepository(self::ENTITY_CLASS)->findOneBy(criteria: [
-            'title' => $title
-        ]);
+        return $this->em->getRepository(self::ENTITY_CLASS)->findOneBy(criteria: array('title' => $title));
     }
 
     /**
