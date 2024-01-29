@@ -5919,7 +5919,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     var axios$1 = axios;
 
     var api = axios$1.create({
-        baseURL: '/api/auth',
+        baseURL: '/api/aws',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
@@ -5975,7 +5975,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     n.prototype = new Error(), n.prototype.name = "InvalidTokenError";
 
     function authView() {
-        module_default.data('api', function (view) {
+        module_default.data('auth', function (view) {
             return {
                 required: [],
                 isProcessing: false,
