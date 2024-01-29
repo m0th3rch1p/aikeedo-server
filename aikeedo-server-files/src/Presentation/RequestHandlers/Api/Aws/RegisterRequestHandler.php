@@ -61,7 +61,7 @@ class RegisterRequestHandler extends AwsApi implements
             $user = $this->dispatcher->dispatch($cmd);
 
             //Setup User Subscription
-            $awsCmd = new ReadByCustomerIdAwsCommand($payload->customer_id);
+            $awsCmd = new ReadByCustomerIdAwsCommand($payload->c_id);
             $aws = $this->dispatcher->dispatch($awsCmd);
 
             $planCmd = new ReadPlanByTitleCommand($aws->dimension);
