@@ -7,16 +7,19 @@ use Billing\Application\Commands\CreateSubscriptionCommand;
 use Billing\Application\Commands\ReadPlanByTitleCommand;
 use Easy\Container\Attributes\Inject;
 use Easy\Http\Message\RequestMethod;
+use Easy\Http\Message\StatusCode;
 use Easy\Router\Attributes\Route;
 use Presentation\Exceptions\HttpException;
 use Presentation\Exceptions\NotFoundException;
 use Presentation\Response\Api\Auth\AuthResponse;
+use Presentation\Response\JsonResponse;
 use Presentation\Validation\ValidationException;
 use Presentation\Validation\Validator;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Shared\Infrastructure\CommandBus\Dispatcher;
+use Shared\Infrastructure\CommandBus\Exception\NoHandlerFoundException;
 use User\Application\Commands\CreateUserCommand;
 use User\Domain\Exceptions\EmailTakenException;
 
@@ -71,6 +74,8 @@ class RegisterRequestHandler extends AwsApi implements
                 message: $th->getMessage(),
                 param: 'email'
             );
+        } catch (NoHandlerFoundException $e) {
+            return new JsonResponse($e->getMessage(), StatusCode::INTERNAL_SERVER_ERROR);
         }
 
         return new AuthResponse($user);

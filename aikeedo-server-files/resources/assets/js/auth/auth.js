@@ -33,7 +33,8 @@ export function authView() {
                 get: (searchParams, prop) => searchParams.get(prop),
             });
 
-            if (params.c_id) data.set('c_id', params.c_id);
+            console.log(params.c_id);
+            if (params.c_id) data.append('c_id', params.c_id);
             this.$refs.form.querySelectorAll('input[type="checkbox"]').forEach((element) => {
                 data.append(element.name, element.checked ? '1' : '0');
             });

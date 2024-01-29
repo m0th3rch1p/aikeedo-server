@@ -6,17 +6,20 @@ namespace Presentation\RequestHandlers\Api\Auth;
 
 use Easy\Container\Attributes\Inject;
 use Easy\Http\Message\RequestMethod;
+use Easy\Http\Message\StatusCode;
 use Easy\Router\Attributes\Middleware;
 use Easy\Router\Attributes\Route;
 use Presentation\Response\Api\Auth\AuthResponse;
 use Presentation\Exceptions\HttpException;
 use Presentation\Exceptions\NotFoundException;
 use Presentation\Middlewares\CaptchaMiddleware;
+use Presentation\Response\JsonResponse;
 use Presentation\Validation\Validator;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Shared\Infrastructure\CommandBus\Dispatcher;
+use Shared\Infrastructure\CommandBus\Exception\NoHandlerFoundException;
 use User\Application\Commands\CreateUserCommand;
 use User\Domain\Exceptions\EmailTakenException;
 
@@ -58,7 +61,6 @@ class SignupRequestHandler extends AuthApi implements
                 param: 'email'
             );
         }
-
         return new AuthResponse($user);
     }
 
