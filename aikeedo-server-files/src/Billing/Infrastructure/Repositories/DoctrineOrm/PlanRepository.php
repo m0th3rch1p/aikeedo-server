@@ -9,6 +9,7 @@ use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use InvalidArgumentException;
 use Iterator;
@@ -76,13 +77,15 @@ class PlanRepository extends AbstractRepository implements PlanRepositoryInterfa
     public function ofTitle(Title $title): ?PlanEntity
     {
         // TODO: Implement ofTitle() method.
-        $object = $this->query()
-            ->where(self::ALIAS . '.title.value = :title')
-            ->setParameter(':title', $title->value)
-            ->getQuery()
-            ->getSingleResult();
-
-        return $object instanceof PlanEntity ? $object : null;
+        try {
+            return $this->query()
+                ->where(self::ALIAS . '.title.value = :title')
+                ->setParameter(':title', $title->value)
+                ->getQuery()
+                ->getSingleResult();
+        } catch (NoResultException $e) {
+            return null;
+        }
     }
 
     /**
