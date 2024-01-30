@@ -11,7 +11,7 @@ use Psr\Http\Message\ServerRequestInterface;
 class EntitlementSnsService
 {
     private SnsClient $client;
-    private string $httpUrl = "https://2965-196-202-162-46.ngrok-free.app/webhook";
+    private string $httpUrl = " https://223c-196-202-172-34.ngrok-free.app/webhook";
     private string $topicArn = "arn:aws:sns:us-east-1:287250355862:aws-mp-entitlement-notification-1cothn9ewdy8kts24xi9fre3y";
     private string $endpoint = "arn:aws:sqs:us-east-1:436917423698:chatrov2";
     public function __construct()
