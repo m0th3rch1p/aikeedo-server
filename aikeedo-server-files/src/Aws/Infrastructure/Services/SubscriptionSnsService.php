@@ -9,7 +9,7 @@ class SubscriptionSnsService
 {
     private SnsClient $client;
 
-    private string $httpUrl = "https://4e03-196-202-162-46.ngrok-free.app/webhook";
+    private string $httpUrl = "https://13c8-196-202-172-34.ngrok-free.app/webhook/subscription";
 
     private string $topicArn = "arn:aws:sns:us-east-1:287250355862:aws-mp-subscription-notification-1cothn9ewdy8kts24xi9fre3y";
     private string $endpoint = "arn:aws:sqs:us-east-1:436917423698:chatrov2";
@@ -23,16 +23,16 @@ class SubscriptionSnsService
             'credentials' => $credentials
         ]);
 
-//        $this->client->subscribe([
-//            'Protocol' => 'sqs',
-//            'Endpoint' => $this->endpoint,
-//            'TopicArn' => $this->topicArn,
-//        ]);
-
         $this->client->subscribe([
-            'Protocol' => 'https',
-            'Endpoint' => $this->httpUrl,
+            'Protocol' => 'sqs',
+            'Endpoint' => $this->endpoint,
             'TopicArn' => $this->topicArn,
         ]);
+//
+//        $this->client->subscribe([
+//            'Protocol' => 'https',
+//            'Endpoint' => $this->httpUrl,
+//            'TopicArn' => $this->topicArn,
+//        ]);
     }
 }
