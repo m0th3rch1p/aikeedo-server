@@ -37,6 +37,8 @@ class AwsGateway implements PaymentGatewayInterface
     public function getLogoImgSrc(): string
     {
         // TODO: Implement getLogoImgSrc() method.
+        $data = file_get_contents(__DIR__ . '/logo.svg');
+        return 'data:image/svg+xml;base64,' . base64_encode($data);
     }
 
     public function createSubscription(SubscriptionEntity $subscription, array $params = []): JsonSerializable
