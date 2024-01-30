@@ -58,18 +58,19 @@ class ResolveCustomerRequestHandler extends AwsApi implements
             $entitlementResults = $this->entitlementService->getEntitlementByCustomerId($customer->get('CustomerIdentifier'), $customer->get('ProductCode'));
             $entitlements = $entitlementResults->get('Entitlements');
 
-            //Check if customer id already exists
-            $awsCustomerCmd = new ReadByCustomerIdAwsCommand($customer->get('CustomerIdentifier'));
-            $awsCustomer = $this->dispatcher->dispatch($awsCustomerCmd);
-            if (!($awsCustomer)) {
-                $awsCommand = new CreateAwsCommand($customer->get('CustomerIdentifier'), $customer->get('Dimension'));
-                $this->dispatcher->dispatch($awsCommand);
-            }
-
             if (!count($entitlements)) {
                 //Handle not active subscription
                 return new RedirectResponse(uri: '/signup');
             }
+
+            //Check if customer id already exists
+            $awsCustomerCmd = new ReadByCustomerIdAwsCommand($customer->get('CustomerIdentifier'));
+            $awsCustomer = $this->dispatcher->dispatch($awsCustomerCmd);
+            if (!($awsCustomer)) {
+                $awsCommand = new CreateAwsCommand($customer->get('CustomerIdentifier'), $entitlements[0]['Dimension']);
+                $this->dispatcher->dispatch($awsCommand);
+            }
+
 
             // Finish up registration
             return new RedirectResponse(uri: '/aws/register?c_id='.$customer->get('CustomerIdentifier'));
