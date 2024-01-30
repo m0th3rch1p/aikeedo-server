@@ -23,17 +23,17 @@ class EntitlementSnsService
             'credentials' => $credentials
         ]);
 
-        $this->client->subscribe([
-            'Protocol' => 'sqs',
-            'Endpoint' => $this->endpoint,
-            'TopicArn' => $this->topicArn,
-        ]);
-
 //        $this->client->subscribe([
-//            'Protocol' => 'https',
-//            'Endpoint' => $this->httpUrl,
+//            'Protocol' => 'sqs',
+//            'Endpoint' => $this->endpoint,
 //            'TopicArn' => $this->topicArn,
 //        ]);
+
+        $this->client->subscribe([
+            'Protocol' => 'https',
+            'Endpoint' => $this->httpUrl,
+            'TopicArn' => $this->topicArn,
+        ]);
     }
 
     public function handleNotifications (ServerRequestInterface $request) {
