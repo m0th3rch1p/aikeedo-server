@@ -41,7 +41,6 @@ class ResolveCustomerRequestHandler extends AwsApi implements
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        dump($request->getParsedBody());
         // TODO: Implement handle() method.
         $this->validateRequest($request);
 
