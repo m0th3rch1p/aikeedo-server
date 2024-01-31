@@ -6,12 +6,12 @@ namespace Aws\Domain\Entities;
 
 use DateTime;
 use DateTimeInterface;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Selectable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Shared\Domain\ValueObjects\Id;
 use Shared\Domain\ValueObjects\StringValue;
-use Stripe\Collection;
 use User\Domain\Entities\UserEntity;
 
 /**
@@ -39,15 +39,15 @@ class AwsEntity
     #[ORM\JoinColumn(name: 'user_id', nullable: true)]
     private UserEntity $user;
 
-    #[ORM\OneToMany(targetEntity: AwsUsageEntity::class, mappedBy: 'aws_usage', cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'aws_usage', targetEntity: AwsUsageEntity::class, cascade: ['persist', 'remove'])]
     private Collection&Selectable $awsUsages;
 
     /** Creation date and time of the entity */
-    #[ORM\Column(type: 'datetime', name: 'created_at')]
+    #[ORM\Column(name: 'created_at', type: 'datetime')]
     private DateTimeInterface $createdAt;
 
     /** The date and time when the entity was last modified. */
-    #[ORM\Column(type: 'datetime', name: 'updated_at', nullable: true)]
+    #[ORM\Column(name: 'updated_at', type: 'datetime', nullable: true)]
     private ?DateTimeInterface $updatedAt = null;
 
     /**
