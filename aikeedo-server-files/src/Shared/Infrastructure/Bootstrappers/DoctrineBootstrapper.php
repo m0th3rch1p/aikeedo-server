@@ -91,7 +91,7 @@ class DoctrineBootstrapper implements BootstrapperInterface
                 $connection = $this->getSqliteConnection();
                 break;
             default:
-                throw new Exception('Value of the DB_DRIVER env var is not valid.');
+                throw new Exception('Value of the DB_DRIVER .env var is not valid.');
         }
 
         return $connection;

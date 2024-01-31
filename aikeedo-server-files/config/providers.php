@@ -15,7 +15,7 @@ return [
     LoggerServiceProvider::class,
 
     /** Define implementations for cache interfaces (PSR-6, PSR-16)  */
-    CacheServiceProvider::class,
+//    CacheServiceProvider::class,
 
     /** Define implementations for the event dispatcher interfaces (PSR-14) */
     EventServiceProvider::class,

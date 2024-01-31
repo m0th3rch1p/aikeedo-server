@@ -18,7 +18,7 @@ var/**/*
 # Code coverage output files
 coverage
 
-# .env files
+# ..env files
 .env*
 !.env.example
 

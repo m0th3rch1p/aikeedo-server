@@ -242,11 +242,11 @@ class InstallerRequestHandler implements RequestHandlerInterface
 
     private function setupEnvironment(object $payload)
     {
-        // Save env file
-        $path = $this->rootDir . '/.env';
+        // Save .env file
+        $path = $this->rootDir . '/..env';
         if (!file_exists($path)) {
-            // Create a new .env file
-            copy($this->rootDir . '/.env.example', $path);
+            // Create a new ..env file
+            copy($this->rootDir . '/..env.example', $path);
         }
 
         $menv = new Env($path);

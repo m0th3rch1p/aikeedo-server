@@ -5354,7 +5354,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
       }
     };
   }() :
-  // Non standard browser env (web workers, react-native) lack needed support.
+  // Non standard browser .env (web workers, react-native) lack needed support.
   function nonStandardBrowserEnv() {
     return {
       write: function write() {},
@@ -11841,7 +11841,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
           }, ANNOTATION_USE_SITE, ANNOTATION]
         }, STRING, {
           className: 'meta',
-          begin: "^#!/usr/bin/env",
+          begin: "^#!/usr/bin/.env",
           end: '$',
           illegal: '\n'
         }, KOTLIN_NUMBER_MODE]
@@ -13272,7 +13272,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
           // Primitive functions
           // These are all the functions in `base` that are implemented as a
           // `.Primitive`, minus those functions that are also keywords.
-          + 'abs acos acosh all any anyNA Arg as.call as.character ' + 'as.complex as.double as.environment as.integer as.logical ' + 'as.null.default as.numeric as.raw asin asinh atan atanh attr ' + 'attributes baseenv browser c call ceiling class Conj cos cosh ' + 'cospi cummax cummin cumprod cumsum digamma dim dimnames ' + 'emptyenv exp expression floor forceAndCall gamma gc.time ' + 'globalenv Im interactive invisible is.array is.atomic is.call ' + 'is.character is.complex is.double is.environment is.expression ' + 'is.finite is.function is.infinite is.integer is.language ' + 'is.list is.logical is.matrix is.na is.name is.nan is.null ' + 'is.numeric is.object is.pairlist is.raw is.recursive is.single ' + 'is.symbol lazyLoadDBfetch length lgamma list log max min ' + 'missing Mod names nargs nzchar oldClass on.exit pos.to.env ' + 'proc.time prod quote range Re rep retracemem return round ' + 'seq_along seq_len seq.int sign signif sin sinh sinpi sqrt ' + 'standardGeneric substitute sum switch tan tanh tanpi tracemem ' + 'trigamma trunc unclass untracemem UseMethod xtfrm'
+          + 'abs acos acosh all any anyNA Arg as.call as.character ' + 'as.complex as.double as.environment as.integer as.logical ' + 'as.null.default as.numeric as.raw asin asinh atan atanh attr ' + 'attributes baseenv browser c call ceiling class Conj cos cosh ' + 'cospi cummax cummin cumprod cumsum digamma dim dimnames ' + 'emptyenv exp expression floor forceAndCall gamma gc.time ' + 'globalenv Im interactive invisible is.array is.atomic is.call ' + 'is.character is.complex is.double is.environment is.expression ' + 'is.finite is.function is.infinite is.integer is.language ' + 'is.list is.logical is.matrix is.na is.name is.nan is.null ' + 'is.numeric is.object is.pairlist is.raw is.recursive is.single ' + 'is.symbol lazyLoadDBfetch length lgamma list log max min ' + 'missing Mod names nargs nzchar oldClass on.exit pos.to..env ' + 'proc.time prod quote range Re rep retracemem return round ' + 'seq_along seq_len seq.int sign signif sin sinh sinpi sqrt ' + 'standardGeneric substitute sum switch tan tanh tanpi tracemem ' + 'trigamma trunc unclass untracemem UseMethod xtfrm'
         },
         contains: [
         // Roxygen comments
@@ -13446,7 +13446,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
       // traits
       "Copy", "Send", "Sized", "Sync", "Drop", "Fn", "FnMut", "FnOnce", "ToOwned", "Clone", "Debug", "PartialEq", "PartialOrd", "Eq", "Ord", "AsRef", "AsMut", "Into", "From", "Default", "Iterator", "Extend", "IntoIterator", "DoubleEndedIterator", "ExactSizeIterator", "SliceConcatExt", "ToString",
       // macros
-      "assert!", "assert_eq!", "bitflags!", "bytes!", "cfg!", "col!", "concat!", "concat_idents!", "debug_assert!", "debug_assert_eq!", "env!", "panic!", "file!", "format!", "format_args!", "include_bytes!", "include_str!", "line!", "local_data_key!", "module_path!", "option_env!", "print!", "println!", "select!", "stringify!", "try!", "unimplemented!", "unreachable!", "vec!", "write!", "writeln!", "macro_rules!", "assert_ne!", "debug_assert_ne!"];
+      "assert!", "assert_eq!", "bitflags!", "bytes!", "cfg!", "col!", "concat!", "concat_idents!", "debug_assert!", "debug_assert_eq!", ".env!", "panic!", "file!", "format!", "format_args!", "include_bytes!", "include_str!", "line!", "local_data_key!", "module_path!", "option_env!", "print!", "println!", "select!", "stringify!", "try!", "unimplemented!", "unreachable!", "vec!", "write!", "writeln!", "macro_rules!", "assert_ne!", "debug_assert_ne!"];
       const TYPES = ["i8", "i16", "i32", "i64", "i128", "isize", "u8", "u16", "u32", "u64", "u128", "usize", "f32", "f64", "str", "char", "bool", "Box", "Option", "Result", "String", "Vec"];
       return {
         name: 'Rust',

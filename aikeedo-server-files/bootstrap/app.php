@@ -22,8 +22,8 @@ require __DIR__ . '/autoload.php';
 
 /** @var Container $container */
 $container = require 'container.php';
-$container->get(\Aws\Infrastructure\Services\EntitlementSnsService::class);
-$container->get(\Aws\Infrastructure\Services\SubscriptionSnsService::class);
+//$container->get(\Aws\Infrastructure\Services\EntitlementSnsService::class);
+//$container->get(\Aws\Infrastructure\Services\SubscriptionSnsService::class);
 
 /** @var (ServiceProviderInterface|string)[] $providers */
 $providers = $container->get('providers');

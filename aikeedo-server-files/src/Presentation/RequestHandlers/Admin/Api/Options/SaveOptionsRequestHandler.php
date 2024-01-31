@@ -38,7 +38,7 @@ implements RequestHandlerInterface
     {
         $payload = (object) $request->getParsedBody();
 
-        $path = $this->rootDir . '/.env';
+        $path = $this->rootDir . '/..env';
         $menv = new Env($path);
 
         if (isset($payload->env->DEBUG)) {

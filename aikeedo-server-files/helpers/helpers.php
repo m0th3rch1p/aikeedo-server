@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 if (!function_exists('env')) {
     /**
-     * Get env value
+     * Get .env value
      *
-     * @param string $name Name of the env variable
+     * @param string $name Name of the .env variable
      * @param mixed $fallback Fallback value to return if variable not found
      * @return mixed
      */
