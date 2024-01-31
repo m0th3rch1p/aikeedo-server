@@ -27,17 +27,22 @@ class AwsUsageRepository extends AbstractRepository implements  AwsUsageReposito
         return $this;
     }
 
-    public function fetchBatchRecords()
+    public function fetchBatchRecords(): array
     {
         // TODO: Implement fetchBatchRecords() method.
         $interval = DateInterval::createFromDateString('1 hour');
         return $this->query()
-            ->select(self::ALIAS.'.dimension', self::ALIAS.'.customerId')
-            ->where(self::ALIAS.'.createdAt <= :created_at')
-            ->andWhere(self::ALIAS.'.createdAt >= :last_hr')
-            ->setParameter('created_at', new \DateTime())
-            ->setParameter('last_hr', date_sub(new \DateTime(), $interval))
+              ->select(self::ALIAS.'.dimension', self::ALIAS.'.customerId', self::ALIAS.'.quantity', self::ALIAS.'.tag')
+//            ->where(self::ALIAS.'.createdAt <= :created_at')
+//            ->andWhere(self::ALIAS.'.createdAt >= :last_hr')
+//            ->setParameter('created_at', new \DateTime())
+//            ->setParameter('last_hr', date_sub(new \DateTime(), $interval))
             ->getQuery()
             ->getResult();
+    }
+
+    public static function getAlias (): string
+    {
+        return self::ALIAS;
     }
 }

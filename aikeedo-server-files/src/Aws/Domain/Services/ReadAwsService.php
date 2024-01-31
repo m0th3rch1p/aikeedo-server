@@ -33,7 +33,7 @@ class ReadAwsService
     {
         $aws = $this->repo->ofId($id);
         if (null === $aws) {
-            throw new AwsNotFoundException($id);
+            throw new AwsNotFoundException($id->getValue()->toString());
         }
 
         return $aws;
@@ -43,6 +43,9 @@ class ReadAwsService
         return $this->repo->ofCustomerId($customerId);
     }
 
+    /**
+     * @throws AwsNotFoundException
+     */
     public function findAwsByCustomerIdOrFail (string $customerId) {
         $awsResults = $this->repo->ofCustomerId($customerId);
         if (!$awsResults) throw new AwsNotFoundException($customerId);
@@ -50,4 +53,7 @@ class ReadAwsService
         return $awsResults[0];
     }
 
+    public function fetchAll () {
+        return $this->repo->fetchAll();
+    }
 }

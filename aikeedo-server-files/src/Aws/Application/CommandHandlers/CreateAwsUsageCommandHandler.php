@@ -30,8 +30,12 @@ class CreateAwsUsageCommandHandler
         }
 
         $customer_id = $cmd->user->getAws()->getCustomerId();
+        $plan = $cmd->user->getActiveSubscription()->getPlan();
+        $allocatedAudio = $plan->getAudioCredit()->value;
+        $allocatedImages = $plan->getImageCredit()->value;
+        $allocatedToken = $plan->getTokenCredit()->value;
         $dimension = $cmd->user->getActiveSubscription()->getPlan()->getTitle()->value;
         $quantity = $cmd->usage->value;
-        $this->service->add(new AwsUsageEntity($customer_id, $dimension, $this->tag, $quantity));
+        $this->service->add(new AwsUsageEntity($customer_id, $dimension, $allocatedAudio, $allocatedToken, $allocatedImages, $this->tag, $quantity));
     }
 }

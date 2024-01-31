@@ -26,6 +26,15 @@ class AwsUsageEntity
     #[ORM\Column(name: 'dimension', length: 255)]
     private string $dimension;
 
+    #[ORM\Column(name: 'allocated_audio', type: Types::INTEGER, length: 255)]
+    private int $allocatedAudio;
+
+    #[ORM\Column(name: 'allocated_image', type: Types::INTEGER, length: 255)]
+    private int $allocatedImage;
+
+    #[ORM\Column(name: 'allocated_token', type: Types::INTEGER, length: 255)]
+    private int $allocatedToken;
+
     #[ORM\Column(name: 'tag', length: 255)]
     private string $tag;
 
@@ -38,20 +47,23 @@ class AwsUsageEntity
 
     /** Creation date and time of the entity */
     #[ORM\Column(type: 'datetime', name: 'created_at')]
-    private DateTimeInterface $createdAt;
+    private \DateTimeInterface $createdAt;
 
     /** The date and time when the entity was last modified. */
     #[ORM\Column(type: 'datetime', name: 'updated_at', nullable: true)]
-    private ?DateTimeInterface $updatedAt = null;
+    private ?\DateTimeInterface $updatedAt = null;
 
     /**
      * @return void
      */
-    public function __construct(string $customerId, string $dimension, string $tag,  int $quantity)
+    public function __construct(string $customerId, string $dimension, int $allocatedAudio, int $allocatedImage, int $allocatedToken, string $tag,  int $quantity)
     {
         $this->id = new Id();
         $this->customerId = $customerId;
         $this->dimension = $dimension;
+        $this->allocatedImage = $allocatedImage;
+        $this->allocatedAudio = $allocatedAudio;
+        $this->allocatedToken = $allocatedToken;
         $this->tag = $tag;
         $this->quantity = $quantity;
         $this->createdAt = new DateTime();

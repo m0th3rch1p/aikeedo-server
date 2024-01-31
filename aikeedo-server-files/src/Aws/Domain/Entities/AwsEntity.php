@@ -39,8 +39,8 @@ class AwsEntity
     #[ORM\JoinColumn(name: 'user_id', nullable: true)]
     private UserEntity $user;
 
-    #[ORM\OneToMany(mappedBy: 'aws_usage', targetEntity: AwsUsageEntity::class, cascade: ['persist', 'remove'])]
-    private Collection&Selectable $awsUsages;
+    #[ORM\OneToMany(mappedBy: 'aws', targetEntity: AwsUsageEntity::class, cascade: ['persist', 'remove'])]
+    private Collection&Selectable $awsUsage;
 
     /** Creation date and time of the entity */
     #[ORM\Column(name: 'created_at', type: 'datetime')]
@@ -104,6 +104,11 @@ class AwsEntity
     public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updatedAt;
+    }
+
+    public function getAwsUsages(): Selectable&Collection
+    {
+        return $this->awsUsage;
     }
 
     /**

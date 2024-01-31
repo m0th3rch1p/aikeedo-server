@@ -7,8 +7,11 @@ namespace Aws\Infrastructure\Repositories\DoctrineOrm;
 use Aws\Domain\Entities\AwsEntity;
 use Aws\Domain\Repositories\AwsRepositoryInterface;
 use Aws\Domain\ValueObjects\SortParameter;
+use DateInterval;
+use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query\Expr\Join;
 use InvalidArgumentException;
 use Iterator;
 use RuntimeException;
@@ -46,6 +49,22 @@ class AwsRepository extends AbstractRepository implements AwsRepositoryInterface
 
         $this->em->persist($aws);
         return $this;
+    }
+
+    public function fetchAll ()
+    {
+        $now = new DateTimeImmutable();
+        // Calculate one hour before current time
+        $oneHourAgo = $now->modify('-1 hour');
+        return $this->query()
+           ->select('a.customer_id', 'au.dimension', 'au.dimension', 'au.allocatedAudio', 'au.allocatedImage', 'au.allocatedToken', 'au.tag', 'au.quantity', 'au.createdAt')
+           ->where('au.createdAt > :created_at')
+           ->setParameter('created_at', $oneHourAgo)
+           ->from(AwsEntity::class, 'a')
+           ->leftJoin('a.awsUsage', 'au', Join::WITH, $this->query()->expr()->eq('a.id.value', 'au.aws'))
+           ->getQuery()
+           ->getResult();
+
     }
 
     /**

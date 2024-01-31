@@ -20,7 +20,7 @@ class AwsNotFoundException extends Exception
      * @return void
      */
     public function __construct(
-        public readonly Id $id,
+        public readonly string $id,
         int $code = 0,
         ?Throwable $previous = null,
     ) {
