@@ -27,12 +27,12 @@ class SendBatchRequestsCommand extends Command {
             $records = $this->awsUsageService->fetchBatchRecords();
             $output->writeln(json_encode($records));
 
-            if (count($records)) {
-                //Handle Sending 0 Quantity for all
-            } else {
-                $this->meteringService->batchUsageRecords($records);
-            }
-            $output->writeln('Batch Records Sent Successfully');
+//            if (count($records)) {
+//                //Handle Sending 0 Quantity for all
+//            } else {
+//                $this->meteringService->batchUsageRecords($records);
+//            }
+//            $output->writeln('Batch Records Sent Successfully');
         } catch (Exception $e) {
             $output->writeln($e->getTraceAsString());
         }

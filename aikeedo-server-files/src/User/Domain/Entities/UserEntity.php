@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace User\Domain\Entities;
 
+use Aws\Domain\Entities\AwsEntity;
 use Billing\Domain\Entities\PlanEntity;
 use Billing\Domain\Entities\SubscriptionEntity;
 use Billing\Domain\ValueObjects\BillingCycle;
@@ -104,6 +105,10 @@ class UserEntity
     #[ORM\OneToOne(targetEntity: SubscriptionEntity::class)]
     #[ORM\JoinColumn(name: 'active_subscription_id', nullable: true)]
     private ?SubscriptionEntity $activeSubscription = null;
+
+    #[ORM\OneToOne(targetEntity: AwsEntity::class)]
+    #[ORM\JoinColumn(name: 'aws_id', nullable: true)]
+    private ?AwsEntity $aws = null;
 
     public function __construct(
         Email $email,
@@ -659,5 +664,15 @@ class UserEntity
         }
 
         return new Count($count);
+    }
+
+    public function getAws(): ?AwsEntity
+    {
+        return $this->aws;
+    }
+
+    public function setAws(AwsEntity $aws): void
+    {
+        $this->aws = $aws;
     }
 }

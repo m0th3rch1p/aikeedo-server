@@ -29,8 +29,12 @@ class AwsUsageEntity
     #[ORM\Column(name: 'tag', length: 255)]
     private string $tag;
 
-    #[ORM\Column(name: 'usage', type: Types::INTEGER, length: 255)]
+    #[ORM\Column(name: 'quantity', type: Types::INTEGER, length: 255)]
     private int $quantity;
+
+    #[ORM\ManyToOne(targetEntity: AwsEntity::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: 'aws_id')]
+    private AwsEntity $aws;
 
     /** Creation date and time of the entity */
     #[ORM\Column(type: 'datetime', name: 'created_at')]
@@ -85,4 +89,15 @@ class AwsUsageEntity
     {
         $this->updatedAt = new DateTime();
     }
+
+    public function getAws(): AwsEntity
+    {
+        return $this->aws;
+    }
+
+    public function setAws(AwsEntity $aws): void
+    {
+        $this->aws = $aws;
+    }
+
 }

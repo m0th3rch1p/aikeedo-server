@@ -3,6 +3,8 @@
 namespace Presentation\RequestHandlers\Api\Aws;
 
 use Aws\Application\Commands\ReadByCustomerIdAwsCommand;
+use Aws\Application\Commands\UpdateAwsCommand;
+use Aws\Domain\Entities\AwsEntity;
 use Billing\Application\Commands\ActivateSubscriptionCommand;
 use Billing\Application\Commands\CreateSubscriptionCommand;
 use Billing\Application\Commands\ReadPlanByTitleCommand;
@@ -60,14 +62,19 @@ class RegisterRequestHandler extends AwsApi implements
         $cmd->setPassword($payload->password);
 
         try {
-            $user = $this->dispatcher->dispatch($cmd);
-
             //Setup User Subscription
             $awsCmd = new ReadByCustomerIdAwsCommand($payload->c_id);
             $aws = $this->dispatcher->dispatch($awsCmd);
 
             $planCmd = new ReadPlanByTitleCommand($aws->getDimension());
             $plan = $this->dispatcher->dispatch($planCmd);
+
+            $user = $this->dispatcher->dispatch($cmd);
+
+            //Set Aws Entity to User
+            $aws->setUser($user);
+            $updateAwsCmd = new UpdateAwsCommand($aws);
+            $this->dispatcher->dispatch($updateAwsCmd);
 
             $subCmd = new CreateSubscriptionCommand($user, $plan, new PaymentGateway('aws'));
             $response = $this->dispatcher->dispatch($subCmd);

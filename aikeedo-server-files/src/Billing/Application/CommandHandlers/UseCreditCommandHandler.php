@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Billing\Application\CommandHandlers;
 
+use Aws\Application\Commands\CreateAwsUsageCommand;
 use Billing\Application\Commands\UseCreditCommand;
 use Exception;
+use Shared\Infrastructure\CommandBus\Dispatcher;
 use User\Domain\Repositories\UserRepositoryInterface;
 
 /** @package Billing\Application\CommandHandlers */
@@ -16,6 +18,7 @@ class UseCreditCommandHandler
      * @return void 
      */
     public function __construct(
+        private Dispatcher $dispatcher,
         private UserRepositoryInterface $repo
     ) {
     }
@@ -31,6 +34,9 @@ class UseCreditCommandHandler
 
         foreach ($cmd->usages as $usage) {
             $user->useCredit($usage);
+
+            $awsUsageCmd = new CreateAwsUsageCommand($user, $usage);
+            $this->dispatcher->dispatch($awsUsageCmd);
         }
 
 
