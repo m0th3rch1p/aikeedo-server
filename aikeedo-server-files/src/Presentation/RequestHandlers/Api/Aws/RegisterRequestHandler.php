@@ -25,6 +25,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Shared\Infrastructure\CommandBus\Dispatcher;
 use Shared\Infrastructure\CommandBus\Exception\NoHandlerFoundException;
 use User\Application\Commands\CreateUserCommand;
+use User\Application\Commands\UpdateUserCommand;
 use User\Domain\Exceptions\EmailTakenException;
 
 #[Route(path: '/register', method: RequestMethod::POST)]
@@ -71,9 +72,14 @@ class RegisterRequestHandler extends AwsApi implements
 
             $user = $this->dispatcher->dispatch($cmd);
 
+            //Set User Entity To User
+            $user->setAws($aws);
+            $updateUserCmd = new UpdateUserCommand($user);
+            $this->dispatcher->dispatch($updateUserCmd);
+
             //Set Aws Entity to User
             $aws->setUser($user);
-            $updateAwsCmd = new UpdateAwsCommand($aws);
+            $updateAwsCmd = new UpdateAwsCommand($aws->getId()->getValue());
             $this->dispatcher->dispatch($updateAwsCmd);
 
             $subCmd = new CreateSubscriptionCommand($user, $plan, new PaymentGateway('aws'));
