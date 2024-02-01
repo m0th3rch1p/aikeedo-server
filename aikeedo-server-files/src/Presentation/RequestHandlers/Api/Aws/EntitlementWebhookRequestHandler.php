@@ -7,11 +7,13 @@ use Aws\Infrastructure\Services\EntitlementService;
 use Billing\Application\Commands\ActivateSubscriptionCommand;
 use Billing\Application\Commands\CancelSubscriptionCommand;
 use Billing\Application\Commands\CreateSubscriptionCommand;
+use Billing\Application\Commands\ReadPlanByTitleCommand;
 use Billing\Application\Commands\ReadPlanCommand;
 use Easy\Http\Message\RequestMethod;
 use Easy\Router\Attributes\Route;
 use PDepend\Util\Log;
 use Presentation\Response\EmptyResponse;
+use Presentation\Response\RedirectResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -28,9 +30,10 @@ class EntitlementWebhookRequestHandler extends AwsApi implements  RequestHandler
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $data = json_decode($request->getBody()->getContents());
+        $this->logger->info('Entitlement SNS Notification');
+        $this->logger->debug(json_encode($data));
         switch ($data->Type) {
             case 'SubscriptionConfirmation':
-                $this->logger->info('Entitlement Subscription Confirmation Confirmed');
                 $listResult = \Aws\Infrastructure\Services\EntitlementSnsService::listSubscriptions();
                 $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
                 $found = in_array(\Aws\Infrastructure\Services\EntitlementSnsService::getHttpUrl(), $names);
@@ -39,49 +42,31 @@ class EntitlementWebhookRequestHandler extends AwsApi implements  RequestHandler
                     \Aws\Infrastructure\Services\EntitlementSnsService::confirmSubscription($data->Token, $data->TopicArn);
                 }
                 break;
-            case 'EntitlementNotification':
-                $this->logger->info('Entitlement Notification Confirmed');
+            case 'EntitlementUpdated':
+                $this->logger->info('EntitlementUpdated');
                 $this->logger->debug(json_encode($data));
-                $results = $this->service->getAllEntitlements();
 
-                foreach ($results->get('Entitlements') as $entitlement) {
-                    //Fetch Aws Customer
-                    $awsCmd = new ReadByCustomerIdAwsCommand($entitlement['CustomerIdentifier']);
-                    $aws = $this->dispatcher->dispatch($awsCmd);
-                    $user = $aws->getUser();
+                $customerId = $data->Message->CustomerIdentifier;
+                $entitlementResults = $this->service->getEntitlementByCustomerId($customerId);
+                $entitlements = $entitlementResults->get('Entitlements');
 
-                    switch ($entitlement['Status']) {
-                        case 'ACTIVE':
-                            // Handle new or upgraded entitlement
-                            //Fetch Plan
-                            $planCmd = new ReadPlanCommand($entitlement['Dimension']);
-                            $plan = $this->dispatcher->dispatch($planCmd);
-
-                            $subCmd = new CreateSubscriptionCommand($user, $plan, 'aws');
-                            $sub = $this->dispatcher->dispatch($subCmd);
-
-                            $activateCmd = new ActivateSubscriptionCommand($user, $sub);
-                            $this->dispatcher->dispatch($activateCmd);
-                            break;
-                        case 'PENDING':
-                            // Handle pending entitlement (usually renewal)
-                            //Fetch Plan
-                            $planCmd = new ReadPlanCommand($entitlement['Dimension']);
-                            $plan = $this->dispatcher->dispatch($planCmd);
-
-                            $subCmd = new CreateSubscriptionCommand($user, $plan, 'aws');
-                            $sub = $this->dispatcher->dispatch($subCmd);
-                            break;
-                        case 'EXPIRED':
-                        case 'SUSPENDED':
-                        case 'TERMINATED':
-                        case 'CANCELLED':
-                            // Handle expired entitlement
-                            $subCmd = new CancelSubscriptionCommand($user);
-                            $this->dispatcher->dispatch($subCmd);
-                            break;
-                    }
+                if (!count($entitlements)) {
+                    //Handle not active subscription
+                    return new RedirectResponse(uri: '/');
                 }
+
+                $awsCmd = new ReadByCustomerIdAwsCommand($customerId);
+                $aws = $this->dispatcher->dispatch($awsCmd);
+                $user = $aws->getUser();
+
+                $planCmd = new ReadPlanByTitleCommand($entitlements[0]['Dimension']);
+                $plan = $this->dispatcher->dispatch($planCmd);
+
+                $subscriptionCmd = new CreateSubscriptionCommand($user, $plan, 'aws');
+                $subscription = $this->dispatcher->dispatch($subscriptionCmd);
+
+                $activateSubCmd = new ActivateSubscriptionCommand($user, $subscription->getId());
+                $this->dispatcher->dispatch($activateSubCmd);
                 break;
             default:
                 $this->logger->error('Entitlement Notification not handled');

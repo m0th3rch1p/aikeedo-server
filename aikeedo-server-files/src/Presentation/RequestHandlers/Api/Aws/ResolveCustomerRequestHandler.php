@@ -55,7 +55,7 @@ class ResolveCustomerRequestHandler extends AwsApi implements
                 ]), StatusCode::INTERNAL_SERVER_ERROR);
             }
 
-            $entitlementResults = $this->entitlementService->getEntitlementByCustomerId($customer->get('CustomerIdentifier'), $customer->get('ProductCode'));
+            $entitlementResults = $this->entitlementService->getEntitlementByCustomerId($customer->get('CustomerIdentifier'));
             $entitlements = $entitlementResults->get('Entitlements');
 
             if (!count($entitlements)) {

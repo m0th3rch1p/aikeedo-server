@@ -18,11 +18,11 @@ class EntitlementService
         ]);
     }
 
-    public function getEntitlementByCustomerId (string $customerId, string $productCode): \Aws\Result
+    public function getEntitlementByCustomerId (string $customerId): \Aws\Result
     {
         return $this->client->getEntitlements([
             'CustomerIdentifier' => $customerId,
-            'ProductCode' => $productCode
+            'ProductCode' => env('AWS_PRODUCT_CODE')
         ]);
     }
 
