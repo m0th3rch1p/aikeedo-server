@@ -34,10 +34,8 @@
                                     <span class="text-2xl ti-lock text-tertiary"></span>
                                     {{ d__('theme', 'Unlimited tokens') }}
                                 {% elseif plan.token_credit == 0 %}
-                                    <span class="text-2xl ti-check-box text-tertiary"></span>
-                                    <span class="text-tertiary">
-              {{ d__('theme', 'No token credits')  }}
-            </span>
+                                    <span class="text-2xl ti-lock text-tertiary"></span>
+                                    {{ d__('theme', 'No token credits')  }}
                                 {% else %}
                                     <span class="text-2xl ti-check-box text-tertiary"></span>
 
@@ -50,10 +48,8 @@
                                     <span class="text-2xl ti-lock text-tertiary"></span>
                                     {{ d__('theme', 'Unlimited images') }}
                                 {% elseif plan.image_credit == 0 %}
-                                    <span class="text-2xl ti-check-box text-tertiary"></span>
-                                    <span class="text-tertiary">
-              {{ d__('theme', 'No image credit') }}
-            </span>
+                                    <span class="text-2xl ti-lock text-tertiary"></span>
+                                    {{ d__('theme', 'No image credit') }}
                                 {% else %}
                                     <span class="text-2xl ti-check-box text-tertiary"></span>
 
@@ -66,10 +62,8 @@
                                     <span class="text-2xl ti-lock text-tertiary"></span>
                                     {{ d__('theme', 'Unlimited audio seconds') }}
                                 {% elseif plan.audio_credit == 0 %}
-                                    <span class="text-2xl ti-check-box text-tertiary"></span>
-                                    <span class="text-tertiary">
-              {{ d__('theme', 'No audio credit') }}
-            </span>
+                                    <span class="text-2xl ti-lock text-tertiary"></span>
+                                    {{ d__('theme', 'No audio credit') }}
                                 {% else %}
                                     <span class="text-2xl ti-check-box text-tertiary"></span>
 
