@@ -3,6 +3,7 @@
 // phpcs:disable PSR1.Classes
 declare(strict_types=1);
 
+use Aws\Infrastructure\Services\SubscriptionSnsService;
 use Easy\Container\Container;
 use Easy\Container\Exceptions\NotFoundException;
 use Shared\Infrastructure\BootstrapperInterface;
@@ -53,8 +54,27 @@ class Application
         return $this;
     }
 
-    public function listenAwsNotifications () {
-        \Aws\Infrastructure\Services\SubscriptionSnsService::subscribe();
+    public function registerAwsSubscribeSnsWebhooks (): void
+    {
+        SubscriptionSnsService::setup();
+        $listResult = SubscriptionSnsService::listSubscriptions();
+        $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
+        $found = in_array(SubscriptionSnsService::getHttpUrl(), $names);
+        if (!$found) {
+            \Aws\Infrastructure\Services\SubscriptionSnsService::subscribe();
+        }
+    }
+
+    public function registerAwsEntitlementSnsWebhooks (): void
+    {
+        \Aws\Infrastructure\Services\EntitlementSnsService::setup();
+        $listResult = \Aws\Infrastructure\Services\EntitlementSnsService::listSubscriptions();
+        $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
+        $found = in_array(\Aws\Infrastructure\Services\EntitlementSnsService::getHttpUrl(), $names);
+
+        if (!$found) {
+           \Aws\Infrastructure\Services\EntitlementSnsService::subscribe();
+        }
     }
 
     /**
@@ -65,7 +85,8 @@ class Application
      */
     public function boot(): void
     {
-        $this->listenAwsNotifications();
+        $this->registerAwsSubscribeSnsWebhooks();
+        $this->registerAwsEntitlementSnsWebhooks();
         $this->invokeServiceProviders();
         $this->invokeBootstrappers();
     }

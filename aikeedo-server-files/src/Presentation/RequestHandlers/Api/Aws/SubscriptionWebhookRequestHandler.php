@@ -27,8 +27,16 @@ class SubscriptionWebhookRequestHandler extends AwsApi implements  RequestHandle
         switch ($data->Type) {
             case 'SubscriptionConfirmation':
                 //Confirm Subscription To Arn
-                SubscriptionSnsHelper::confirmHttpUrl($data->Token, $data->TopicArn);
-                $this->logger->info('Subscription Arn Subscription Confirmation Confirmed');
+                $listResult = SubscriptionSnsService::listSubscriptions();
+                $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
+
+                $found = in_array(SubscriptionSnsService::getHttpUrl(), $names);
+                if (!$found) {
+                    SubscriptionSnsService::confirmSubscription($data->Token, $data->TopicArn);
+                    $this->logger->debug("subscription added");
+                } else {
+                    $this->logger->debug("subscription already done");
+                }
                 break;
         }
         //        $data = json_decode($request->getBody()->getContents());
