@@ -20,7 +20,7 @@ use Shared\Infrastructure\CommandBus\Dispatcher;
 #[Route(path: "/subscription/webhook", method: RequestMethod::POST)]
 class SubscriptionWebhookRequestHandler extends AwsApi implements  RequestHandlerInterface
 {
-    public function __construct(private LoggerInterface $logger, private EntitlementService $service, private Dispatcher $dispatcher)
+    public function __construct(private LoggerInterface $logger, private Dispatcher $dispatcher)
     {
     }
 
