@@ -16,7 +16,9 @@ use Psr\Log\LoggerInterface;
 class EntitlementSnsService
 {
     private static SnsClient $client;
-    private static string $httpUrl = "https://878e-196-202-162-222.ngrok-free.app/api/aws/entitlement/webhook";
+//    private static string $httpUrl = "https://878e-196-202-162-222.ngrok-free.app/api/aws/entitlement/webhook";
+
+    private static string $httpUrl = "https://chatrova.com/api/aws/entitlement/webhook";
     private static string $topicArn = "arn:aws:sns:us-east-1:287250355862:aws-mp-entitlement-notification-1cothn9ewdy8kts24xi9fre3y";
     private static string $endpoint = "arn:aws:sqs:us-east-1:436917423698:chatrov2";
 
