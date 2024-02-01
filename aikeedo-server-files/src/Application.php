@@ -53,6 +53,10 @@ class Application
         return $this;
     }
 
+    public function listenAwsNotifications () {
+        \Aws\Infrastructure\Services\SubscriptionSnsService::subscribe();
+    }
+
     /**
      * @return void
      * @throws NotFoundException
@@ -61,6 +65,7 @@ class Application
      */
     public function boot(): void
     {
+        $this->listenAwsNotifications();
         $this->invokeServiceProviders();
         $this->invokeBootstrappers();
     }

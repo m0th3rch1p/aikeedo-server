@@ -7,32 +7,44 @@ use Aws\Sns\SnsClient;
 
 class SubscriptionSnsService
 {
-    private SnsClient $client;
+    private static SnsClient $client;
 
-    private string $httpUrl = "https://13c8-196-202-172-34.ngrok-free.app/webhook/subscription";
+    private static string $httpUrl = "https://4ef7-196-202-172-34.ngrok-free.app/api/aws/subscription/webhook";
 
-    private string $topicArn = "arn:aws:sns:us-east-1:287250355862:aws-mp-subscription-notification-1cothn9ewdy8kts24xi9fre3y";
-    private string $endpoint = "arn:aws:sqs:us-east-1:436917423698:chatrov2";
+    private static string $topicArn = "arn:aws:sns:us-east-1:287250355862:aws-mp-subscription-notification-1cothn9ewdy8kts24xi9fre3y";
+    private static string $endpoint = "arn:aws:sqs:us-east-1:436917423698:chatrov2";
 
-    public function __construct()
+    public static function subscribe (): void
     {
         $credentials = new Credentials(env('AWS_KEY'), env('AWS_SECRET'));
-        $this->client = new SnsClient([
+        self::$client = new SnsClient([
             'region' => 'us-east-1',
             'version' => 'latest',
             'credentials' => $credentials
         ]);
 
-        $this->client->subscribe([
-            'Protocol' => 'sqs',
-            'Endpoint' => $this->endpoint,
-            'TopicArn' => $this->topicArn,
+        self::$client->subscribe([
+            'Protocol' => 'https',
+            'Endpoint' => self::$httpUrl,
+            'TopicArn' => self::$topicArn,
         ]);
-//
-//        $this->client->subscribe([
-//            'Protocol' => 'https',
-//            'Endpoint' => $this->httpUrl,
-//            'TopicArn' => $this->topicArn,
-//        ]);
+    }
+
+    public static function listSubscriptions (): \Aws\Result
+    {
+        return self::$client->listSubscriptions();
+    }
+
+    public static function confirmSubscription ($token, $topicArn): \Aws\Result
+    {
+        return self::$client->confirmSubscription([
+            'Token' => $token,
+            'TopicArn' => $topicArn
+        ]);
+    }
+
+    public static function getHttpUrl(): string
+    {
+        return self::$httpUrl;
     }
 }
