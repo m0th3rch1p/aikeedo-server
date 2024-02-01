@@ -24,7 +24,7 @@ $handler = $container->get(ServerRequestHandler::class);
  */
 $request = ServerRequestFactory::fromGlobals();
 
-/** @var ResponseInterface $response */
+//    /** @var ResponseInterface $response */
 $response = $handler->handle($request);
 
 /** @var EmitterInterface $emitter */

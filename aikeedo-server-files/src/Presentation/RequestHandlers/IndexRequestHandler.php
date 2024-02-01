@@ -61,7 +61,7 @@ class IndexRequestHandler extends AbstractRequestHandler implements
         };
 
         return new ViewResponse(
-            '@theme/templates/index.twig',
+            '@theme/templates/home.twig',
             [
                 'plans' =>  $resources,
                 'locales' => $this->locales,

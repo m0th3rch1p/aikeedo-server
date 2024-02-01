@@ -13,6 +13,7 @@ $console = $container->get(Application::class);
 $container->set(\Aws\Domain\Repositories\AwsUsageRepositoryInterface::class, \Aws\Infrastructure\Repositories\DoctrineOrm\AwsUsageRepository::class);
 $container->get(\Aws\Domain\Services\ReadAwsUsageService::class);
 $container->get(\Aws\Infrastructure\Services\MeteringService::class);
+$container->get(\Aws\Infrastructure\Services\CloudWatchService::class);
 $container->get(\Presentation\Commands\SendBatchRequestsCommand::class);
 
 $container->get(\Aws\Infrastructure\Services\EntitlementSqsService::class);
