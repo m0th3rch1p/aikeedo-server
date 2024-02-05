@@ -34,15 +34,9 @@ class EntitlementSnsService
             'credentials' => $credentials
         ]);
 
-        $listResult = $this->listSubscriptions();
-        $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
-        $found = in_array(self::getHttpUrl(), $names);
-        if (!($found)) {
-            $this->subscribe();
-        }
     }
 
-    private function subscribe (): void
+    public function subscribe (): void
     {
         $this->client->subscribe([
             'Protocol' => 'https',
@@ -51,7 +45,7 @@ class EntitlementSnsService
         ]);
     }
 
-    private function listSubscriptions (): \Aws\Result
+    public function listSubscriptions (): \Aws\Result
     {
         return $this->client->listSubscriptions();
     }
@@ -64,7 +58,7 @@ class EntitlementSnsService
         ]);
     }
 
-    private static function getHttpUrl(): string
+    public static function getHttpUrl(): string
     {
         return self::$httpUrl;
     }

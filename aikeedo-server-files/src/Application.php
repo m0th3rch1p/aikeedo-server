@@ -56,12 +56,24 @@ class Application
 
     public function registerAwsSubscribeSnsWebhooks (): void
     {
-        $this->container->get(SubscriptionSnsService::class);
+        $subSnsService =  $this->container->get(SubscriptionSnsService::class);
+        $listResult = $subSnsService->listSubscriptions();
+        $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
+        $found = in_array($subSnsService->getHttpUrl(), $names);
+        if (!($found)) {
+            $subSnsService->subscribe();
+        }
     }
 
     public function registerAwsEntitlementSnsWebhooks (): void
     {
-        $this->container->get(\Aws\Infrastructure\Services\EntitlementSnsService::class);
+        $entSnsService = $this->container->get(\Aws\Infrastructure\Services\EntitlementSnsService::class);
+        $listResult = $entSnsService->listSubscriptions();
+        $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
+        $found = in_array($entSnsService->getHttpUrl(), $names);
+        if (!($found)) {
+            $entSnsService->subscribe();
+        }
     }
 
     /**
@@ -72,8 +84,8 @@ class Application
      */
     public function boot(): void
     {
-//        $this->registerAwsSubscribeSnsWebhooks();
-//        $this->registerAwsEntitlementSnsWebhooks();
+        $this->registerAwsSubscribeSnsWebhooks();
+        $this->registerAwsEntitlementSnsWebhooks();
         $this->invokeServiceProviders();
         $this->invokeBootstrappers();
     }

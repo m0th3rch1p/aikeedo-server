@@ -27,12 +27,6 @@ class SubscriptionSnsService
             'credentials' => $credentials
         ]);
 
-        $listResult = $this->listSubscriptions();
-        $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
-        $found = in_array(self::getHttpUrl(), $names);
-        if (!($found)) {
-            $this->subscribe();
-        }
     }
 
 
