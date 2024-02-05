@@ -20,7 +20,7 @@ use Shared\Infrastructure\CommandBus\Dispatcher;
 #[Route(path: "/subscription/webhook", method: RequestMethod::POST)]
 class SubscriptionWebhookRequestHandler extends AwsApi implements  RequestHandlerInterface
 {
-    public function __construct(private LoggerInterface $logger, private Dispatcher $dispatcher)
+    public function __construct(private LoggerInterface $logger, private Dispatcher $dispatcher, private SubscriptionSnsService $subscriptionSnsService)
     {
     }
 
@@ -31,16 +31,8 @@ class SubscriptionWebhookRequestHandler extends AwsApi implements  RequestHandle
         switch ($data->Type) {
             case 'SubscriptionConfirmation':
                 //Confirm Subscription To Arn
-                $listResult = SubscriptionSnsService::listSubscriptions();
-                $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
-
-                $found = in_array(SubscriptionSnsService::getHttpUrl(), $names);
-                if (!$found) {
-                    SubscriptionSnsService::confirmSubscription($data->Token, $data->TopicArn);
-                    $this->logger->debug("subscription added");
-                } else {
-                    $this->logger->debug("subscription already done");
-                }
+                $this->subscriptionSnsService->confirmSubscription($data->Token, $data->TopicArn);
+                $this->logger->debug("subscription added");
                 break;
             case 'SubscribeSuccess':
                 $customerIdentifier = $data->Message->CustomerIdentifier;

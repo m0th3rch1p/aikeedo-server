@@ -5,7 +5,6 @@ declare(strict_types=1);
 use Easy\Http\ResponseEmitter\EmitterInterface;
 use Laminas\Diactoros\ServerRequestFactory;
 use Psr\Container\ContainerInterface;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Presentation\ServerRequestHandler;
 

@@ -56,25 +56,12 @@ class Application
 
     public function registerAwsSubscribeSnsWebhooks (): void
     {
-        SubscriptionSnsService::setup();
-        $listResult = SubscriptionSnsService::listSubscriptions();
-        $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
-        $found = in_array(SubscriptionSnsService::getHttpUrl(), $names);
-        if (!$found) {
-            \Aws\Infrastructure\Services\SubscriptionSnsService::subscribe();
-        }
+        $this->container->get(SubscriptionSnsService::class);
     }
 
     public function registerAwsEntitlementSnsWebhooks (): void
     {
-        \Aws\Infrastructure\Services\EntitlementSnsService::setup();
-        $listResult = \Aws\Infrastructure\Services\EntitlementSnsService::listSubscriptions();
-        $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
-        $found = in_array(\Aws\Infrastructure\Services\EntitlementSnsService::getHttpUrl(), $names);
-
-        if (!$found) {
-           \Aws\Infrastructure\Services\EntitlementSnsService::subscribe();
-        }
+        $this->container->get(\Aws\Infrastructure\Services\EntitlementSnsService::class);
     }
 
     /**

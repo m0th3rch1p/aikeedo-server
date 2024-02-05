@@ -4,6 +4,7 @@ namespace Presentation\RequestHandlers\Api\Aws;
 
 use Aws\Application\Commands\ReadByCustomerIdAwsCommand;
 use Aws\Infrastructure\Services\EntitlementService;
+use Aws\Infrastructure\Services\EntitlementSnsService;
 use Billing\Application\Commands\ActivateSubscriptionCommand;
 use Billing\Application\Commands\CancelSubscriptionCommand;
 use Billing\Application\Commands\CreateSubscriptionCommand;
@@ -23,7 +24,7 @@ use Shared\Infrastructure\CommandBus\Dispatcher;
 #[Route(path: "/entitlement/webhook", method: RequestMethod::POST)]
 class EntitlementWebhookRequestHandler extends AwsApi implements  RequestHandlerInterface
 {
-    public function __construct (private LoggerInterface $logger, private EntitlementService $service, private Dispatcher $dispatcher) {
+    public function __construct (private LoggerInterface $logger, private EntitlementService $service, private Dispatcher $dispatcher, private EntitlementSnsService $entitlementSnsService) {
 
     }
 
@@ -34,13 +35,7 @@ class EntitlementWebhookRequestHandler extends AwsApi implements  RequestHandler
         $this->logger->debug(json_encode($data));
         switch ($data->Type) {
             case 'SubscriptionConfirmation':
-                $listResult = \Aws\Infrastructure\Services\EntitlementSnsService::listSubscriptions();
-                $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
-                $found = in_array(\Aws\Infrastructure\Services\EntitlementSnsService::getHttpUrl(), $names);
-
-                if (!$found) {
-                    \Aws\Infrastructure\Services\EntitlementSnsService::confirmSubscription($data->Token, $data->TopicArn);
-                }
+                $this->entitlementSnsService->confirmSubscription($data->Token, $data->TopicArn);
                 break;
             case 'EntitlementUpdated':
                 $this->logger->info('EntitlementUpdated');

@@ -33,8 +33,14 @@ $bootstrappers = $container->get('bootstrappers');
 
 $app = new Application($container, (bool) env('DEBUG', true));
 
-$app->addServiceProvider(...$providers)
-    ->addBootstrapper(...$bootstrappers)
-    ->boot();
+try {
+    $app->addServiceProvider(...$providers)
+        ->addBootstrapper(...$bootstrappers)
+        ->boot();
+} catch (\Easy\Container\Exceptions\NotFoundException $e) {
+    die($e);
+} catch (Throwable $e) {
+    die($e);
+}
 
 return $container;

@@ -15,46 +15,56 @@ use Psr\Log\LoggerInterface;
 
 class EntitlementSnsService
 {
-    private static SnsClient $client;
+    private SnsClient $client;
 //    private static string $httpUrl = "https://878e-196-202-162-222.ngrok-free.app/api/aws/entitlement/webhook";
 
     private static string $httpUrl = "https://chatrova.com/api/aws/entitlement/webhook";
     private static string $topicArn = "arn:aws:sns:us-east-1:287250355862:aws-mp-entitlement-notification-1cothn9ewdy8kts24xi9fre3y";
     private static string $endpoint = "arn:aws:sqs:us-east-1:436917423698:chatrov2";
 
-    public static function setup (): void
+    /**
+     * @param SnsClient $client
+     */
+    public function __construct()
     {
         $credentials = new Credentials(env('AWS_KEY'), env('AWS_SECRET'));
-        self::$client = new SnsClient([
+        $this->client = new SnsClient([
             'region' => 'us-east-1',
             'version' => 'latest',
             'credentials' => $credentials
         ]);
+
+        $listResult = $this->listSubscriptions();
+        $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
+        $found = in_array(self::getHttpUrl(), $names);
+        if (!($found)) {
+            $this->subscribe();
+        }
     }
 
-    public static function subscribe (): void
+    private function subscribe (): void
     {
-        self::$client->subscribe([
+        $this->client->subscribe([
             'Protocol' => 'https',
             'Endpoint' => self::$httpUrl,
             'TopicArn' => self::$topicArn,
         ]);
     }
 
-    public static function listSubscriptions (): \Aws\Result
+    private function listSubscriptions (): \Aws\Result
     {
-        return self::$client->listSubscriptions();
+        return $this->client->listSubscriptions();
     }
 
-    public static function confirmSubscription ($token, $topicArn): \Aws\Result
+    public function confirmSubscription ($token, $topicArn): \Aws\Result
     {
-        return self::$client->confirmSubscription([
+        return $this->client->confirmSubscription([
             'Token' => $token,
             'TopicArn' => $topicArn
         ]);
     }
 
-    public static function getHttpUrl(): string
+    private static function getHttpUrl(): string
     {
         return self::$httpUrl;
     }
