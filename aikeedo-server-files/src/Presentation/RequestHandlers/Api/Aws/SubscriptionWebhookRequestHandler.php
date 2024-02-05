@@ -3,9 +3,7 @@
 namespace Presentation\RequestHandlers\Api\Aws;
 
 use Aws\Application\Commands\ReadByCustomerIdAwsCommand;
-use Aws\Domain\Helpers\SubscriptionSnsHelper;
-use Aws\Infrastructure\Services\EntitlementService;
-use Aws\Infrastructure\Services\SubscriptionSnsService;
+use Aws\Infrastructure\Aws\Sns\SubscriptionSnsService;
 use Billing\Application\Commands\ActivateSubscriptionCommand;
 use Billing\Application\Commands\CancelSubscriptionCommand;
 use Easy\Http\Message\RequestMethod;

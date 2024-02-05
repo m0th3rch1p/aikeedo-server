@@ -3,7 +3,7 @@
 // phpcs:disable PSR1.Classes
 declare(strict_types=1);
 
-use Aws\Infrastructure\Services\SubscriptionSnsService;
+use Aws\Infrastructure\Aws\Sns\SubscriptionSnsService;
 use Easy\Container\Container;
 use Easy\Container\Exceptions\NotFoundException;
 use Shared\Infrastructure\BootstrapperInterface;
@@ -67,7 +67,7 @@ class Application
 
     public function registerAwsEntitlementSnsWebhooks (): void
     {
-        $entSnsService = $this->container->get(\Aws\Infrastructure\Services\EntitlementSnsService::class);
+        $entSnsService = $this->container->get(\EntitlementSnsService::class);
         $listResult = $entSnsService->listSubscriptions();
         $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
         $found = in_array($entSnsService->getHttpUrl(), $names);

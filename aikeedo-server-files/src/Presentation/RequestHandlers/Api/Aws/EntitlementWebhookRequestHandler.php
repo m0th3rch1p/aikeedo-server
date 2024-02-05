@@ -4,15 +4,12 @@ namespace Presentation\RequestHandlers\Api\Aws;
 
 use Aws\Application\Commands\ReadByCustomerIdAwsCommand;
 use Aws\Infrastructure\Services\EntitlementService;
-use Aws\Infrastructure\Services\EntitlementSnsService;
 use Billing\Application\Commands\ActivateSubscriptionCommand;
-use Billing\Application\Commands\CancelSubscriptionCommand;
 use Billing\Application\Commands\CreateSubscriptionCommand;
 use Billing\Application\Commands\ReadPlanByTitleCommand;
-use Billing\Application\Commands\ReadPlanCommand;
 use Easy\Http\Message\RequestMethod;
 use Easy\Router\Attributes\Route;
-use PDepend\Util\Log;
+use EntitlementSnsService;
 use Presentation\Response\EmptyResponse;
 use Presentation\Response\RedirectResponse;
 use Psr\Http\Message\ResponseInterface;

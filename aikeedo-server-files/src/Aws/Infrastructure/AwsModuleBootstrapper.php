@@ -5,11 +5,18 @@ declare(strict_types=1);
 namespace Aws\Infrastructure;
 
 use Application;
+use Aws\Credentials\Credentials;
 use Aws\Domain\Repositories\AwsRepositoryInterface;
 use Aws\Domain\Repositories\AwsUsageRepositoryInterface;
+use Aws\Infrastructure\Aws\Sns\EntitlementSnsService;
+use Aws\Infrastructure\Aws\Sns\SubscriptionSnsService;
+use Aws\Infrastructure\Aws\SnsFactory;
 use Aws\Infrastructure\Repositories\DoctrineOrm\AwsRepository;
 use Aws\Infrastructure\Repositories\DoctrineOrm\AwsUsageRepository;
 use Aws\Infrastructure\Services\EntitlementService;
+use Aws\Sns\SnsClient;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Shared\Infrastructure\BootstrapperInterface;
 
 /**
@@ -22,8 +29,29 @@ class AwsModuleBootstrapper implements BootstrapperInterface
      * @return void
      */
     public function __construct(
-        private Application $app
+        private Application $app,
+        private SnsFactory $factory
     ) {
+    }
+
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function registerSnsServices (): void
+    {
+        $credentials = new Credentials(env('AWS_KEY'), env('AWS_SECRET'));
+        $client = new SnsClient([
+            'region' => 'us-east-1',
+            'version' => 'latest',
+            'credentials' => $credentials
+        ]);
+
+        $this->app->set(SnsClient::class, $client);
+        $this->factory
+            ->register(SubscriptionSnsService::class)
+            ->register(EntitlementSnsService::class);
+        $this->factory->makeSubscriptions();
     }
 
     /**
@@ -38,5 +66,10 @@ class AwsModuleBootstrapper implements BootstrapperInterface
         );
 
         $this->app->set(AwsUsageRepositoryInterface::class, AwsUsageRepository::class);
+        try {
+            $this->registerSnsServices();
+        } catch (NotFoundExceptionInterface | ContainerExceptionInterface $e) {
+            die($e);
+        }
     }
 }
