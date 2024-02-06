@@ -88,18 +88,8 @@ class Application
      */
     public function boot(): void
     {
-//        $credentials = new Credentials(env('AWS_KEY'), env('AWS_SECRET'));
-//        $client = new SnsClient([
-//            'region' => 'us-east-1',
-//            'version' => 'latest',
-//            'credentials' => $credentials
-//        ]);
-//
-//        $this->set(SnsClient::class, $client);
-//        $this->registerAwsSubscribeSnsWebhooks();
-//        $this->registerAwsEntitlementSnsWebhooks();
-        $this->invokeServiceProviders();
-        $this->invokeBootstrappers();
+        $this->registerAwsSubscribeSnsWebhooks();
+        $this->registerAwsEntitlementSnsWebhooks();
     }
 
     /**
