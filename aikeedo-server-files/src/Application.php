@@ -3,7 +3,7 @@
 // phpcs:disable PSR1.Classes
 declare(strict_types=1);
 
-use Aws\Infrastructure\Aws\Sns\SubscriptionSnsService;
+use Aws\Infrastructure\Aws\Sns\services\SubscriptionSnsService;
 use Easy\Container\Container;
 use Easy\Container\Exceptions\NotFoundException;
 use Shared\Infrastructure\BootstrapperInterface;
@@ -84,8 +84,8 @@ class Application
      */
     public function boot(): void
     {
-//        $this->registerAwsSubscribeSnsWebhooks();
-//        $this->registerAwsEntitlementSnsWebhooks();
+        $this->registerAwsSubscribeSnsWebhooks();
+        $this->registerAwsEntitlementSnsWebhooks();
         $this->invokeServiceProviders();
         $this->invokeBootstrappers();
     }
