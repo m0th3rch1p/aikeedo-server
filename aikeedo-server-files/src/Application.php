@@ -90,6 +90,8 @@ class Application
     {
         $this->registerAwsSubscribeSnsWebhooks();
         $this->registerAwsEntitlementSnsWebhooks();
+        $this->invokeServiceProviders();
+        $this->invokeBootstrappers();
     }
 
     /**
