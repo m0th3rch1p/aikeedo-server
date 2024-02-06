@@ -8,12 +8,11 @@ use Application;
 use Aws\Credentials\Credentials;
 use Aws\Domain\Repositories\AwsRepositoryInterface;
 use Aws\Domain\Repositories\AwsUsageRepositoryInterface;
-use Aws\Infrastructure\Aws\Sns\EntitlementSnsService;
-use Aws\Infrastructure\Aws\Sns\SubscriptionSnsService;
-use Aws\Infrastructure\Aws\SnsFactory;
+use Aws\Infrastructure\Aws\Sns\services\EntitlementSnsService;
+use Aws\Infrastructure\Aws\Sns\services\SubscriptionSnsService;
+use Aws\Infrastructure\Aws\Sns\SnsFactory;
 use Aws\Infrastructure\Repositories\DoctrineOrm\AwsRepository;
 use Aws\Infrastructure\Repositories\DoctrineOrm\AwsUsageRepository;
-use Aws\Infrastructure\Services\EntitlementService;
 use Aws\Sns\SnsClient;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -51,7 +50,7 @@ class AwsModuleBootstrapper implements BootstrapperInterface
         $this->factory
             ->register(SubscriptionSnsService::class)
             ->register(EntitlementSnsService::class);
-//        $this->factory->makeSubscriptions();
+        $this->factory->makeSubscriptions();
     }
 
     /**
