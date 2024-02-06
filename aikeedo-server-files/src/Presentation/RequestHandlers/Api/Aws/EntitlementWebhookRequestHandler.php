@@ -27,44 +27,44 @@ class EntitlementWebhookRequestHandler extends AwsApi implements  RequestHandler
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $data = json_decode($request->getBody()->getContents());
-        $this->logger->info('Entitlement SNS Notification');
-        $this->logger->debug(json_encode($data));
-        switch ($data->Type) {
-            case 'SubscriptionConfirmation':
-                $this->entitlementSnsService->confirmSubscription($data->Token, $data->TopicArn);
-                break;
-            case 'EntitlementUpdated':
-                $this->logger->info('EntitlementUpdated');
-                $this->logger->debug(json_encode($data));
-
-                $customerId = $data->Message->CustomerIdentifier;
-                $entitlementResults = $this->service->getEntitlementByCustomerId($customerId);
-                $entitlements = $entitlementResults->get('Entitlements');
-
-                if (!count($entitlements)) {
-                    //Handle not active subscription
-                    return new RedirectResponse(uri: '/');
-                }
-
-                $awsCmd = new ReadByCustomerIdAwsCommand($customerId);
-                $aws = $this->dispatcher->dispatch($awsCmd);
-                $user = $aws->getUser();
-
-                $planCmd = new ReadPlanByTitleCommand($entitlements[0]['Dimension']);
-                $plan = $this->dispatcher->dispatch($planCmd);
-
-                $subscriptionCmd = new CreateSubscriptionCommand($user, $plan, 'aws');
-                $subscription = $this->dispatcher->dispatch($subscriptionCmd);
-
-                $activateSubCmd = new ActivateSubscriptionCommand($user, $subscription->getId());
-                $this->dispatcher->dispatch($activateSubCmd);
-                break;
-            default:
-                $this->logger->error('Entitlement Notification not handled');
-                break;
-        }
-
-        return new EmptyResponse();
+//        $data = json_decode($request->getBody()->getContents());
+//        $this->logger->info('Entitlement SNS Notification');
+//        $this->logger->debug(json_encode($data));
+//        switch ($data->Type) {
+//            case 'SubscriptionConfirmation':
+//                $this->entitlementSnsService->confirmSubscription($data->Token, $data->TopicArn);
+//                break;
+//            case 'EntitlementUpdated':
+//                $this->logger->info('EntitlementUpdated');
+//                $this->logger->debug(json_encode($data));
+//
+//                $customerId = $data->Message->CustomerIdentifier;
+//                $entitlementResults = $this->service->getEntitlementByCustomerId($customerId);
+//                $entitlements = $entitlementResults->get('Entitlements');
+//
+//                if (!count($entitlements)) {
+//                    //Handle not active subscription
+//                    return new RedirectResponse(uri: '/');
+//                }
+//
+//                $awsCmd = new ReadByCustomerIdAwsCommand($customerId);
+//                $aws = $this->dispatcher->dispatch($awsCmd);
+//                $user = $aws->getUser();
+//
+//                $planCmd = new ReadPlanByTitleCommand($entitlements[0]['Dimension']);
+//                $plan = $this->dispatcher->dispatch($planCmd);
+//
+//                $subscriptionCmd = new CreateSubscriptionCommand($user, $plan, 'aws');
+//                $subscription = $this->dispatcher->dispatch($subscriptionCmd);
+//
+//                $activateSubCmd = new ActivateSubscriptionCommand($user, $subscription->getId());
+//                $this->dispatcher->dispatch($activateSubCmd);
+//                break;
+//            default:
+//                $this->logger->error('Entitlement Notification not handled');
+//                break;
+//        }
+//
+//        return new EmptyResponse();
     }
 }

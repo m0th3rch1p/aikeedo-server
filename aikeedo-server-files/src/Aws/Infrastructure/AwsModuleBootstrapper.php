@@ -8,7 +8,9 @@ use Application;
 use Aws\Credentials\Credentials;
 use Aws\Domain\Repositories\AwsRepositoryInterface;
 use Aws\Domain\Repositories\AwsUsageRepositoryInterface;
+use Aws\Domain\Repositories\SnsFactoryInterface;
 use Aws\Infrastructure\Aws\Sns\services\EntitlementSnsService;
+//use Aws\Infrastructure\Aws\Sns\Services\SnsFactory;
 use Aws\Infrastructure\Aws\Sns\services\SubscriptionSnsService;
 use Aws\Infrastructure\Repositories\DoctrineOrm\AwsRepository;
 use Aws\Infrastructure\Repositories\DoctrineOrm\AwsUsageRepository;
@@ -27,7 +29,7 @@ class AwsModuleBootstrapper implements BootstrapperInterface
      * @return void
      */
     public function __construct(
-        private Application $app
+        private Application $app,
 //        private SnsFactory $factory
     ) {
     }
@@ -44,12 +46,13 @@ class AwsModuleBootstrapper implements BootstrapperInterface
 //            'version' => 'latest',
 //            'credentials' => $credentials
 //        ]);
-//
+
 //        $this->app->set(SnsClient::class, $client);
 //        $this->factory
 //            ->register(SubscriptionSnsService::class)
 //            ->register(EntitlementSnsService::class);
 //        $this->factory->makeSubscriptions();
+
     }
 
     /**
@@ -64,10 +67,11 @@ class AwsModuleBootstrapper implements BootstrapperInterface
         );
 
         $this->app->set(AwsUsageRepositoryInterface::class, AwsUsageRepository::class);
-//        try {
-//            $this->registerSnsServices();
-//        } catch (NotFoundExceptionInterface | ContainerExceptionInterface $e) {
-//            die($e);
-//        }
+//        $this->app->set(SnsFactoryInterface::class, $this->factory);
+        try {
+            $this->registerSnsServices();
+        } catch (NotFoundExceptionInterface | ContainerExceptionInterface $e) {
+            die($e);
+        }
     }
 }

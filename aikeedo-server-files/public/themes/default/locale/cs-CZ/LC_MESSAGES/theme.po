@@ -188,7 +188,7 @@ msgstr ""
 
 #: /sections/footer.twig:43
 msgctxt "button"
-msgid "Terms of services"
+msgid "Terms of Services"
 msgstr ""
 
 #: /sections/footer.twig:49

@@ -56,29 +56,29 @@ class Application
         return $this;
     }
 
-    public function registerAwsSubscribeSnsWebhooks (): void
-    {
-        $baseUrl = env("ENVIRONMENT") === 'dev' ? env('SNS_WEBHOOK_URL_DEV') : env('SNS_WEBHOOK_URL_PROD');
-        $subSnsService =  $this->container->get(SubscriptionSnsService::class);
-        $listResult = $subSnsService->listSubscriptions();
-        $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
-        $found = in_array($subSnsService->getUrl(), $names);
-        if (!($found)) {
-            $subSnsService->subscribe($baseUrl);
-        }
-    }
-
-    public function registerAwsEntitlementSnsWebhooks (): void
-    {
-        $baseUrl = env("ENVIRONMENT") === 'dev' ? env('SNS_WEBHOOK_URL_DEV') : env('SNS_WEBHOOK_URL_PROD');
-        $entSnsService = $this->container->get(\Aws\Infrastructure\Aws\Sns\Services\EntitlementSnsService::class);
-        $listResult = $entSnsService->listSubscriptions();
-        $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
-        $found = in_array($entSnsService->getUrl(), $names);
-        if (!($found)) {
-            $entSnsService->subscribe($baseUrl);
-        }
-    }
+//    public function registerAwsSubscribeSnsWebhooks (): void
+//    {
+//        $baseUrl = env("ENVIRONMENT") === 'dev' ? env('SNS_WEBHOOK_URL_DEV') : env('SNS_WEBHOOK_URL_PROD');
+//        $subSnsService =  $this->container->get(SubscriptionSnsService::class);
+//        $listResult = $subSnsService->listSubscriptions();
+//        $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
+//        $found = in_array($subSnsService->getUrl(), $names);
+//        if (!($found)) {
+//            $subSnsService->subscribe($baseUrl);
+//        }
+//    }
+//
+//    public function registerAwsEntitlementSnsWebhooks (): void
+//    {
+//        $baseUrl = env("ENVIRONMENT") === 'dev' ? env('SNS_WEBHOOK_URL_DEV') : env('SNS_WEBHOOK_URL_PROD');
+//        $entSnsService = $this->container->get(\Aws\Infrastructure\Aws\Sns\Services\EntitlementSnsService::class);
+//        $listResult = $entSnsService->listSubscriptions();
+//        $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
+//        $found = in_array($entSnsService->getUrl(), $names);
+//        if (!($found)) {
+//            $entSnsService->subscribe($baseUrl);
+//        }
+//    }
 
     /**
      * @return void
@@ -88,16 +88,16 @@ class Application
      */
     public function boot(): void
     {
-        $credentials = new Credentials(env('AWS_KEY'), env('AWS_SECRET'));
-        $client = new SnsClient([
-            'region' => 'us-east-1',
-            'version' => 'latest',
-            'credentials' => $credentials
-        ]);
-
-        $this->set(SnsClient::class, $client);
-        $this->registerAwsSubscribeSnsWebhooks();
-        $this->registerAwsEntitlementSnsWebhooks();
+//        $credentials = new Credentials(env('AWS_KEY'), env('AWS_SECRET'));
+//        $client = new SnsClient([
+//            'region' => 'us-east-1',
+//            'version' => 'latest',
+//            'credentials' => $credentials
+//        ]);
+//
+//        $this->set(SnsClient::class, $client);
+//        $this->registerAwsSubscribeSnsWebhooks();
+//        $this->registerAwsEntitlementSnsWebhooks();
         $this->invokeServiceProviders();
         $this->invokeBootstrappers();
     }

@@ -2,7 +2,7 @@
 
 namespace Aws\Domain\Helpers;
 
-use Aws\Infrastructure\Aws\Sns\SubscriptionSnsService;
+use Aws\Infrastructure\Aws\Sns\services\SubscriptionSnsService;
 
 class SubscriptionSnsHelper
 {

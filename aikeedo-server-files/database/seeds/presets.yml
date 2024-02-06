@@ -807,7 +807,7 @@
   status: 1
   category: Business and Strategy
   title: Brand Ecosystem Development
-  description: Leverage Brand Ecosystem Development to evaluate significant business decisions. Construct a network of interconnected products, services, and stakeholders.
+  description: Leverage Brand Ecosystem Development to evaluate significant business decisions. Construct a network of interconnected products, Services, and stakeholders.
   color: '#4CAF50'
   image: 'leaf'
   template: >
@@ -924,7 +924,7 @@
   status: 1
   category: Business and Strategy
   title: Freemium Business Model
-  description: Utilize the Freemium Business Model to evaluate significant business decisions. Investigate the possibility of offering basic services for free while charging for premium features.
+  description: Utilize the Freemium Business Model to evaluate significant business decisions. Investigate the possibility of offering basic Services for free while charging for premium features.
   color: '#27AE60'
   image: 'currency-dollar'
   template: >
@@ -2021,7 +2021,7 @@
   status: 1
   category: Website
   title: Services Page - Title and Meta Descriptions
-  description: Write SEO optimized title tags and meta descriptions for services page that will rank well on Google.
+  description: Write SEO optimized title tags and meta descriptions for Services page that will rank well on Google.
   color: '#FF885B'
   image: 'seo'
   template: >

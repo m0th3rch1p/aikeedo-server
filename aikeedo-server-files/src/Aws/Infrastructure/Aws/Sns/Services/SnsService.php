@@ -1,6 +1,6 @@
 <?php
 
-namespace Aws\Infrastructure\Aws\Sns;
+namespace Aws\Infrastructure\Aws\Sns\Services;
 
 use Aws\Sns\SnsClient;
 
