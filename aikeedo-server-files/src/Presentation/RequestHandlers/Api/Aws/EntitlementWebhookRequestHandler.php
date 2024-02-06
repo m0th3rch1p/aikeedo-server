@@ -9,7 +9,7 @@ use Billing\Application\Commands\CreateSubscriptionCommand;
 use Billing\Application\Commands\ReadPlanByTitleCommand;
 use Easy\Http\Message\RequestMethod;
 use Easy\Router\Attributes\Route;
-use EntitlementSnsService;
+use Aws\Infrastructure\Aws\Sns\EntitlementSnsService;
 use Presentation\Response\EmptyResponse;
 use Presentation\Response\RedirectResponse;
 use Psr\Http\Message\ResponseInterface;
