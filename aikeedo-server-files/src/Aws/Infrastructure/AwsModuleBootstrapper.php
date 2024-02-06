@@ -10,7 +10,6 @@ use Aws\Domain\Repositories\AwsRepositoryInterface;
 use Aws\Domain\Repositories\AwsUsageRepositoryInterface;
 use Aws\Infrastructure\Aws\Sns\services\EntitlementSnsService;
 use Aws\Infrastructure\Aws\Sns\services\SubscriptionSnsService;
-use Aws\Infrastructure\Aws\Sns\SnsFactory;
 use Aws\Infrastructure\Repositories\DoctrineOrm\AwsRepository;
 use Aws\Infrastructure\Repositories\DoctrineOrm\AwsUsageRepository;
 use Aws\Sns\SnsClient;
@@ -29,7 +28,7 @@ class AwsModuleBootstrapper implements BootstrapperInterface
      */
     public function __construct(
         private Application $app,
-        private SnsFactory $factory
+//        private SnsFactory $factory
     ) {
     }
 
@@ -39,18 +38,18 @@ class AwsModuleBootstrapper implements BootstrapperInterface
      */
     public function registerSnsServices (): void
     {
-        $credentials = new Credentials(env('AWS_KEY'), env('AWS_SECRET'));
-        $client = new SnsClient([
-            'region' => 'us-east-1',
-            'version' => 'latest',
-            'credentials' => $credentials
-        ]);
-
-        $this->app->set(SnsClient::class, $client);
-        $this->factory
-            ->register(SubscriptionSnsService::class)
-            ->register(EntitlementSnsService::class);
-        $this->factory->makeSubscriptions();
+//        $credentials = new Credentials(env('AWS_KEY'), env('AWS_SECRET'));
+//        $client = new SnsClient([
+//            'region' => 'us-east-1',
+//            'version' => 'latest',
+//            'credentials' => $credentials
+//        ]);
+//
+//        $this->app->set(SnsClient::class, $client);
+//        $this->factory
+//            ->register(SubscriptionSnsService::class)
+//            ->register(EntitlementSnsService::class);
+//        $this->factory->makeSubscriptions();
     }
 
     /**
