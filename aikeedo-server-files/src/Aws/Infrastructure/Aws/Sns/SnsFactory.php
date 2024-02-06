@@ -1,14 +1,14 @@
 <?php
 
-namespace Aws\Infrastructure\Aws;
+namespace Aws\Infrastructure\Aws\Sns\Services;
 
+use Aws\Domain\Repositories\SnsFactoryInterface;
 use Aws\Domain\Repositories\SnsServiceInterface;
-use Aws\Sns\SnsClient;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
-class SnsFactory
+class SnsFactory implements SnsFactoryInterface
 {
     private array $services = [];
     private string $baseUrl;

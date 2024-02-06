@@ -28,7 +28,7 @@ class SendPasswordRecoveryEmail
     /**
      * Constructs an instance of this listener.
      *
-     * Injects necessary services and configuration values.
+     * Injects necessary Services and configuration values.
      *
      * @param MailerInterface $mailer The mailer service to send emails
      * @param Environment $twig The Twig environment for rendering email 

@@ -242,7 +242,7 @@ msgstr ""
 #: /resources/views/sections/mobile-nav.twig:101
 #: /resources/views/snippets/account-menu.twig:107
 msgctxt "button"
-msgid "Terms of services"
+msgid "Terms of Services"
 msgstr ""
 
 #: /resources/views/sections/mobile-nav.twig:108
@@ -446,7 +446,7 @@ msgstr ""
 
 #: /resources/views/templates/policy.twig:7
 msgctxt "title"
-msgid "Terms of services"
+msgid "Terms of Services"
 msgstr ""
 
 #: /resources/views/templates/policy.twig:10
@@ -2023,7 +2023,7 @@ msgstr ""
 
 #: /resources/views/templates/admin/settings/policies.twig:17
 msgctxt "heading"
-msgid "Terms of services"
+msgid "Terms of Services"
 msgstr ""
 
 #: /resources/views/templates/admin/settings/policies.twig:20

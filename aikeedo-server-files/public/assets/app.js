@@ -21601,7 +21601,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
           }
           var query = new URLSearchParams(params);
           query.append('jwt', localStorage.getItem('jwt'));
-          var es = new EventSource("api/ai/services".concat(path, "?").concat(query.toString()));
+          var es = new EventSource("api/ai/Services".concat(path, "?").concat(query.toString()));
           var contentstarted = false;
           es.addEventListener('token', function (event) {
             var token = JSON.parse(event.data);
@@ -21686,7 +21686,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
             content: content
           });
           query.append('jwt', localStorage.getItem('jwt'));
-          var es = new EventSource("api/ai/services/title-generator?".concat(query.toString()));
+          var es = new EventSource("api/ai/Services/title-generator?".concat(query.toString()));
           var titlestarted = false;
           es.addEventListener('token', function (event) {
             var token = JSON.parse(event.data);
@@ -23035,7 +23035,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
             content: content
           });
           query.append('jwt', localStorage.getItem('jwt'));
-          var es = new EventSource("api/ai/services/title-generator?".concat(query.toString()));
+          var es = new EventSource("api/ai/Services/title-generator?".concat(query.toString()));
           var titlestarted = false;
           es.addEventListener('token', function (event) {
             var token = JSON.parse(event.data);
