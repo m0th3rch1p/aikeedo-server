@@ -5,16 +5,10 @@ declare(strict_types=1);
 namespace Aws\Infrastructure;
 
 use Application;
-use Aws\Credentials\Credentials;
 use Aws\Domain\Repositories\AwsRepositoryInterface;
 use Aws\Domain\Repositories\AwsUsageRepositoryInterface;
-use Aws\Domain\Repositories\SnsFactoryInterface;
-use Aws\Infrastructure\Aws\Sns\services\EntitlementSnsService;
-//use Aws\Infrastructure\Aws\Sns\Services\SnsFactory;
-use Aws\Infrastructure\Aws\Sns\services\SubscriptionSnsService;
 use Aws\Infrastructure\Repositories\DoctrineOrm\AwsRepository;
 use Aws\Infrastructure\Repositories\DoctrineOrm\AwsUsageRepository;
-use Aws\Sns\SnsClient;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Shared\Infrastructure\BootstrapperInterface;
@@ -68,10 +62,10 @@ class AwsModuleBootstrapper implements BootstrapperInterface
 
         $this->app->set(AwsUsageRepositoryInterface::class, AwsUsageRepository::class);
 //        $this->app->set(SnsFactoryInterface::class, $this->factory);
-        try {
-            $this->registerSnsServices();
-        } catch (NotFoundExceptionInterface | ContainerExceptionInterface $e) {
-            die($e);
-        }
+//        try {
+//            $this->registerSnsServices();
+//        } catch (NotFoundExceptionInterface | ContainerExceptionInterface $e) {
+//            die($e);
+//        }
     }
 }

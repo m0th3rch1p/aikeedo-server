@@ -2,16 +2,8 @@
 
 namespace Presentation\RequestHandlers\Api\Aws;
 
-use Aws\Application\Commands\ReadByCustomerIdAwsCommand;
-use Aws\Infrastructure\Services\EntitlementService;
-use Billing\Application\Commands\ActivateSubscriptionCommand;
-use Billing\Application\Commands\CreateSubscriptionCommand;
-use Billing\Application\Commands\ReadPlanByTitleCommand;
 use Easy\Http\Message\RequestMethod;
 use Easy\Router\Attributes\Route;
-use EntitlementSnsService;
-use Presentation\Response\EmptyResponse;
-use Presentation\Response\RedirectResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -21,7 +13,7 @@ use Shared\Infrastructure\CommandBus\Dispatcher;
 #[Route(path: "/entitlement/webhook", method: RequestMethod::POST)]
 class EntitlementWebhookRequestHandler extends AwsApi implements  RequestHandlerInterface
 {
-    public function __construct (private LoggerInterface $logger, private EntitlementService $service, private Dispatcher $dispatcher, private EntitlementSnsService $entitlementSnsService) {
+    public function __construct (private LoggerInterface $logger, private Dispatcher $dispatcher) {
 
     }
 

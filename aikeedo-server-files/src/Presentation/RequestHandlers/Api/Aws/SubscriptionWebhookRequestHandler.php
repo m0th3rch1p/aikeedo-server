@@ -2,13 +2,8 @@
 
 namespace Presentation\RequestHandlers\Api\Aws;
 
-use Aws\Application\Commands\ReadByCustomerIdAwsCommand;
-use Aws\Infrastructure\Aws\Sns\services\SubscriptionSnsService;
-use Billing\Application\Commands\ActivateSubscriptionCommand;
-use Billing\Application\Commands\CancelSubscriptionCommand;
 use Easy\Http\Message\RequestMethod;
 use Easy\Router\Attributes\Route;
-use Presentation\Response\EmptyResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -18,7 +13,7 @@ use Shared\Infrastructure\CommandBus\Dispatcher;
 #[Route(path: "/subscription/webhook", method: RequestMethod::POST)]
 class SubscriptionWebhookRequestHandler extends AwsApi implements  RequestHandlerInterface
 {
-    public function __construct(private LoggerInterface $logger, private Dispatcher $dispatcher, private SubscriptionSnsService $subscriptionSnsService)
+    public function __construct(private LoggerInterface $logger, private Dispatcher $dispatcher)
     {
     }
 
