@@ -1,8 +1,7 @@
 <?php
-namespace Aws\Infrastructure\Aws\Sns;
+namespace Aws\Infrastructure\Aws\Sns\Services;
 
 use Aws\Domain\Repositories\SnsServiceInterface;
-use Aws\Sns\SnsClient;
 
 class EntitlementSnsService extends SnsService implements SnsServiceInterface
 {
