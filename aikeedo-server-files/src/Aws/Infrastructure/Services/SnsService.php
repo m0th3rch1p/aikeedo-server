@@ -4,38 +4,38 @@ namespace Aws\Infrastructure\Services;
 
 use Aws\Credentials\Credentials;
 use Aws\Sns\SnsClient;
+enum SnsServiceProtocol {
+    case HTTPS;
+    case ARN;
+    case QUEUE;
+}
 
-class SubscriptionSnsService
+class SnsService
 {
     private SnsClient $client;
-
-//    private static string $httpUrl = "https://878e-196-202-162-222.ngrok-free.app/api/aws/subscription/webhook";
-    private static string $httpUrl = "https://chatrova.com/api/aws/subscription/webhook";
-
-    private static string $topicArn = "arn:aws:sns:us-east-1:287250355862:aws-mp-subscription-notification-1cothn9ewdy8kts24xi9fre3y";
-    private static string $endpoint = "arn:aws:sqs:us-east-1:436917423698:chatrov2";
-
+    private string $baseUrl;
+    private string $protocol;
     /**
-     * @param string $endpoint
+     * @param SnsClient $client
+     * @param string $baseUrl
      */
     public function __construct()
     {
+        $this->baseUrl = env("ENVIRONMENT") === 'dev' ? env('SNS_WEBHOOK_URL_DEV') : env('SNS_WEBHOOK_URL_PROD');
         $credentials = new Credentials(env('AWS_KEY'), env('AWS_SECRET'));
         $this->client = new SnsClient([
             'region' => 'us-east-1',
             'version' => 'latest',
             'credentials' => $credentials
         ]);
-
     }
 
-
-    public function subscribe (): \Aws\Result
+    public function subscribe (string $protocol, string $endpoint, string $topicArn): \Aws\Result
     {
         return $this->client->subscribe([
-            'Protocol' => 'https',
-            'Endpoint' => self::$httpUrl,
-            'TopicArn' => self::$topicArn,
+            'Protocol' => $protocol,
+            'Endpoint' => $this->baseUrl.$endpoint,
+            'TopicArn' => $topicArn,
         ]);
     }
 
@@ -52,8 +52,4 @@ class SubscriptionSnsService
         ]);
     }
 
-    public function getHttpUrl(): string
-    {
-        return self::$httpUrl;
-    }
 }

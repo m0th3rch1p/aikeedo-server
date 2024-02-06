@@ -7,7 +7,7 @@ namespace Presentation\RequestHandlers\Api\Ai;
 use Easy\Router\Attributes\Path;
 use Presentation\RequestHandlers\Api\Api;
 
-#[Path('/ai/services')]
+#[Path('/ai/Services')]
 abstract class AiServicesApi extends Api
 {
 }
