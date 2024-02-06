@@ -27,7 +27,7 @@ class AwsModuleBootstrapper implements BootstrapperInterface
      * @return void
      */
     public function __construct(
-        private Application $app,
+        private Application $app
 //        private SnsFactory $factory
     ) {
     }

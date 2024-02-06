@@ -3,7 +3,9 @@
 // phpcs:disable PSR1.Classes
 declare(strict_types=1);
 
-use Aws\Infrastructure\Aws\Sns\services\SubscriptionSnsService;
+use Aws\Credentials\Credentials;
+use Aws\Infrastructure\Aws\Sns\Services\SubscriptionSnsService;
+use Aws\Sns\SnsClient;
 use Easy\Container\Container;
 use Easy\Container\Exceptions\NotFoundException;
 use Shared\Infrastructure\BootstrapperInterface;
@@ -56,23 +58,25 @@ class Application
 
     public function registerAwsSubscribeSnsWebhooks (): void
     {
+        $baseUrl = env("ENVIRONMENT") === 'dev' ? env('SNS_WEBHOOK_URL_DEV') : env('SNS_WEBHOOK_URL_PROD');
         $subSnsService =  $this->container->get(SubscriptionSnsService::class);
         $listResult = $subSnsService->listSubscriptions();
         $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
-        $found = in_array($subSnsService->getHttpUrl(), $names);
+        $found = in_array($subSnsService->getUrl(), $names);
         if (!($found)) {
-            $subSnsService->subscribe();
+            $subSnsService->subscribe($baseUrl);
         }
     }
 
     public function registerAwsEntitlementSnsWebhooks (): void
     {
-        $entSnsService = $this->container->get(\EntitlementSnsService::class);
+        $baseUrl = env("ENVIRONMENT") === 'dev' ? env('SNS_WEBHOOK_URL_DEV') : env('SNS_WEBHOOK_URL_PROD');
+        $entSnsService = $this->container->get(\Aws\Infrastructure\Aws\Sns\Services\EntitlementSnsService::class);
         $listResult = $entSnsService->listSubscriptions();
         $names = array_column($listResult->get('Subscriptions'), 'Endpoint');
-        $found = in_array($entSnsService->getHttpUrl(), $names);
+        $found = in_array($entSnsService->getUrl(), $names);
         if (!($found)) {
-            $entSnsService->subscribe();
+            $entSnsService->subscribe($baseUrl);
         }
     }
 
@@ -84,6 +88,14 @@ class Application
      */
     public function boot(): void
     {
+        $credentials = new Credentials(env('AWS_KEY'), env('AWS_SECRET'));
+        $client = new SnsClient([
+            'region' => 'us-east-1',
+            'version' => 'latest',
+            'credentials' => $credentials
+        ]);
+
+        $this->set(SnsClient::class, $client);
         $this->registerAwsSubscribeSnsWebhooks();
         $this->registerAwsEntitlementSnsWebhooks();
         $this->invokeServiceProviders();
