@@ -1,0 +1,3739 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);\n"
+"X-Domain: messages\n"
+
+#: /resources/views/layouts/base.twig:108
+msgid "An unexpected error occurred! Please try again later!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:109
+msgid "Category has been updated successfully!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:110
+msgid "Category has been created successfully!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:111
+msgid "Plan has been updated successfully!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:112
+msgid "Plan has been created successfully!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:113
+msgid "Template has been updated successfully!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:114
+msgid "Template has been created successfully!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:115
+msgid "Changes saved successfully!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:116
+msgid "Cache cleared successfully!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:117
+msgid "User has been updated successfully!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:118
+msgid "User has been created successfully!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:119
+msgid "Email sent successfully!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:120
+msgid "You have run out of credits. Please purchase more credits to continue using the app."
+msgstr ""
+
+#: /resources/views/layouts/base.twig:121
+msgid "Document copied to clipboard!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:122
+msgid "Document saved successfully!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:123
+msgid "Document deleted successfully!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:124
+msgid "Subscription cancelled!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:125
+msgid "Document has been updated successfully!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:126
+msgid "Image copied to clipboard!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:127
+msgid "Authentication failed! Please check your credentials and try again!"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:128
+msgid "Click to copy"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:129
+msgid "Copied to clipboard"
+msgstr ""
+
+#: /resources/views/layouts/base.twig:130
+msgid "Resource UUID is copied to the clipboard."
+msgstr ""
+
+#: /resources/views/sections/ai-result.twig:6
+#: /resources/views/templates/app/documents/view.twig:27
+msgid "Document title"
+msgstr ""
+
+#: /resources/views/sections/ai-result.twig:104
+#: /resources/views/templates/app/documents/view.twig:42
+msgctxt "button"
+msgid "Copy"
+msgstr ""
+
+#: /resources/views/sections/ai-result.twig:115
+#: /resources/views/templates/app/imagine.twig:642
+#: /resources/views/templates/app/voiceover.twig:366
+#: /resources/views/templates/app/documents/view.twig:54
+msgctxt "button"
+msgid "Download"
+msgstr ""
+
+#: /resources/views/sections/ai-result.twig:128
+#: /resources/views/templates/app/documents/view.twig:66
+msgctxt "button"
+msgid "Word document"
+msgstr ""
+
+#: /resources/views/sections/ai-result.twig:137
+#: /resources/views/templates/app/documents/view.twig:75
+msgctxt "button"
+msgid "HTML file"
+msgstr ""
+
+#: /resources/views/sections/ai-result.twig:146
+#: /resources/views/templates/app/documents/view.twig:84
+msgctxt "button"
+msgid "Markdown"
+msgstr ""
+
+#: /resources/views/sections/ai-result.twig:155
+#: /resources/views/templates/app/documents/view.twig:93
+msgctxt "button"
+msgid "Text"
+msgstr ""
+
+#: /resources/views/sections/ai-result.twig:168
+msgctxt "button"
+msgid "Save"
+msgstr ""
+
+#: /resources/views/sections/ai-result.twig:176
+msgid "Saving"
+msgstr ""
+
+#: /resources/views/sections/ai-result.twig:185
+#: /resources/views/templates/admin/categories.twig:154
+#: /resources/views/templates/admin/plans.twig:252
+#: /resources/views/templates/admin/presets.twig:234
+#: /resources/views/templates/admin/users.twig:238
+msgctxt "button"
+msgid "Delete"
+msgstr ""
+
+#: /resources/views/sections/ai-result.twig:193
+msgctxt "label"
+msgid "Cost of request"
+msgstr ""
+
+#: /resources/views/sections/aside.twig:39
+#: /resources/views/sections/dashboard/billing.twig:21
+#: /resources/views/sections/dashboard/billing.twig:30
+msgctxt "button"
+msgid "Upgrade plan"
+msgstr ""
+
+#: /resources/views/sections/delete-modal.twig:31
+msgctxt "button"
+msgid "No, cancel"
+msgstr ""
+
+#: /resources/views/sections/delete-modal.twig:36
+msgctxt "button"
+msgid "Yes, delete"
+msgstr ""
+
+#: /resources/views/sections/empty.twig:23
+msgctxt "button"
+msgid "Reset filters"
+msgstr ""
+
+#: /resources/views/sections/empty.twig:27
+msgid ":reset and and try again."
+msgstr ""
+
+#: /resources/views/sections/footer.twig:2
+msgid "All rights reserved."
+msgstr ""
+
+#: /resources/views/sections/footer.twig:3
+msgid "Copyright &copy; %s"
+msgstr ""
+
+#: /resources/views/sections/footer.twig:4
+msgid "Version %s"
+msgstr ""
+
+#: /resources/views/sections/header.twig:83
+#: /resources/views/sections/mobile-nav.twig:55
+#: /resources/views/snippets/account-menu.twig:34
+msgctxt "button"
+msgid "Switch to app"
+msgstr ""
+
+#: /resources/views/sections/header.twig:91
+#: /resources/views/sections/mobile-nav.twig:63
+#: /resources/views/snippets/account-menu.twig:42
+msgctxt "button"
+msgid "Switch to admin"
+msgstr ""
+
+#: /resources/views/sections/header.twig:106
+#: /resources/views/snippets/navigation.twig:102
+msgctxt "button"
+msgid "Documents"
+msgstr ""
+
+#: /resources/views/sections/header.twig:114
+#: /resources/views/sections/mobile-nav.twig:74
+#: /resources/views/snippets/account-menu.twig:77
+msgctxt "button"
+msgid "Billing"
+msgstr ""
+
+#: /resources/views/sections/header.twig:127
+#: /resources/views/sections/mobile-nav.twig:83
+#: /resources/views/snippets/account-menu.twig:87
+msgctxt "button"
+msgid "Account"
+msgstr ""
+
+#: /resources/views/sections/header.twig:135
+#: /resources/views/sections/mobile-nav.twig:91
+#: /resources/views/snippets/account-menu.twig:96
+msgctxt "button"
+msgid "Logout"
+msgstr ""
+
+#: /resources/views/sections/mobile-nav.twig:101
+#: /resources/views/snippets/account-menu.twig:107
+msgctxt "button"
+msgid "Terms of services"
+msgstr ""
+
+#: /resources/views/sections/mobile-nav.twig:108
+#: /resources/views/snippets/account-menu.twig:115
+msgctxt "button"
+msgid "Privacy policy"
+msgstr ""
+
+#: /resources/views/sections/mobile-nav.twig:115
+#: /resources/views/snippets/account-menu.twig:123
+msgctxt "button"
+msgid "Refund policy"
+msgstr ""
+
+#: /resources/views/snippets/account-menu.twig:57
+msgctxt "button"
+msgid "Dark mode"
+msgstr ""
+
+#: /resources/views/snippets/account-menu.twig:61
+msgctxt "button"
+msgid "Light mode"
+msgstr ""
+
+#: /resources/views/snippets/back.twig:4
+msgctxt "button"
+msgid "Back"
+msgstr ""
+
+#: /resources/views/snippets/captcha.twig:17
+msgctxt "button"
+msgid "I'm not a robot"
+msgstr ""
+
+#: /resources/views/snippets/captcha.twig:20
+msgid "Protected by Google reCAPTCHA"
+msgstr ""
+
+#: /resources/views/snippets/captcha.twig:26
+msgctxt "button"
+msgid "Privacy Policy"
+msgstr ""
+
+#: /resources/views/snippets/captcha.twig:30
+msgctxt "button"
+msgid "Terms of Service"
+msgstr ""
+
+#: /resources/views/snippets/filters.twig:72
+msgctxt "button"
+msgid "Reset"
+msgstr ""
+
+#: /resources/views/snippets/filters.twig:104
+msgctxt "label"
+msgid "Sort by"
+msgstr ""
+
+#: /resources/views/snippets/navigation.twig:14
+#: /resources/views/templates/app/presets.twig:38
+#: /resources/views/templates/app/voiceover.twig:380
+#: /resources/views/templates/app/billing/overview.twig:10
+#: /resources/views/templates/app/account/profile.twig:13
+msgctxt "button"
+msgid "Dashboard"
+msgstr ""
+
+#: /resources/views/snippets/navigation.twig:23
+msgctxt "button"
+msgid "Templates"
+msgstr ""
+
+#: /resources/views/snippets/navigation.twig:32
+msgctxt "button"
+msgid "Categories"
+msgstr ""
+
+#: /resources/views/snippets/navigation.twig:41
+msgctxt "button"
+msgid "Plans"
+msgstr ""
+
+#: /resources/views/snippets/navigation.twig:50
+msgctxt "button"
+msgid "Users"
+msgstr ""
+
+#: /resources/views/snippets/navigation.twig:61
+msgctxt "button"
+msgid "Settings"
+msgstr ""
+
+#: /resources/views/snippets/navigation.twig:70
+msgctxt "button"
+msgid "Site health"
+msgstr ""
+
+#: /resources/views/snippets/navigation.twig:80
+msgid "Email verification required"
+msgstr ""
+
+#: /resources/views/snippets/navigation.twig:92
+msgctxt "button"
+msgid "Home"
+msgstr ""
+
+#: /resources/views/snippets/navigation.twig:109
+#: /resources/views/sections/dashboard/tools.twig:2
+msgctxt "heading"
+msgid "Tools"
+msgstr ""
+
+#: /resources/views/snippets/navigation.twig:120
+msgctxt "button"
+msgid "Writer"
+msgstr ""
+
+#: /resources/views/snippets/navigation.twig:133
+msgctxt "button"
+msgid "Coder"
+msgstr ""
+
+#: /resources/views/snippets/navigation.twig:146
+msgctxt "button"
+msgid "Imagine"
+msgstr ""
+
+#: /resources/views/snippets/navigation.twig:159
+msgctxt "button"
+msgid "Transcriber"
+msgstr ""
+
+#: /resources/views/snippets/navigation.twig:173
+msgctxt "button"
+msgid "Voiceover"
+msgstr ""
+
+#: /resources/views/snippets/sso.twig:5
+msgid "or continue with"
+msgstr ""
+
+#: /resources/views/snippets/subscription.twig:8
+msgctxt "heading"
+msgid "Recurring subscription"
+msgstr ""
+
+#: /resources/views/snippets/subscription.twig:42
+msgctxt "label"
+msgid "Token credits"
+msgstr ""
+
+#: /resources/views/snippets/subscription.twig:63
+msgctxt "label"
+msgid "Image credits"
+msgstr ""
+
+#: /resources/views/snippets/subscription.twig:83
+msgctxt "label"
+msgid "Audio credits"
+msgstr ""
+
+#: /resources/views/snippets/subscription.twig:96
+msgid "Usage renews at :date"
+msgstr ""
+
+#: /resources/views/snippets/subscription.twig:104
+msgctxt "button"
+msgid "Cancel subscription"
+msgstr ""
+
+#: /resources/views/templates/404.twig:5
+msgctxt "title"
+msgid "Not found"
+msgstr ""
+
+#: /resources/views/templates/404.twig:10
+#: /resources/views/templates/policy.twig:19
+msgctxt "button"
+msgid "Go to app"
+msgstr ""
+
+#: /resources/views/templates/404.twig:12
+#: /resources/views/templates/policy.twig:21
+msgctxt "button"
+msgid "Go to home page"
+msgstr ""
+
+#: /resources/views/templates/404.twig:16
+msgctxt "heading"
+msgid "Page not found"
+msgstr ""
+
+#: /resources/views/templates/404.twig:19
+msgid "The page you are looking for does not exist."
+msgstr ""
+
+#: /resources/views/templates/policy.twig:4
+msgctxt "title"
+msgid "Privacy policy"
+msgstr ""
+
+#: /resources/views/templates/policy.twig:7
+msgctxt "title"
+msgid "Terms of services"
+msgstr ""
+
+#: /resources/views/templates/policy.twig:10
+msgctxt "title"
+msgid "Refund policy"
+msgstr ""
+
+#: /resources/views/snippets/cards/preset.twig:47
+#: /resources/views/sections/dashboard/tools.twig:13
+msgctxt "writer-tool-description"
+msgid "Write SEO optimized blogs, sales emails and more..."
+msgstr ""
+
+#: /resources/views/snippets/cards/voice.twig:23
+#: /resources/views/snippets/cards/voice.twig:102
+msgctxt "button"
+msgid "Use this voice"
+msgstr ""
+
+#: /resources/views/snippets/cards/voice.twig:56
+#: /resources/views/templates/app/voiceover.twig:204
+msgctxt "heading"
+msgid "Supported languages"
+msgstr ""
+
+#: /resources/views/snippets/checkout/stripe.twig:14
+msgctxt "button"
+msgid "Pay :amount"
+msgstr ""
+
+#: /resources/views/templates/aws/register.twig:3
+#: /resources/views/templates/auth/signup.twig:3
+msgctxt "title"
+msgid "Signup"
+msgstr ""
+
+#: /resources/views/templates/aws/register.twig:11
+#: /resources/views/templates/auth/signup.twig:11
+msgctxt "heading"
+msgid "Sign up"
+msgstr ""
+
+#: /resources/views/templates/aws/register.twig:17
+#: /resources/views/templates/admin/user.twig:37
+#: /resources/views/templates/admin/users.twig:17
+#: /resources/views/templates/app/account/profile.twig:26
+#: /resources/views/templates/auth/signup.twig:17
+msgctxt "label"
+msgid "First name"
+msgstr ""
+
+#: /resources/views/templates/aws/register.twig:22
+#: /resources/views/templates/auth/signup.twig:22
+msgid "Type your first name"
+msgstr ""
+
+#: /resources/views/templates/aws/register.twig:29
+#: /resources/views/templates/admin/user.twig:45
+#: /resources/views/templates/admin/users.twig:22
+#: /resources/views/templates/app/account/profile.twig:34
+#: /resources/views/templates/auth/signup.twig:29
+msgctxt "label"
+msgid "Last name"
+msgstr ""
+
+#: /resources/views/templates/aws/register.twig:35
+#: /resources/views/templates/auth/signup.twig:35
+msgid "Type your last name"
+msgstr ""
+
+#: /resources/views/templates/aws/register.twig:42
+#: /resources/views/templates/admin/user.twig:53
+#: /resources/views/templates/app/account/email.twig:21
+#: /resources/views/templates/app/account/profile.twig:58
+#: /resources/views/templates/app/account/verification.twig:20
+#: /resources/views/templates/auth/login.twig:29
+#: /resources/views/templates/auth/login.twig:61
+#: /resources/views/templates/auth/recovery.twig:51
+#: /resources/views/templates/auth/signup.twig:42
+msgctxt "label"
+msgid "Email"
+msgstr ""
+
+#: /resources/views/templates/aws/register.twig:45
+#: /resources/views/templates/auth/login.twig:65
+#: /resources/views/templates/auth/recovery.twig:54
+#: /resources/views/templates/auth/signup.twig:45
+msgid "Type your email address"
+msgstr ""
+
+#: /resources/views/templates/aws/register.twig:50
+#: /resources/views/templates/admin/settings/smtp.twig:53
+#: /resources/views/templates/app/account/email.twig:29
+#: /resources/views/templates/app/account/password.twig:32
+#: /resources/views/templates/auth/login.twig:37
+#: /resources/views/templates/auth/login.twig:72
+#: /resources/views/templates/auth/signup.twig:50
+msgctxt "label"
+msgid "Password"
+msgstr ""
+
+#: /resources/views/templates/aws/register.twig:55
+#: /resources/views/templates/auth/login.twig:77
+#: /resources/views/templates/auth/signup.twig:55
+msgid "Type your password"
+msgstr ""
+
+#: /resources/views/templates/aws/register.twig:74
+#: /resources/views/templates/auth/login.twig:134
+#: /resources/views/templates/auth/recovery.twig:82
+#: /resources/views/templates/auth/signup.twig:74
+msgctxt "button"
+msgid "Sign up"
+msgstr ""
+
+#: /resources/views/templates/aws/register.twig:81
+#: /resources/views/templates/auth/signup.twig:81
+msgid "Already have an account?"
+msgstr ""
+
+#: /resources/views/templates/aws/register.twig:85
+#: /resources/views/templates/auth/login.twig:119
+#: /resources/views/templates/auth/signup.twig:85
+msgctxt "button"
+msgid "Sign in"
+msgstr ""
+
+#: /resources/views/templates/admin/categories.twig:7
+#: /resources/views/templates/admin/plans.twig:7
+#: /resources/views/templates/admin/presets.twig:7
+#: /resources/views/templates/admin/users.twig:7
+#: /resources/views/templates/app/presets.twig:7
+#: /resources/views/templates/app/voiceover.twig:7
+#: /resources/views/templates/app/documents/list.twig:7
+msgctxt "label"
+msgid "Default"
+msgstr ""
+
+#: /resources/views/templates/admin/categories.twig:12
+#: /resources/views/templates/admin/plans.twig:12
+#: /resources/views/templates/admin/presets.twig:12
+#: /resources/views/templates/admin/users.twig:12
+#: /resources/views/templates/app/documents/list.twig:12
+msgctxt "label"
+msgid "Date"
+msgstr ""
+
+#: /resources/views/templates/admin/categories.twig:17
+#: /resources/views/templates/admin/category.twig:36
+#: /resources/views/templates/admin/plan.twig:52
+#: /resources/views/templates/admin/preset.twig:40
+#: /resources/views/templates/admin/presets.twig:17
+#: /resources/views/templates/app/presets.twig:12
+#: /resources/views/templates/app/documents/list.twig:17
+msgctxt "label"
+msgid "Title"
+msgstr ""
+
+#: /resources/views/templates/admin/categories.twig:25
+msgid "Category has been deleted successfully."
+msgstr ""
+
+#: /resources/views/templates/admin/categories.twig:33
+msgctxt "title"
+msgid "Categories"
+msgstr ""
+
+#: /resources/views/templates/admin/categories.twig:39
+msgctxt "heading"
+msgid "Categories"
+msgstr ""
+
+#: /resources/views/templates/admin/categories.twig:43
+#: /resources/views/templates/admin/categories.twig:65
+msgid "Total :count categories"
+msgstr ""
+
+#: /resources/views/templates/admin/categories.twig:60
+msgctxt "button"
+msgid "Create new category"
+msgstr ""
+
+#: /resources/views/templates/admin/categories.twig:70
+#: /resources/views/templates/admin/plans.twig:106
+#: /resources/views/templates/admin/presets.twig:104
+#: /resources/views/templates/admin/users.twig:102
+#: /resources/views/templates/app/presets.twig:72
+#: /resources/views/templates/app/documents/list.twig:58
+msgctxt "heading"
+msgid "Empty result set"
+msgstr ""
+
+#: /resources/views/templates/admin/categories.twig:70
+msgid "There are no categories yet."
+msgstr ""
+
+#: /resources/views/templates/admin/categories.twig:70
+msgid "There are no categories matching your search."
+msgstr ""
+
+#: /resources/views/templates/admin/categories.twig:75
+#: /resources/views/templates/admin/plans.twig:111
+#: /resources/views/templates/admin/settings/general.twig:20
+#: /resources/views/templates/app/voiceover.twig:12
+msgctxt "label"
+msgid "Name"
+msgstr ""
+
+#: /resources/views/templates/admin/categories.twig:76
+#: /resources/views/templates/admin/plans.twig:114
+#: /resources/views/templates/admin/users.twig:109
+#: /resources/views/templates/app/documents/list.twig:64
+#: /resources/views/sections/dashboard/documents.twig:22
+msgctxt "label"
+msgid "Created"
+msgstr ""
+
+#: /resources/views/templates/admin/categories.twig:145
+#: /resources/views/templates/admin/plans.twig:242
+#: /resources/views/templates/admin/presets.twig:225
+#: /resources/views/templates/admin/users.twig:227
+#: /resources/views/sections/dashboard/documents.twig:89
+msgctxt "button"
+msgid "Edit"
+msgstr ""
+
+#: /resources/views/templates/admin/categories.twig:169
+#: /resources/views/templates/admin/users.twig:254
+msgid "Do you really want to delete :title from categories?"
+msgstr ""
+
+#: /resources/views/templates/admin/category.twig:9
+#: /resources/views/templates/admin/category.twig:20
+msgctxt "title"
+msgid "Edit category"
+msgstr ""
+
+#: /resources/views/templates/admin/category.twig:9
+msgctxt "title"
+msgid "New category"
+msgstr ""
+
+#: /resources/views/templates/admin/category.twig:18
+msgctxt "title"
+msgid "Create new category"
+msgstr ""
+
+#: /resources/views/templates/admin/category.twig:40
+msgid "Include a title for the category"
+msgstr ""
+
+#: /resources/views/templates/admin/category.twig:47
+#: /resources/views/templates/admin/plan.twig:235
+#: /resources/views/templates/admin/preset.twig:170
+#: /resources/views/templates/admin/user.twig:116
+#: /resources/views/templates/admin/settings/accounts.twig:156
+#: /resources/views/templates/admin/settings/billing.twig:168
+#: /resources/views/templates/admin/settings/brand.twig:319
+#: /resources/views/templates/admin/settings/clipdrop.twig:56
+#: /resources/views/templates/admin/settings/elevenlabs.twig:58
+#: /resources/views/templates/admin/settings/general.twig:131
+#: /resources/views/templates/admin/settings/mail.twig:70
+#: /resources/views/templates/admin/settings/openai.twig:35
+#: /resources/views/templates/admin/settings/policies.twig:67
+#: /resources/views/templates/admin/settings/public-details.twig:119
+#: /resources/views/templates/admin/settings/recaptcha.twig:84
+#: /resources/views/templates/admin/settings/smtp.twig:65
+#: /resources/views/templates/admin/settings/stabilityai.twig:58
+#: /resources/views/templates/admin/settings/identity-providers/facebook.twig:97
+#: /resources/views/templates/admin/settings/identity-providers/github.twig:96
+#: /resources/views/templates/admin/settings/identity-providers/google.twig:95
+#: /resources/views/templates/admin/settings/identity-providers/linkedin.twig:97
+msgctxt "button"
+msgid "Cancel"
+msgstr ""
+
+#: /resources/views/templates/admin/category.twig:55
+msgctxt "button"
+msgid "Create category"
+msgstr ""
+
+#: /resources/views/templates/admin/category.twig:59
+msgctxt "button"
+msgid "Update category"
+msgstr ""
+
+#: /resources/views/templates/admin/dashboard.twig:8
+#: /resources/views/templates/app/dashboard.twig:5
+msgctxt "title"
+msgid "Dashboard"
+msgstr ""
+
+#: /resources/views/templates/admin/dashboard.twig:20
+#: /resources/views/templates/app/dashboard.twig:16
+msgctxt "heading"
+msgid "Welcome %s"
+msgstr ""
+
+#: /resources/views/templates/admin/dashboard.twig:24
+msgid "Once you're done, you'll unlock a whole array of awesome tools."
+msgstr ""
+
+#: /resources/views/templates/admin/dashboard.twig:29
+msgctxt "heading"
+msgid "Getting started"
+msgstr ""
+
+#: /resources/views/templates/admin/dashboard.twig:39
+msgid "Connect your OpenAI Key"
+msgstr ""
+
+#: /resources/views/templates/admin/dashboard.twig:45
+#: /resources/views/templates/admin/dashboard.twig:82
+#: /resources/views/templates/admin/dashboard.twig:119
+#: /resources/views/templates/admin/dashboard.twig:156
+msgid "Done"
+msgstr ""
+
+#: /resources/views/templates/admin/dashboard.twig:54
+msgctxt "button"
+msgid "Connect"
+msgstr ""
+
+#: /resources/views/templates/admin/dashboard.twig:76
+msgid "Configure payment gateways"
+msgstr ""
+
+#: /resources/views/templates/admin/dashboard.twig:91
+msgctxt "button"
+msgid "Configure"
+msgstr ""
+
+#: /resources/views/templates/admin/dashboard.twig:113
+msgid "Set business details"
+msgstr ""
+
+#: /resources/views/templates/admin/dashboard.twig:128
+msgctxt "button"
+msgid "Business details"
+msgstr ""
+
+#: /resources/views/templates/admin/dashboard.twig:150
+msgid "Setup membership plans"
+msgstr ""
+
+#: /resources/views/templates/admin/dashboard.twig:165
+msgctxt "button"
+msgid "Add pricing plan"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:9
+msgctxt "title"
+msgid "Edit plan"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:9
+msgctxt "title"
+msgid "New plan"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:18
+msgctxt "heading"
+msgid "Create new plan"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:21
+msgctxt "heading"
+msgid "Edit plan"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:36
+#: /resources/views/templates/admin/preset.twig:37
+msgctxt "heading"
+msgid "Details"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:46
+msgid "Since this plan already has a subscription, it is locked for deletion and modification. You can only update the title, description, and status."
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:56
+#: /resources/views/templates/admin/plan.twig:140
+msgid "Include a title for the plan"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:61
+#: /resources/views/templates/admin/preset.twig:49
+#: /resources/views/templates/admin/settings/general.twig:120
+#: /resources/views/templates/app/coder.twig:54
+#: /resources/views/templates/app/imagine.twig:88
+msgctxt "label"
+msgid "Description"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:69
+#: /resources/views/templates/admin/preset.twig:101
+msgctxt "label"
+msgid "Icon"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:84
+#: /resources/views/templates/admin/preset.twig:116
+msgid "Include SVG source code or name of the any icon from %s"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:90
+#: /resources/views/templates/admin/plans.twig:46
+#: /resources/views/templates/admin/plans.twig:115
+#: /resources/views/templates/admin/preset.twig:122
+#: /resources/views/templates/admin/presets.twig:111
+#: /resources/views/templates/admin/user.twig:92
+#: /resources/views/templates/admin/users.twig:42
+#: /resources/views/templates/admin/users.twig:110
+#: /resources/views/templates/admin/settings/clipdrop.twig:21
+#: /resources/views/templates/admin/settings/elevenlabs.twig:22
+#: /resources/views/templates/admin/settings/stabilityai.twig:22
+msgctxt "label"
+msgid "Status"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:100
+#: /resources/views/templates/admin/preset.twig:129
+#: /resources/views/templates/admin/user.twig:102
+msgctxt "input-value"
+msgid "Inactive"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:104
+#: /resources/views/templates/admin/preset.twig:133
+#: /resources/views/templates/admin/user.twig:106
+msgctxt "input-value"
+msgid "Active"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:111
+msgctxt "label"
+msgid "Featured plan"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:121
+msgctxt "input-value"
+msgid "Off"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:125
+msgctxt "input-value"
+msgid "On"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:132
+msgctxt "heading"
+msgid "Pricing"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:135
+#: /resources/views/templates/admin/plans.twig:17
+#: /resources/views/templates/admin/plans.twig:113
+msgctxt "label"
+msgid "Price"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:152
+#: /resources/views/templates/admin/plans.twig:28
+#: /resources/views/templates/admin/plans.twig:112
+msgctxt "label"
+msgid "Billing cycle"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:161
+msgctxt "label"
+msgid "One time token pack"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:170
+msgctxt "label"
+msgid "Monthly (30days)"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:179
+msgctxt "label"
+msgid "Yearly (365days)"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:186
+msgctxt "heading"
+msgid "Feature list"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:189
+msgctxt "label"
+msgid "Max token limit"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:193
+#: /resources/views/templates/admin/plan.twig:202
+#: /resources/views/templates/admin/plan.twig:213
+#: /resources/views/templates/app/billing/checkout.twig:176
+#: /resources/views/templates/app/billing/checkout.twig:184
+#: /resources/views/templates/app/billing/checkout.twig:192
+#: /resources/views/templates/app/billing/checkout.twig:225
+#: /resources/views/templates/app/billing/checkout.twig:236
+#: /resources/views/templates/app/billing/checkout.twig:247
+#: /resources/views/templates/app/billing/locked.twig:74
+#: /resources/views/templates/app/billing/locked.twig:82
+#: /resources/views/templates/app/billing/locked.twig:90
+#: /resources/views/templates/app/billing/overview.twig:86
+#: /resources/views/templates/app/billing/overview.twig:94
+#: /resources/views/templates/app/billing/overview.twig:102
+#: /resources/views/sections/dashboard/billing.twig:46
+#: /resources/views/sections/dashboard/billing.twig:61
+#: /resources/views/sections/dashboard/billing.twig:76
+msgid "Unlimited"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:198
+msgctxt "label"
+msgid "Max image limit"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:208
+msgctxt "label"
+msgid "Max audio limit (seconds)"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:218
+msgctxt "label"
+msgid "Features"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:226
+msgid "Comma separated list of features. To show the feature as excluded add a dash (-) before the feature name."
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:244
+msgctxt "button"
+msgid "Create plan"
+msgstr ""
+
+#: /resources/views/templates/admin/plan.twig:248
+msgctxt "button"
+msgid "Update plan"
+msgstr ""
+
+#: /resources/views/templates/admin/plans.twig:22
+msgctxt "label"
+msgid "Superiority"
+msgstr ""
+
+#: /resources/views/templates/admin/plans.twig:33
+msgctxt "billing-cycle"
+msgid "Monthly"
+msgstr ""
+
+#: /resources/views/templates/admin/plans.twig:37
+msgctxt "billing-cycle"
+msgid "Yearly"
+msgstr ""
+
+#: /resources/views/templates/admin/plans.twig:41
+msgctxt "billing-cycle"
+msgid "One time pack"
+msgstr ""
+
+#: /resources/views/templates/admin/plans.twig:51
+#: /resources/views/templates/admin/plans.twig:217
+#: /resources/views/templates/admin/presets.twig:48
+#: /resources/views/templates/admin/presets.twig:200
+#: /resources/views/templates/admin/users.twig:47
+#: /resources/views/templates/admin/users.twig:200
+msgctxt "status"
+msgid "Inactive"
+msgstr ""
+
+#: /resources/views/templates/admin/plans.twig:55
+#: /resources/views/templates/admin/plans.twig:221
+#: /resources/views/templates/admin/presets.twig:52
+#: /resources/views/templates/admin/presets.twig:204
+#: /resources/views/templates/admin/users.twig:51
+#: /resources/views/templates/admin/users.twig:204
+msgctxt "status"
+msgid "Active"
+msgstr ""
+
+#: /resources/views/templates/admin/plans.twig:62
+msgid "Plan has been deleted successfully."
+msgstr ""
+
+#: /resources/views/templates/admin/plans.twig:70
+msgctxt "title"
+msgid "Plans"
+msgstr ""
+
+#: /resources/views/templates/admin/plans.twig:76
+msgctxt "heading"
+msgid "Plans"
+msgstr ""
+
+#: /resources/views/templates/admin/plans.twig:80
+msgid "Total :count plans"
+msgstr ""
+
+#: /resources/views/templates/admin/plans.twig:96
+msgctxt "button"
+msgid "Create new plan"
+msgstr ""
+
+#: /resources/views/templates/admin/plans.twig:106
+msgid "There are no plans yet."
+msgstr ""
+
+#: /resources/views/templates/admin/plans.twig:106
+msgid "TThere are no plans matching your search."
+msgstr ""
+
+#: /resources/views/templates/admin/plans.twig:178
+msgid "Featured"
+msgstr ""
+
+#: /resources/views/templates/admin/plans.twig:184
+msgid "Locked"
+msgstr ""
+
+#: /resources/views/templates/admin/plans.twig:268
+msgid "Do you really want to delete :title from membership plans?"
+msgstr ""
+
+#: /resources/views/templates/admin/preset.twig:9
+msgctxt "title"
+msgid "Edit template"
+msgstr ""
+
+#: /resources/views/templates/admin/preset.twig:9
+msgctxt "title"
+msgid "New template"
+msgstr ""
+
+#: /resources/views/templates/admin/preset.twig:18
+msgctxt "heading"
+msgid "Create new template"
+msgstr ""
+
+#: /resources/views/templates/admin/preset.twig:22
+msgctxt "heading"
+msgid "Edit template"
+msgstr ""
+
+#: /resources/views/templates/admin/preset.twig:44
+msgid "Include a title for the template"
+msgstr ""
+
+#: /resources/views/templates/admin/preset.twig:53
+msgid "Include a description for the template"
+msgstr ""
+
+#: /resources/views/templates/admin/preset.twig:58
+#: /resources/views/templates/admin/presets.twig:110
+#: /resources/views/templates/app/presets.twig:18
+msgctxt "label"
+msgid "Category"
+msgstr ""
+
+#: /resources/views/templates/admin/preset.twig:62
+msgctxt "input-value"
+msgid "Uncategorized"
+msgstr ""
+
+#: /resources/views/templates/admin/preset.twig:72
+msgctxt "label"
+msgid "Color"
+msgstr ""
+
+#: /resources/views/templates/admin/preset.twig:92
+msgid "Include hex color code"
+msgstr ""
+
+#: /resources/views/templates/admin/preset.twig:145
+msgctxt "heading"
+msgid "Prompt"
+msgstr ""
+
+#: /resources/views/templates/admin/preset.twig:149
+#: /resources/views/templates/admin/settings/recaptcha.twig:26
+#: /resources/views/templates/admin/settings/identity-providers/facebook.twig:25
+#: /resources/views/templates/admin/settings/identity-providers/github.twig:25
+#: /resources/views/templates/admin/settings/identity-providers/google.twig:25
+#: /resources/views/templates/admin/settings/identity-providers/linkedin.twig:25
+msgctxt "button"
+msgid "Docs"
+msgstr ""
+
+#: /resources/views/templates/admin/preset.twig:157
+msgctxt "label"
+msgid "Prompt template"
+msgstr ""
+
+#: /resources/views/templates/admin/preset.twig:178
+#: /resources/views/templates/admin/presets.twig:94
+msgctxt "button"
+msgid "Create template"
+msgstr ""
+
+#: /resources/views/templates/admin/preset.twig:182
+msgctxt "button"
+msgid "Update template"
+msgstr ""
+
+#: /resources/views/templates/admin/presets.twig:34
+#: /resources/views/templates/admin/presets.twig:176
+msgid "Built-in"
+msgstr ""
+
+#: /resources/views/templates/admin/presets.twig:38
+msgid "Custom"
+msgstr ""
+
+#: /resources/views/templates/admin/presets.twig:59
+msgid "Preset has been deleted successfully."
+msgstr ""
+
+#: /resources/views/templates/admin/presets.twig:68
+msgctxt "title"
+msgid "Templates"
+msgstr ""
+
+#: /resources/views/templates/admin/presets.twig:74
+msgctxt "heading"
+msgid "Templates"
+msgstr ""
+
+#: /resources/views/templates/admin/presets.twig:78
+msgid "Total :count templates"
+msgstr ""
+
+#: /resources/views/templates/admin/presets.twig:104
+#: /resources/views/templates/app/presets.twig:72
+msgid "There are no templates yet."
+msgstr ""
+
+#: /resources/views/templates/admin/presets.twig:104
+#: /resources/views/templates/app/presets.twig:72
+msgid "There are no template matching your search."
+msgstr ""
+
+#: /resources/views/templates/admin/presets.twig:109
+msgctxt "label"
+msgid "Template"
+msgstr ""
+
+#: /resources/views/templates/admin/presets.twig:249
+msgid "Do you really want to delete :title from templates?"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:6
+msgctxt "title"
+msgid "Status"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:9
+msgctxt "heading"
+msgid "Status"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:21
+msgctxt "heading"
+msgid "Debug mode"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:24
+msgid "Disable for production"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:36
+#: /resources/views/templates/admin/settings/accounts.twig:38
+#: /resources/views/templates/admin/settings/accounts.twig:70
+#: /resources/views/templates/admin/settings/clipdrop.twig:31
+#: /resources/views/templates/admin/settings/elevenlabs.twig:33
+#: /resources/views/templates/admin/settings/general.twig:89
+#: /resources/views/templates/admin/settings/recaptcha.twig:46
+#: /resources/views/templates/admin/settings/stabilityai.twig:33
+#: /resources/views/templates/admin/settings/identity-providers/facebook.twig:45
+#: /resources/views/templates/admin/settings/identity-providers/github.twig:44
+#: /resources/views/templates/admin/settings/identity-providers/google.twig:44
+#: /resources/views/templates/admin/settings/identity-providers/linkedin.twig:45
+msgid "Disabled"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:40
+#: /resources/views/templates/admin/settings/accounts.twig:42
+#: /resources/views/templates/admin/settings/accounts.twig:74
+#: /resources/views/templates/admin/settings/clipdrop.twig:35
+#: /resources/views/templates/admin/settings/elevenlabs.twig:37
+#: /resources/views/templates/admin/settings/general.twig:93
+#: /resources/views/templates/admin/settings/recaptcha.twig:50
+#: /resources/views/templates/admin/settings/stabilityai.twig:37
+#: /resources/views/templates/admin/settings/identity-providers/facebook.twig:49
+#: /resources/views/templates/admin/settings/identity-providers/github.twig:48
+#: /resources/views/templates/admin/settings/identity-providers/google.twig:48
+#: /resources/views/templates/admin/settings/identity-providers/linkedin.twig:49
+msgid "Enabled"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:54
+msgctxt "heading"
+msgid "Caching"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:63
+msgctxt "button"
+msgid "Clear cache"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:68
+msgid "Turn on for production"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:80
+#: /resources/views/templates/admin/status.twig:129
+msgid "Off"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:84
+#: /resources/views/templates/admin/status.twig:129
+msgid "On"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:97
+msgctxt "heading"
+msgid "Environment"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:112
+msgctxt "heading"
+msgid "Database"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:114
+msgid "Connection established"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:114
+msgid "Connection failed"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:127
+msgctxt "heading"
+msgid "File uploads"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:140
+msgctxt "heading"
+msgid "Post max size"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:153
+msgctxt "heading"
+msgid "Upload max filesize"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:166
+msgctxt "heading"
+msgid "Memory limit"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:179
+msgctxt "heading"
+msgid "Disk space"
+msgstr ""
+
+#: /resources/views/templates/admin/status.twig:181
+msgid "%1$s of %2$s is free"
+msgstr ""
+
+#: /resources/views/templates/admin/user.twig:9
+msgctxt "title"
+msgid "Edit user"
+msgstr ""
+
+#: /resources/views/templates/admin/user.twig:9
+msgctxt "title"
+msgid "New user"
+msgstr ""
+
+#: /resources/views/templates/admin/user.twig:17
+msgctxt "heading"
+msgid "Add new user"
+msgstr ""
+
+#: /resources/views/templates/admin/user.twig:19
+msgctxt "heading"
+msgid "Edit user"
+msgstr ""
+
+#: /resources/views/templates/admin/user.twig:34
+msgctxt "heading"
+msgid "Profile"
+msgstr ""
+
+#: /resources/views/templates/admin/user.twig:57
+msgid "User's email"
+msgstr ""
+
+#: /resources/views/templates/admin/user.twig:67
+msgctxt "heading"
+msgid "Account details"
+msgstr ""
+
+#: /resources/views/templates/admin/user.twig:70
+#: /resources/views/templates/admin/users.twig:28
+#: /resources/views/templates/admin/users.twig:108
+msgctxt "label"
+msgid "Role"
+msgstr ""
+
+#: /resources/views/templates/admin/user.twig:78
+msgctxt "input-value"
+msgid "User"
+msgstr ""
+
+#: /resources/views/templates/admin/user.twig:85
+msgctxt "input-value"
+msgid "Admin"
+msgstr ""
+
+#: /resources/views/templates/admin/user.twig:124
+msgctxt "button"
+msgid "Create user"
+msgstr ""
+
+#: /resources/views/templates/admin/user.twig:125
+msgctxt "button"
+msgid "Update user"
+msgstr ""
+
+#: /resources/views/templates/admin/users.twig:33
+#: /resources/views/templates/admin/users.twig:177
+#: /resources/views/templates/admin/users.twig:183
+msgctxt "role"
+msgid "User"
+msgstr ""
+
+#: /resources/views/templates/admin/users.twig:37
+#: /resources/views/templates/admin/users.twig:177
+#: /resources/views/templates/admin/users.twig:183
+msgctxt "role"
+msgid "Admin"
+msgstr ""
+
+#: /resources/views/templates/admin/users.twig:58
+msgid "User has been deleted successfully."
+msgstr ""
+
+#: /resources/views/templates/admin/users.twig:66
+msgctxt "title"
+msgid "Users"
+msgstr ""
+
+#: /resources/views/templates/admin/users.twig:72
+msgctxt "heading"
+msgid "Users"
+msgstr ""
+
+#: /resources/views/templates/admin/users.twig:76
+#: /resources/views/templates/admin/users.twig:97
+msgid "Total :count users"
+msgstr ""
+
+#: /resources/views/templates/admin/users.twig:92
+msgctxt "button"
+msgid "Add user"
+msgstr ""
+
+#: /resources/views/templates/admin/users.twig:102
+msgid "There are no users yet."
+msgstr ""
+
+#: /resources/views/templates/admin/users.twig:102
+msgid "There are no users matching your search."
+msgstr ""
+
+#: /resources/views/templates/admin/users.twig:107
+msgctxt "label"
+msgid "User"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:5
+msgctxt "title"
+msgid "Account settings"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:11
+#: /resources/views/templates/admin/settings/index.twig:151
+msgctxt "heading"
+msgid "Account settings"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:21
+#: /resources/views/templates/admin/settings/billing.twig:18
+#: /resources/views/templates/admin/settings/index.twig:21
+#: /resources/views/templates/admin/settings/mail.twig:18
+msgctxt "heading"
+msgid "General"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:26
+msgctxt "label"
+msgid "User accounts"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:50
+msgid "Disabling user accounts will prevent users from signing in through the sign in form and API. Admin accounts will still be able to sign in."
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:59
+msgctxt "label"
+msgid "Signup form"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:82
+msgid "Disabling registration will prevent users from signing up through the sign up form and API. Current users will still be able to sign in."
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:93
+msgctxt "label"
+msgid "Email verification policy"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:100
+msgctxt "input-value"
+msgid "None"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:105
+msgctxt "input-value"
+msgid "Relaxed"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:110
+msgctxt "input-value"
+msgid "Strict"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:119
+msgid "Email verification will not be required."
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:125
+msgid "Users can sign in without having their email addresses verified. However, an alert indicating that the email is unverified will be displayed on the dashboard."
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:131
+msgid "Users will be able to sign in however can not access any page except the account pages until they verify their email address."
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:139
+msgctxt "button"
+msgid "mailer transport"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:142
+msgid "Configure :mailer to send emails."
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:147
+msgid "Doesn't apply for the access to admin portal."
+msgstr ""
+
+#: /resources/views/templates/admin/settings/accounts.twig:163
+#: /resources/views/templates/admin/settings/billing.twig:176
+#: /resources/views/templates/admin/settings/brand.twig:325
+#: /resources/views/templates/admin/settings/clipdrop.twig:63
+#: /resources/views/templates/admin/settings/elevenlabs.twig:65
+#: /resources/views/templates/admin/settings/general.twig:138
+#: /resources/views/templates/admin/settings/mail.twig:77
+#: /resources/views/templates/admin/settings/openai.twig:42
+#: /resources/views/templates/admin/settings/policies.twig:73
+#: /resources/views/templates/admin/settings/public-details.twig:126
+#: /resources/views/templates/admin/settings/recaptcha.twig:91
+#: /resources/views/templates/admin/settings/smtp.twig:72
+#: /resources/views/templates/admin/settings/stabilityai.twig:65
+#: /resources/views/templates/admin/settings/identity-providers/facebook.twig:104
+#: /resources/views/templates/admin/settings/identity-providers/github.twig:103
+#: /resources/views/templates/admin/settings/identity-providers/google.twig:102
+#: /resources/views/templates/admin/settings/identity-providers/linkedin.twig:104
+#: /resources/views/templates/app/account/profile.twig:87
+msgctxt "button"
+msgid "Save changes"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:5
+msgctxt "title"
+msgid "Billing settings"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:11
+msgctxt "heading"
+msgid "Billing Configuration"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:22
+msgctxt "label"
+msgid "Default Currency"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:40
+msgctxt "heading"
+msgid "Trialing"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:44
+msgctxt "label"
+msgid "Trial period days"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:54
+msgid "Set value to %s to disable trailing"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:57
+msgid "Each user is eligible for trailing only once in any paid plan"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:75
+msgctxt "label"
+msgid "Trial without payment"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:83
+msgid "If enabled, eligible users can upgrade to any paid plan with provinding any payment method."
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:86
+msgid "After trial ends, a payment method will be required."
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:94
+msgctxt "heading"
+msgid "Default & Fallback plans"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:99
+msgctxt "label"
+msgid "Sign up plan"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:104
+#: /resources/views/templates/admin/settings/billing.twig:139
+msgid "None"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:119
+msgid "New users will be automatically subscribed to this plan <strong>without provinding payment details</strong>."
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:123
+msgid "Select %s to disable automatic subscription. Users will be required to choose a plan by themself"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:127
+msgid "If you're going to select any paid plan, then it's highly recommended to enable trialing. Otherwise, new users will be able to the selected paid plan for free."
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:134
+msgctxt "label"
+msgid "Fallback plan"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:155
+msgid "If any subscription expires or fails to renew, then the user will be automatically subscribed to this plan."
+msgstr ""
+
+#: /resources/views/templates/admin/settings/billing.twig:159
+msgid "Select %s to disable automatic downgrading. Users will be required to choose a new plan by themself."
+msgstr ""
+
+#: /resources/views/templates/admin/settings/brand.twig:5
+msgctxt "title"
+msgid "Brand settings"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/brand.twig:21
+msgctxt "heading"
+msgid "Brand settings"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/brand.twig:27
+msgctxt "heading"
+msgid "Favicon"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/brand.twig:31
+msgctxt "label"
+msgid "Favicon"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/brand.twig:37
+#: /resources/views/templates/admin/settings/brand.twig:92
+#: /resources/views/templates/admin/settings/brand.twig:148
+#: /resources/views/templates/admin/settings/brand.twig:209
+#: /resources/views/templates/admin/settings/brand.twig:267
+msgctxt "button"
+msgid "View current"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/brand.twig:52
+#: /resources/views/templates/admin/settings/brand.twig:107
+#: /resources/views/templates/admin/settings/brand.twig:163
+#: /resources/views/templates/admin/settings/brand.twig:224
+#: /resources/views/templates/admin/settings/brand.twig:282
+msgid "Upload file"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/brand.twig:71
+#: /resources/views/templates/admin/settings/brand.twig:125
+#: /resources/views/templates/admin/settings/brand.twig:181
+#: /resources/views/templates/admin/settings/brand.twig:242
+#: /resources/views/templates/admin/settings/brand.twig:300
+#: /resources/views/templates/app/transcriber.twig:88
+msgctxt "button"
+msgid "Browse files"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/brand.twig:82
+msgctxt "heading"
+msgid "Primary logo"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/brand.twig:86
+#: /resources/views/templates/admin/settings/brand.twig:203
+msgctxt "label"
+msgid "Light mode"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/brand.twig:135
+msgid "Will be used in the header of the website/emails etc. in regular/light mode"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/brand.twig:142
+#: /resources/views/templates/admin/settings/brand.twig:260
+msgctxt "label"
+msgid "Dark mode"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/brand.twig:191
+msgid "Will be used in the header of the website/emails etc. in dark mode"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/brand.twig:198
+msgctxt "heading"
+msgid "Alternative logo"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/brand.twig:252
+msgid "Will be used in the footer of the website/emails etc. in regular/light mode"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/brand.twig:310
+msgid "Will be used in the footer of the website/emails etc. in dark mode"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/clipdrop.twig:5
+msgctxt "title"
+msgid "Clipdrop Configuration"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/clipdrop.twig:17
+#: /resources/views/templates/admin/settings/elevenlabs.twig:18
+#: /resources/views/templates/admin/settings/openai.twig:18
+#: /resources/views/templates/admin/settings/stabilityai.twig:18
+msgctxt "heading"
+msgid "API"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/clipdrop.twig:42
+#: /resources/views/templates/admin/settings/elevenlabs.twig:44
+#: /resources/views/templates/admin/settings/stabilityai.twig:44
+msgctxt "label"
+msgid "API Key"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/clipdrop.twig:47
+msgid "Include your Clipdrop API secret key"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/elevenlabs.twig:5
+msgctxt "title"
+msgid "ElevenLabs Configuration"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/elevenlabs.twig:49
+msgid "Include your ElevenLabs API  secret key"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/general.twig:5
+msgctxt "title"
+msgid "General settings"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/general.twig:11
+msgctxt "heading"
+msgid "General settings"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/general.twig:17
+msgctxt "heading"
+msgid "Website"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/general.twig:28
+msgctxt "label"
+msgid "Site Domain"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/general.twig:39
+msgid "Include only domain, subdomain(if any) and port number(if any). Do not include protocol or path. Omit port number if it's 80 or 443."
+msgstr ""
+
+#: /resources/views/templates/admin/settings/general.twig:47
+msgctxt "label"
+msgid "Is SSL Enabled?"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/general.twig:57
+#: /resources/views/templates/app/billing/overview.twig:155
+msgid "No"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/general.twig:61
+msgid "Yes"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/general.twig:70
+msgid "Enable this only if you have SSL certificate installed on your server. SSL is required for various features like SSO, Payment Gateways etc. It's highly recommended to enable SSL."
+msgstr ""
+
+#: /resources/views/templates/admin/settings/general.twig:78
+msgctxt "label"
+msgid "Landing Page"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/general.twig:102
+msgid "Disabling landing page will redirect users to login page."
+msgstr ""
+
+#: /resources/views/templates/admin/settings/general.twig:109
+msgctxt "heading"
+msgid "SEO"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/general.twig:112
+msgctxt "label"
+msgid "Keywords"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:5
+msgctxt "title"
+msgid "Settings"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:8
+msgctxt "heading"
+msgid "Settings"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:11
+msgctxt "heading"
+msgid "Common"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:23
+msgid "Website and SEO"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:35
+msgctxt "heading"
+msgid "Brand"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:37
+msgid "Branding and logo"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:49
+#: /resources/views/templates/admin/settings/public-details.twig:11
+msgctxt "heading"
+msgid "Public details"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:51
+msgid "Address, contacts etc."
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:63
+#: /resources/views/templates/admin/settings/policies.twig:11
+msgctxt "heading"
+msgid "Policies"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:65
+msgid "Legal terms"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:73
+msgctxt "heading"
+msgid "Finance"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:83
+msgctxt "heading"
+msgid "Billing"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:85
+msgid "Currency and subscriptions"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:97
+msgctxt "heading"
+msgid "Payments"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:99
+msgid "Payment gateway integrations"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:107
+msgctxt "heading"
+msgid "Email"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:117
+#: /resources/views/templates/admin/settings/mail.twig:11
+msgctxt "heading"
+msgid "Mail"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:119
+msgid "Transport and sender details"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:131
+#: /resources/views/templates/admin/settings/smtp.twig:11
+msgctxt "heading"
+msgid "SMTP"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:133
+msgid "SMTP transport details"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:141
+msgctxt "heading"
+msgid "User accounts"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:153
+msgid "Accounts and sign up form"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:165
+msgctxt "heading"
+msgid "Identity providers"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:167
+msgid "3rd party identiy providers"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:179
+msgctxt "heading"
+msgid "CAPTCHA"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:181
+msgid "Google reCAPTCHA"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:189
+msgctxt "heading"
+msgid "Integrations"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:199
+msgctxt "heading"
+msgid "OpenAI"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:201
+#: /resources/views/templates/admin/settings/index.twig:215
+#: /resources/views/templates/admin/settings/index.twig:229
+#: /resources/views/templates/admin/settings/index.twig:243
+msgid "API keys and service config"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:213
+msgctxt "heading"
+msgid "ElevenLabs"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:227
+msgctxt "heading"
+msgid "Stability AI"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/index.twig:241
+msgctxt "heading"
+msgid "Clipdrop"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/mail.twig:5
+msgctxt "title"
+msgid "Email settings"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/mail.twig:23
+msgctxt "label"
+msgid "Mailer transport"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/mail.twig:29
+msgid "Null Transport"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/mail.twig:34
+msgid "SMTP Transport"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/mail.twig:42
+msgctxt "heading"
+msgid "Sender details"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/mail.twig:47
+msgctxt "label"
+msgid "Sender email"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/mail.twig:58
+msgctxt "label"
+msgid "Sender name"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/openai.twig:5
+msgctxt "title"
+msgid "OpenAI Configuration"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/openai.twig:22
+msgctxt "label"
+msgid "API Secret"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/openai.twig:27
+msgid "Include your Open AI API  secret key"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/payments.twig:4
+msgctxt "title"
+msgid "Payment settings"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/payments.twig:10
+msgctxt "title"
+msgid "Payments"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/payments.twig:29
+msgid "Gateway is enabled"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/policies.twig:5
+msgctxt "title"
+msgid "Policies"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/policies.twig:17
+msgctxt "heading"
+msgid "Terms of services"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/policies.twig:20
+#: /resources/views/templates/admin/settings/policies.twig:36
+#: /resources/views/templates/admin/settings/policies.twig:52
+msgctxt "label"
+msgid "Content"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/policies.twig:27
+#: /resources/views/templates/admin/settings/policies.twig:43
+#: /resources/views/templates/admin/settings/policies.twig:59
+msgid "Markdown is supported"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/policies.twig:33
+msgctxt "heading"
+msgid "Privacy policy"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/policies.twig:49
+msgctxt "heading"
+msgid "Refund policy"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/public-details.twig:5
+msgctxt "title"
+msgid "Public details"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/public-details.twig:17
+msgctxt "heading"
+msgid "Business details"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/public-details.twig:20
+msgctxt "label"
+msgid "Business name"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/public-details.twig:30
+msgctxt "label"
+msgid "Business address"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/public-details.twig:41
+msgctxt "heading"
+msgid "Social media accounts"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/public-details.twig:44
+msgctxt "label"
+msgid "X (Twitter)"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/public-details.twig:53
+msgctxt "label"
+msgid "Facebook"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/public-details.twig:62
+msgctxt "label"
+msgid "Instagram"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/public-details.twig:71
+msgctxt "label"
+msgid "TikTok"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/public-details.twig:80
+msgctxt "label"
+msgid "Discord"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/public-details.twig:89
+msgctxt "label"
+msgid "LinkedIn"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/public-details.twig:98
+msgctxt "label"
+msgid "YouTube"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/public-details.twig:107
+msgctxt "label"
+msgid "GitHub"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/recaptcha.twig:5
+msgctxt "title"
+msgid "Google reCAPTCHA"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/recaptcha.twig:12
+msgctxt "heading"
+msgid "Google reCAPTCHA"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/recaptcha.twig:34
+msgctxt "label"
+msgid "Protect with Google reCAPTCHA"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/recaptcha.twig:58
+msgctxt "label"
+msgid "Site key"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/recaptcha.twig:70
+msgctxt "label"
+msgid "Secret key"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/smtp.twig:5
+msgctxt "title"
+msgid "SMTP settings"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/smtp.twig:20
+msgctxt "label"
+msgid "Host"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/smtp.twig:24
+msgid "Enter your SMTP server host name"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/smtp.twig:29
+msgctxt "label"
+msgid "Port"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/smtp.twig:44
+msgctxt "label"
+msgid "Username"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/smtp.twig:48
+msgid "Authentication username"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/smtp.twig:57
+msgid "Password to authenticate"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/stabilityai.twig:5
+msgctxt "title"
+msgid "StabilityAI Configuration"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/stabilityai.twig:49
+msgid "Include your Stability AI API  secret key"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/facebook.twig:5
+msgctxt "title"
+msgid "Facebook identity provider"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/facebook.twig:12
+msgctxt "heading"
+msgid "Facebook identity provider"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/facebook.twig:21
+#: /resources/views/templates/admin/settings/identity-providers/github.twig:21
+#: /resources/views/templates/admin/settings/identity-providers/google.twig:21
+#: /resources/views/templates/admin/settings/identity-providers/linkedin.twig:21
+msgctxt "heading"
+msgid "Config"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/facebook.twig:33
+msgctxt "label"
+msgid "Login with Facebook"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/facebook.twig:57
+msgctxt "label"
+msgid "App ID"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/facebook.twig:69
+#: /resources/views/templates/admin/settings/identity-providers/github.twig:68
+#: /resources/views/templates/admin/settings/identity-providers/google.twig:68
+#: /resources/views/templates/admin/settings/identity-providers/linkedin.twig:69
+msgctxt "label"
+msgid "Client secret"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/facebook.twig:81
+msgctxt "label"
+msgid "Valid OAuth Redirect URI"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/facebook.twig:86
+#: /resources/views/templates/admin/settings/identity-providers/github.twig:85
+#: /resources/views/templates/admin/settings/identity-providers/google.twig:84
+#: /resources/views/templates/admin/settings/identity-providers/linkedin.twig:86
+msgid "URL copied to clipboard"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/github.twig:5
+msgctxt "title"
+msgid "GitHub identity provider"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/github.twig:12
+msgctxt "heading"
+msgid "GitHub identity provider"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/github.twig:33
+msgctxt "label"
+msgid "Login with Github"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/github.twig:56
+#: /resources/views/templates/admin/settings/identity-providers/google.twig:56
+#: /resources/views/templates/admin/settings/identity-providers/linkedin.twig:57
+msgctxt "label"
+msgid "Client ID"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/github.twig:80
+msgctxt "label"
+msgid "Authorization callback URL"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/google.twig:5
+msgctxt "title"
+msgid "Google identity provider"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/google.twig:12
+msgctxt "heading"
+msgid "Google identity provider"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/google.twig:33
+msgctxt "label"
+msgid "Login with Google"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/google.twig:80
+msgctxt "label"
+msgid "Authorized redirect URI"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/index.twig:4
+#: /resources/views/templates/admin/settings/identity-providers/index.twig:10
+msgctxt "title"
+msgid "Identity providers"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/index.twig:21
+#: /resources/views/templates/admin/settings/identity-providers/index.twig:41
+#: /resources/views/templates/admin/settings/identity-providers/index.twig:61
+#: /resources/views/templates/admin/settings/identity-providers/index.twig:81
+msgid "Provider is enabled"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/linkedin.twig:5
+msgctxt "title"
+msgid "LinkedIn identity provider"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/linkedin.twig:12
+msgctxt "heading"
+msgid "LinkedIn identity provider"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/linkedin.twig:33
+msgctxt "label"
+msgid "Login with LinkedIn"
+msgstr ""
+
+#: /resources/views/templates/admin/settings/identity-providers/linkedin.twig:81
+msgctxt "label"
+msgid "Authorized redirect URL"
+msgstr ""
+
+#: /resources/views/templates/install/index.twig:4
+msgctxt "title"
+msgid "Installation"
+msgstr ""
+
+#: /resources/views/templates/install/index.twig:28
+msgid "Initializing..."
+msgstr ""
+
+#: /resources/views/templates/app/coder.twig:6
+#: /resources/views/templates/app/coder.twig:12
+msgctxt "title"
+msgid "Coding Assistant"
+msgstr ""
+
+#: /resources/views/templates/app/coder.twig:47
+#: /resources/views/templates/app/imagine.twig:47
+#: /resources/views/templates/app/transcriber.twig:47
+#: /resources/views/templates/app/writer.twig:48
+msgctxt "heading"
+msgid "Prompts"
+msgstr ""
+
+#: /resources/views/templates/app/coder.twig:57
+#: /resources/views/templates/app/imagine.twig:91
+msgid "The more details you provide, the better the result will be."
+msgstr ""
+
+#: /resources/views/templates/app/coder.twig:69
+msgctxt "label"
+msgid "Programming language"
+msgstr ""
+
+#: /resources/views/templates/app/coder.twig:111
+#: /resources/views/templates/app/transcriber.twig:134
+#: /resources/views/templates/app/writer.twig:220
+msgctxt "button"
+msgid "Generate Result"
+msgstr ""
+
+#: /resources/views/templates/app/coder.twig:13
+msgid "Generate high quality code in seconds."
+msgstr ""
+
+#: /resources/views/templates/app/coder.twig:17
+#: /resources/views/templates/app/writer.twig:18
+msgid "Unlimited tokens"
+msgstr ""
+
+#: /resources/views/templates/app/coder.twig:17
+#: /resources/views/templates/app/writer.twig:18
+msgid "%s tokens"
+msgstr ""
+
+#: /resources/views/templates/app/coder.twig:22
+#: /resources/views/templates/app/writer.twig:23
+msgid "Unlimited tokens remaining"
+msgstr ""
+
+#: /resources/views/templates/app/coder.twig:28
+#: /resources/views/templates/app/writer.twig:29
+msgid "%s tokens remaining"
+msgstr ""
+
+#: /resources/views/templates/app/dashboard.twig:28
+msgid "Your email address is not verified."
+msgstr ""
+
+#: /resources/views/templates/app/dashboard.twig:31
+#: /resources/views/templates/app/account/profile.twig:65
+msgctxt "button"
+msgid "Verify email"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:6
+msgctxt "title"
+msgid "Imagine"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:53
+msgctxt "label"
+msgid "Model/Engine"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:106
+msgctxt "label"
+msgid "Image resolution"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:132
+#: /resources/views/templates/app/imagine.twig:333
+msgctxt "label"
+msgid "Art style"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:136
+#: /resources/views/templates/app/imagine.twig:337
+msgctxt "art-style"
+msgid "None"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:140
+msgctxt "art-style"
+msgid "3D Render"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:144
+#: /resources/views/templates/app/imagine.twig:349
+msgctxt "art-style"
+msgid "Anime"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:148
+#: /resources/views/templates/app/imagine.twig:373
+msgctxt "art-style"
+msgid "Isometric"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:152
+msgctxt "art-style"
+msgid "Line Art"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:156
+msgctxt "art-style"
+msgid "Low Poly"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:160
+#: /resources/views/templates/app/imagine.twig:393
+msgctxt "art-style"
+msgid "Origami"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:164
+#: /resources/views/templates/app/imagine.twig:397
+msgctxt "art-style"
+msgid "Photographic"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:168
+msgctxt "art-style"
+msgid "Pixel"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:172
+msgctxt "art-style"
+msgid "Pop art"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:176
+msgctxt "art-style"
+msgid "Surrealism"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:180
+msgctxt "art-style"
+msgid "Abstract expressionism"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:184
+msgctxt "art-style"
+msgid "Realism"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:188
+msgctxt "art-style"
+msgid "Fauvism"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:192
+msgctxt "art-style"
+msgid "Art Deco"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:196
+msgctxt "art-style"
+msgid "Futurism"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:200
+msgctxt "art-style"
+msgid "Minimalism"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:204
+msgctxt "art-style"
+msgid "Expressionism"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:208
+msgctxt "art-style"
+msgid "Contemporary art"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:212
+msgctxt "art-style"
+msgid "Abstract art"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:216
+msgctxt "art-style"
+msgid "Constructivism"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:220
+msgctxt "art-style"
+msgid "Rococo"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:224
+msgctxt "art-style"
+msgid "Impressionism"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:228
+msgctxt "art-style"
+msgid "Art Nouveau"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:232
+msgctxt "art-style"
+msgid "Modern art"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:236
+msgctxt "art-style"
+msgid "Conceptual art"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:240
+msgctxt "art-style"
+msgid "Cubism"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:244
+msgctxt "art-style"
+msgid "Romanticism"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:248
+msgctxt "art-style"
+msgid "Post-Impressionism"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:252
+msgctxt "art-style"
+msgid "Baroque"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:256
+msgctxt "art-style"
+msgid "Bauhaus"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:260
+msgctxt "art-style"
+msgid "Cartoon"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:264
+msgctxt "art-style"
+msgid "Clay"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:268
+msgctxt "art-style"
+msgid "Dadaism"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:272
+msgctxt "art-style"
+msgid "Neoclassicism"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:276
+msgctxt "art-style"
+msgid "Cyberpunk"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:280
+msgctxt "art-style"
+msgid "Retro"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:284
+msgctxt "art-style"
+msgid "Glitchcore"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:288
+msgctxt "art-style"
+msgid "Ballpoint Pen Drawing"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:292
+msgctxt "art-style"
+msgid "Pencil Drawing"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:296
+msgctxt "art-style"
+msgid "Sticker"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:300
+msgctxt "art-style"
+msgid "Renaissance"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:304
+msgctxt "art-style"
+msgid "Watercolor"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:308
+msgctxt "art-style"
+msgid "Pointillism"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:312
+msgctxt "art-style"
+msgid "Steampunk"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:316
+msgctxt "art-style"
+msgid "Ukiyo"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:320
+msgctxt "art-style"
+msgid "Vaporwave"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:324
+msgctxt "art-style"
+msgid "Vector"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:341
+msgctxt "art-style"
+msgid "3d model"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:345
+msgctxt "art-style"
+msgid "Analog film"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:353
+msgctxt "art-style"
+msgid "Cinematic"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:357
+msgctxt "art-style"
+msgid "Comic book"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:361
+msgctxt "art-style"
+msgid "Digital art"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:365
+msgctxt "art-style"
+msgid "Enhance"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:369
+msgctxt "art-style"
+msgid "Fantasy art"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:377
+msgctxt "art-style"
+msgid "Line art"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:381
+msgctxt "art-style"
+msgid "Low poly"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:385
+msgctxt "art-style"
+msgid "Modeling compound"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:389
+msgctxt "art-style"
+msgid "Neon punk"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:401
+msgctxt "art-style"
+msgid "Pixel art"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:405
+msgctxt "art-style"
+msgid "Tile texture"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:414
+msgctxt "label"
+msgid "Lightning Style"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:419
+msgctxt "lightning"
+msgid "None"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:423
+msgctxt "lightning"
+msgid "Ambient"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:427
+msgctxt "lightning"
+msgid "Backlight"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:431
+msgctxt "lightning"
+msgid "Blue"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:435
+msgctxt "lightning"
+msgid "Cinematic"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:439
+msgctxt "lightning"
+msgid "Cold"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:443
+msgctxt "lightning"
+msgid "Dramatic"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:447
+msgctxt "lightning"
+msgid "Foggy"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:451
+msgctxt "lightning"
+msgid "Golden"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:455
+msgctxt "lightning"
+msgid "Hard"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:459
+msgctxt "lightning"
+msgid "Natural"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:463
+msgctxt "lightning"
+msgid "Neon"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:467
+msgctxt "lightning"
+msgid "Studio"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:471
+msgctxt "lightning"
+msgid "Warm"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:477
+msgctxt "label"
+msgid "Mood"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:481
+msgctxt "mood"
+msgid "None"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:485
+msgctxt "mood"
+msgid "Aggressive"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:489
+msgctxt "mood"
+msgid "Angry"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:493
+msgctxt "mood"
+msgid "Boring"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:497
+msgctxt "mood"
+msgid "Bright"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:501
+msgctxt "mood"
+msgid "Calm"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:505
+msgctxt "mood"
+msgid "Cheerful"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:509
+msgctxt "mood"
+msgid "Chilling"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:513
+msgctxt "mood"
+msgid "Colorful"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:517
+msgctxt "mood"
+msgid "Dark"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:521
+msgctxt "mood"
+msgid "Neutral"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:529
+msgctxt "button"
+msgid "This feature is disabled in demo."
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:566
+#: /resources/views/templates/app/voiceover.twig:270
+#: /resources/views/sections/dashboard/search.twig:39
+msgctxt "button"
+msgid "Generate"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:649
+msgctxt "button"
+msgid "Copy to clipboard"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:656
+msgctxt "button"
+msgid "Close"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:12
+#: /resources/views/sections/dashboard/tools.twig:56
+msgctxt "heading"
+msgid "Imagine"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:13
+msgid "Unlock your creativity, capable of producing breathtaking visuals within seconds."
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:17
+msgid "Unlimited images"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:17
+msgid "%s images"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:22
+msgid "Unlimited images remaining"
+msgstr ""
+
+#: /resources/views/templates/app/imagine.twig:28
+msgid "%s images remaining"
+msgstr ""
+
+#: /resources/views/templates/app/presets.twig:29
+#: /resources/views/templates/app/documents/list.twig:32
+msgctxt "title"
+msgid "My documents"
+msgstr ""
+
+#: /resources/views/templates/app/presets.twig:44
+msgctxt "heading"
+msgid "Writer templates"
+msgstr ""
+
+#: /resources/views/templates/app/presets.twig:54
+msgid "Choose one of the predefined template presets or continue with free form"
+msgstr ""
+
+#: /resources/views/templates/app/presets.twig:92
+msgctxt "heading"
+msgid "AI Writer"
+msgstr ""
+
+#: /resources/views/templates/app/presets.twig:95
+msgid "Don't need a template? Start writing with our AI writer."
+msgstr ""
+
+#: /resources/views/templates/app/transcriber.twig:6
+msgctxt "title"
+msgid "Transcriber - Speech to text"
+msgstr ""
+
+#: /resources/views/templates/app/transcriber.twig:53
+msgctxt "label"
+msgid "Audio file"
+msgstr ""
+
+#: /resources/views/templates/app/transcriber.twig:68
+msgid "Upload audio file"
+msgstr ""
+
+#: /resources/views/templates/app/transcriber.twig:12
+#: /resources/views/sections/dashboard/tools.twig:79
+msgctxt "heading"
+msgid "Transcriber"
+msgstr ""
+
+#: /resources/views/templates/app/transcriber.twig:13
+msgid "Precisely transcribe spoken words into written text."
+msgstr ""
+
+#: /resources/views/templates/app/transcriber.twig:17
+msgid "Unlimited seconds"
+msgstr ""
+
+#: /resources/views/templates/app/transcriber.twig:17
+msgid "%s seconds"
+msgstr ""
+
+#: /resources/views/templates/app/transcriber.twig:22
+msgid "Unlimited seconds remaining"
+msgstr ""
+
+#: /resources/views/templates/app/transcriber.twig:28
+msgid "%s seconds remaining"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:18
+msgctxt "label"
+msgid "Use case"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:23
+msgctxt "voiceover-use-case"
+msgid "Narration"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:27
+msgctxt "voiceover-use-case"
+msgid "Video Games"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:31
+msgctxt "voiceover-use-case"
+msgid "Meditation"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:35
+msgctxt "voiceover-use-case"
+msgid "Conversational"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:39
+msgctxt "voiceover-use-case"
+msgid "Children's Story"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:43
+msgctxt "voiceover-use-case"
+msgid "Audiobook"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:47
+msgctxt "voiceover-use-case"
+msgid "News"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:51
+msgctxt "voiceover-use-case"
+msgid "ASMR"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:55
+msgctxt "voiceover-use-case"
+msgid "Animation"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:59
+msgctxt "voiceover-use-case"
+msgid "News Presenter"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:63
+msgctxt "voiceover-use-case"
+msgid "Interactive"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:67
+msgctxt "voiceover-use-case"
+msgid "Informative/Educational"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:71
+msgctxt "voiceover-use-case"
+msgid "Narrative/Story"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:76
+msgctxt "label"
+msgid "Age"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:81
+msgctxt "age-group"
+msgid "Young"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:85
+msgctxt "age-group"
+msgid "Middle aged"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:89
+msgctxt "age-group"
+msgid "Old"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:94
+msgctxt "label"
+msgid "Accent"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:99
+msgctxt "label"
+msgid "American"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:103
+msgctxt "label"
+msgid "American-Irish"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:107
+msgctxt "label"
+msgid "American-Southern"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:111
+msgctxt "label"
+msgid "Australian"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:115
+msgctxt "label"
+msgid "British"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:119
+msgctxt "label"
+msgid "British-Essex"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:123
+msgctxt "label"
+msgid "English-Swedish"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:127
+msgctxt "label"
+msgid "English-Italian"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:131
+msgctxt "label"
+msgid "Indian"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:135
+msgctxt "label"
+msgid "Irish"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:140
+msgctxt "label"
+msgid "Gender"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:145
+msgctxt "gender"
+msgid "Male"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:149
+msgctxt "gender"
+msgid "Female"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:153
+msgctxt "gender"
+msgid "Neutral"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:163
+msgctxt "title"
+msgid "Voice Over"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:173
+msgctxt "button"
+msgid "Voice list"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:260
+msgid ":count of :total characters"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:283
+msgid "This feature is disabled in demo environment. However, you can submit the form to see sample results for each language with selected voice"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:386
+msgctxt "heading"
+msgid "Voice over"
+msgstr ""
+
+#: /resources/views/templates/app/voiceover.twig:395
+msgid "Select one of the following voices and start transform your words to voice easily."
+msgstr ""
+
+#: /resources/views/templates/app/writer.twig:7
+#: /resources/views/templates/app/writer.twig:13
+msgctxt "title"
+msgid "AI Writer"
+msgstr ""
+
+#: /resources/views/templates/app/writer.twig:105
+#: /resources/views/templates/app/account/profile.twig:42
+msgctxt "label"
+msgid "Language"
+msgstr ""
+
+#: /resources/views/templates/app/writer.twig:122
+msgctxt "label"
+msgid "Tone of voice"
+msgstr ""
+
+#: /resources/views/templates/app/writer.twig:143
+msgctxt "label"
+msgid "Creativity"
+msgstr ""
+
+#: /resources/views/templates/app/writer.twig:14
+msgid "AI Writer is a tool that helps you write better content faster. It uses the power of AI to generate content for you."
+msgstr ""
+
+#: /resources/views/templates/app/documents/list.twig:24
+msgid "Document has been deleted successfully."
+msgstr ""
+
+#: /resources/views/templates/app/documents/list.twig:40
+msgid "Dashboard"
+msgstr ""
+
+#: /resources/views/templates/app/documents/list.twig:43
+msgid "My documents"
+msgstr ""
+
+#: /resources/views/templates/app/documents/list.twig:47
+#: /resources/views/templates/app/documents/list.twig:53
+msgid "Total :count documents"
+msgstr ""
+
+#: /resources/views/templates/app/documents/list.twig:58
+msgid "There are no documents yet."
+msgstr ""
+
+#: /resources/views/templates/app/documents/list.twig:58
+msgid "There are no documment matching your search."
+msgstr ""
+
+#: /resources/views/templates/app/documents/list.twig:63
+#: /resources/views/sections/dashboard/documents.twig:20
+msgctxt "label"
+msgid "Document"
+msgstr ""
+
+#: /resources/views/templates/app/documents/list.twig:155
+msgid "Edit"
+msgstr ""
+
+#: /resources/views/templates/app/documents/list.twig:164
+msgid "Delete"
+msgstr ""
+
+#: /resources/views/templates/app/documents/list.twig:179
+msgid "Do you really want to delete :title from documents?"
+msgstr ""
+
+#: /resources/views/templates/app/documents/view.twig:8
+msgctxt "title"
+msgid "Document"
+msgstr ""
+
+#: /resources/views/templates/app/documents/view.twig:103
+msgid "Cancel"
+msgstr ""
+
+#: /resources/views/templates/app/documents/view.twig:110
+msgid "Update document"
+msgstr ""
+
+#: /resources/views/templates/app/documents/view.twig:15
+msgctxt "heading"
+msgid "Document"
+msgstr ""
+
+#: /resources/views/templates/app/billing/checkout.twig:7
+#: /resources/views/templates/app/billing/subscription.twig:7
+msgctxt "title"
+msgid "Checkout"
+msgstr ""
+
+#: /resources/views/templates/app/billing/checkout.twig:12
+#: /resources/views/sections/dashboard/billing.twig:17
+msgctxt "button"
+msgid "Billing overview"
+msgstr ""
+
+#: /resources/views/templates/app/billing/checkout.twig:15
+msgctxt "heading"
+msgid "Checkout"
+msgstr ""
+
+#: /resources/views/templates/app/billing/checkout.twig:31
+msgid "Checkout is disabled currently."
+msgstr ""
+
+#: /resources/views/templates/app/billing/checkout.twig:83
+msgid "Monthly"
+msgstr ""
+
+#: /resources/views/templates/app/billing/checkout.twig:94
+msgid "Yearly"
+msgstr ""
+
+#: /resources/views/templates/app/billing/checkout.twig:106
+msgid "One time"
+msgstr ""
+
+#: /resources/views/templates/app/billing/checkout.twig:147
+msgid "Current Plan"
+msgstr ""
+
+#: /resources/views/templates/app/billing/checkout.twig:179
+#: /resources/views/templates/app/billing/checkout.twig:227
+#: /resources/views/templates/app/billing/locked.twig:77
+#: /resources/views/templates/app/billing/overview.twig:89
+msgid "Token credits"
+msgstr ""
+
+#: /resources/views/templates/app/billing/checkout.twig:187
+#: /resources/views/templates/app/billing/checkout.twig:238
+#: /resources/views/templates/app/billing/locked.twig:85
+#: /resources/views/templates/app/billing/overview.twig:97
+msgid "Image credits"
+msgstr ""
+
+#: /resources/views/templates/app/billing/checkout.twig:195
+#: /resources/views/templates/app/billing/checkout.twig:249
+#: /resources/views/templates/app/billing/locked.twig:93
+#: /resources/views/templates/app/billing/overview.twig:105
+msgid "Audio credits"
+msgstr ""
+
+#: /resources/views/templates/app/billing/checkout.twig:209
+msgid "View detailed pricing table"
+msgstr ""
+
+#: /resources/views/templates/app/billing/checkout.twig:264
+msgid "Checkout"
+msgstr ""
+
+#: /resources/views/templates/app/billing/checkout.twig:277
+msgid "Choose a different plan"
+msgstr ""
+
+#: /resources/views/templates/app/billing/checkout.twig:299
+msgid "You're eligible for %s day free trial."
+msgid_plural "You're eligible for %s days free trial."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: /resources/views/templates/app/billing/checkout.twig:313
+msgid "Start free trial"
+msgstr ""
+
+#: /resources/views/templates/app/billing/checkout.twig:332
+msgid "OR"
+msgstr ""
+
+#: /resources/views/templates/app/billing/locked.twig:5
+msgid "Payment required"
+msgstr ""
+
+#: /resources/views/templates/app/billing/locked.twig:12
+msgid "Account is locked"
+msgstr ""
+
+#: /resources/views/templates/app/billing/locked.twig:15
+msgid "You have no credits remaining. You can purchase one-time packs or upgrade your subscription to get more credits."
+msgstr ""
+
+#: /resources/views/templates/app/billing/locked.twig:19
+#: /resources/views/templates/app/billing/overview.twig:33
+msgid "Check subscription plans"
+msgstr ""
+
+#: /resources/views/templates/app/billing/locked.twig:30
+#: /resources/views/templates/app/billing/overview.twig:42
+#: /resources/views/templates/app/billing/overview.twig:116
+msgid "Credit packs"
+msgstr ""
+
+#: /resources/views/templates/app/billing/locked.twig:32
+#: /resources/views/templates/app/billing/overview.twig:44
+msgid "Your credit pakcs are listed below. Credit packs are one-time purchases and do not renew automatically. They will expire when all credits used."
+msgstr ""
+
+#: /resources/views/templates/app/billing/locked.twig:36
+#: /resources/views/templates/app/billing/overview.twig:48
+#: /resources/views/templates/app/billing/overview.twig:122
+msgid "You can always purchase one-time packs to get more credits."
+msgstr ""
+
+#: /resources/views/templates/app/billing/overview.twig:13
+msgctxt "heading"
+msgid "Billing overview"
+msgstr ""
+
+#: /resources/views/templates/app/billing/overview.twig:23
+msgid "Change plan"
+msgstr ""
+
+#: /resources/views/templates/app/billing/overview.twig:27
+msgid "Recurring subscription"
+msgstr ""
+
+#: /resources/views/templates/app/billing/overview.twig:29
+msgid "Currently you are not subscribed to any recurring plan."
+msgstr ""
+
+#: /resources/views/templates/app/billing/overview.twig:118
+msgid "Currently you don't have any active credit pack.Credit packs are one-time purchases and do not renew automatically. They will expire when all credits used."
+msgstr ""
+
+#: /resources/views/templates/app/billing/overview.twig:150
+msgid "Do you really want to cancel your subscription?"
+msgstr ""
+
+#: /resources/views/templates/app/billing/overview.twig:159
+msgid "Yes, cancel my subscription"
+msgstr ""
+
+#: /resources/views/templates/app/billing/subscription.twig:29
+msgid "Success!"
+msgstr ""
+
+#: /resources/views/templates/app/billing/subscription.twig:31
+msgid "Purchase is completed successfully!"
+msgstr ""
+
+#: /resources/views/templates/app/account/email.twig:3
+msgctxt "title"
+msgid "Account email"
+msgstr ""
+
+#: /resources/views/templates/app/account/email.twig:11
+#: /resources/views/templates/app/account/password.twig:13
+#: /resources/views/templates/app/account/verification.twig:9
+msgctxt "button"
+msgid "Go back to account"
+msgstr ""
+
+#: /resources/views/templates/app/account/email.twig:14
+msgctxt "heading"
+msgid "Update email"
+msgstr ""
+
+#: /resources/views/templates/app/account/email.twig:41
+#: /resources/views/templates/app/account/profile.twig:72
+#: /resources/views/templates/app/account/verification.twig:24
+msgctxt "button"
+msgid "Change email"
+msgstr ""
+
+#: /resources/views/templates/app/account/email.twig:46
+msgid "You account doesn't have a password. To change your email, you need to set a password first. You can sign out and follow the password reset process to set a password."
+msgstr ""
+
+#: /resources/views/templates/app/account/password.twig:3
+msgctxt "title"
+msgid "Change password"
+msgstr ""
+
+#: /resources/views/templates/app/account/password.twig:9
+msgid "Password updated successfully!"
+msgstr ""
+
+#: /resources/views/templates/app/account/password.twig:16
+msgctxt "heading"
+msgid "Change password"
+msgstr ""
+
+#: /resources/views/templates/app/account/password.twig:24
+msgctxt "label"
+msgid "Current password"
+msgstr ""
+
+#: /resources/views/templates/app/account/password.twig:44
+#: /resources/views/templates/app/account/profile.twig:94
+msgctxt "button"
+msgid "Change password"
+msgstr ""
+
+#: /resources/views/templates/app/account/password.twig:49
+msgid "You account doesn't have a password. You can sign out and follow the password reset process to set a password."
+msgstr ""
+
+#: /resources/views/templates/app/account/profile.twig:3
+msgctxt "title"
+msgid "Account"
+msgstr ""
+
+#: /resources/views/templates/app/account/profile.twig:16
+msgctxt "heading"
+msgid "Account"
+msgstr ""
+
+#: /resources/views/templates/app/account/profile.twig:61
+msgid "Verified"
+msgstr ""
+
+#: /resources/views/templates/app/account/profile.twig:104
+msgid "Profile images are provided by %s"
+msgstr ""
+
+#: /resources/views/templates/app/account/verification.twig:3
+msgctxt "title"
+msgid "Verification"
+msgstr ""
+
+#: /resources/views/templates/app/account/verification.twig:11
+msgctxt "heading"
+msgid "Email verification"
+msgstr ""
+
+#: /resources/views/templates/app/account/verification.twig:13
+msgid "Your account email needs to be verified. Please follow the instruction sent to your email address."
+msgstr ""
+
+#: /resources/views/templates/app/account/verification.twig:37
+msgid "Didn't recevie email?"
+msgstr ""
+
+#: /resources/views/templates/app/account/verification.twig:43
+msgctxt "button"
+msgid "Resend email"
+msgstr ""
+
+#: /resources/views/templates/auth/callback.twig:3
+msgctxt "title"
+msgid "Authentication"
+msgstr ""
+
+#: /resources/views/templates/auth/callback.twig:7
+msgid "Authenticating..."
+msgstr ""
+
+#: /resources/views/templates/auth/login.twig:3
+msgctxt "title"
+msgid "Login"
+msgstr ""
+
+#: /resources/views/templates/auth/login.twig:12
+msgctxt "heading"
+msgid "Demo mode"
+msgstr ""
+
+#: /resources/views/templates/auth/login.twig:16
+msgid "Demo mode is enabled. Some features might be disabled. All of those features will be available in the purchased version."
+msgstr ""
+
+#: /resources/views/templates/auth/login.twig:23
+msgid "Use following credentials to login as an admin."
+msgstr ""
+
+#: /resources/views/templates/auth/login.twig:46
+msgid "You can signup as a new user too to view the app as a normal user."
+msgstr ""
+
+#: /resources/views/templates/auth/login.twig:57
+msgctxt "heading"
+msgid "Sign in to your account"
+msgstr ""
+
+#: /resources/views/templates/auth/login.twig:99
+msgctxt "button"
+msgid "Remember me"
+msgstr ""
+
+#: /resources/views/templates/auth/login.twig:107
+msgctxt "button"
+msgid "Forgot password?"
+msgstr ""
+
+#: /resources/views/templates/auth/login.twig:130
+#: /resources/views/templates/auth/recovery.twig:78
+msgid "Don't have an account?"
+msgstr ""
+
+#: /resources/views/templates/auth/recovery.twig:3
+msgctxt "title"
+msgid "Password recovery"
+msgstr ""
+
+#: /resources/views/templates/auth/recovery.twig:31
+#: /resources/views/templates/auth/reset.twig:28
+msgctxt "button"
+msgid "Back to login"
+msgstr ""
+
+#: /resources/views/templates/auth/recovery.twig:35
+msgctxt "heading"
+msgid "Password recovery"
+msgstr ""
+
+#: /resources/views/templates/auth/recovery.twig:39
+msgctxt "heading"
+msgid "Check your email!"
+msgstr ""
+
+#: /resources/views/templates/auth/recovery.twig:45
+msgid "We send password reset instruction to your email address. Please check your inbox and follow the instructions."
+msgstr ""
+
+#: /resources/views/templates/auth/recovery.twig:67
+msgctxt "button"
+msgid "Send request"
+msgstr ""
+
+#: /resources/views/templates/auth/reset.twig:3
+msgctxt "title"
+msgid "Password reset"
+msgstr ""
+
+#: /resources/views/templates/auth/reset.twig:32
+msgctxt "heading"
+msgid "Reset your password"
+msgstr ""
+
+#: /resources/views/templates/auth/reset.twig:36
+msgctxt "heading"
+msgid "Successfully completed!"
+msgstr ""
+
+#: /resources/views/templates/auth/reset.twig:41
+msgid "Set your new password"
+msgstr ""
+
+#: /resources/views/templates/auth/reset.twig:46
+msgid "Your password successfully changed. Please login your account to continue."
+msgstr ""
+
+#: /resources/views/templates/auth/reset.twig:53
+msgctxt "label"
+msgid "Enter new password"
+msgstr ""
+
+#: /resources/views/templates/auth/reset.twig:59
+msgid "Type your new password"
+msgstr ""
+
+#: /resources/views/templates/auth/reset.twig:76
+msgctxt "button"
+msgid "Reset password"
+msgstr ""
+
+#: /resources/views/templates/auth/reset.twig:81
+msgid "Login to your account"
+msgstr ""
+
+#: /resources/views/sections/dashboard/billing.twig:11
+msgid "Subscribe to one of the our plans to get access to all features and benefits."
+msgstr ""
+
+#: /resources/views/sections/dashboard/billing.twig:26
+msgid "Currently you don't have any active subscription. Subscribe to one of the our plans to get access to all features and benefits."
+msgstr ""
+
+#: /resources/views/sections/dashboard/billing.twig:43
+msgctxt "label"
+msgid "Tokens left"
+msgstr ""
+
+#: /resources/views/sections/dashboard/billing.twig:58
+msgctxt "label"
+msgid "Images left"
+msgstr ""
+
+#: /resources/views/sections/dashboard/billing.twig:73
+msgctxt "label"
+msgid "Audio left"
+msgstr ""
+
+#: /resources/views/sections/dashboard/documents.twig:5
+msgctxt "heading"
+msgid "Recent documents"
+msgstr ""
+
+#: /resources/views/sections/dashboard/documents.twig:11
+#: /resources/views/sections/dashboard/documents.twig:105
+msgctxt "button"
+msgid "See all documents"
+msgstr ""
+
+#: /resources/views/sections/dashboard/documents.twig:111
+msgctxt "heading"
+msgid "No documents found"
+msgstr ""
+
+#: /resources/views/sections/dashboard/documents.twig:111
+msgid "Use our AI tools and create your first document."
+msgstr ""
+
+#: /resources/views/sections/dashboard/search.twig:31
+msgctxt "keyboard"
+msgid "ESC"
+msgstr ""
+
+#: /resources/views/sections/dashboard/search.twig:49
+msgctxt "heading"
+msgid "Search results"
+msgstr ""
+
+#: /resources/views/sections/dashboard/search.twig:55
+msgid "%s resuls found"
+msgstr ""
+
+#: /resources/views/sections/dashboard/search.twig:95
+#: /resources/views/sections/dashboard/search.twig:101
+msgid "Template"
+msgstr ""
+
+#: /resources/views/sections/dashboard/search.twig:125
+#: /resources/views/sections/dashboard/search.twig:131
+msgid "Document"
+msgstr ""
+
+#: /resources/views/sections/dashboard/tools.twig:11
+msgctxt "heading"
+msgid "Writer"
+msgstr ""
+
+#: /resources/views/sections/dashboard/tools.twig:20
+msgid "Text generator"
+msgstr ""
+
+#: /resources/views/sections/dashboard/tools.twig:34
+msgctxt "heading"
+msgid "Coder"
+msgstr ""
+
+#: /resources/views/sections/dashboard/tools.twig:36
+msgctxt "coder-tool-description"
+msgid "Ready to write code at the speed of light?"
+msgstr ""
+
+#: /resources/views/sections/dashboard/tools.twig:43
+msgid "Code writer"
+msgstr ""
+
+#: /resources/views/sections/dashboard/tools.twig:58
+msgctxt "imagine-tool-description"
+msgid "Visualize what you dream of. Create images from text."
+msgstr ""
+
+#: /resources/views/sections/dashboard/tools.twig:65
+msgid "Image generator"
+msgstr ""
+
+#: /resources/views/sections/dashboard/tools.twig:81
+msgctxt "transcriber-tool-description"
+msgid "Instantly transcribe spoken words into text."
+msgstr ""
+
+#: /resources/views/sections/dashboard/tools.twig:88
+msgid "Speech to text"
+msgstr ""
+
+#: /resources/views/sections/dashboard/tools.twig:103
+msgctxt "heading"
+msgid "Voiceover"
+msgstr ""
+
+#: /resources/views/sections/dashboard/tools.twig:105
+msgctxt "voiceover-tool-description"
+msgid "Convert your texts into lifelike speech"
+msgstr ""
+
+#: /resources/views/sections/dashboard/tools.twig:112
+msgid "Text to speech"
+msgstr ""

@@ -1,0 +1,28 @@
+{% extends "/layouts/minimal.twig" %}
+
+{% if policy == 'privacy' %}
+{% set title = p__('title', 'Privacy policy') %}
+{% set content = option.policies.privacy %}
+{% elseif policy == 'terms' %}
+{% set title = p__('title', 'Terms of services') %}
+{% set content = option.policies.tos %}
+{% elseif policy == 'refund' %}
+{% set title = p__('title', 'Refund policy') %}
+{% set content = option.policies.refund %}
+{% endif %}
+
+{% block title title|title %}
+
+{% block template %}
+<section class="xs:p-8 box md:px-14">
+  {% if auth_user is defined %}
+  {% include "snippets/back.twig" with {link: 'app', label: p__('button', 'Go to app')} %}
+  {% else %}
+  {% include "snippets/back.twig" with {link: '/', label: p__('button', 'Go to home page')} %}
+  {% endif %}
+
+  <div class="mt-4 prose-sm prose">
+    {{ content | markdown_to_html }}
+  </div>
+</section>
+{% endblock %}
